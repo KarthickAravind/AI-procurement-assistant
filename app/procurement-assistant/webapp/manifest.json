@@ -1,0 +1,120 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "procurement.assistant",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.14.4",
+      "toolsId": "e9b9b7c0-6d8a-4b8a-9c8a-1b2c3d4e5f6g"
+    },
+    "dataSources": {
+      "i18n": {
+        "type": "ResourceBundle",
+        "uri": "i18n/i18n.properties"
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.commons": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "models": {
+      "i18n": {
+        "dataSource": "i18n",
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "procurement.assistant.i18n.i18n"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "procurement.assistant.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteWelcome",
+          "pattern": ":?query:",
+          "target": [
+            "TargetWelcome"
+          ]
+        },
+        {
+          "name": "RouteMain",
+          "pattern": "main",
+          "target": [
+            "TargetMain"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetWelcome": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Welcome",
+          "viewName": "Welcome"
+        },
+        "TargetMain": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Main",
+          "viewName": "Main"
+        }
+      }
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "procurement.assistant"
+  }
+}

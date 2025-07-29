@@ -1,0 +1,62 @@
+<mvc:View
+    controllerName="procurement.assistant.controller.Welcome"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+    
+    <Page id="welcomePage" title="{i18n>appTitle}" showNavButton="false">
+        <content>
+            <VBox class="welcomeContainer" alignItems="Center" justifyContent="Center">
+                
+                <!-- Main Title -->
+                <Title text="{i18n>welcomeTitle}" class="welcomeTitle sapUiMediumMarginBottom"/>
+                
+                <!-- Subtitle/Tagline -->
+                <Text text="{i18n>welcomeSubtitle}" class="welcomeSubtitle sapUiMediumMarginBottom"/>
+                
+                <!-- Description -->
+                <Text text="{i18n>welcomeDescription}" class="welcomeDescription sapUiLargeMarginBottom"/>
+                
+                <!-- Get Started Button -->
+                <Button 
+                    text="{i18n>getStartedButton}" 
+                    type="Emphasized" 
+                    press="onGetStarted"
+                    class="sapUiLargeMarginTop"
+                    icon="sap-icon://forward"/>
+                
+                <!-- Feature Cards -->
+                <HBox class="sapUiLargeMarginTop" wrap="Wrap" justifyContent="Center">
+                    <f:Card class="sapUiMediumMargin" width="300px">
+                        <f:header>
+                            <f:Header title="AI Chat Assistant">
+                                <f:Avatar src="sap-icon://discussion-2" displaySize="S"/>
+                            </f:Header>
+                        </f:header>
+                        <f:content>
+                            <VBox class="sapUiMediumMargin">
+                                <Text text="Get instant answers to your procurement questions using natural language"/>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                    
+                    <f:Card class="sapUiMediumMargin" width="300px">
+                        <f:header>
+                            <f:Header title="Warehouse Management">
+                                <f:Avatar src="sap-icon://warehouse" displaySize="S"/>
+                            </f:Header>
+                        </f:header>
+                        <f:content>
+                            <VBox class="sapUiMediumMargin">
+                                <Text text="Manage your inventory, track materials, and perform CRUD operations"/>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                </HBox>
+                
+            </VBox>
+        </content>
+    </Page>
+    
+</mvc:View>

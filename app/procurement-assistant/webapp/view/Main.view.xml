@@ -1,0 +1,151 @@
+<mvc:View
+    controllerName="procurement.assistant.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+    
+    <Page id="mainPage" title="{i18n>mainTitle}" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <SplitContainer id="splitContainer" class="mainContainer">
+                
+                <!-- Chat Panel (Left Side) -->
+                <masterPages>
+                    <Page title="{i18n>chatTitle}" class="chatPanel">
+                        <content>
+                            <VBox class="sapUiNoMargin" height="100%">
+                                
+                                <!-- Chat Header -->
+                                <Bar class="chatHeader">
+                                    <contentLeft>
+                                        <Title text="{i18n>chatTitle}" level="H3"/>
+                                    </contentLeft>
+                                    <contentRight>
+                                        <Button icon="sap-icon://refresh" press="onClearChat" tooltip="Clear Chat"/>
+                                    </contentRight>
+                                </Bar>
+                                
+                                <!-- Chat Messages Area -->
+                                <ScrollContainer class="chatContent" height="100%" vertical="true">
+                                    <VBox id="chatMessages" class="sapUiMediumMargin">
+                                        <!-- Welcome message -->
+                                        <MessageStrip 
+                                            text="Hello! I'm your AI procurement assistant. Ask me anything about suppliers, materials, or procurement processes."
+                                            type="Information"
+                                            class="sapUiMediumMarginBottom"/>
+                                    </VBox>
+                                </ScrollContainer>
+                                
+                                <!-- Chat Input Area -->
+                                <Bar class="chatInput">
+                                    <contentLeft>
+                                        <Input 
+                                            id="chatInput"
+                                            placeholder="{i18n>chatPlaceholder}"
+                                            value="{/chatMessage}"
+                                            submit="onSendMessage"
+                                            width="100%"/>
+                                    </contentLeft>
+                                    <contentRight>
+                                        <Button 
+                                            text="{i18n>sendButton}"
+                                            type="Emphasized"
+                                            press="onSendMessage"
+                                            icon="sap-icon://paper-plane"/>
+                                    </contentRight>
+                                </Bar>
+                                
+                            </VBox>
+                        </content>
+                    </Page>
+                </masterPages>
+                
+                <!-- Warehouse Management Panel (Right Side) -->
+                <detailPages>
+                    <Page title="{i18n>warehouseTitle}" class="warehousePanel">
+                        <content>
+                            <VBox class="sapUiNoMargin" height="100%">
+                                
+                                <!-- Warehouse Header -->
+                                <Bar class="warehouseHeader">
+                                    <contentLeft>
+                                        <Title text="{i18n>warehouseTitle}" level="H3"/>
+                                    </contentLeft>
+                                    <contentRight>
+                                        <Button text="Add Material" type="Emphasized" press="onAddMaterial" icon="sap-icon://add"/>
+                                    </contentRight>
+                                </Bar>
+                                
+                                <!-- Search and Filter Bar -->
+                                <Bar class="sapUiMediumMarginTop">
+                                    <contentLeft>
+                                        <SearchField 
+                                            placeholder="Search materials..."
+                                            search="onSearchMaterials"
+                                            width="300px"/>
+                                    </contentLeft>
+                                    <contentRight>
+                                        <Button text="Filter" press="onFilterMaterials" icon="sap-icon://filter"/>
+                                        <Button text="Refresh" press="onRefreshMaterials" icon="sap-icon://refresh"/>
+                                    </contentRight>
+                                </Bar>
+                                
+                                <!-- Materials Table -->
+                                <ScrollContainer class="warehouseContent" height="100%" vertical="true">
+                                    <Table id="materialsTable" 
+                                           items="{/materials}" 
+                                           class="sapUiMediumMargin"
+                                           mode="SingleSelect">
+                                        <headerToolbar>
+                                            <Toolbar>
+                                                <Title text="Materials Inventory" level="H4"/>
+                                                <ToolbarSpacer/>
+                                                <Text text="Total: {/materialsCount} items"/>
+                                            </Toolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column>
+                                                <Text text="Material ID"/>
+                                            </Column>
+                                            <Column>
+                                                <Text text="Name"/>
+                                            </Column>
+                                            <Column>
+                                                <Text text="Category"/>
+                                            </Column>
+                                            <Column>
+                                                <Text text="Quantity"/>
+                                            </Column>
+                                            <Column>
+                                                <Text text="Unit Price"/>
+                                            </Column>
+                                            <Column>
+                                                <Text text="Actions"/>
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem press="onMaterialSelect">
+                                                <Text text="{materialId}"/>
+                                                <Text text="{name}"/>
+                                                <Text text="{category}"/>
+                                                <Text text="{quantity} {unit}"/>
+                                                <Text text="${price}"/>
+                                                <HBox>
+                                                    <Button icon="sap-icon://edit" press="onEditMaterial" type="Transparent"/>
+                                                    <Button icon="sap-icon://delete" press="onDeleteMaterial" type="Transparent"/>
+                                                </HBox>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </ScrollContainer>
+                                
+                            </VBox>
+                        </content>
+                    </Page>
+                </detailPages>
+                
+            </SplitContainer>
+        </content>
+    </Page>
+    
+</mvc:View>

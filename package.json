@@ -1,0 +1,41 @@
+{
+  "name": "AI-Procurement-Assistant",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^9",
+    "express": "^4",
+    "@sap/xssec": "^4",
+    "@cap-js/hana": "^2",
+    "@cap-js/audit-logging": ">=0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.13.0",
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": ">=8"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "sapux": [
+    "app/admin-books",
+    "app/browse",
+    "app/procurement-assistant"
+  ],
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": "xsuaa"
+      },
+      "connectivity": true,
+      "destinations": true,
+      "html5-runtime": true
+    }
+  }
+}

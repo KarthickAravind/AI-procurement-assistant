@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Procurement Assistant - Test</title>
+    <script
+        id="sap-ui-bootstrap"
+        src="https://ui5.sap.com/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_horizon"
+        data-sap-ui-libs="sap.m,sap.f"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true">
+    </script>
+    <style>
+        .welcomeContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .welcomeTitle {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #0070f3;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="sapUiBody">
+    <div id="content"></div>
+    
+    <script>
+        sap.ui.getCore().attachInit(function() {
+            // Create a simple page to test
+            var oPage = new sap.m.Page({
+                title: "AI-Powered Procurement Assistant",
+                content: [
+                    new sap.m.VBox({
+                        alignItems: "Center",
+                        justifyContent: "Center",
+                        class: "welcomeContainer",
+                        items: [
+                            new sap.m.Title({
+                                text: "AI-Powered Procurement Assistant",
+                                class: "welcomeTitle"
+                            }),
+                            new sap.m.Text({
+                                text: "I'm here to help",
+                                class: "sapUiMediumMarginBottom"
+                            }),
+                            new sap.m.Text({
+                                text: "Your intelligent assistant for procurement and warehouse management",
+                                class: "sapUiMediumMarginBottom"
+                            }),
+                            new sap.m.Button({
+                                text: "Get Started",
+                                type: "Emphasized",
+                                icon: "sap-icon://forward",
+                                press: function() {
+                                    sap.m.MessageToast.show("Welcome to Phase 1! Navigation will be implemented in the full app.");
+                                }
+                            })
+                        ]
+                    })
+                ]
+            });
+            
+            // Create app and add page
+            var oApp = new sap.m.App({
+                pages: [oPage]
+            });
+            
+            // Place app in DOM
+            oApp.placeAt("content");
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* Welcome Page Styles */
+.welcomeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.welcomeTitle {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #0070f3;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.welcomeSubtitle {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.welcomeDescription {
+    font-size: 1.1rem;
+    color: #888;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Main Page Styles */
+.mainContainer {
+    height: 100vh;
+    display: flex;
+}
+
+.chatPanel {
+    flex: 1;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa;
+    min-width: 400px;
+}
+
+.warehousePanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    min-width: 500px;
+}
+
+/* Split Container Enhancements */
+.sapMSplitContainer .sapMSplitContainerMaster {
+    min-width: 400px !important;
+    max-width: 500px !important;
+}
+
+.sapMSplitContainer .sapMSplitContainerDetail {
+    min-width: 500px !important;
+}
+
+.chatHeader, .warehouseHeader {
+    padding: 1rem;
+    background: linear-gradient(90deg, #0070f3 0%, #0056b3 100%);
+    color: white;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.chatContent {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: #fafafa;
+}
+
+.chatInput {
+    padding: 1rem;
+    border-top: 1px solid #e0e0e0;
+    background-color: white;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+}
+
+.warehouseContent {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: #ffffff;
+}
+
+/* Chat Message Styles */
+.chatMessages .sapMMessageStrip {
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.chatMessages .sapMMessageStrip[data-type="Success"] {
+    background-color: #e3f2fd;
+    border-left: 4px solid #2196f3;
+}
+
+.chatMessages .sapMMessageStrip[data-type="Information"] {
+    background-color: #f3e5f5;
+    border-left: 4px solid #9c27b0;
+}
+
+/* Feature Cards */
+.sapMCard {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sapMCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* Button Enhancements */
+.sapMBtn.sapMBtnEmphasized {
+    border-radius: 24px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.sapMBtn.sapMBtnEmphasized:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,112,243,0.3);
+}
+
+/* Table Enhancements */
+.sapMTable {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Chat Area Enhancements */
+.sapMScrollContainer {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.sapMInput {
+    border-radius: 20px;
+}
+
+.sapMBtn {
+    border-radius: 20px;
+}
+
+/* Panel Enhancements */
+.sapMPanel {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.sapMPanel .sapMPanelContent {
+    padding: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mainContainer {
+        flex-direction: column;
+    }
+
+    .chatPanel {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        height: 50vh;
+    }
+
+    .warehousePanel {
+        height: 50vh;
+    }
+
+    .welcomeTitle {
+        font-size: 2rem;
+    }
+
+    .welcomeSubtitle {
+        font-size: 1.2rem;
+    }
+
+    .welcomeContainer {
+        padding: 1rem;
+    }
+}

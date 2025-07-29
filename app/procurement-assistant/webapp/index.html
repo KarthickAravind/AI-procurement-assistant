@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Procurement Assistant</title>
+    <script
+        id="sap-ui-bootstrap"
+        src="https://ui5.sap.com/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_horizon"
+        data-sap-ui-libs="sap.m,sap.f"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true">
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="sapUiBody">
+    <div id="content"></div>
+    
+    <script>
+        sap.ui.getCore().attachInit(function() {
+            console.log("UI5 Core initialized successfully");
+            
+            var oApp; // Declare app variable
+            
+            // Create Welcome Page
+            var oWelcomePage = new sap.m.Page({
+                id: "welcomePage",
+                title: "AI-Powered Procurement Assistant",
+                showNavButton: false,
+                content: [
+                    new sap.m.VBox({
+                        alignItems: "Center",
+                        justifyContent: "Center",
+                        class: "welcomeContainer",
+                        items: [
+                            new sap.m.Title({
+                                text: "AI-Powered Procurement Assistant",
+                                class: "welcomeTitle sapUiMediumMarginBottom"
+                            }),
+                            new sap.m.Text({
+                                text: "I'm here to help",
+                                class: "welcomeSubtitle sapUiMediumMarginBottom"
+                            }),
+                            new sap.m.Text({
+                                text: "Your intelligent assistant for procurement and warehouse management",
+                                class: "welcomeDescription sapUiLargeMarginBottom"
+                            }),
+                            new sap.m.Button({
+                                text: "Get Started",
+                                type: "Emphasized",
+                                icon: "sap-icon://forward",
+                                class: "sapUiLargeMarginTop",
+                                press: function() {
+                                    console.log("Get Started button pressed");
+                                    oApp.to("mainPage");
+                                }
+                            })
+                        ]
+                    })
+                ]
+            });
+            
+            // Create Main Page
+            var oMainPage = new sap.m.Page({
+                id: "mainPage",
+                title: "Procurement Assistant",
+                showNavButton: true,
+                navButtonPress: function() {
+                    console.log("Back button pressed");
+                    oApp.back();
+                },
+                content: [
+                    new sap.m.SplitContainer({
+                        height: "700px",
+                        masterPages: [
+                            new sap.m.Page({
+                                title: "Chat Assistant",
+                                content: [
+                                    new sap.m.VBox({
+                                        height: "100%",
+                                        class: "sapUiMediumMargin",
+                                        items: [
+                                            // Chat Messages Area
+                                            new sap.m.ScrollContainer({
+                                                height: "400px",
+                                                vertical: true,
+                                                class: "sapUiMediumMarginBottom",
+                                                content: [
+                                                    new sap.m.MessageStrip({
+                                                        text: "Hello! I'm your AI procurement assistant. Ask me anything about suppliers, materials, or procurement processes.",
+                                                        type: "Information",
+                                                        class: "sapUiMediumMarginBottom"
+                                                    }),
+                                                    new sap.m.MessageStrip({
+                                                        text: "You can ask me about suppliers, materials, pricing, or any procurement-related questions.",
+                                                        type: "Success",
+                                                        class: "sapUiMediumMarginBottom"
+                                                    })
+                                                ]
+                                            }),
+                                            // Chat Input Area
+                                            new sap.m.VBox({
+                                                items: [
+                                                    new sap.m.Input({
+                                                        id: "chatInput",
+                                                        placeholder: "Ask me anything about procurement...",
+                                                        width: "100%",
+                                                        submit: function() {
+                                                            // Handle enter key
+                                                            sap.m.MessageToast.show("AI integration coming in Phase 5!");
+                                                        }
+                                                    }),
+                                                    new sap.m.Button({
+                                                        text: "Send",
+                                                        type: "Emphasized",
+                                                        icon: "sap-icon://paper-plane",
+                                                        width: "100%",
+                                                        class: "sapUiSmallMarginTop",
+                                                        press: function() {
+                                                            sap.m.MessageToast.show("AI integration coming in Phase 5!");
+                                                        }
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    })
+                                ]
+                            })
+                        ],
+                        detailPages: [
+                            new sap.m.Page({
+                                title: "Warehouse Management",
+                                content: [
+                                    new sap.m.VBox({
+                                        class: "sapUiMediumMargin",
+                                        items: [
+                                            // Action Buttons
+                                            new sap.m.HBox({
+                                                class: "sapUiMediumMarginBottom",
+                                                items: [
+                                                    new sap.m.Button({
+                                                        text: "Add Material",
+                                                        type: "Emphasized",
+                                                        icon: "sap-icon://add",
+                                                        press: function() {
+                                                            sap.m.MessageToast.show("Add Material functionality will be implemented in Phase 3");
+                                                        }
+                                                    }),
+                                                    new sap.m.Button({
+                                                        text: "Refresh",
+                                                        icon: "sap-icon://refresh",
+                                                        class: "sapUiSmallMarginBegin",
+                                                        press: function() {
+                                                            sap.m.MessageToast.show("Materials refreshed!");
+                                                        }
+                                                    })
+                                                ]
+                                            }),
+                                            // Search Bar
+                                            new sap.m.SearchField({
+                                                placeholder: "Search materials...",
+                                                width: "100%",
+                                                class: "sapUiMediumMarginBottom",
+                                                search: function() {
+                                                    sap.m.MessageToast.show("Search functionality will be implemented in Phase 3");
+                                                }
+                                            }),
+                                            // Materials Table
+                                            new sap.m.Table({
+                                                headerToolbar: new sap.m.Toolbar({
+                                                    content: [
+                                                        new sap.m.Title({
+                                                            text: "Materials Inventory",
+                                                            level: "H4"
+                                                        }),
+                                                        new sap.m.ToolbarSpacer(),
+                                                        new sap.m.Text({
+                                                            text: "Total: 3 items"
+                                                        })
+                                                    ]
+                                                }),
+                                                columns: [
+                                                    new sap.m.Column({
+                                                        header: new sap.m.Text({text: "Material ID"})
+                                                    }),
+                                                    new sap.m.Column({
+                                                        header: new sap.m.Text({text: "Name"})
+                                                    }),
+                                                    new sap.m.Column({
+                                                        header: new sap.m.Text({text: "Category"})
+                                                    }),
+                                                    new sap.m.Column({
+                                                        header: new sap.m.Text({text: "Quantity"})
+                                                    }),
+                                                    new sap.m.Column({
+                                                        header: new sap.m.Text({text: "Unit Price"})
+                                                    })
+                                                ],
+                                                items: [
+                                                    new sap.m.ColumnListItem({
+                                                        cells: [
+                                                            new sap.m.Text({text: "MAT001"}),
+                                                            new sap.m.Text({text: "Office Laptop"}),
+                                                            new sap.m.Text({text: "Electronics"}),
+                                                            new sap.m.Text({text: "25 pcs"}),
+                                                            new sap.m.Text({text: "₹45,000"})
+                                                        ]
+                                                    }),
+                                                    new sap.m.ColumnListItem({
+                                                        cells: [
+                                                            new sap.m.Text({text: "MAT002"}),
+                                                            new sap.m.Text({text: "Office Chair"}),
+                                                            new sap.m.Text({text: "Furniture"}),
+                                                            new sap.m.Text({text: "50 pcs"}),
+                                                            new sap.m.Text({text: "₹8,500"})
+                                                        ]
+                                                    }),
+                                                    new sap.m.ColumnListItem({
+                                                        cells: [
+                                                            new sap.m.Text({text: "MAT003"}),
+                                                            new sap.m.Text({text: "Printer Paper"}),
+                                                            new sap.m.Text({text: "Stationery"}),
+                                                            new sap.m.Text({text: "200 reams"}),
+                                                            new sap.m.Text({text: "₹350"})
+                                                        ]
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                ]
+            });
+            
+            // Create app
+            oApp = new sap.m.App({
+                pages: [oWelcomePage, oMainPage]
+            });
+            
+            // Place app in DOM
+            oApp.placeAt("content");
+            
+            console.log("App created and placed in DOM successfully");
+        });
+    </script>
+</body>
+</html>
