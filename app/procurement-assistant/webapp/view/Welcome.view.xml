@@ -7,49 +7,47 @@
     
     <Page id="welcomePage" title="{i18n>appTitle}" showNavButton="false">
         <content>
-            <VBox class="welcomeContainer" alignItems="Center" justifyContent="Center">
-                
+            <VBox id="welcomeContainer" class="welcomeContainer" alignItems="Center" justifyContent="Center">
+
                 <!-- Main Title -->
-                <Title text="{i18n>welcomeTitle}" class="welcomeTitle sapUiMediumMarginBottom"/>
-                
+                <Title id="welcomeMainTitle" text="{i18n>welcomeTitle}" class="welcomeTitle sapUiMediumMarginBottom"/>
+
                 <!-- Subtitle/Tagline -->
-                <Text text="{i18n>welcomeSubtitle}" class="welcomeSubtitle sapUiMediumMarginBottom"/>
-                
+                <Text id="welcomeSubtitle" text="{i18n>welcomeSubtitle}" class="welcomeSubtitle sapUiMediumMarginBottom"/>
+
                 <!-- Description -->
-                <Text text="{i18n>welcomeDescription}" class="welcomeDescription sapUiLargeMarginBottom"/>
-                
+                <Text id="welcomeDescription" text="{i18n>welcomeDescription}" class="welcomeDescription sapUiLargeMarginBottom"/>
+
                 <!-- Get Started Button -->
-                <Button 
-                    text="{i18n>getStartedButton}" 
-                    type="Emphasized" 
+                <Button id="getStartedBtn"
+                    text="{i18n>getStartedButton}"
+                    type="Emphasized"
                     press="onGetStarted"
                     class="sapUiLargeMarginTop"
                     icon="sap-icon://forward"/>
                 
                 <!-- Feature Cards -->
-                <HBox class="sapUiLargeMarginTop" wrap="Wrap" justifyContent="Center">
-                    <f:Card class="sapUiMediumMargin" width="300px">
-                        <f:header>
-                            <f:Header title="AI Chat Assistant">
-                                <f:Avatar src="sap-icon://discussion-2" displaySize="S"/>
-                            </f:Header>
-                        </f:header>
+                <HBox id="featureCardsBox" class="sapUiLargeMarginTop" wrap="Wrap" justifyContent="Center">
+                    <f:Card id="chatAssistantCard" class="sapUiMediumMargin" width="300px">
                         <f:content>
-                            <VBox class="sapUiMediumMargin">
-                                <Text text="Get instant answers to your procurement questions using natural language"/>
+                            <VBox id="chatCardContent" class="sapUiMediumMargin">
+                                <HBox id="chatCardHeaderBox" alignItems="Center" class="sapUiMediumMarginBottom">
+                                    <Avatar id="chatAvatar" src="sap-icon://discussion-2" displaySize="S" class="sapUiTinyMarginEnd"/>
+                                    <Title id="chatCardTitle" text="AI Chat Assistant" level="H4"/>
+                                </HBox>
+                                <Text id="chatCardText" text="Get instant answers to your procurement questions using natural language"/>
                             </VBox>
                         </f:content>
                     </f:Card>
-                    
-                    <f:Card class="sapUiMediumMargin" width="300px">
-                        <f:header>
-                            <f:Header title="Warehouse Management">
-                                <f:Avatar src="sap-icon://warehouse" displaySize="S"/>
-                            </f:Header>
-                        </f:header>
+
+                    <f:Card id="warehouseCard" class="sapUiMediumMargin" width="300px">
                         <f:content>
-                            <VBox class="sapUiMediumMargin">
-                                <Text text="Manage your inventory, track materials, and perform CRUD operations"/>
+                            <VBox id="warehouseCardContent" class="sapUiMediumMargin">
+                                <HBox id="warehouseCardHeaderBox" alignItems="Center" class="sapUiMediumMarginBottom">
+                                    <Avatar id="warehouseAvatar" src="sap-icon://warehouse" displaySize="S" class="sapUiTinyMarginEnd"/>
+                                    <Title id="warehouseCardTitle" text="Warehouse Management" level="H4"/>
+                                </HBox>
+                                <Text id="warehouseCardText" text="Manage your inventory, track materials, and perform CRUD operations"/>
                             </VBox>
                         </f:content>
                     </f:Card>

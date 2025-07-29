@@ -11,35 +11,35 @@
                 
                 <!-- Chat Panel (Left Side) -->
                 <masterPages>
-                    <Page title="{i18n>chatTitle}" class="chatPanel">
+                    <Page id="chatPage" title="{i18n>chatTitle}" class="chatPanel">
                         <content>
-                            <VBox class="sapUiNoMargin" height="100%">
-                                
+                            <VBox id="chatVBox" class="sapUiNoMargin" height="100%">
+
                                 <!-- Chat Header -->
-                                <Bar class="chatHeader">
+                                <Bar id="chatHeaderBar" class="chatHeader">
                                     <contentLeft>
-                                        <Title text="{i18n>chatTitle}" level="H3"/>
+                                        <Title id="chatTitle" text="{i18n>chatTitle}" level="H3"/>
                                     </contentLeft>
                                     <contentRight>
-                                        <Button icon="sap-icon://refresh" press="onClearChat" tooltip="Clear Chat"/>
+                                        <Button id="clearChatBtn" icon="sap-icon://refresh" press="onClearChat" tooltip="Clear Chat"/>
                                     </contentRight>
                                 </Bar>
                                 
                                 <!-- Chat Messages Area -->
-                                <ScrollContainer class="chatContent" height="100%" vertical="true">
+                                <ScrollContainer id="chatScrollContainer" class="chatContent" height="100%" vertical="true">
                                     <VBox id="chatMessages" class="sapUiMediumMargin">
                                         <!-- Welcome message -->
-                                        <MessageStrip 
+                                        <MessageStrip id="welcomeMessage"
                                             text="Hello! I'm your AI procurement assistant. Ask me anything about suppliers, materials, or procurement processes."
                                             type="Information"
                                             class="sapUiMediumMarginBottom"/>
                                     </VBox>
                                 </ScrollContainer>
-                                
+
                                 <!-- Chat Input Area -->
-                                <Bar class="chatInput">
+                                <Bar id="chatInputBar" class="chatInput">
                                     <contentLeft>
-                                        <Input 
+                                        <Input
                                             id="chatInput"
                                             placeholder="{i18n>chatPlaceholder}"
                                             value="{/chatMessage}"
@@ -47,7 +47,7 @@
                                             width="100%"/>
                                     </contentLeft>
                                     <contentRight>
-                                        <Button 
+                                        <Button id="sendMessageBtn"
                                             text="{i18n>sendButton}"
                                             type="Emphasized"
                                             press="onSendMessage"
@@ -62,77 +62,77 @@
                 
                 <!-- Warehouse Management Panel (Right Side) -->
                 <detailPages>
-                    <Page title="{i18n>warehouseTitle}" class="warehousePanel">
+                    <Page id="warehousePage" title="{i18n>warehouseTitle}" class="warehousePanel">
                         <content>
-                            <VBox class="sapUiNoMargin" height="100%">
-                                
+                            <VBox id="warehouseVBox" class="sapUiNoMargin" height="100%">
+
                                 <!-- Warehouse Header -->
-                                <Bar class="warehouseHeader">
+                                <Bar id="warehouseHeaderBar" class="warehouseHeader">
                                     <contentLeft>
-                                        <Title text="{i18n>warehouseTitle}" level="H3"/>
+                                        <Title id="warehouseTitle" text="{i18n>warehouseTitle}" level="H3"/>
                                     </contentLeft>
                                     <contentRight>
-                                        <Button text="Add Material" type="Emphasized" press="onAddMaterial" icon="sap-icon://add"/>
+                                        <Button id="addMaterialBtn" text="Add Material" type="Emphasized" press="onAddMaterial" icon="sap-icon://add"/>
                                     </contentRight>
                                 </Bar>
                                 
                                 <!-- Search and Filter Bar -->
-                                <Bar class="sapUiMediumMarginTop">
+                                <Bar id="searchFilterBar" class="sapUiMediumMarginTop">
                                     <contentLeft>
-                                        <SearchField 
+                                        <SearchField id="materialSearchField"
                                             placeholder="Search materials..."
                                             search="onSearchMaterials"
                                             width="300px"/>
                                     </contentLeft>
                                     <contentRight>
-                                        <Button text="Filter" press="onFilterMaterials" icon="sap-icon://filter"/>
-                                        <Button text="Refresh" press="onRefreshMaterials" icon="sap-icon://refresh"/>
+                                        <Button id="filterBtn" text="Filter" press="onFilterMaterials" icon="sap-icon://filter"/>
+                                        <Button id="refreshBtn" text="Refresh" press="onRefreshMaterials" icon="sap-icon://refresh"/>
                                     </contentRight>
                                 </Bar>
                                 
                                 <!-- Materials Table -->
-                                <ScrollContainer class="warehouseContent" height="100%" vertical="true">
-                                    <Table id="materialsTable" 
-                                           items="{/materials}" 
+                                <ScrollContainer id="warehouseScrollContainer" class="warehouseContent" height="100%" vertical="true">
+                                    <Table id="materialsTable"
+                                           items="{/materials}"
                                            class="sapUiMediumMargin"
                                            mode="SingleSelect">
                                         <headerToolbar>
-                                            <Toolbar>
-                                                <Title text="Materials Inventory" level="H4"/>
-                                                <ToolbarSpacer/>
-                                                <Text text="Total: {/materialsCount} items"/>
+                                            <Toolbar id="materialsToolbar">
+                                                <Title id="materialsInventoryTitle" text="Materials Inventory" level="H4"/>
+                                                <ToolbarSpacer id="toolbarSpacer"/>
+                                                <Text id="materialsCountText" text="Total: {/materialsCount} items"/>
                                             </Toolbar>
                                         </headerToolbar>
                                         <columns>
-                                            <Column>
-                                                <Text text="Material ID"/>
+                                            <Column id="materialIdColumn">
+                                                <Text id="materialIdHeader" text="Material ID"/>
                                             </Column>
-                                            <Column>
-                                                <Text text="Name"/>
+                                            <Column id="nameColumn">
+                                                <Text id="nameHeader" text="Name"/>
                                             </Column>
-                                            <Column>
-                                                <Text text="Category"/>
+                                            <Column id="categoryColumn">
+                                                <Text id="categoryHeader" text="Category"/>
                                             </Column>
-                                            <Column>
-                                                <Text text="Quantity"/>
+                                            <Column id="quantityColumn">
+                                                <Text id="quantityHeader" text="Quantity"/>
                                             </Column>
-                                            <Column>
-                                                <Text text="Unit Price"/>
+                                            <Column id="priceColumn">
+                                                <Text id="priceHeader" text="Unit Price"/>
                                             </Column>
-                                            <Column>
-                                                <Text text="Actions"/>
+                                            <Column id="actionsColumn">
+                                                <Text id="actionsHeader" text="Actions"/>
                                             </Column>
                                         </columns>
                                         <items>
-                                            <ColumnListItem press="onMaterialSelect">
-                                                <Text text="{materialId}"/>
-                                                <Text text="{name}"/>
-                                                <Text text="{category}"/>
-                                                <Text text="{quantity} {unit}"/>
-                                                <Text text="${price}"/>
-                                                <HBox>
-                                                    <Button icon="sap-icon://edit" press="onEditMaterial" type="Transparent"/>
-                                                    <Button icon="sap-icon://delete" press="onDeleteMaterial" type="Transparent"/>
+                                            <ColumnListItem id="materialListItem" press="onMaterialSelect">
+                                                <Text id="materialIdText" text="{materialId}"/>
+                                                <Text id="materialNameText" text="{name}"/>
+                                                <Text id="materialCategoryText" text="{category}"/>
+                                                <Text id="materialQuantityText" text="{quantity} {unit}"/>
+                                                <Text id="materialPriceText" text="${price}"/>
+                                                <HBox id="materialActionsBox">
+                                                    <Button id="editMaterialBtn" icon="sap-icon://edit" press="onEditMaterial" type="Transparent"/>
+                                                    <Button id="deleteMaterialBtn" icon="sap-icon://delete" press="onDeleteMaterial" type="Transparent"/>
                                                 </HBox>
                                             </ColumnListItem>
                                         </items>
