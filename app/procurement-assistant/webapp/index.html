@@ -72,7 +72,7 @@
                 },
                 content: [
                     new sap.m.SplitContainer({
-                        height: "700px",
+                        height: "calc(100vh - 120px)",
                         masterPages: [
                             new sap.m.Page({
                                 title: "AI Chat Assistant",
@@ -88,13 +88,14 @@
                                                 content: [
                                                     new sap.m.HBox({
                                                         wrap: "Wrap",
+                                                        justifyContent: "End",
                                                         class: "sapUiSmallMargin",
                                                         items: [
                                                             new sap.m.Button({
                                                                 text: "Create PO",
                                                                 icon: "sap-icon://create-form",
                                                                 type: "Emphasized",
-                                                                class: "sapUiTinyMargin",
+                                                                class: "sapUiTinyMarginBegin sapUiTinyMarginTop",
                                                                 press: function() {
                                                                     addChatMessage("I'll help you create a Purchase Order. What materials do you need?", "assistant");
                                                                     sap.m.MessageToast.show("PO creation workflow started!");
@@ -104,7 +105,7 @@
                                                                 text: "Send RFQ",
                                                                 icon: "sap-icon://email",
                                                                 type: "Emphasized",
-                                                                class: "sapUiTinyMargin",
+                                                                class: "sapUiTinyMarginBegin sapUiTinyMarginTop",
                                                                 press: function() {
                                                                     addChatMessage("I'll help you send a Request for Quotation. Which suppliers should I contact?", "assistant");
                                                                     sap.m.MessageToast.show("RFQ workflow started!");
@@ -114,7 +115,7 @@
                                                                 text: "Find Suppliers",
                                                                 icon: "sap-icon://supplier",
                                                                 type: "Default",
-                                                                class: "sapUiTinyMargin",
+                                                                class: "sapUiTinyMarginBegin sapUiTinyMarginTop",
                                                                 press: function() {
                                                                     addChatMessage("I'll help you find the best suppliers. What type of materials are you looking for?", "assistant");
                                                                 }
@@ -123,7 +124,7 @@
                                                                 text: "Check Inventory",
                                                                 icon: "sap-icon://inventory",
                                                                 type: "Default",
-                                                                class: "sapUiTinyMargin",
+                                                                class: "sapUiTinyMarginBegin sapUiTinyMarginTop",
                                                                 press: function() {
                                                                     addChatMessage("Here's your current inventory status. Which materials would you like to check?", "assistant");
                                                                 }
@@ -240,13 +241,14 @@
                                                 content: [
                                                     new sap.m.HBox({
                                                         wrap: "Wrap",
+                                                        justifyContent: "Start",
                                                         class: "sapUiSmallMargin",
                                                         items: [
                                                             new sap.m.Button({
                                                                 text: "Add Material",
                                                                 type: "Emphasized",
                                                                 icon: "sap-icon://add",
-                                                                class: "sapUiTinyMargin",
+                                                                class: "sapUiTinyMarginEnd sapUiTinyMarginTop",
                                                                 press: function() {
                                                                     sap.m.MessageToast.show("Add Material functionality will be implemented in Phase 3");
                                                                 }
@@ -254,7 +256,7 @@
                                                             new sap.m.Button({
                                                                 text: "Import CSV",
                                                                 icon: "sap-icon://upload",
-                                                                class: "sapUiTinyMargin",
+                                                                class: "sapUiTinyMarginEnd sapUiTinyMarginTop",
                                                                 press: function() {
                                                                     sap.m.MessageToast.show("CSV import functionality coming in Phase 3");
                                                                 }
@@ -262,7 +264,7 @@
                                                             new sap.m.Button({
                                                                 text: "Export Data",
                                                                 icon: "sap-icon://download",
-                                                                class: "sapUiTinyMargin",
+                                                                class: "sapUiTinyMarginEnd sapUiTinyMarginTop",
                                                                 press: function() {
                                                                     sap.m.MessageToast.show("Export functionality coming in Phase 3");
                                                                 }
@@ -270,7 +272,7 @@
                                                             new sap.m.Button({
                                                                 text: "Refresh",
                                                                 icon: "sap-icon://refresh",
-                                                                class: "sapUiTinyMargin",
+                                                                class: "sapUiTinyMarginEnd sapUiTinyMarginTop",
                                                                 press: function() {
                                                                     sap.m.MessageToast.show("Materials refreshed!");
                                                                 }

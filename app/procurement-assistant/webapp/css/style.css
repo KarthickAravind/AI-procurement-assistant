@@ -58,14 +58,24 @@
 
 /* Split Container Enhancements */
 .sapMSplitContainer .sapMSplitContainerMaster {
-    min-width: 500px !important;
-    max-width: 600px !important;
-    width: 45% !important;
+    min-width: 480px !important;
+    max-width: 580px !important;
+    width: 48% !important;
 }
 
 .sapMSplitContainer .sapMSplitContainerDetail {
-    min-width: 400px !important;
-    width: 55% !important;
+    min-width: 420px !important;
+    width: 52% !important;
+}
+
+/* Remove empty spaces and improve layout */
+.sapMSplitContainer {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.sapMPage .sapMPageContent {
+    padding: 0 !important;
 }
 
 .chatHeader, .warehouseHeader {
@@ -221,10 +231,47 @@
     box-shadow: 0 0 0 3px rgba(0,112,243,0.1);
 }
 
+/* Button Spacing Improvements */
+.sapMBtn {
+    margin: 2px 4px !important;
+    min-width: 120px;
+}
+
+.sapMHBox .sapMBtn {
+    margin-right: 8px !important;
+    margin-bottom: 4px !important;
+}
+
+.sapMHBox .sapMBtn:last-child {
+    margin-right: 0 !important;
+}
+
+/* Panel Content Spacing */
+.sapMPanel .sapMPanelContent {
+    padding: 0.75rem !important;
+}
+
+/* Table Container */
+.sapMTable {
+    margin: 0 !important;
+    width: 100% !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .mainContainer {
         flex-direction: column;
+    }
+
+    .sapMSplitContainer .sapMSplitContainerMaster {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .sapMSplitContainer .sapMSplitContainerDetail {
+        width: 100% !important;
+        min-width: 100% !important;
     }
 
     .chatPanel {
@@ -247,5 +294,10 @@
 
     .welcomeContainer {
         padding: 1rem;
+    }
+
+    .sapMBtn {
+        min-width: 100px;
+        font-size: 0.875rem;
     }
 }
