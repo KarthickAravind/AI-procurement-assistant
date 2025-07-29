@@ -75,51 +75,149 @@
                         height: "700px",
                         masterPages: [
                             new sap.m.Page({
-                                title: "Chat Assistant",
+                                title: "AI Chat Assistant",
                                 content: [
                                     new sap.m.VBox({
                                         height: "100%",
                                         class: "sapUiMediumMargin",
                                         items: [
+                                            // Quick Action Buttons
+                                            new sap.m.Panel({
+                                                headerText: "Quick Actions",
+                                                class: "sapUiMediumMarginBottom",
+                                                content: [
+                                                    new sap.m.HBox({
+                                                        wrap: "Wrap",
+                                                        class: "sapUiSmallMargin",
+                                                        items: [
+                                                            new sap.m.Button({
+                                                                text: "Create PO",
+                                                                icon: "sap-icon://create-form",
+                                                                type: "Emphasized",
+                                                                class: "sapUiTinyMargin",
+                                                                press: function() {
+                                                                    addChatMessage("I'll help you create a Purchase Order. What materials do you need?", "assistant");
+                                                                    sap.m.MessageToast.show("PO creation workflow started!");
+                                                                }
+                                                            }),
+                                                            new sap.m.Button({
+                                                                text: "Send RFQ",
+                                                                icon: "sap-icon://email",
+                                                                type: "Emphasized",
+                                                                class: "sapUiTinyMargin",
+                                                                press: function() {
+                                                                    addChatMessage("I'll help you send a Request for Quotation. Which suppliers should I contact?", "assistant");
+                                                                    sap.m.MessageToast.show("RFQ workflow started!");
+                                                                }
+                                                            }),
+                                                            new sap.m.Button({
+                                                                text: "Find Suppliers",
+                                                                icon: "sap-icon://supplier",
+                                                                type: "Default",
+                                                                class: "sapUiTinyMargin",
+                                                                press: function() {
+                                                                    addChatMessage("I'll help you find the best suppliers. What type of materials are you looking for?", "assistant");
+                                                                }
+                                                            }),
+                                                            new sap.m.Button({
+                                                                text: "Check Inventory",
+                                                                icon: "sap-icon://inventory",
+                                                                type: "Default",
+                                                                class: "sapUiTinyMargin",
+                                                                press: function() {
+                                                                    addChatMessage("Here's your current inventory status. Which materials would you like to check?", "assistant");
+                                                                }
+                                                            })
+                                                        ]
+                                                    })
+                                                ]
+                                            }),
                                             // Chat Messages Area
                                             new sap.m.ScrollContainer({
-                                                height: "400px",
+                                                id: "chatScrollContainer",
+                                                height: "450px",
                                                 vertical: true,
                                                 class: "sapUiMediumMarginBottom",
                                                 content: [
-                                                    new sap.m.MessageStrip({
-                                                        text: "Hello! I'm your AI procurement assistant. Ask me anything about suppliers, materials, or procurement processes.",
-                                                        type: "Information",
-                                                        class: "sapUiMediumMarginBottom"
-                                                    }),
-                                                    new sap.m.MessageStrip({
-                                                        text: "You can ask me about suppliers, materials, pricing, or any procurement-related questions.",
-                                                        type: "Success",
-                                                        class: "sapUiMediumMarginBottom"
+                                                    new sap.m.VBox({
+                                                        id: "chatMessagesContainer",
+                                                        items: [
+                                                            new sap.m.MessageStrip({
+                                                                text: "👋 Hello! I'm your AI procurement assistant. I can help you with suppliers, materials, pricing, and procurement processes.",
+                                                                type: "Information",
+                                                                class: "sapUiMediumMarginBottom"
+                                                            }),
+                                                            new sap.m.MessageStrip({
+                                                                text: "💡 Try the quick action buttons above or ask me anything!",
+                                                                type: "Success",
+                                                                class: "sapUiMediumMarginBottom"
+                                                            })
+                                                        ]
                                                     })
                                                 ]
                                             }),
                                             // Chat Input Area
                                             new sap.m.VBox({
                                                 items: [
-                                                    new sap.m.Input({
-                                                        id: "chatInput",
-                                                        placeholder: "Ask me anything about procurement...",
+                                                    new sap.m.HBox({
                                                         width: "100%",
-                                                        submit: function() {
-                                                            // Handle enter key
-                                                            sap.m.MessageToast.show("AI integration coming in Phase 5!");
-                                                        }
+                                                        items: [
+                                                            new sap.m.Input({
+                                                                id: "chatInput",
+                                                                placeholder: "Type your message here... (e.g., 'Find laptops under ₹50K')",
+                                                                width: "100%",
+                                                                submit: function() {
+                                                                    sendChatMessage();
+                                                                }
+                                                            }),
+                                                            new sap.m.Button({
+                                                                text: "Send",
+                                                                type: "Emphasized",
+                                                                icon: "sap-icon://paper-plane",
+                                                                class: "sapUiTinyMarginBegin",
+                                                                press: function() {
+                                                                    sendChatMessage();
+                                                                }
+                                                            })
+                                                        ]
                                                     }),
-                                                    new sap.m.Button({
-                                                        text: "Send",
-                                                        type: "Emphasized",
-                                                        icon: "sap-icon://paper-plane",
-                                                        width: "100%",
+                                                    // Suggested Questions
+                                                    new sap.m.Panel({
+                                                        headerText: "💬 Suggested Questions",
+                                                        expandable: true,
+                                                        expanded: false,
                                                         class: "sapUiSmallMarginTop",
-                                                        press: function() {
-                                                            sap.m.MessageToast.show("AI integration coming in Phase 5!");
-                                                        }
+                                                        content: [
+                                                            new sap.m.VBox({
+                                                                class: "sapUiSmallMargin",
+                                                                items: [
+                                                                    new sap.m.Link({
+                                                                        text: "• What suppliers can deliver laptops under ₹50K within 10 days?",
+                                                                        press: function() {
+                                                                            fillChatInput("What suppliers can deliver laptops under ₹50K within 10 days?");
+                                                                        }
+                                                                    }),
+                                                                    new sap.m.Link({
+                                                                        text: "• Draft a purchase order for 500 units of office chairs",
+                                                                        press: function() {
+                                                                            fillChatInput("Draft a purchase order for 500 units of office chairs");
+                                                                        }
+                                                                    }),
+                                                                    new sap.m.Link({
+                                                                        text: "• Are there any compliance issues with supplier contracts?",
+                                                                        press: function() {
+                                                                            fillChatInput("Are there any compliance issues with supplier contracts?");
+                                                                        }
+                                                                    }),
+                                                                    new sap.m.Link({
+                                                                        text: "• Show me the top 3 suppliers with best ratings",
+                                                                        press: function() {
+                                                                            fillChatInput("Show me the top 3 suppliers with best ratings");
+                                                                        }
+                                                                    })
+                                                                ]
+                                                            })
+                                                        ]
                                                     })
                                                 ]
                                             })
@@ -136,24 +234,48 @@
                                         class: "sapUiMediumMargin",
                                         items: [
                                             // Action Buttons
-                                            new sap.m.HBox({
+                                            new sap.m.Panel({
+                                                headerText: "Warehouse Actions",
                                                 class: "sapUiMediumMarginBottom",
-                                                items: [
-                                                    new sap.m.Button({
-                                                        text: "Add Material",
-                                                        type: "Emphasized",
-                                                        icon: "sap-icon://add",
-                                                        press: function() {
-                                                            sap.m.MessageToast.show("Add Material functionality will be implemented in Phase 3");
-                                                        }
-                                                    }),
-                                                    new sap.m.Button({
-                                                        text: "Refresh",
-                                                        icon: "sap-icon://refresh",
-                                                        class: "sapUiSmallMarginBegin",
-                                                        press: function() {
-                                                            sap.m.MessageToast.show("Materials refreshed!");
-                                                        }
+                                                content: [
+                                                    new sap.m.HBox({
+                                                        wrap: "Wrap",
+                                                        class: "sapUiSmallMargin",
+                                                        items: [
+                                                            new sap.m.Button({
+                                                                text: "Add Material",
+                                                                type: "Emphasized",
+                                                                icon: "sap-icon://add",
+                                                                class: "sapUiTinyMargin",
+                                                                press: function() {
+                                                                    sap.m.MessageToast.show("Add Material functionality will be implemented in Phase 3");
+                                                                }
+                                                            }),
+                                                            new sap.m.Button({
+                                                                text: "Import CSV",
+                                                                icon: "sap-icon://upload",
+                                                                class: "sapUiTinyMargin",
+                                                                press: function() {
+                                                                    sap.m.MessageToast.show("CSV import functionality coming in Phase 3");
+                                                                }
+                                                            }),
+                                                            new sap.m.Button({
+                                                                text: "Export Data",
+                                                                icon: "sap-icon://download",
+                                                                class: "sapUiTinyMargin",
+                                                                press: function() {
+                                                                    sap.m.MessageToast.show("Export functionality coming in Phase 3");
+                                                                }
+                                                            }),
+                                                            new sap.m.Button({
+                                                                text: "Refresh",
+                                                                icon: "sap-icon://refresh",
+                                                                class: "sapUiTinyMargin",
+                                                                press: function() {
+                                                                    sap.m.MessageToast.show("Materials refreshed!");
+                                                                }
+                                                            })
+                                                        ]
                                                     })
                                                 ]
                                             }),
@@ -199,6 +321,9 @@
                                                 ],
                                                 items: [
                                                     new sap.m.ColumnListItem({
+                                                        press: function() {
+                                                            sap.m.MessageToast.show("Selected: Office Laptop - Click to view details");
+                                                        },
                                                         cells: [
                                                             new sap.m.Text({text: "MAT001"}),
                                                             new sap.m.Text({text: "Office Laptop"}),
@@ -208,6 +333,9 @@
                                                         ]
                                                     }),
                                                     new sap.m.ColumnListItem({
+                                                        press: function() {
+                                                            sap.m.MessageToast.show("Selected: Office Chair - Click to view details");
+                                                        },
                                                         cells: [
                                                             new sap.m.Text({text: "MAT002"}),
                                                             new sap.m.Text({text: "Office Chair"}),
@@ -217,6 +345,9 @@
                                                         ]
                                                     }),
                                                     new sap.m.ColumnListItem({
+                                                        press: function() {
+                                                            sap.m.MessageToast.show("Selected: Printer Paper - Click to view details");
+                                                        },
                                                         cells: [
                                                             new sap.m.Text({text: "MAT003"}),
                                                             new sap.m.Text({text: "Printer Paper"}),
@@ -243,8 +374,77 @@
             
             // Place app in DOM
             oApp.placeAt("content");
-            
+
             console.log("App created and placed in DOM successfully");
+
+            // Chat functionality
+            window.sendChatMessage = function() {
+                var oInput = sap.ui.getCore().byId("chatInput");
+                var sMessage = oInput.getValue().trim();
+
+                if (!sMessage) {
+                    sap.m.MessageToast.show("Please enter a message");
+                    return;
+                }
+
+                // Add user message
+                addChatMessage(sMessage, "user");
+
+                // Clear input
+                oInput.setValue("");
+
+                // Simulate AI response
+                setTimeout(function() {
+                    var response = generateSmartResponse(sMessage);
+                    addChatMessage(response, "assistant");
+                }, 1000);
+            };
+
+            window.fillChatInput = function(text) {
+                var oInput = sap.ui.getCore().byId("chatInput");
+                oInput.setValue(text);
+                oInput.focus();
+            };
+
+            window.addChatMessage = function(message, type) {
+                var oContainer = sap.ui.getCore().byId("chatMessagesContainer");
+                var messageType = type === "user" ? "Success" : "Information";
+                var messageIcon = type === "user" ? "👤 You: " : "🤖 Assistant: ";
+
+                var oMessage = new sap.m.MessageStrip({
+                    text: messageIcon + message,
+                    type: messageType,
+                    class: "sapUiMediumMarginBottom"
+                });
+
+                oContainer.addItem(oMessage);
+
+                // Scroll to bottom
+                setTimeout(function() {
+                    var oScrollContainer = sap.ui.getCore().byId("chatScrollContainer");
+                    if (oScrollContainer) {
+                        oScrollContainer.scrollToElement(oMessage);
+                    }
+                }, 100);
+            };
+
+            window.generateSmartResponse = function(userMessage) {
+                var message = userMessage.toLowerCase();
+
+                if (message.includes("laptop") || message.includes("computer")) {
+                    return "I found 3 suppliers for laptops:\n• TechCorp India - ₹42,000/unit, 7 days delivery\n• Digital Solutions - ₹48,500/unit, 5 days delivery\n• CompuWorld - ₹45,200/unit, 10 days delivery\n\nWould you like me to create a PO or send RFQ?";
+                } else if (message.includes("chair") || message.includes("furniture")) {
+                    return "For office chairs, I recommend:\n• Furniture Plus - ₹8,200/unit, 12 days delivery\n• Office Comfort - ₹7,800/unit, 15 days delivery\n• Ergo Solutions - ₹9,500/unit, 8 days delivery\n\nShall I draft a purchase order?";
+                } else if (message.includes("supplier") || message.includes("vendor")) {
+                    return "Here are our top-rated suppliers:\n🏆 TechCorp India (4.8/5) - Electronics\n🏆 Furniture Plus (4.6/5) - Office Furniture\n🏆 Stationery World (4.7/5) - Office Supplies\n\nWhich category interests you?";
+                } else if (message.includes("po") || message.includes("purchase order")) {
+                    return "I'll help you create a Purchase Order! Please provide:\n• Material/Product needed\n• Quantity required\n• Preferred supplier\n• Delivery timeline\n\nOr use the 'Create PO' quick action button above.";
+                } else if (message.includes("rfq") || message.includes("quotation")) {
+                    return "I'll help you send an RFQ! I need:\n• Product specifications\n• Required quantity\n• Delivery location\n• Timeline requirements\n\nShall I prepare the RFQ template?";
+                } else {
+                    return "I understand you're asking about: '" + userMessage + "'. I can help with:\n• Finding suppliers and pricing\n• Creating purchase orders\n• Sending RFQs\n• Checking inventory\n• Compliance verification\n\nTry using the quick action buttons above or ask me something specific!";
+                }
+            };
         });
     </script>
 </body>
