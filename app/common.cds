@@ -2,39 +2,40 @@
  Common Annotations shared by all apps
 */
 
-using { sap.capire.bookshop as my } from '../db/schema';
+using { sap.procurement as my } from '../db/schema';
 using { sap.common, sap.common.Currencies } from '@sap/cds/common';
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//	Books Lists
+//	Suppliers Lists
 //
-annotate my.Books with @(
+annotate my.Suppliers with @(
   Common.SemanticKey: [ID],
   UI: {
-    Identification: [{ Value: title }],
+    Identification: [{ Value: name }],
     SelectionFields: [
       ID,
-      author_ID,
-      price,
-      currency_code
+      name,
+      region,
+      category,
+      rating
     ],
     LineItem: [
-      { Value: ID, Label: '{i18n>Title}' },
-      { Value: author.ID, Label: '{i18n>Author}' },
-      { Value: genre.name },
-      { Value: stock },
-      { Value: price },
-      { Value: currency.symbol },
+      { Value: ID, Label: '{i18n>ID}' },
+      { Value: name, Label: '{i18n>Name}' },
+      { Value: region, Label: '{i18n>Region}' },
+      { Value: category, Label: '{i18n>Category}' },
+      { Value: material, Label: '{i18n>Material}' },
+      { Value: pricePerUnit, Label: '{i18n>Price}' },
+      { Value: rating, Label: '{i18n>Rating}' },
     ]
   }
 ) {
   ID @Common: {
-    SemanticObject: 'Books',
-    Text: title,
+    SemanticObject: 'Suppliers',
+    Text: name,
     TextArrangement: #TextOnly
   };
-  author @ValueList.entity: 'Authors';
 };
 
 annotate Currencies with {
@@ -44,123 +45,87 @@ annotate Currencies with {
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//	Books Elements
+//	Suppliers Elements
 //
-annotate my.Books with {
-  ID     @title: '{i18n>ID}';
-  title  @title: '{i18n>Title}';
-  genre  @title: '{i18n>Genre}'   @Common: { Text: genre.name, TextArrangement: #TextOnly };
-  author @title: '{i18n>Author}'  @Common: { Text: author.name, TextArrangement: #TextOnly };
-  price  @title: '{i18n>Price}'   @Measures.ISOCurrency: currency_code;
-  stock  @title: '{i18n>Stock}';
-  descr  @title: '{i18n>Description}' @UI.MultiLineText;
-  image  @title: '{i18n>Image}';
+annotate my.Suppliers with {
+  ID           @title: '{i18n>ID}';
+  name         @title: '{i18n>Name}';
+  region       @title: '{i18n>Region}';
+  material     @title: '{i18n>Material}';
+  pricePerUnit @title: '{i18n>Price}' @Measures.ISOCurrency: currency_code;
+  leadTime     @title: '{i18n>LeadTime}';
+  rating       @title: '{i18n>Rating}';
+  category     @title: '{i18n>Category}';
+  contactEmail @title: '{i18n>Email}';
+  contactPhone @title: '{i18n>Phone}';
+  address      @title: '{i18n>Address}' @UI.MultiLineText;
 }
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//	Genres List
+//	Materials List
 //
-annotate my.Genres with @(
-  Common.SemanticKey: [name],
+annotate my.Materials with @(
+  Common.SemanticKey: [ID],
   UI: {
-    SelectionFields: [name],
+    SelectionFields: [ID, name, category],
     LineItem: [
-      { Value: name },
-      {
-        Value: parent.name,
-        Label: 'Main Genre'
-      },
+      { Value: ID, Label: '{i18n>ID}' },
+      { Value: name, Label: '{i18n>Name}' },
+      { Value: category, Label: '{i18n>Category}' },
+      { Value: quantity, Label: '{i18n>Quantity}' },
+      { Value: unitPrice, Label: '{i18n>UnitPrice}' },
+      { Value: location, Label: '{i18n>Location}' },
     ],
   }
 );
 
-annotate my.Genres with {
+annotate my.Materials with {
   ID  @Common.Text : name  @Common.TextArrangement : #TextOnly;
 }
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//	Genre Details
+//	Material Details
 //
-annotate my.Genres with @(UI : {
+annotate my.Materials with @(UI : {
   Identification: [{ Value: name}],
   HeaderInfo: {
-    TypeName      : '{i18n>Genre}',
-    TypeNamePlural: '{i18n>Genres}',
+    TypeName      : '{i18n>Material}',
+    TypeNamePlural: '{i18n>Materials}',
     Title         : { Value: name },
     Description   : { Value: ID }
   },
   Facets: [{
     $Type : 'UI.ReferenceFacet',
-    Label : '{i18n>SubGenres}',
-    Target: 'children/@UI.LineItem'
-  }, ],
-});
-
-////////////////////////////////////////////////////////////////////////////
-//
-//	Genres Elements
-//
-annotate my.Genres with {
-  ID   @title: '{i18n>ID}';
-  name @title: '{i18n>Genre}';
-}
-
-////////////////////////////////////////////////////////////////////////////
-//
-//	Authors List
-//
-annotate my.Authors with @(
-  Common.SemanticKey: [ID],
-  UI: {
-    Identification : [{ Value: name}],
-    SelectionFields: [ name ],
-    LineItem       : [
-      { Value: ID },
-      { Value: dateOfBirth },
-      { Value: dateOfDeath },
-      { Value: placeOfBirth },
-      { Value: placeOfDeath },
-    ],
-  }
-) {
-  ID @Common: {
-    SemanticObject: 'Authors',
-    Text: name,
-    TextArrangement: #TextOnly,
-  };
-};
-
-////////////////////////////////////////////////////////////////////////////
-//
-//	Author Details
-//
-annotate my.Authors with @(UI : {
-  HeaderInfo: {
-    TypeName      : '{i18n>Author}',
-    TypeNamePlural: '{i18n>Authors}',
-    Title         : { Value: name },
-    Description   : { Value: dateOfBirth }
-  },
-  Facets: [{
-    $Type : 'UI.ReferenceFacet',
-    Target: 'books/@UI.LineItem'
+    Label : '{i18n>Details}',
+    Target: '@UI.FieldGroup#Details'
   }],
+  FieldGroup #Details: {Data : [
+    { Value: ID },
+    { Value: name },
+    { Value: category },
+    { Value: quantity },
+    { Value: unitPrice },
+    { Value: location }
+  ]},
 });
-
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//	Authors Elements
+//	Materials Elements
 //
-annotate my.Authors with {
-  ID           @title: '{i18n>ID}';
-  name         @title: '{i18n>Name}';
-  dateOfBirth  @title: '{i18n>DateOfBirth}';
-  dateOfDeath  @title: '{i18n>DateOfDeath}';
-  placeOfBirth @title: '{i18n>PlaceOfBirth}';
-  placeOfDeath @title: '{i18n>PlaceOfDeath}';
+annotate my.Materials with {
+  ID          @title: '{i18n>ID}';
+  name        @title: '{i18n>Name}';
+  category    @title: '{i18n>Category}';
+  quantity    @title: '{i18n>Quantity}';
+  unitPrice   @title: '{i18n>UnitPrice}' @Measures.ISOCurrency: currency_code;
+  minStockLevel @title: '{i18n>MinStock}';
+  maxStockLevel @title: '{i18n>MaxStock}';
+  unit        @title: '{i18n>Unit}';
+  description @title: '{i18n>Description}' @UI.MultiLineText;
+  location    @title: '{i18n>Location}';
 }
 
 ////////////////////////////////////////////////////////////////////////////

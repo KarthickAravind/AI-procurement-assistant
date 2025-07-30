@@ -1,57 +1,63 @@
-using { CatalogService } from '../../srv/cat-service.cds';
+using { ProcurementService } from '../../srv/cat-service.cds';
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//	Books Object Page
+//	Suppliers Object Page
 //
-annotate CatalogService.Books with @(UI : {
+annotate ProcurementService.Suppliers with @(UI : {
     HeaderInfo: {
-        TypeName      : '{i18n>Book}',
-        TypeNamePlural: '{i18n>Books}',
-        Title         : {Value: title},
-        Description   : {Value : author}
+        TypeName      : '{i18n>Supplier}',
+        TypeNamePlural: '{i18n>Suppliers}',
+        Title         : {Value: name},
+        Description   : {Value : region}
     },
     HeaderFacets: [{
         $Type : 'UI.ReferenceFacet',
-        Label : '{i18n>Description}',
-        Target: '@UI.FieldGroup#Descr'
+        Label : '{i18n>Contact}',
+        Target: '@UI.FieldGroup#Contact'
     }, ],
     Facets: [{
         $Type : 'UI.ReferenceFacet',
         Label : '{i18n>Details}',
-        Target: '@UI.FieldGroup#Price'
+        Target: '@UI.FieldGroup#Details'
     }, ],
-    FieldGroup #Descr: {Data : [{Value : descr}, ]},
-    FieldGroup #Price: {Data : [
-        {Value: price},
-        {
-            Value: currency.symbol,
-            Label: '{i18n>Currency}'
-        },
+    FieldGroup #Contact: {Data : [
+        {Value : contactEmail},
+        {Value : contactPhone},
+        {Value : address}
+    ]},
+    FieldGroup #Details: {Data : [
+        {Value: pricePerUnit},
+        {Value: leadTime},
+        {Value: rating},
+        {Value: material},
     ]},
 });
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//	Books List Page
+//	Suppliers List Page
 //
-annotate CatalogService.Books with @(UI : {
+annotate ProcurementService.Suppliers with @(UI : {
     SelectionFields: [
         ID,
-        price,
-        currency_code
+        name,
+        region,
+        category
     ],
     LineItem: [
         {
             Value: ID,
-            Label: '{i18n>Title}'
+            Label: '{i18n>ID}'
         },
         {
-            Value: author,
-            Label: '{i18n>Author}'
+            Value: name,
+            Label: '{i18n>Name}'
         },
-        {Value: genre.name},
-        {Value: price},
-        {Value: currency.symbol},
+        {Value: region},
+        {Value: category},
+        {Value: material},
+        {Value: pricePerUnit},
+        {Value: rating},
     ]
 });

@@ -1,0 +1,24 @@
+{
+  "build": {
+    "target": "."
+  },
+  "requires": {
+    "db": {
+      "kind": "sqlite",
+      "credentials": {
+        "url": ":memory:"
+      }
+    }
+  },
+  "folders": {
+    "db": "db/",
+    "srv": "srv/",
+    "app": "app/"
+  },
+  "cdsc": {
+    "docs": false
+  },
+  "features": {
+    "fetch_csrf": true
+  }
+}

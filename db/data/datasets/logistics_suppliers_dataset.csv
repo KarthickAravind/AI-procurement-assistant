@@ -1,0 +1,1001 @@
+Supplier ID,Name,Region,Material,Price per Unit (USD),Lead Time,Status,Rating
+8001,"Scott, Kelley and Kennedy",MEA,Shipping Containers,2982.88,5 days,Pending,3.9/5.0
+8002,Hudson-Davis,EU,Forklifts,13168.9,14 days,Pending,3.9/5.0
+8003,"Bernard, Jones and Torres",MEA,Forklifts,5579.44,12 days,Inactive,2.9/5.0
+8004,Bender-Holland,APAC,Pallet Jacks,8423.98,33 days,Active,4.6/5.0
+8005,Henderson-Campbell,LATAM,Barcode Scanners,11366.63,34 days,Pending,4.1/5.0
+8006,"Thompson, Sexton and Garcia",APAC,Conveyor Belts,4423.75,11 days,Pending,4.6/5.0
+8007,"Lee, Watson and Dixon",EU,Barcode Scanners,17032.36,17 days,Pending,3.3/5.0
+8008,"Church, Rodriguez and Reid",LATAM,Pallet Jacks,13348.42,20 days,Pending,3.1/5.0
+8009,Braun Group,APAC,Barcode Scanners,10829.8,19 days,Active,4.2/5.0
+8010,Hurley PLC,EU,Shipping Containers,16556.45,36 days,Pending,3.9/5.0
+8011,"Nielsen, Evans and Young",MEA,Conveyor Belts,16183.97,20 days,Inactive,3.9/5.0
+8012,Moreno-Jones,MEA,Shipping Containers,5169.39,21 days,Pending,3.5/5.0
+8013,Walker-Obrien,MEA,Conveyor Belts,8766.42,18 days,Active,4.0/5.0
+8014,"Miller, Gonzalez and Alvarado",NA,Forklifts,6064.58,34 days,Pending,3.1/5.0
+8015,"Dalton, Hall and Garrett",EU,Conveyor Belts,17857.51,32 days,Inactive,4.5/5.0
+8016,Ray-Carroll,LATAM,Barcode Scanners,16054.02,12 days,Pending,3.1/5.0
+8017,Costa LLC,EU,Conveyor Belts,14247.34,14 days,Inactive,3.9/5.0
+8018,Sawyer-Williams,NA,Barcode Scanners,949.26,21 days,Active,2.8/5.0
+8019,"Jensen, Harper and Long",MEA,Shipping Containers,19568.85,25 days,Active,2.9/5.0
+8020,Gibbs Ltd,NA,Forklifts,10878.42,40 days,Active,3.7/5.0
+8021,Mitchell-Hansen,APAC,Barcode Scanners,3554.69,36 days,Active,2.9/5.0
+8022,Marks-Clark,NA,Shipping Containers,13937.12,33 days,Pending,2.9/5.0
+8023,Martin Group,LATAM,Barcode Scanners,19779.91,32 days,Active,3.3/5.0
+8024,Patrick Group,NA,Forklifts,13185.61,11 days,Active,3.9/5.0
+8025,"Lopez, Shelton and Garcia",EU,Conveyor Belts,215.9,13 days,Pending,2.9/5.0
+8026,"Moody, Moyer and Hall",LATAM,Shipping Containers,5918.12,38 days,Active,3.2/5.0
+8027,"Shaw, Morgan and Johnson",MEA,Pallet Jacks,19167.34,26 days,Inactive,2.9/5.0
+8028,Hall and Sons,MEA,Conveyor Belts,776.19,35 days,Pending,3.9/5.0
+8029,Mullins Ltd,NA,Shipping Containers,17050.32,20 days,Pending,4.9/5.0
+8030,Huang Ltd,EU,Conveyor Belts,1308.45,5 days,Inactive,4.6/5.0
+8031,Bryant Ltd,APAC,Shipping Containers,13567.8,36 days,Active,4.5/5.0
+8032,"Sutton, Black and Moore",APAC,Barcode Scanners,9759.68,9 days,Active,4.9/5.0
+8033,Jordan Ltd,APAC,Shipping Containers,18364.13,39 days,Inactive,3.5/5.0
+8034,Cole-Mccormick,APAC,Barcode Scanners,5608.3,40 days,Inactive,3.6/5.0
+8035,Bennett Group,MEA,Shipping Containers,11886.68,18 days,Pending,4.9/5.0
+8036,Crawford and Sons,NA,Forklifts,13150.55,35 days,Pending,2.6/5.0
+8037,Lopez-Lloyd,EU,Barcode Scanners,12866.99,40 days,Pending,3.3/5.0
+8038,Stephens-Barron,APAC,Barcode Scanners,19994.75,12 days,Inactive,3.0/5.0
+8039,"Green, Warren and Walton",LATAM,Barcode Scanners,5963.05,40 days,Active,3.3/5.0
+8040,"Cooper, Murphy and George",LATAM,Barcode Scanners,2218.87,22 days,Inactive,3.4/5.0
+8041,"Morgan, Wang and Ford",APAC,Barcode Scanners,1887.01,8 days,Active,4.8/5.0
+8042,Buchanan-Patterson,LATAM,Forklifts,19302.37,30 days,Pending,4.7/5.0
+8043,Wood-Savage,EU,Barcode Scanners,7407.77,33 days,Inactive,2.7/5.0
+8044,Miller and Sons,MEA,Shipping Containers,8430.85,7 days,Inactive,4.8/5.0
+8045,Smith-Brown,LATAM,Forklifts,5726.69,12 days,Active,3.3/5.0
+8046,Lawrence Group,MEA,Shipping Containers,1329.55,27 days,Inactive,4.6/5.0
+8047,Porter and Sons,APAC,Forklifts,11615.89,34 days,Pending,3.6/5.0
+8048,Scott Inc,NA,Barcode Scanners,10661.52,25 days,Active,4.1/5.0
+8049,Thompson Group,NA,Barcode Scanners,16685.12,39 days,Pending,4.8/5.0
+8050,Hughes-Harding,EU,Shipping Containers,2023.39,17 days,Inactive,4.6/5.0
+8051,Flores-Larsen,MEA,Barcode Scanners,15261.75,11 days,Inactive,2.7/5.0
+8052,"Ayers, Smith and Ingram",NA,Pallet Jacks,15655.6,22 days,Active,3.7/5.0
+8053,Mccormick-Gutierrez,APAC,Barcode Scanners,16057.14,26 days,Active,4.2/5.0
+8054,Burns Ltd,APAC,Shipping Containers,3729.0,7 days,Inactive,3.4/5.0
+8055,Johns Inc,APAC,Pallet Jacks,884.81,23 days,Pending,3.5/5.0
+8056,Butler and Sons,NA,Barcode Scanners,4930.68,9 days,Pending,3.1/5.0
+8057,Chambers Ltd,EU,Forklifts,4735.57,18 days,Inactive,4.2/5.0
+8058,Acosta-Rivera,MEA,Shipping Containers,962.08,7 days,Active,3.8/5.0
+8059,Franklin Inc,NA,Barcode Scanners,5768.45,26 days,Inactive,3.0/5.0
+8060,"Smith, Kerr and Miller",APAC,Forklifts,3973.24,17 days,Inactive,3.5/5.0
+8061,Chavez Inc,EU,Shipping Containers,17661.6,16 days,Pending,3.9/5.0
+8062,"Suarez, Rose and Hansen",NA,Forklifts,5165.66,14 days,Inactive,3.8/5.0
+8063,"Williams, Hernandez and Hogan",EU,Barcode Scanners,158.4,20 days,Pending,4.0/5.0
+8064,Patterson and Sons,APAC,Conveyor Belts,4741.74,22 days,Inactive,4.6/5.0
+8065,Rich Group,NA,Shipping Containers,8659.72,18 days,Active,3.2/5.0
+8066,Henry Group,LATAM,Pallet Jacks,7883.95,22 days,Active,2.7/5.0
+8067,Dawson-Kane,APAC,Pallet Jacks,15763.59,8 days,Inactive,4.2/5.0
+8068,"Nichols, Bass and Brewer",LATAM,Forklifts,2872.5,28 days,Inactive,4.4/5.0
+8069,"Simmons, Olson and Banks",LATAM,Conveyor Belts,6359.52,23 days,Active,3.6/5.0
+8070,May-Davis,APAC,Shipping Containers,8358.37,38 days,Active,2.9/5.0
+8071,"Myers, Moore and Romero",LATAM,Shipping Containers,1609.29,11 days,Pending,4.7/5.0
+8072,"Lopez, Riley and King",LATAM,Barcode Scanners,10009.04,23 days,Active,4.6/5.0
+8073,"Manning, Dominguez and Lee",MEA,Conveyor Belts,14177.6,17 days,Inactive,4.3/5.0
+8074,Morales-Flores,EU,Barcode Scanners,4288.61,32 days,Inactive,2.9/5.0
+8075,Dunn-English,NA,Forklifts,1352.9,39 days,Inactive,4.6/5.0
+8076,"Fernandez, Perry and Morgan",NA,Forklifts,16399.93,29 days,Active,3.9/5.0
+8077,Vargas-Williams,LATAM,Conveyor Belts,4345.93,9 days,Inactive,4.0/5.0
+8078,Watkins-Wells,MEA,Conveyor Belts,10836.44,32 days,Pending,2.7/5.0
+8079,Montoya LLC,MEA,Pallet Jacks,17513.03,27 days,Inactive,3.4/5.0
+8080,Lewis-Jones,APAC,Shipping Containers,14483.48,8 days,Pending,3.7/5.0
+8081,"Gray, Young and Miller",LATAM,Pallet Jacks,8883.56,12 days,Inactive,4.0/5.0
+8082,Malone Ltd,EU,Conveyor Belts,17285.48,40 days,Active,3.0/5.0
+8083,Green Ltd,APAC,Barcode Scanners,19083.1,32 days,Inactive,3.5/5.0
+8084,Hopkins-Payne,EU,Pallet Jacks,10341.01,30 days,Pending,4.0/5.0
+8085,"Mckinney, Webb and Gardner",APAC,Conveyor Belts,1829.75,17 days,Inactive,4.4/5.0
+8086,Espinoza-Perkins,APAC,Pallet Jacks,2750.03,20 days,Active,4.6/5.0
+8087,"Rodriguez, Griffin and Matthews",MEA,Conveyor Belts,3293.57,31 days,Inactive,3.9/5.0
+8088,"Stephens, Miller and Glover",EU,Forklifts,19144.25,38 days,Active,3.9/5.0
+8089,Howard Ltd,MEA,Pallet Jacks,11079.27,38 days,Pending,3.1/5.0
+8090,Vargas-Smith,NA,Shipping Containers,2520.99,7 days,Pending,3.0/5.0
+8091,Alexander Ltd,LATAM,Barcode Scanners,12646.94,20 days,Active,3.0/5.0
+8092,Sanchez PLC,LATAM,Forklifts,19248.71,33 days,Pending,3.3/5.0
+8093,"Townsend, Hines and Matthews",NA,Conveyor Belts,5554.96,30 days,Active,4.6/5.0
+8094,"Beltran, George and Franklin",NA,Barcode Scanners,14382.56,21 days,Active,3.6/5.0
+8095,"Larson, Prince and Andrade",APAC,Shipping Containers,742.42,29 days,Inactive,2.7/5.0
+8096,"Turner, Cooper and Garcia",NA,Conveyor Belts,4800.78,33 days,Inactive,4.6/5.0
+8097,"Clark, Hoffman and Merritt",NA,Conveyor Belts,15806.18,38 days,Inactive,3.1/5.0
+8098,Patterson Ltd,APAC,Barcode Scanners,18934.54,7 days,Inactive,4.2/5.0
+8099,Webster PLC,MEA,Pallet Jacks,3291.3,6 days,Pending,2.7/5.0
+8100,"Edwards, Sanchez and Henry",EU,Pallet Jacks,13431.57,16 days,Pending,2.9/5.0
+8101,"Porter, Bishop and Thompson",MEA,Conveyor Belts,8954.94,34 days,Active,2.8/5.0
+8102,Jefferson Group,APAC,Conveyor Belts,16453.25,32 days,Pending,4.9/5.0
+8103,Thomas Inc,LATAM,Pallet Jacks,5742.03,20 days,Inactive,4.9/5.0
+8104,"Thomas, Hoover and Wilkins",APAC,Conveyor Belts,17770.15,9 days,Pending,3.2/5.0
+8105,"Lambert, Woods and Gonzales",APAC,Forklifts,12709.6,28 days,Active,4.3/5.0
+8106,Blair Ltd,LATAM,Shipping Containers,13832.99,38 days,Active,4.2/5.0
+8107,Thomas PLC,APAC,Conveyor Belts,13760.72,27 days,Active,3.0/5.0
+8108,"Mason, Garrison and Taylor",EU,Pallet Jacks,19959.9,24 days,Pending,4.1/5.0
+8109,"Beck, Robertson and Tran",EU,Barcode Scanners,10210.79,7 days,Inactive,3.1/5.0
+8110,Tucker-Gray,LATAM,Conveyor Belts,16936.37,38 days,Active,3.1/5.0
+8111,"Sanders, Walsh and Harvey",NA,Pallet Jacks,425.37,28 days,Inactive,4.1/5.0
+8112,Santiago Inc,EU,Barcode Scanners,18981.39,17 days,Active,3.7/5.0
+8113,Ferguson-Reyes,APAC,Forklifts,6316.57,31 days,Inactive,3.4/5.0
+8114,Lucero PLC,EU,Conveyor Belts,5049.74,9 days,Inactive,4.1/5.0
+8115,Green Group,EU,Shipping Containers,3485.78,11 days,Active,3.9/5.0
+8116,Young-Jackson,NA,Shipping Containers,9003.46,29 days,Active,2.5/5.0
+8117,Taylor Ltd,MEA,Pallet Jacks,9196.63,13 days,Active,4.0/5.0
+8118,"Hampton, Guzman and Mack",MEA,Pallet Jacks,15636.84,34 days,Active,4.9/5.0
+8119,Wu Inc,EU,Shipping Containers,11112.74,11 days,Pending,2.8/5.0
+8120,Lynch-Jackson,EU,Forklifts,8992.48,6 days,Inactive,3.5/5.0
+8121,"Hayes, Davis and Garcia",EU,Shipping Containers,6631.21,35 days,Inactive,3.0/5.0
+8122,Taylor Group,MEA,Conveyor Belts,4303.42,12 days,Pending,3.9/5.0
+8123,Ferguson Ltd,NA,Barcode Scanners,4514.11,19 days,Inactive,3.6/5.0
+8124,Mercado-Warner,EU,Pallet Jacks,19889.37,9 days,Active,4.4/5.0
+8125,Jones PLC,LATAM,Barcode Scanners,11014.38,25 days,Inactive,5.0/5.0
+8126,Gutierrez Ltd,MEA,Barcode Scanners,5425.62,18 days,Active,4.7/5.0
+8127,Hernandez-Torres,APAC,Conveyor Belts,14980.6,10 days,Inactive,3.2/5.0
+8128,"Gentry, Cole and Baker",EU,Shipping Containers,10516.4,14 days,Inactive,3.5/5.0
+8129,Ayala-Nash,NA,Barcode Scanners,9230.2,35 days,Inactive,5.0/5.0
+8130,Sullivan-Wong,MEA,Forklifts,12286.36,34 days,Inactive,4.1/5.0
+8131,White-Cox,MEA,Forklifts,8767.18,33 days,Inactive,3.7/5.0
+8132,Cannon LLC,MEA,Shipping Containers,1314.47,36 days,Inactive,3.7/5.0
+8133,Cook-Martin,EU,Shipping Containers,14587.19,40 days,Pending,3.6/5.0
+8134,"Mathews, Cooley and Kelly",LATAM,Pallet Jacks,1828.6,16 days,Pending,4.5/5.0
+8135,Holmes-Cook,MEA,Conveyor Belts,10074.3,30 days,Active,3.4/5.0
+8136,Nelson-Rowe,MEA,Forklifts,18148.92,9 days,Pending,3.9/5.0
+8137,Francis-Huynh,APAC,Shipping Containers,13676.73,23 days,Pending,3.0/5.0
+8138,Owens Inc,LATAM,Pallet Jacks,16896.32,20 days,Pending,2.6/5.0
+8139,Fisher-Cohen,APAC,Shipping Containers,106.42,40 days,Inactive,2.6/5.0
+8140,"Gallagher, King and Garrison",APAC,Barcode Scanners,9172.9,17 days,Inactive,3.7/5.0
+8141,Baker PLC,NA,Pallet Jacks,8995.74,8 days,Inactive,2.7/5.0
+8142,Carlson-Hicks,MEA,Barcode Scanners,13042.89,30 days,Inactive,3.9/5.0
+8143,Johnson-Thomas,MEA,Conveyor Belts,15198.98,20 days,Active,4.2/5.0
+8144,Evans and Sons,NA,Forklifts,3037.25,30 days,Inactive,3.2/5.0
+8145,"Hopkins, Collins and Townsend",APAC,Barcode Scanners,10679.57,13 days,Pending,3.4/5.0
+8146,Nelson-Kane,APAC,Pallet Jacks,13678.44,23 days,Inactive,3.1/5.0
+8147,"Golden, Vega and Sheppard",MEA,Pallet Jacks,18065.17,26 days,Inactive,3.1/5.0
+8148,Hill Ltd,APAC,Barcode Scanners,18019.58,11 days,Inactive,4.6/5.0
+8149,Baker-Monroe,NA,Barcode Scanners,1709.52,8 days,Active,2.9/5.0
+8150,"Watkins, Villa and Harvey",NA,Conveyor Belts,17707.32,28 days,Inactive,2.9/5.0
+8151,Villarreal-Ortiz,NA,Conveyor Belts,17285.47,24 days,Pending,3.1/5.0
+8152,"Nelson, Hernandez and Buck",NA,Barcode Scanners,3684.91,33 days,Active,3.8/5.0
+8153,Watkins-Carpenter,NA,Pallet Jacks,17839.28,28 days,Inactive,4.9/5.0
+8154,Jackson Group,APAC,Pallet Jacks,6807.53,37 days,Inactive,3.8/5.0
+8155,Lawrence PLC,NA,Forklifts,14204.32,25 days,Active,3.2/5.0
+8156,"Ballard, Harris and Lopez",EU,Forklifts,13205.73,13 days,Inactive,4.4/5.0
+8157,Elliott-Ford,NA,Barcode Scanners,7291.96,22 days,Active,2.9/5.0
+8158,"Madden, Love and Fuentes",APAC,Conveyor Belts,5423.61,18 days,Pending,3.3/5.0
+8159,Gibson PLC,APAC,Conveyor Belts,1340.05,35 days,Pending,4.8/5.0
+8160,"Horn, Sanchez and Martin",APAC,Barcode Scanners,16721.98,5 days,Inactive,4.4/5.0
+8161,"Garcia, Becker and Martinez",LATAM,Shipping Containers,9289.45,5 days,Active,4.8/5.0
+8162,Stone Ltd,APAC,Conveyor Belts,18607.99,17 days,Pending,3.8/5.0
+8163,Jones-Martin,MEA,Conveyor Belts,1540.53,16 days,Active,4.7/5.0
+8164,Cook-Yang,NA,Forklifts,17746.49,39 days,Active,2.7/5.0
+8165,Farrell-Hancock,NA,Pallet Jacks,17990.59,37 days,Pending,2.8/5.0
+8166,Rubio PLC,NA,Conveyor Belts,8301.36,38 days,Pending,4.8/5.0
+8167,Hull-Harper,APAC,Forklifts,3604.25,27 days,Inactive,4.3/5.0
+8168,Estes-White,NA,Pallet Jacks,17856.17,9 days,Active,3.6/5.0
+8169,Douglas Inc,APAC,Conveyor Belts,2825.85,26 days,Active,3.8/5.0
+8170,"Walter, Walker and Reed",LATAM,Pallet Jacks,399.53,29 days,Inactive,3.5/5.0
+8171,"Sullivan, Johnson and Vang",MEA,Conveyor Belts,12372.86,13 days,Active,2.6/5.0
+8172,Lucas PLC,LATAM,Shipping Containers,19127.87,19 days,Pending,3.8/5.0
+8173,Powell-Dalton,NA,Forklifts,1992.81,23 days,Pending,4.1/5.0
+8174,"Henderson, Perry and Parks",EU,Forklifts,8709.99,30 days,Inactive,2.7/5.0
+8175,"Cooper, Proctor and Zuniga",NA,Barcode Scanners,16952.1,8 days,Pending,3.3/5.0
+8176,Brooks LLC,NA,Shipping Containers,13477.31,21 days,Pending,4.2/5.0
+8177,White-Wilson,NA,Conveyor Belts,12129.18,25 days,Active,3.0/5.0
+8178,Nelson and Sons,EU,Barcode Scanners,17784.93,6 days,Pending,4.1/5.0
+8179,Castillo-Manning,APAC,Pallet Jacks,6257.84,13 days,Active,4.4/5.0
+8180,Hampton PLC,MEA,Barcode Scanners,16631.31,12 days,Active,4.8/5.0
+8181,"Barajas, Kramer and Thompson",NA,Pallet Jacks,14332.83,27 days,Active,3.1/5.0
+8182,"Simmons, Griffin and White",MEA,Conveyor Belts,16515.12,14 days,Active,2.7/5.0
+8183,Cole Ltd,MEA,Pallet Jacks,12969.83,10 days,Inactive,3.7/5.0
+8184,Clark-Miller,NA,Forklifts,4375.3,37 days,Inactive,4.1/5.0
+8185,Sims PLC,MEA,Forklifts,3048.72,11 days,Pending,3.4/5.0
+8186,Edwards Group,MEA,Conveyor Belts,4306.41,24 days,Inactive,3.8/5.0
+8187,Hendricks-Hill,APAC,Forklifts,10166.84,9 days,Active,4.5/5.0
+8188,Roberson-Riley,MEA,Conveyor Belts,4987.23,37 days,Pending,3.3/5.0
+8189,Ramirez LLC,EU,Shipping Containers,7424.8,30 days,Active,3.1/5.0
+8190,Brooks-Li,EU,Barcode Scanners,15883.92,39 days,Pending,4.3/5.0
+8191,"Lutz, Smith and Sanchez",LATAM,Pallet Jacks,462.71,22 days,Active,4.3/5.0
+8192,Thomas-Best,EU,Shipping Containers,16649.24,33 days,Pending,3.0/5.0
+8193,Compton PLC,NA,Conveyor Belts,13213.87,40 days,Inactive,4.5/5.0
+8194,"Steele, Barker and Hayes",APAC,Pallet Jacks,17373.09,31 days,Inactive,4.3/5.0
+8195,"Williams, Davis and Alvarado",LATAM,Forklifts,10904.68,33 days,Pending,3.6/5.0
+8196,"Salinas, Small and Mitchell",NA,Shipping Containers,12070.94,31 days,Inactive,4.7/5.0
+8197,"Cooper, Fitzgerald and Montgomery",MEA,Pallet Jacks,486.16,37 days,Pending,4.4/5.0
+8198,"Moreno, Howard and Morales",MEA,Conveyor Belts,19210.04,35 days,Inactive,4.3/5.0
+8199,"Norris, Lane and Hunter",LATAM,Shipping Containers,16340.1,15 days,Pending,3.7/5.0
+8200,"Mclaughlin, Baker and Johnson",MEA,Pallet Jacks,13719.32,19 days,Pending,4.4/5.0
+8201,"Bond, Lopez and Barnett",APAC,Barcode Scanners,16558.63,7 days,Pending,3.3/5.0
+8202,Campbell PLC,NA,Pallet Jacks,16966.21,10 days,Active,3.9/5.0
+8203,Obrien Group,NA,Conveyor Belts,5504.91,32 days,Pending,3.4/5.0
+8204,"Huffman, Bell and Bentley",MEA,Shipping Containers,13334.01,5 days,Inactive,3.4/5.0
+8205,Young LLC,EU,Forklifts,17057.75,27 days,Inactive,4.3/5.0
+8206,"Sanchez, Jones and Garcia",EU,Shipping Containers,4495.81,10 days,Active,3.4/5.0
+8207,King and Sons,MEA,Pallet Jacks,8476.83,24 days,Active,4.4/5.0
+8208,Jackson-Bond,MEA,Conveyor Belts,7540.08,38 days,Active,4.8/5.0
+8209,"Mclean, Mccarty and Alexander",NA,Conveyor Belts,11676.01,14 days,Pending,4.0/5.0
+8210,Bryant-Lowery,APAC,Forklifts,7262.42,22 days,Inactive,4.6/5.0
+8211,Benitez-Baker,NA,Barcode Scanners,7583.52,12 days,Active,2.7/5.0
+8212,Lewis Inc,MEA,Forklifts,19575.19,21 days,Active,5.0/5.0
+8213,Carlson and Sons,APAC,Conveyor Belts,14228.69,8 days,Pending,3.7/5.0
+8214,"Oconnor, Krause and Miller",MEA,Conveyor Belts,13468.62,38 days,Pending,4.4/5.0
+8215,Stanton Group,LATAM,Forklifts,7501.95,5 days,Active,4.9/5.0
+8216,"Simon, Perez and English",MEA,Conveyor Belts,12350.67,28 days,Active,4.8/5.0
+8217,"Sanchez, Kennedy and Browning",EU,Conveyor Belts,18550.9,31 days,Pending,3.0/5.0
+8218,"Perry, Simmons and Patton",NA,Conveyor Belts,17679.49,29 days,Pending,2.7/5.0
+8219,"Torres, Carroll and Beck",APAC,Shipping Containers,18734.02,40 days,Inactive,4.5/5.0
+8220,Allen-Lowe,MEA,Shipping Containers,1362.76,33 days,Inactive,4.3/5.0
+8221,Higgins-Cruz,MEA,Barcode Scanners,10709.97,22 days,Pending,3.5/5.0
+8222,"Short, Parker and Dixon",APAC,Shipping Containers,1484.19,13 days,Inactive,2.9/5.0
+8223,"Mosley, Alvarez and Rodriguez",LATAM,Forklifts,11691.77,13 days,Pending,2.8/5.0
+8224,Fletcher-Davis,MEA,Pallet Jacks,17514.09,15 days,Active,4.3/5.0
+8225,"Williams, Reynolds and Dunlap",APAC,Forklifts,18285.44,12 days,Pending,4.9/5.0
+8226,"Jenkins, West and Spencer",MEA,Shipping Containers,14181.24,37 days,Inactive,3.3/5.0
+8227,Johnson-Moore,NA,Conveyor Belts,18563.6,20 days,Active,4.1/5.0
+8228,"Curtis, Robertson and Butler",LATAM,Forklifts,14823.79,20 days,Pending,4.2/5.0
+8229,Hill and Sons,MEA,Pallet Jacks,9177.38,32 days,Pending,4.7/5.0
+8230,Pace Group,EU,Conveyor Belts,4840.14,35 days,Inactive,2.9/5.0
+8231,Dominguez LLC,LATAM,Shipping Containers,4779.78,14 days,Active,4.8/5.0
+8232,Campbell and Sons,EU,Barcode Scanners,16296.69,26 days,Pending,4.0/5.0
+8233,Estes-Arellano,EU,Barcode Scanners,2781.63,27 days,Pending,2.9/5.0
+8234,Wright PLC,NA,Forklifts,19293.85,10 days,Inactive,3.2/5.0
+8235,Nelson Ltd,APAC,Shipping Containers,6859.71,37 days,Pending,4.4/5.0
+8236,Vaughn-Garrett,MEA,Shipping Containers,8566.11,33 days,Inactive,4.6/5.0
+8237,Parker-Gomez,APAC,Barcode Scanners,392.32,23 days,Pending,4.7/5.0
+8238,Richmond-Oconnor,MEA,Conveyor Belts,6240.46,15 days,Active,4.3/5.0
+8239,Chaney-Soto,MEA,Barcode Scanners,4936.66,35 days,Pending,4.3/5.0
+8240,Peters LLC,EU,Pallet Jacks,17126.08,36 days,Pending,3.7/5.0
+8241,Owen and Sons,NA,Barcode Scanners,10143.17,28 days,Active,3.8/5.0
+8242,James Ltd,LATAM,Barcode Scanners,7365.75,18 days,Inactive,4.0/5.0
+8243,Juarez-Rojas,EU,Forklifts,12235.92,7 days,Active,3.8/5.0
+8244,Carlson-White,EU,Pallet Jacks,9791.65,32 days,Inactive,4.7/5.0
+8245,"Jackson, Davis and Parsons",LATAM,Conveyor Belts,10817.41,35 days,Pending,4.7/5.0
+8246,Phillips Group,EU,Forklifts,8007.08,18 days,Inactive,2.8/5.0
+8247,"Smith, Parker and White",MEA,Barcode Scanners,14093.6,11 days,Active,4.1/5.0
+8248,Hopkins Ltd,MEA,Forklifts,7268.61,28 days,Pending,4.9/5.0
+8249,Santos LLC,EU,Barcode Scanners,1323.67,17 days,Inactive,4.0/5.0
+8250,"Tate, Carter and Watts",MEA,Pallet Jacks,1853.32,18 days,Pending,3.1/5.0
+8251,Hamilton Ltd,LATAM,Shipping Containers,4820.41,24 days,Pending,3.5/5.0
+8252,Cook Ltd,APAC,Pallet Jacks,11785.03,38 days,Active,4.8/5.0
+8253,"Walker, Williams and Garcia",MEA,Shipping Containers,18975.76,5 days,Active,3.7/5.0
+8254,"Garcia, Chapman and Ortega",APAC,Conveyor Belts,4937.96,39 days,Active,4.1/5.0
+8255,Thompson-Burton,EU,Shipping Containers,18612.78,31 days,Active,2.8/5.0
+8256,"Hardy, Salazar and Marks",LATAM,Conveyor Belts,8601.75,12 days,Inactive,2.9/5.0
+8257,Wagner LLC,NA,Barcode Scanners,707.45,14 days,Active,4.0/5.0
+8258,"Sandoval, Cole and Day",MEA,Conveyor Belts,16230.71,19 days,Pending,3.5/5.0
+8259,Ford-Potts,NA,Pallet Jacks,14842.89,31 days,Active,4.3/5.0
+8260,Morris-Roberts,NA,Conveyor Belts,2511.63,27 days,Inactive,4.0/5.0
+8261,Jones-Smith,NA,Pallet Jacks,1009.02,28 days,Active,3.4/5.0
+8262,Chavez-Robbins,NA,Shipping Containers,6346.75,31 days,Pending,4.5/5.0
+8263,Poole-White,NA,Barcode Scanners,6762.84,27 days,Pending,4.6/5.0
+8264,"Chase, Stephens and Miller",LATAM,Pallet Jacks,3944.69,32 days,Inactive,2.6/5.0
+8265,Rodriguez PLC,NA,Pallet Jacks,7067.11,27 days,Inactive,3.4/5.0
+8266,Reese LLC,LATAM,Forklifts,10764.96,34 days,Inactive,2.6/5.0
+8267,Morrison Inc,MEA,Pallet Jacks,8768.58,18 days,Inactive,3.9/5.0
+8268,Allen-Hoffman,EU,Conveyor Belts,17288.79,32 days,Inactive,2.6/5.0
+8269,"Rogers, Wade and Horn",EU,Shipping Containers,17860.52,25 days,Pending,2.7/5.0
+8270,Sanchez PLC,APAC,Pallet Jacks,13423.64,13 days,Pending,4.1/5.0
+8271,Chan LLC,LATAM,Shipping Containers,8432.15,28 days,Pending,3.6/5.0
+8272,Chen-Rivers,LATAM,Shipping Containers,9369.45,20 days,Pending,2.9/5.0
+8273,Smith-Burnett,NA,Forklifts,17449.08,12 days,Active,3.0/5.0
+8274,Cruz and Sons,LATAM,Forklifts,11833.24,39 days,Active,4.5/5.0
+8275,Harris LLC,APAC,Conveyor Belts,19602.39,30 days,Inactive,3.9/5.0
+8276,Ward-Matthews,NA,Barcode Scanners,6442.19,17 days,Active,4.9/5.0
+8277,Duke-Moreno,EU,Forklifts,5871.24,20 days,Active,3.7/5.0
+8278,"Johnson, Walsh and Moore",EU,Forklifts,3298.78,34 days,Pending,4.8/5.0
+8279,"Espinoza, Walsh and Schaefer",EU,Shipping Containers,19807.48,21 days,Active,3.5/5.0
+8280,Lee Group,LATAM,Barcode Scanners,350.17,35 days,Inactive,4.0/5.0
+8281,"Fletcher, Walton and Blake",LATAM,Shipping Containers,12002.24,20 days,Inactive,3.4/5.0
+8282,Potts LLC,APAC,Barcode Scanners,6843.28,26 days,Pending,4.6/5.0
+8283,Carter LLC,EU,Barcode Scanners,19638.29,12 days,Inactive,4.2/5.0
+8284,Hurst-Savage,LATAM,Shipping Containers,7723.6,35 days,Active,4.0/5.0
+8285,"Fields, Long and Horton",MEA,Barcode Scanners,1136.58,14 days,Pending,2.8/5.0
+8286,Thomas Group,NA,Forklifts,17703.84,19 days,Active,2.8/5.0
+8287,"Meyer, Vargas and Barrett",EU,Pallet Jacks,9346.27,40 days,Inactive,3.6/5.0
+8288,Lin Group,NA,Shipping Containers,5816.39,26 days,Active,3.8/5.0
+8289,Forbes-Johnson,LATAM,Barcode Scanners,11644.85,25 days,Inactive,2.7/5.0
+8290,Pollard Ltd,APAC,Conveyor Belts,17576.21,32 days,Active,4.5/5.0
+8291,Hunter Ltd,APAC,Shipping Containers,13920.42,7 days,Inactive,4.1/5.0
+8292,"Castro, Page and Small",LATAM,Shipping Containers,8692.15,13 days,Inactive,3.6/5.0
+8293,Chung Group,NA,Shipping Containers,13262.9,21 days,Inactive,4.8/5.0
+8294,Martinez Group,LATAM,Shipping Containers,13561.96,6 days,Active,3.3/5.0
+8295,"Thompson, Francis and Perkins",LATAM,Shipping Containers,2643.72,10 days,Active,3.7/5.0
+8296,Dunn LLC,NA,Forklifts,333.57,30 days,Inactive,3.3/5.0
+8297,"Mueller, Malone and Lester",EU,Shipping Containers,2679.0,14 days,Active,3.3/5.0
+8298,Reid-Cunningham,LATAM,Pallet Jacks,13797.38,22 days,Inactive,4.5/5.0
+8299,"Hayes, Taylor and Rodriguez",LATAM,Barcode Scanners,14278.24,32 days,Inactive,2.8/5.0
+8300,Walker Ltd,APAC,Barcode Scanners,15157.48,17 days,Inactive,2.7/5.0
+8301,"Weber, Harris and Turner",MEA,Shipping Containers,19669.24,31 days,Inactive,3.5/5.0
+8302,"Lynn, Jones and Smith",NA,Conveyor Belts,7120.21,14 days,Active,2.6/5.0
+8303,"Velasquez, Koch and Vasquez",NA,Conveyor Belts,6221.73,40 days,Inactive,2.6/5.0
+8304,Fields Group,EU,Conveyor Belts,15006.88,31 days,Pending,4.0/5.0
+8305,Patterson-Poole,MEA,Conveyor Belts,10719.31,25 days,Inactive,4.1/5.0
+8306,Tate Group,APAC,Pallet Jacks,7028.48,12 days,Inactive,3.6/5.0
+8307,Russell-Taylor,EU,Forklifts,16484.54,33 days,Active,2.8/5.0
+8308,"Morgan, Murphy and Grimes",EU,Pallet Jacks,9494.83,35 days,Inactive,3.5/5.0
+8309,Martin and Sons,LATAM,Shipping Containers,4558.04,23 days,Pending,2.8/5.0
+8310,Rubio-Henry,NA,Barcode Scanners,15128.11,10 days,Inactive,2.6/5.0
+8311,Alvarez-Torres,APAC,Pallet Jacks,7090.21,17 days,Active,2.5/5.0
+8312,Berger Group,NA,Pallet Jacks,2253.81,28 days,Active,3.6/5.0
+8313,Benson PLC,LATAM,Forklifts,19255.79,33 days,Inactive,3.6/5.0
+8314,Moore Ltd,APAC,Conveyor Belts,12799.63,18 days,Pending,3.9/5.0
+8315,Gonzalez Inc,LATAM,Shipping Containers,4503.07,7 days,Inactive,3.0/5.0
+8316,"Pierce, Webb and Douglas",APAC,Forklifts,2615.03,33 days,Active,3.4/5.0
+8317,Oliver Inc,MEA,Shipping Containers,6551.88,26 days,Active,2.6/5.0
+8318,"Barton, Miller and Brooks",LATAM,Barcode Scanners,15789.21,25 days,Inactive,4.4/5.0
+8319,Reese LLC,LATAM,Barcode Scanners,16572.29,32 days,Pending,3.7/5.0
+8320,Woods Group,EU,Conveyor Belts,17337.44,21 days,Inactive,4.6/5.0
+8321,Erickson-Johnson,NA,Pallet Jacks,106.37,13 days,Pending,4.1/5.0
+8322,Shaw LLC,APAC,Conveyor Belts,16116.44,6 days,Active,4.4/5.0
+8323,Oneal-Shelton,NA,Barcode Scanners,6548.21,18 days,Pending,2.9/5.0
+8324,Allen PLC,EU,Forklifts,12577.07,36 days,Inactive,4.0/5.0
+8325,Barrera Ltd,APAC,Conveyor Belts,15631.16,12 days,Inactive,3.3/5.0
+8326,Nicholson-Villegas,NA,Barcode Scanners,11836.02,18 days,Pending,3.9/5.0
+8327,Rice LLC,MEA,Conveyor Belts,7590.31,18 days,Inactive,3.2/5.0
+8328,"Ray, Caldwell and Smith",APAC,Forklifts,15032.11,14 days,Pending,3.9/5.0
+8329,Johnston and Sons,NA,Pallet Jacks,18044.31,17 days,Inactive,4.0/5.0
+8330,Price-French,APAC,Barcode Scanners,6635.93,14 days,Pending,3.0/5.0
+8331,"Medina, Scott and Howard",LATAM,Shipping Containers,17402.16,14 days,Pending,2.6/5.0
+8332,Moreno and Sons,EU,Shipping Containers,2064.29,21 days,Active,3.9/5.0
+8333,Johnson and Sons,MEA,Barcode Scanners,16264.15,39 days,Inactive,4.5/5.0
+8334,Henderson-Lopez,NA,Shipping Containers,10827.35,37 days,Active,3.4/5.0
+8335,Goodman and Sons,LATAM,Shipping Containers,6063.38,24 days,Inactive,2.6/5.0
+8336,Snyder-Taylor,MEA,Shipping Containers,10998.25,20 days,Pending,4.2/5.0
+8337,Simmons-Buck,MEA,Conveyor Belts,19237.97,31 days,Active,2.9/5.0
+8338,Steele-White,LATAM,Conveyor Belts,4893.49,34 days,Active,3.2/5.0
+8339,Pearson-Harper,NA,Pallet Jacks,12524.8,38 days,Active,4.1/5.0
+8340,Dunlap and Sons,APAC,Forklifts,6211.78,12 days,Inactive,2.8/5.0
+8341,Jones Inc,APAC,Shipping Containers,216.98,9 days,Pending,4.4/5.0
+8342,"Jennings, Chavez and Jones",APAC,Conveyor Belts,1502.63,5 days,Inactive,3.2/5.0
+8343,"Clark, Johnson and Tucker",MEA,Barcode Scanners,17042.36,30 days,Inactive,3.3/5.0
+8344,Beard Group,APAC,Shipping Containers,17278.56,16 days,Pending,4.3/5.0
+8345,Baker PLC,EU,Conveyor Belts,7876.61,17 days,Inactive,2.7/5.0
+8346,"Camacho, Williams and Franklin",EU,Barcode Scanners,15017.01,26 days,Pending,5.0/5.0
+8347,Cox-Mcfarland,EU,Conveyor Belts,1540.78,6 days,Pending,2.7/5.0
+8348,"Jordan, Lambert and Nelson",MEA,Forklifts,10571.55,38 days,Pending,4.0/5.0
+8349,"Rose, Esparza and Blevins",APAC,Forklifts,6168.08,16 days,Pending,2.8/5.0
+8350,"Mcintosh, Russo and Fischer",NA,Conveyor Belts,5133.52,34 days,Active,4.2/5.0
+8351,Maxwell Inc,LATAM,Shipping Containers,9908.89,22 days,Inactive,4.0/5.0
+8352,"Allen, Johnson and Garcia",MEA,Forklifts,13349.64,17 days,Inactive,3.0/5.0
+8353,"Gonzales, Davila and Flores",APAC,Conveyor Belts,7838.85,34 days,Active,3.9/5.0
+8354,"Johnson, Little and Roy",APAC,Forklifts,7926.71,12 days,Pending,3.0/5.0
+8355,Hill Ltd,LATAM,Pallet Jacks,12793.04,27 days,Inactive,4.4/5.0
+8356,"Howell, Alvarado and King",APAC,Shipping Containers,12221.38,38 days,Inactive,4.1/5.0
+8357,Logan-Harrison,LATAM,Barcode Scanners,14089.88,38 days,Active,3.1/5.0
+8358,"Price, Stark and Bright",EU,Shipping Containers,14862.59,27 days,Pending,4.2/5.0
+8359,"Hensley, Harris and Johnson",APAC,Shipping Containers,19566.59,27 days,Inactive,3.9/5.0
+8360,"Zhang, Rice and Baker",APAC,Shipping Containers,12877.12,7 days,Inactive,2.9/5.0
+8361,Rios Group,LATAM,Shipping Containers,4276.5,20 days,Inactive,3.7/5.0
+8362,"Conner, Collins and Ross",LATAM,Conveyor Belts,12098.99,21 days,Inactive,2.8/5.0
+8363,Vargas and Sons,MEA,Barcode Scanners,14764.08,10 days,Pending,4.5/5.0
+8364,"Haas, Allen and Crawford",EU,Shipping Containers,13220.32,13 days,Active,3.1/5.0
+8365,"Williams, Newman and Burch",APAC,Pallet Jacks,15375.02,38 days,Inactive,3.4/5.0
+8366,Fuller-Mccarthy,EU,Forklifts,12431.38,36 days,Inactive,3.0/5.0
+8367,Dunn-Kelly,NA,Pallet Jacks,5638.07,34 days,Active,4.6/5.0
+8368,"Figueroa, Adams and Turner",NA,Barcode Scanners,1401.58,17 days,Active,3.2/5.0
+8369,Smith and Sons,LATAM,Conveyor Belts,19170.47,25 days,Pending,2.9/5.0
+8370,Klein-Bass,MEA,Barcode Scanners,17924.66,19 days,Active,4.2/5.0
+8371,Reyes-Day,LATAM,Pallet Jacks,10692.3,38 days,Pending,4.0/5.0
+8372,Peterson Group,MEA,Conveyor Belts,15669.35,25 days,Active,3.2/5.0
+8373,Bennett-Carroll,APAC,Barcode Scanners,2701.46,19 days,Inactive,4.2/5.0
+8374,"Medina, Kerr and Morrison",NA,Shipping Containers,5175.99,27 days,Active,3.7/5.0
+8375,"Solis, Curry and Sanchez",NA,Conveyor Belts,10291.41,22 days,Pending,4.6/5.0
+8376,"Pearson, Li and Perry",MEA,Forklifts,2441.32,30 days,Pending,3.3/5.0
+8377,Roberts Inc,MEA,Barcode Scanners,11970.21,5 days,Pending,4.8/5.0
+8378,Keller LLC,LATAM,Barcode Scanners,5842.47,32 days,Inactive,2.6/5.0
+8379,Hopkins Group,MEA,Conveyor Belts,10684.69,37 days,Pending,2.6/5.0
+8380,"Hill, Parker and Carpenter",APAC,Shipping Containers,18193.39,32 days,Pending,3.7/5.0
+8381,Myers Inc,MEA,Shipping Containers,6272.4,12 days,Pending,3.1/5.0
+8382,"Hartman, King and Potter",EU,Barcode Scanners,10348.1,25 days,Inactive,4.0/5.0
+8383,Brown-Reynolds,EU,Forklifts,19374.32,29 days,Active,3.5/5.0
+8384,Robinson Inc,MEA,Barcode Scanners,9483.88,13 days,Active,2.9/5.0
+8385,"Casey, Richards and Garza",LATAM,Conveyor Belts,7156.02,22 days,Inactive,4.0/5.0
+8386,"Jordan, Chan and Macias",APAC,Pallet Jacks,15909.62,27 days,Inactive,4.5/5.0
+8387,Smith and Sons,APAC,Shipping Containers,9678.99,12 days,Inactive,3.0/5.0
+8388,Martin-Scott,APAC,Conveyor Belts,18716.1,16 days,Pending,2.6/5.0
+8389,"Evans, Freeman and Schneider",MEA,Shipping Containers,5322.08,29 days,Pending,3.9/5.0
+8390,Singh-Bell,NA,Shipping Containers,1038.68,18 days,Pending,4.1/5.0
+8391,Smith LLC,LATAM,Pallet Jacks,3525.05,40 days,Inactive,2.5/5.0
+8392,Harris Group,MEA,Shipping Containers,14887.58,31 days,Pending,3.9/5.0
+8393,"Robinson, Adams and Lee",MEA,Pallet Jacks,16294.58,8 days,Active,2.9/5.0
+8394,Hughes-Mitchell,EU,Barcode Scanners,3997.57,7 days,Inactive,4.5/5.0
+8395,Glover-Matthews,NA,Barcode Scanners,16635.19,7 days,Pending,4.7/5.0
+8396,Huber Ltd,MEA,Conveyor Belts,2176.49,36 days,Pending,4.3/5.0
+8397,Martinez-Peters,NA,Pallet Jacks,4540.33,12 days,Pending,3.7/5.0
+8398,Schneider and Sons,EU,Conveyor Belts,16897.35,6 days,Inactive,3.7/5.0
+8399,"Perez, Lee and Armstrong",EU,Conveyor Belts,10705.96,32 days,Pending,3.4/5.0
+8400,Simpson-Day,NA,Forklifts,1495.1,30 days,Active,3.6/5.0
+8401,Fritz Inc,APAC,Forklifts,7905.39,12 days,Pending,3.5/5.0
+8402,"Ryan, Williams and Young",APAC,Shipping Containers,7153.04,12 days,Pending,4.3/5.0
+8403,Skinner-Rose,MEA,Pallet Jacks,10282.19,21 days,Pending,4.0/5.0
+8404,"James, Brooks and Barnes",LATAM,Conveyor Belts,11050.77,35 days,Active,3.1/5.0
+8405,Mccarty-Ramirez,LATAM,Shipping Containers,10554.08,6 days,Active,3.5/5.0
+8406,Campbell and Sons,APAC,Forklifts,5629.0,24 days,Pending,4.6/5.0
+8407,Haynes-Marshall,NA,Barcode Scanners,14560.47,5 days,Inactive,4.2/5.0
+8408,Moore LLC,NA,Conveyor Belts,19246.68,5 days,Active,3.1/5.0
+8409,"Pena, Anderson and Morales",APAC,Barcode Scanners,12876.79,25 days,Pending,4.8/5.0
+8410,Dean-Valentine,NA,Forklifts,4889.28,37 days,Pending,3.7/5.0
+8411,Jones Group,EU,Barcode Scanners,15553.95,28 days,Active,4.1/5.0
+8412,Brown-Martin,MEA,Barcode Scanners,8125.73,11 days,Inactive,4.2/5.0
+8413,"Jones, Barnes and Morales",NA,Shipping Containers,2786.92,14 days,Pending,4.6/5.0
+8414,Cunningham Inc,MEA,Conveyor Belts,2909.19,38 days,Inactive,2.5/5.0
+8415,"Schmidt, Alvarado and Parker",APAC,Forklifts,14252.94,32 days,Active,4.0/5.0
+8416,Juarez Group,MEA,Barcode Scanners,1176.42,38 days,Active,3.2/5.0
+8417,Russell-Robinson,NA,Shipping Containers,12072.0,12 days,Pending,2.5/5.0
+8418,Rowe-Welch,MEA,Forklifts,1359.52,13 days,Inactive,4.4/5.0
+8419,"Hicks, Bailey and Turner",APAC,Pallet Jacks,12226.34,5 days,Active,3.7/5.0
+8420,Ellis PLC,MEA,Shipping Containers,3021.93,6 days,Active,3.9/5.0
+8421,"Benitez, Ballard and Jensen",LATAM,Forklifts,8075.52,18 days,Active,4.2/5.0
+8422,Griffin-Chavez,NA,Shipping Containers,18847.54,31 days,Pending,2.5/5.0
+8423,"Paul, Arroyo and Hanson",LATAM,Conveyor Belts,19969.51,33 days,Inactive,2.8/5.0
+8424,Roberson-Johnson,APAC,Barcode Scanners,3964.15,38 days,Active,3.8/5.0
+8425,Velazquez-Johnson,LATAM,Conveyor Belts,8600.77,9 days,Pending,2.9/5.0
+8426,Kramer-Reyes,MEA,Conveyor Belts,18285.64,23 days,Active,3.8/5.0
+8427,Pierce PLC,EU,Conveyor Belts,12556.31,10 days,Pending,4.8/5.0
+8428,Tran-Carpenter,EU,Forklifts,8021.67,12 days,Pending,3.3/5.0
+8429,Marshall-Rogers,MEA,Forklifts,13328.78,14 days,Pending,4.3/5.0
+8430,"Miller, Suarez and Campbell",EU,Pallet Jacks,12112.99,5 days,Active,4.5/5.0
+8431,"Pena, Hines and Clark",LATAM,Barcode Scanners,2165.46,40 days,Inactive,3.7/5.0
+8432,Taylor PLC,LATAM,Conveyor Belts,14216.42,15 days,Active,2.6/5.0
+8433,Adams-Peterson,NA,Shipping Containers,14559.59,40 days,Active,3.9/5.0
+8434,Oconnor Ltd,MEA,Forklifts,13849.15,38 days,Pending,2.8/5.0
+8435,Lopez-Miller,EU,Shipping Containers,15757.34,22 days,Active,4.3/5.0
+8436,"Bradley, Garcia and Beck",APAC,Conveyor Belts,18761.49,5 days,Active,3.2/5.0
+8437,Smith-Williams,NA,Forklifts,2760.61,12 days,Pending,3.1/5.0
+8438,"Mooney, Smith and Brown",LATAM,Pallet Jacks,8675.62,26 days,Pending,2.7/5.0
+8439,Johnson-Martinez,MEA,Conveyor Belts,15619.61,18 days,Inactive,3.7/5.0
+8440,Garrett Group,MEA,Barcode Scanners,13298.52,7 days,Active,4.7/5.0
+8441,Cochran and Sons,EU,Forklifts,2002.19,31 days,Pending,3.1/5.0
+8442,Maddox PLC,NA,Pallet Jacks,12675.23,26 days,Pending,4.9/5.0
+8443,Porter-Morrison,EU,Barcode Scanners,3234.32,34 days,Active,3.4/5.0
+8444,Morgan-Collins,EU,Pallet Jacks,1949.46,13 days,Active,2.7/5.0
+8445,"Munoz, Turner and Ray",LATAM,Forklifts,14958.89,19 days,Pending,3.3/5.0
+8446,Ruiz-Johnson,NA,Pallet Jacks,18415.12,19 days,Pending,2.6/5.0
+8447,"Johnson, Mcdonald and Poole",EU,Forklifts,2069.0,33 days,Inactive,4.6/5.0
+8448,"Richards, Hodges and Osborne",LATAM,Shipping Containers,2320.18,26 days,Active,3.8/5.0
+8449,Richardson-Kelly,EU,Conveyor Belts,3357.55,35 days,Pending,3.9/5.0
+8450,Perez PLC,APAC,Pallet Jacks,11788.5,20 days,Inactive,2.6/5.0
+8451,"Scott, Harvey and Hernandez",EU,Conveyor Belts,11147.41,20 days,Active,3.9/5.0
+8452,Ramsey-Martinez,NA,Conveyor Belts,7273.01,35 days,Active,3.4/5.0
+8453,"Clark, Mahoney and Garcia",LATAM,Shipping Containers,14253.62,37 days,Inactive,3.3/5.0
+8454,"Juarez, Hines and Johnson",MEA,Pallet Jacks,5182.43,24 days,Active,3.1/5.0
+8455,Mullins PLC,EU,Pallet Jacks,15379.15,11 days,Inactive,3.9/5.0
+8456,Green-Ortega,MEA,Barcode Scanners,7285.04,34 days,Active,4.9/5.0
+8457,Contreras-Hawkins,MEA,Conveyor Belts,15415.52,16 days,Inactive,4.8/5.0
+8458,"Harris, Moreno and Jones",MEA,Shipping Containers,7645.5,21 days,Inactive,2.7/5.0
+8459,Juarez PLC,EU,Conveyor Belts,16102.13,32 days,Pending,3.2/5.0
+8460,Robinson-Brady,LATAM,Forklifts,7461.81,10 days,Active,3.9/5.0
+8461,"Young, Marquez and Patel",NA,Shipping Containers,8408.66,39 days,Pending,4.9/5.0
+8462,Salazar-Scott,LATAM,Pallet Jacks,16959.89,37 days,Active,4.0/5.0
+8463,Martin Group,NA,Conveyor Belts,15438.54,16 days,Inactive,4.3/5.0
+8464,Davis-Henry,MEA,Forklifts,15197.08,6 days,Inactive,3.9/5.0
+8465,Smith LLC,APAC,Pallet Jacks,10813.25,18 days,Active,3.3/5.0
+8466,Thompson PLC,MEA,Conveyor Belts,13900.71,25 days,Active,4.7/5.0
+8467,Walker-Cohen,LATAM,Pallet Jacks,276.61,17 days,Pending,3.3/5.0
+8468,"Gibbs, Martin and Padilla",LATAM,Shipping Containers,11985.98,34 days,Pending,2.8/5.0
+8469,Meyer Ltd,NA,Forklifts,12480.07,5 days,Inactive,3.1/5.0
+8470,"Roman, Haas and Cabrera",EU,Conveyor Belts,9647.35,12 days,Pending,4.9/5.0
+8471,Frey Inc,MEA,Conveyor Belts,6890.91,28 days,Inactive,3.0/5.0
+8472,"Hull, Chase and Howell",NA,Pallet Jacks,12171.78,12 days,Pending,4.1/5.0
+8473,Kim LLC,EU,Barcode Scanners,9048.2,19 days,Inactive,4.1/5.0
+8474,Trevino-Craig,MEA,Forklifts,18859.94,29 days,Inactive,3.1/5.0
+8475,Robinson PLC,MEA,Barcode Scanners,10874.57,24 days,Active,2.7/5.0
+8476,Ritter-Mckinney,MEA,Conveyor Belts,5745.99,22 days,Pending,2.9/5.0
+8477,Hood-Anderson,LATAM,Forklifts,14809.82,37 days,Pending,3.2/5.0
+8478,Gallegos Ltd,EU,Conveyor Belts,1652.55,34 days,Pending,3.8/5.0
+8479,Moore Group,EU,Conveyor Belts,103.64,34 days,Inactive,3.9/5.0
+8480,Peters and Sons,MEA,Forklifts,14627.81,19 days,Inactive,4.8/5.0
+8481,"Smith, Sellers and Rodriguez",MEA,Pallet Jacks,759.06,6 days,Pending,3.1/5.0
+8482,Berry Inc,EU,Conveyor Belts,7257.75,26 days,Active,2.7/5.0
+8483,Robbins-Greene,EU,Conveyor Belts,10137.52,34 days,Inactive,2.5/5.0
+8484,"Mendez, West and Lopez",EU,Barcode Scanners,15157.63,27 days,Active,3.1/5.0
+8485,"Cooper, Rosales and Combs",LATAM,Conveyor Belts,8479.35,38 days,Active,4.1/5.0
+8486,"Johnson, Johns and Santana",MEA,Forklifts,3182.66,16 days,Inactive,4.4/5.0
+8487,Brown-Owens,APAC,Pallet Jacks,19170.35,25 days,Inactive,2.5/5.0
+8488,Baker-Scott,APAC,Forklifts,394.12,33 days,Pending,3.4/5.0
+8489,Taylor-Wilson,MEA,Barcode Scanners,4548.47,24 days,Inactive,4.0/5.0
+8490,Glover-Howard,LATAM,Pallet Jacks,9894.21,12 days,Inactive,4.8/5.0
+8491,Martin Inc,MEA,Forklifts,10167.51,38 days,Inactive,4.9/5.0
+8492,"Jackson, Mckinney and Cooper",EU,Pallet Jacks,19473.25,28 days,Pending,4.3/5.0
+8493,Pena Group,MEA,Forklifts,18933.46,38 days,Inactive,4.9/5.0
+8494,"Hernandez, James and Munoz",APAC,Forklifts,10358.14,34 days,Inactive,3.3/5.0
+8495,James-Caldwell,EU,Pallet Jacks,17355.6,19 days,Pending,4.8/5.0
+8496,Nguyen and Sons,APAC,Pallet Jacks,7864.96,5 days,Active,4.8/5.0
+8497,Schroeder-Bennett,APAC,Barcode Scanners,5556.5,16 days,Inactive,4.2/5.0
+8498,Graham-Williams,APAC,Conveyor Belts,13578.3,24 days,Inactive,4.0/5.0
+8499,Tran Ltd,MEA,Conveyor Belts,18938.15,21 days,Pending,2.9/5.0
+8500,Medina-Jones,EU,Forklifts,1512.82,37 days,Pending,3.1/5.0
+8501,Yates-Ramos,EU,Shipping Containers,6964.21,21 days,Inactive,2.9/5.0
+8502,Henderson Ltd,APAC,Barcode Scanners,19141.03,29 days,Active,2.6/5.0
+8503,"Henry, Thompson and Figueroa",LATAM,Shipping Containers,8315.11,33 days,Active,4.3/5.0
+8504,Joseph-Stevens,NA,Pallet Jacks,19769.54,40 days,Pending,3.6/5.0
+8505,Kim-Owens,LATAM,Shipping Containers,4509.02,13 days,Active,3.2/5.0
+8506,"Wilson, Zimmerman and Taylor",EU,Forklifts,10461.99,12 days,Pending,4.2/5.0
+8507,Curtis PLC,APAC,Barcode Scanners,909.87,31 days,Pending,3.2/5.0
+8508,Patterson Group,MEA,Shipping Containers,4841.86,10 days,Inactive,2.6/5.0
+8509,Taylor PLC,EU,Conveyor Belts,16687.24,21 days,Pending,2.7/5.0
+8510,Williams and Sons,LATAM,Shipping Containers,10666.77,5 days,Inactive,3.2/5.0
+8511,Davis-Perez,MEA,Forklifts,7436.35,18 days,Pending,2.6/5.0
+8512,Hampton-Walsh,EU,Forklifts,15813.79,19 days,Inactive,2.8/5.0
+8513,Nguyen Ltd,EU,Forklifts,8736.09,38 days,Pending,2.6/5.0
+8514,Chavez-Brock,NA,Forklifts,19933.8,31 days,Pending,3.7/5.0
+8515,Ramirez-Mann,LATAM,Shipping Containers,6963.6,17 days,Pending,3.8/5.0
+8516,Ingram and Sons,EU,Conveyor Belts,2031.79,18 days,Inactive,4.4/5.0
+8517,Palmer Inc,LATAM,Conveyor Belts,10797.55,23 days,Active,4.5/5.0
+8518,"Burch, Bell and Velasquez",LATAM,Pallet Jacks,1257.21,17 days,Inactive,4.2/5.0
+8519,Thompson-King,APAC,Barcode Scanners,9296.68,18 days,Pending,3.6/5.0
+8520,Singh Group,NA,Forklifts,19378.75,39 days,Active,3.2/5.0
+8521,Turner-Edwards,LATAM,Barcode Scanners,8279.91,20 days,Inactive,2.8/5.0
+8522,Harvey-Aguilar,EU,Shipping Containers,11326.33,26 days,Pending,3.3/5.0
+8523,"Thompson, Moody and Bryant",EU,Conveyor Belts,7772.11,20 days,Inactive,4.1/5.0
+8524,"Chang, Lee and Andersen",APAC,Forklifts,2362.12,32 days,Pending,5.0/5.0
+8525,Maxwell and Sons,APAC,Conveyor Belts,12418.74,22 days,Active,2.6/5.0
+8526,"Williams, Terry and Taylor",NA,Shipping Containers,1669.51,38 days,Pending,4.1/5.0
+8527,Crawford-Shaw,MEA,Shipping Containers,10176.36,14 days,Inactive,4.3/5.0
+8528,James Inc,MEA,Barcode Scanners,1027.37,10 days,Pending,3.6/5.0
+8529,"Smith, Jordan and Lynch",NA,Forklifts,2633.75,10 days,Inactive,3.4/5.0
+8530,"Harding, Taylor and Stephens",MEA,Shipping Containers,17936.54,26 days,Active,4.2/5.0
+8531,Salazar Inc,NA,Pallet Jacks,11158.61,22 days,Active,2.6/5.0
+8532,"Moran, Edwards and Lewis",EU,Conveyor Belts,6755.0,19 days,Active,3.3/5.0
+8533,Matthews Group,MEA,Pallet Jacks,5969.29,33 days,Pending,4.6/5.0
+8534,"Adkins, Burns and Delgado",APAC,Shipping Containers,811.83,21 days,Inactive,4.7/5.0
+8535,Martin-Tucker,APAC,Forklifts,12659.28,24 days,Inactive,3.0/5.0
+8536,Morrow-Sellers,APAC,Barcode Scanners,18965.07,29 days,Pending,2.7/5.0
+8537,Fox and Sons,APAC,Barcode Scanners,9805.46,22 days,Inactive,3.0/5.0
+8538,"Collier, Lewis and Parks",EU,Forklifts,6649.8,26 days,Inactive,4.3/5.0
+8539,Torres and Sons,NA,Barcode Scanners,4991.7,9 days,Active,3.8/5.0
+8540,"Perez, Lee and Walker",MEA,Barcode Scanners,3988.18,18 days,Pending,4.6/5.0
+8541,Ayala Group,MEA,Shipping Containers,2076.5,22 days,Pending,3.4/5.0
+8542,Blanchard-Vargas,NA,Pallet Jacks,12591.03,28 days,Pending,4.0/5.0
+8543,Sanchez-Combs,APAC,Conveyor Belts,11720.6,11 days,Pending,3.6/5.0
+8544,"Gonzalez, Burch and Ortiz",APAC,Pallet Jacks,1801.74,23 days,Active,5.0/5.0
+8545,Gentry-Christensen,EU,Pallet Jacks,4688.23,9 days,Inactive,4.6/5.0
+8546,"Snyder, Hall and King",EU,Shipping Containers,8372.17,27 days,Active,4.7/5.0
+8547,"Davila, Gould and Howard",APAC,Shipping Containers,7360.95,10 days,Pending,4.4/5.0
+8548,Sims Group,APAC,Barcode Scanners,2435.26,17 days,Inactive,3.0/5.0
+8549,Cain-Middleton,MEA,Conveyor Belts,304.46,18 days,Active,2.9/5.0
+8550,Williams Inc,LATAM,Pallet Jacks,8553.66,35 days,Active,5.0/5.0
+8551,"Peterson, Chavez and Arnold",EU,Shipping Containers,13282.19,8 days,Inactive,3.0/5.0
+8552,Parker-Wilson,NA,Pallet Jacks,727.53,26 days,Active,4.4/5.0
+8553,Richard-Crawford,MEA,Shipping Containers,19073.2,38 days,Active,4.7/5.0
+8554,"House, Patel and Maynard",MEA,Forklifts,16667.36,33 days,Inactive,3.9/5.0
+8555,Barnes-Stewart,MEA,Forklifts,10194.63,14 days,Pending,4.5/5.0
+8556,"Flores, Rios and Ortiz",APAC,Barcode Scanners,3060.32,31 days,Active,3.6/5.0
+8557,Armstrong LLC,MEA,Pallet Jacks,3148.25,25 days,Pending,2.9/5.0
+8558,"Underwood, Cohen and Woodard",APAC,Conveyor Belts,9874.91,40 days,Inactive,4.2/5.0
+8559,"Miller, Gray and Brown",LATAM,Forklifts,15690.79,32 days,Active,2.5/5.0
+8560,"Phillips, Knight and Ortega",APAC,Conveyor Belts,1093.79,30 days,Pending,3.7/5.0
+8561,"Rodriguez, Velasquez and Harmon",MEA,Barcode Scanners,17762.07,36 days,Active,3.3/5.0
+8562,"Young, Carter and Davis",APAC,Shipping Containers,16827.88,15 days,Active,3.6/5.0
+8563,Dougherty LLC,MEA,Shipping Containers,16915.36,13 days,Inactive,4.8/5.0
+8564,Gilbert PLC,EU,Barcode Scanners,9517.09,32 days,Active,4.0/5.0
+8565,Walker PLC,MEA,Pallet Jacks,17898.63,28 days,Pending,2.6/5.0
+8566,"Lutz, Montes and Mccoy",EU,Conveyor Belts,4297.56,34 days,Pending,2.7/5.0
+8567,Hull-Rice,EU,Forklifts,808.39,5 days,Active,3.3/5.0
+8568,Perry-Bush,APAC,Barcode Scanners,15191.76,19 days,Active,4.7/5.0
+8569,"Walker, Bell and Mercer",MEA,Barcode Scanners,10338.4,10 days,Pending,4.2/5.0
+8570,Fisher Ltd,EU,Barcode Scanners,9952.38,37 days,Active,4.7/5.0
+8571,Randall-Martin,LATAM,Forklifts,2782.44,21 days,Pending,3.6/5.0
+8572,Cooley Inc,LATAM,Shipping Containers,11856.71,22 days,Active,2.7/5.0
+8573,Carrillo-Sweeney,NA,Forklifts,14696.74,17 days,Inactive,3.1/5.0
+8574,"Reed, Harris and Farley",EU,Shipping Containers,15570.66,10 days,Pending,4.3/5.0
+8575,"Young, Velasquez and Pearson",APAC,Conveyor Belts,19107.95,40 days,Active,4.6/5.0
+8576,"Mcclure, Wheeler and Marks",EU,Barcode Scanners,17939.03,34 days,Inactive,4.6/5.0
+8577,Stevens-Beasley,NA,Shipping Containers,1467.88,32 days,Inactive,5.0/5.0
+8578,"Rogers, Ewing and Smith",MEA,Forklifts,16449.35,36 days,Active,4.3/5.0
+8579,Garcia PLC,MEA,Barcode Scanners,7013.72,15 days,Inactive,4.1/5.0
+8580,"Andrews, Rodriguez and Thompson",EU,Shipping Containers,16414.79,36 days,Pending,3.1/5.0
+8581,"Black, Nguyen and Price",LATAM,Conveyor Belts,5653.72,15 days,Active,3.4/5.0
+8582,"Silva, Lowery and Marshall",NA,Pallet Jacks,10001.99,24 days,Inactive,4.6/5.0
+8583,Phillips Group,APAC,Pallet Jacks,10124.88,18 days,Inactive,3.1/5.0
+8584,"Burke, Williams and Myers",APAC,Pallet Jacks,16244.77,33 days,Inactive,3.2/5.0
+8585,"Rivera, King and Stout",EU,Barcode Scanners,9346.34,14 days,Pending,4.0/5.0
+8586,Lewis PLC,NA,Pallet Jacks,17317.71,27 days,Active,3.9/5.0
+8587,Hunter-Watkins,NA,Forklifts,1305.24,17 days,Active,4.4/5.0
+8588,Garcia-Barnett,LATAM,Barcode Scanners,2758.28,7 days,Inactive,4.7/5.0
+8589,"Wagner, Garcia and Kelly",MEA,Pallet Jacks,13546.21,28 days,Pending,4.3/5.0
+8590,"Carr, Costa and Mullen",APAC,Barcode Scanners,10737.29,33 days,Active,3.3/5.0
+8591,Noble-Macias,LATAM,Pallet Jacks,12632.2,38 days,Inactive,4.9/5.0
+8592,"Fernandez, Smith and Kaufman",MEA,Forklifts,601.72,33 days,Pending,2.5/5.0
+8593,"Haney, Meadows and Dixon",NA,Shipping Containers,14323.39,23 days,Pending,4.6/5.0
+8594,Herman Inc,MEA,Barcode Scanners,807.62,19 days,Inactive,3.9/5.0
+8595,"Rodriguez, Tucker and Houston",EU,Conveyor Belts,6645.28,19 days,Active,4.6/5.0
+8596,Riley Ltd,MEA,Forklifts,7509.09,22 days,Pending,4.2/5.0
+8597,Washington Inc,NA,Shipping Containers,14325.56,37 days,Pending,2.9/5.0
+8598,"Watson, Hancock and Smith",NA,Barcode Scanners,2195.8,25 days,Active,4.9/5.0
+8599,Diaz-Flores,NA,Shipping Containers,10392.41,28 days,Active,4.9/5.0
+8600,Ward-Burns,MEA,Barcode Scanners,18504.33,28 days,Active,4.2/5.0
+8601,Owens Ltd,APAC,Shipping Containers,2730.73,6 days,Pending,4.7/5.0
+8602,Molina-Melton,LATAM,Pallet Jacks,12088.94,36 days,Active,4.8/5.0
+8603,"Schmidt, Wolfe and Ross",MEA,Conveyor Belts,14657.74,16 days,Pending,3.8/5.0
+8604,"Powers, Lane and Rivera",LATAM,Shipping Containers,2714.94,8 days,Active,4.4/5.0
+8605,Moses Group,LATAM,Pallet Jacks,13897.07,39 days,Inactive,4.9/5.0
+8606,Hawkins-Ramos,LATAM,Conveyor Belts,10982.76,30 days,Pending,4.4/5.0
+8607,"Ramsey, Wright and Wheeler",MEA,Forklifts,4855.09,34 days,Pending,2.5/5.0
+8608,"Brown, Galvan and Sweeney",APAC,Conveyor Belts,355.67,36 days,Inactive,2.6/5.0
+8609,"Hawkins, Morris and Johnson",LATAM,Forklifts,5577.46,37 days,Active,2.7/5.0
+8610,"Hughes, Burnett and Mays",MEA,Conveyor Belts,7720.07,8 days,Active,3.4/5.0
+8611,Roach-Hamilton,LATAM,Shipping Containers,19868.28,28 days,Active,4.0/5.0
+8612,Jones-Best,MEA,Forklifts,17318.11,39 days,Inactive,3.0/5.0
+8613,"Banks, Kirk and Castillo",MEA,Shipping Containers,18769.36,38 days,Inactive,2.9/5.0
+8614,Stevens PLC,EU,Barcode Scanners,6106.43,5 days,Active,3.9/5.0
+8615,"Villarreal, Davenport and Jones",MEA,Shipping Containers,17895.14,32 days,Pending,4.9/5.0
+8616,Kelley and Sons,LATAM,Conveyor Belts,5241.22,40 days,Pending,3.3/5.0
+8617,Fox and Sons,NA,Conveyor Belts,3267.42,5 days,Inactive,4.4/5.0
+8618,"Ray, Burgess and Black",LATAM,Shipping Containers,2219.46,26 days,Active,4.6/5.0
+8619,Williams Ltd,NA,Conveyor Belts,445.48,16 days,Inactive,4.8/5.0
+8620,"Johnson, Hall and Cummings",EU,Forklifts,15919.36,35 days,Inactive,4.8/5.0
+8621,Walker LLC,APAC,Pallet Jacks,8239.55,34 days,Pending,3.5/5.0
+8622,"Watson, Spence and Hernandez",LATAM,Shipping Containers,9907.29,33 days,Pending,3.9/5.0
+8623,"Stevens, Levy and Mckee",NA,Pallet Jacks,12236.88,27 days,Pending,2.7/5.0
+8624,"Meyer, Moses and Hernandez",MEA,Conveyor Belts,703.27,30 days,Inactive,4.8/5.0
+8625,Johnston and Sons,APAC,Shipping Containers,6995.94,8 days,Inactive,2.7/5.0
+8626,"Robinson, Burns and Richmond",LATAM,Barcode Scanners,3166.37,20 days,Inactive,4.5/5.0
+8627,"Hale, Lawrence and Baker",MEA,Barcode Scanners,10598.39,5 days,Inactive,3.4/5.0
+8628,West-Andrews,NA,Forklifts,5752.1,6 days,Active,2.8/5.0
+8629,"Martinez, Wright and Sexton",MEA,Pallet Jacks,7659.91,40 days,Inactive,3.4/5.0
+8630,Martinez Ltd,EU,Pallet Jacks,11924.56,7 days,Inactive,4.9/5.0
+8631,"Benson, Burton and Wagner",MEA,Conveyor Belts,1006.67,22 days,Inactive,3.7/5.0
+8632,"Hogan, Fritz and Dyer",NA,Shipping Containers,8555.46,11 days,Inactive,4.3/5.0
+8633,"Williams, Johnson and Woods",APAC,Barcode Scanners,18318.62,16 days,Pending,3.1/5.0
+8634,"Smith, Johnson and Smith",MEA,Pallet Jacks,15795.04,25 days,Active,4.7/5.0
+8635,Ray Inc,MEA,Forklifts,9028.09,23 days,Inactive,3.5/5.0
+8636,"Stewart, Smith and Jackson",LATAM,Conveyor Belts,4295.54,33 days,Inactive,4.8/5.0
+8637,Miller and Sons,EU,Forklifts,7326.44,11 days,Inactive,3.1/5.0
+8638,Edwards and Sons,EU,Forklifts,17039.27,14 days,Active,4.5/5.0
+8639,"Reed, Aguilar and Bender",APAC,Conveyor Belts,10569.96,17 days,Inactive,3.5/5.0
+8640,Wong Ltd,MEA,Shipping Containers,17851.15,26 days,Active,3.1/5.0
+8641,"Jones, Stewart and Brewer",NA,Pallet Jacks,12544.83,26 days,Inactive,4.7/5.0
+8642,Smith PLC,NA,Forklifts,2984.57,14 days,Pending,3.8/5.0
+8643,Gordon Group,LATAM,Forklifts,18293.6,23 days,Active,2.7/5.0
+8644,Chapman-Schultz,MEA,Conveyor Belts,16110.09,25 days,Pending,4.1/5.0
+8645,Chavez Group,APAC,Pallet Jacks,18159.26,14 days,Inactive,3.5/5.0
+8646,Boyle-Nixon,NA,Forklifts,1845.86,31 days,Pending,4.1/5.0
+8647,Brooks and Sons,APAC,Shipping Containers,18157.38,8 days,Pending,2.8/5.0
+8648,Richard-Woods,APAC,Pallet Jacks,15667.26,16 days,Pending,4.7/5.0
+8649,Davis Group,LATAM,Shipping Containers,12211.69,31 days,Pending,4.7/5.0
+8650,"Kline, Wilson and Bishop",MEA,Forklifts,13943.35,13 days,Inactive,3.5/5.0
+8651,"Jones, Trevino and Jones",EU,Pallet Jacks,8669.89,20 days,Active,3.8/5.0
+8652,Cochran-Valencia,NA,Conveyor Belts,19659.15,11 days,Active,4.5/5.0
+8653,Hall LLC,APAC,Barcode Scanners,11968.48,18 days,Active,4.8/5.0
+8654,Herrera PLC,EU,Pallet Jacks,13781.65,17 days,Pending,4.4/5.0
+8655,Strickland and Sons,NA,Barcode Scanners,4056.4,30 days,Inactive,4.8/5.0
+8656,Johnson Group,MEA,Shipping Containers,12407.45,7 days,Active,4.7/5.0
+8657,Reese LLC,APAC,Shipping Containers,17594.63,40 days,Pending,4.1/5.0
+8658,"Pratt, Walker and Russell",MEA,Pallet Jacks,8523.6,25 days,Active,2.8/5.0
+8659,Pennington-Ingram,EU,Conveyor Belts,16847.41,38 days,Active,4.2/5.0
+8660,Mitchell-Roth,APAC,Barcode Scanners,2449.73,13 days,Active,4.4/5.0
+8661,"Griffith, Reilly and Williams",LATAM,Forklifts,1558.35,17 days,Pending,4.2/5.0
+8662,"Roberts, Avery and Braun",MEA,Forklifts,15095.26,6 days,Active,4.3/5.0
+8663,Sullivan Group,EU,Pallet Jacks,4407.88,33 days,Pending,2.6/5.0
+8664,Watson and Sons,APAC,Pallet Jacks,14543.5,18 days,Inactive,4.9/5.0
+8665,"Hopkins, Taylor and Daniel",EU,Forklifts,14498.32,18 days,Active,3.3/5.0
+8666,Yates LLC,APAC,Forklifts,17736.48,28 days,Inactive,3.9/5.0
+8667,Collins Inc,LATAM,Forklifts,18794.24,32 days,Pending,4.4/5.0
+8668,"Garcia, Collier and Baxter",NA,Barcode Scanners,14430.34,26 days,Inactive,4.0/5.0
+8669,"Baker, Curtis and Page",APAC,Shipping Containers,15925.95,19 days,Inactive,3.3/5.0
+8670,Fischer-Bullock,EU,Shipping Containers,9341.09,10 days,Pending,4.8/5.0
+8671,Castro-Lopez,NA,Pallet Jacks,17718.3,14 days,Active,3.9/5.0
+8672,"Ramos, Perez and Brown",EU,Shipping Containers,9566.99,30 days,Inactive,4.7/5.0
+8673,Webb-Wilson,MEA,Barcode Scanners,17399.31,25 days,Inactive,2.9/5.0
+8674,Stone-Gutierrez,EU,Shipping Containers,2574.58,6 days,Pending,2.9/5.0
+8675,Turner Inc,APAC,Barcode Scanners,2124.18,19 days,Active,5.0/5.0
+8676,"Brooks, Gonzalez and Rodriguez",MEA,Barcode Scanners,9903.11,30 days,Inactive,2.6/5.0
+8677,Price and Sons,LATAM,Conveyor Belts,3071.58,30 days,Pending,4.9/5.0
+8678,Norton-Anderson,LATAM,Shipping Containers,10537.17,18 days,Inactive,3.0/5.0
+8679,Taylor-Barnes,APAC,Shipping Containers,17177.66,14 days,Active,4.6/5.0
+8680,"Brown, Buchanan and Nguyen",MEA,Conveyor Belts,8589.04,23 days,Active,3.1/5.0
+8681,"Espinoza, Garcia and Morgan",NA,Shipping Containers,11730.25,28 days,Inactive,4.1/5.0
+8682,Ryan LLC,LATAM,Shipping Containers,3643.81,22 days,Pending,3.7/5.0
+8683,Wagner-Grant,APAC,Forklifts,5056.63,32 days,Active,4.7/5.0
+8684,"Johnson, Parker and Barber",APAC,Conveyor Belts,15768.03,32 days,Pending,2.8/5.0
+8685,"Smith, Owens and Roberts",APAC,Forklifts,19966.29,8 days,Inactive,3.3/5.0
+8686,"Murphy, Gutierrez and Casey",MEA,Shipping Containers,674.38,32 days,Active,4.0/5.0
+8687,Dillon-Nguyen,MEA,Forklifts,1188.38,6 days,Inactive,4.8/5.0
+8688,Miller-Huerta,NA,Shipping Containers,6027.24,15 days,Inactive,3.2/5.0
+8689,"Garner, Evans and Barnes",LATAM,Shipping Containers,6280.15,34 days,Pending,2.7/5.0
+8690,Butler-Curtis,LATAM,Barcode Scanners,18247.56,21 days,Active,4.9/5.0
+8691,Roy-Watson,APAC,Barcode Scanners,11573.82,12 days,Inactive,3.7/5.0
+8692,"Reeves, Allen and Douglas",NA,Barcode Scanners,19149.58,31 days,Pending,3.3/5.0
+8693,Buchanan Inc,MEA,Forklifts,11137.37,40 days,Active,2.6/5.0
+8694,"Edwards, Cardenas and Johnson",EU,Conveyor Belts,3629.63,22 days,Pending,3.4/5.0
+8695,"Martin, Carter and Mendoza",EU,Pallet Jacks,19804.52,33 days,Pending,3.5/5.0
+8696,"Adams, Juarez and Holden",EU,Barcode Scanners,3918.53,25 days,Inactive,4.4/5.0
+8697,"Gomez, Vincent and Burns",APAC,Barcode Scanners,4656.45,28 days,Active,4.4/5.0
+8698,"Patterson, Simmons and Miller",EU,Shipping Containers,19446.83,27 days,Active,3.7/5.0
+8699,Turner Inc,MEA,Conveyor Belts,7957.89,35 days,Pending,4.1/5.0
+8700,Sparks-Clark,LATAM,Conveyor Belts,2751.39,27 days,Active,3.4/5.0
+8701,"Davis, Cook and Dunn",NA,Shipping Containers,15006.0,24 days,Active,3.9/5.0
+8702,Walton-Malone,APAC,Conveyor Belts,13232.17,27 days,Inactive,3.7/5.0
+8703,Compton Group,NA,Pallet Jacks,11317.65,16 days,Pending,4.4/5.0
+8704,Silva Group,EU,Pallet Jacks,18392.41,19 days,Active,2.9/5.0
+8705,Fitzgerald and Sons,APAC,Conveyor Belts,14553.26,36 days,Active,3.5/5.0
+8706,Barrett PLC,LATAM,Conveyor Belts,2496.74,8 days,Inactive,3.6/5.0
+8707,Gonzalez-Soto,MEA,Forklifts,3366.25,24 days,Active,3.4/5.0
+8708,"Johnson, Harrell and Jackson",EU,Conveyor Belts,1102.69,15 days,Pending,2.6/5.0
+8709,"Bush, Park and Lewis",APAC,Shipping Containers,1446.99,39 days,Active,3.5/5.0
+8710,Wilson Group,APAC,Barcode Scanners,14931.26,22 days,Inactive,4.1/5.0
+8711,Santos-Gomez,APAC,Conveyor Belts,1940.18,9 days,Inactive,4.6/5.0
+8712,Lee-Hess,LATAM,Forklifts,744.3,39 days,Pending,2.6/5.0
+8713,Perkins and Sons,APAC,Pallet Jacks,2401.94,40 days,Inactive,4.1/5.0
+8714,Sharp and Sons,EU,Forklifts,13116.53,37 days,Inactive,3.1/5.0
+8715,Dougherty Inc,LATAM,Pallet Jacks,16682.57,12 days,Inactive,3.0/5.0
+8716,Reid Group,APAC,Pallet Jacks,17170.52,15 days,Inactive,3.8/5.0
+8717,"Tran, Schmidt and Lynch",EU,Barcode Scanners,14273.95,38 days,Inactive,4.0/5.0
+8718,Smith Group,APAC,Pallet Jacks,1580.51,17 days,Active,3.5/5.0
+8719,Johnson-Norris,NA,Conveyor Belts,3542.65,33 days,Active,3.7/5.0
+8720,Castillo and Sons,NA,Pallet Jacks,10118.72,40 days,Pending,2.9/5.0
+8721,Golden-Porter,MEA,Conveyor Belts,12843.74,22 days,Active,3.6/5.0
+8722,Bowers-Brewer,LATAM,Pallet Jacks,8554.29,17 days,Pending,4.1/5.0
+8723,Solis PLC,APAC,Pallet Jacks,969.73,11 days,Pending,2.8/5.0
+8724,"Obrien, Mcdaniel and Rich",EU,Barcode Scanners,2595.72,5 days,Pending,3.3/5.0
+8725,Robinson Group,NA,Shipping Containers,9988.08,18 days,Inactive,4.0/5.0
+8726,Hanson-Martinez,APAC,Shipping Containers,3384.99,28 days,Pending,3.4/5.0
+8727,"Wilson, Trujillo and Craig",APAC,Pallet Jacks,19033.59,39 days,Inactive,4.0/5.0
+8728,Orr-Martin,LATAM,Pallet Jacks,12527.99,31 days,Pending,2.5/5.0
+8729,"Spence, Tate and Roberts",LATAM,Forklifts,12822.07,25 days,Active,3.4/5.0
+8730,White-Malone,NA,Shipping Containers,5465.17,8 days,Pending,2.7/5.0
+8731,Wilson PLC,LATAM,Forklifts,12434.29,5 days,Active,2.8/5.0
+8732,"Vaughan, Smith and Curry",MEA,Pallet Jacks,11383.32,19 days,Inactive,3.0/5.0
+8733,Ingram PLC,LATAM,Conveyor Belts,11216.11,23 days,Inactive,2.8/5.0
+8734,Jones-Drake,LATAM,Barcode Scanners,383.99,37 days,Active,4.4/5.0
+8735,"Cuevas, Matthews and Johnson",MEA,Conveyor Belts,576.76,13 days,Pending,2.9/5.0
+8736,"Noble, Deleon and Harris",EU,Conveyor Belts,19251.08,32 days,Pending,3.3/5.0
+8737,Becker-Rodriguez,EU,Shipping Containers,16960.81,30 days,Inactive,4.2/5.0
+8738,Quinn-Dalton,APAC,Shipping Containers,3438.28,31 days,Inactive,3.8/5.0
+8739,Smith Ltd,MEA,Barcode Scanners,14370.87,25 days,Active,3.4/5.0
+8740,"Rodriguez, Acevedo and Barber",MEA,Forklifts,11744.76,20 days,Active,3.9/5.0
+8741,"Malone, Robbins and Walker",EU,Pallet Jacks,12181.74,6 days,Pending,4.3/5.0
+8742,Williams Group,LATAM,Forklifts,16695.63,18 days,Active,3.4/5.0
+8743,Mueller-Orozco,APAC,Barcode Scanners,2505.6,36 days,Active,4.2/5.0
+8744,Koch-Torres,EU,Forklifts,2503.03,37 days,Active,2.5/5.0
+8745,Moore Group,EU,Shipping Containers,15332.98,12 days,Active,3.0/5.0
+8746,Taylor-Powell,NA,Shipping Containers,15405.87,5 days,Inactive,4.4/5.0
+8747,Fields Inc,EU,Shipping Containers,1929.87,32 days,Pending,4.8/5.0
+8748,"Meyer, Ellis and Johnson",MEA,Shipping Containers,19458.22,30 days,Active,4.9/5.0
+8749,"Lopez, Holt and Hobbs",LATAM,Conveyor Belts,8205.47,27 days,Inactive,2.6/5.0
+8750,Burns and Sons,APAC,Barcode Scanners,12955.19,10 days,Inactive,2.9/5.0
+8751,Roach LLC,MEA,Conveyor Belts,2045.61,9 days,Pending,5.0/5.0
+8752,Boyer-Nunez,NA,Barcode Scanners,10421.96,18 days,Inactive,4.1/5.0
+8753,"Baird, Carroll and Davidson",EU,Conveyor Belts,9549.07,37 days,Active,4.7/5.0
+8754,Wallace-Vargas,NA,Conveyor Belts,13347.67,18 days,Active,3.0/5.0
+8755,Barnes-Oliver,APAC,Conveyor Belts,4376.53,9 days,Active,4.2/5.0
+8756,"Anderson, Snyder and Washington",APAC,Pallet Jacks,5191.68,21 days,Inactive,2.6/5.0
+8757,Smith Group,APAC,Barcode Scanners,13832.14,39 days,Inactive,4.5/5.0
+8758,Norris-Ramirez,EU,Barcode Scanners,17455.0,26 days,Pending,3.5/5.0
+8759,Hayes Inc,EU,Pallet Jacks,4601.06,34 days,Inactive,3.1/5.0
+8760,Black PLC,NA,Conveyor Belts,3362.33,14 days,Inactive,2.9/5.0
+8761,Daniels-Henson,NA,Conveyor Belts,14091.11,32 days,Pending,4.7/5.0
+8762,Krause Ltd,MEA,Shipping Containers,12774.65,30 days,Pending,4.1/5.0
+8763,"Sims, Edwards and Scott",LATAM,Forklifts,14775.94,24 days,Inactive,4.0/5.0
+8764,"Zimmerman, Morgan and Walker",MEA,Conveyor Belts,2113.46,29 days,Inactive,2.7/5.0
+8765,"Jensen, Collins and Gonzalez",MEA,Barcode Scanners,2848.5,10 days,Active,3.3/5.0
+8766,Ramirez PLC,LATAM,Pallet Jacks,314.6,6 days,Active,3.0/5.0
+8767,Miller-Young,APAC,Shipping Containers,656.31,34 days,Inactive,4.2/5.0
+8768,"Lloyd, Gomez and Cox",LATAM,Pallet Jacks,9708.11,5 days,Pending,4.6/5.0
+8769,"Dodson, Freeman and Ingram",EU,Forklifts,13904.25,40 days,Pending,3.5/5.0
+8770,Cobb-Williams,APAC,Barcode Scanners,6050.34,24 days,Pending,4.6/5.0
+8771,"Jordan, Norton and Carrillo",APAC,Conveyor Belts,1582.33,22 days,Inactive,4.2/5.0
+8772,Mclaughlin-Myers,NA,Barcode Scanners,9328.32,18 days,Inactive,2.7/5.0
+8773,Gray LLC,EU,Forklifts,5953.38,10 days,Inactive,3.8/5.0
+8774,Rivera Inc,MEA,Conveyor Belts,12722.16,34 days,Active,3.6/5.0
+8775,Sullivan-Choi,NA,Conveyor Belts,6834.91,5 days,Active,3.7/5.0
+8776,Spears PLC,NA,Barcode Scanners,5915.92,31 days,Inactive,4.5/5.0
+8777,Gomez and Sons,LATAM,Conveyor Belts,10196.15,19 days,Inactive,4.2/5.0
+8778,Gomez-Russell,MEA,Barcode Scanners,17183.92,12 days,Pending,3.4/5.0
+8779,"Austin, Garrison and Roberts",APAC,Forklifts,9686.66,29 days,Pending,2.6/5.0
+8780,"Martinez, Daugherty and Baldwin",APAC,Forklifts,14632.97,13 days,Inactive,3.8/5.0
+8781,"Harper, Potter and Wilson",APAC,Pallet Jacks,13632.91,6 days,Pending,2.8/5.0
+8782,Le Inc,MEA,Forklifts,635.99,14 days,Inactive,3.1/5.0
+8783,"Petersen, Brown and Patel",NA,Forklifts,1256.74,16 days,Active,3.0/5.0
+8784,Davis Ltd,EU,Conveyor Belts,18627.5,36 days,Pending,4.2/5.0
+8785,Lester-Woods,NA,Shipping Containers,14868.78,11 days,Inactive,4.5/5.0
+8786,White Group,APAC,Conveyor Belts,4369.99,11 days,Active,3.5/5.0
+8787,Campbell-Reid,LATAM,Pallet Jacks,5629.28,5 days,Pending,2.8/5.0
+8788,Stevens Inc,LATAM,Conveyor Belts,10437.9,16 days,Active,2.6/5.0
+8789,Norris Inc,MEA,Forklifts,698.15,10 days,Inactive,4.4/5.0
+8790,Hatfield Group,MEA,Conveyor Belts,18534.07,9 days,Inactive,2.6/5.0
+8791,Rodriguez-Turner,EU,Shipping Containers,5990.66,22 days,Inactive,4.0/5.0
+8792,Robinson-Smith,APAC,Pallet Jacks,6415.78,9 days,Active,4.3/5.0
+8793,"Phillips, Gray and Frederick",NA,Pallet Jacks,17396.42,21 days,Pending,4.1/5.0
+8794,"Sanchez, Taylor and Harper",EU,Pallet Jacks,13939.07,6 days,Inactive,4.9/5.0
+8795,Horne Ltd,APAC,Barcode Scanners,2443.49,19 days,Pending,4.0/5.0
+8796,Walker-Haynes,APAC,Conveyor Belts,10942.41,19 days,Pending,3.9/5.0
+8797,Robinson-Winters,APAC,Shipping Containers,611.89,25 days,Pending,2.7/5.0
+8798,Tucker-Hernandez,APAC,Barcode Scanners,19268.84,26 days,Pending,3.7/5.0
+8799,"Anderson, Stokes and Hill",APAC,Shipping Containers,11497.21,15 days,Inactive,2.7/5.0
+8800,"Peterson, Chavez and Cole",APAC,Conveyor Belts,3416.03,12 days,Active,3.1/5.0
+8801,Morrison-Vaughn,EU,Shipping Containers,9546.54,6 days,Inactive,4.3/5.0
+8802,Turner Ltd,NA,Forklifts,7137.48,16 days,Inactive,2.8/5.0
+8803,Smith PLC,APAC,Shipping Containers,18158.77,17 days,Inactive,4.8/5.0
+8804,Klein Group,NA,Conveyor Belts,9106.95,17 days,Inactive,4.6/5.0
+8805,Ramirez-Hughes,LATAM,Conveyor Belts,4298.87,25 days,Inactive,3.2/5.0
+8806,Shepard-Price,NA,Conveyor Belts,19287.76,36 days,Pending,3.9/5.0
+8807,"Knapp, Barrett and Lopez",MEA,Conveyor Belts,19027.49,36 days,Pending,3.6/5.0
+8808,Clark-Sanchez,EU,Shipping Containers,8134.85,25 days,Inactive,4.8/5.0
+8809,Lopez-Walters,APAC,Barcode Scanners,13366.35,39 days,Active,3.8/5.0
+8810,Rivera and Sons,LATAM,Pallet Jacks,15822.5,8 days,Pending,5.0/5.0
+8811,Bennett Group,APAC,Shipping Containers,11206.71,11 days,Pending,3.5/5.0
+8812,Harris-Jones,EU,Shipping Containers,2692.72,33 days,Pending,2.8/5.0
+8813,Lee-Morton,APAC,Conveyor Belts,4254.23,34 days,Active,3.8/5.0
+8814,Ball-Walker,LATAM,Pallet Jacks,5848.32,36 days,Active,3.7/5.0
+8815,Ramsey-Rojas,MEA,Conveyor Belts,8993.21,6 days,Active,3.8/5.0
+8816,Anderson Group,APAC,Shipping Containers,3855.79,34 days,Pending,3.9/5.0
+8817,"Frey, Kennedy and Nolan",APAC,Barcode Scanners,15196.61,20 days,Active,4.0/5.0
+8818,"Fields, Maynard and Christensen",MEA,Forklifts,15712.75,7 days,Active,3.9/5.0
+8819,"Adkins, Rivera and White",NA,Pallet Jacks,17435.6,31 days,Inactive,4.4/5.0
+8820,Cortez-Coleman,LATAM,Shipping Containers,2654.68,37 days,Active,3.4/5.0
+8821,Elliott Group,LATAM,Pallet Jacks,9961.84,8 days,Pending,4.4/5.0
+8822,Franco-Boyer,MEA,Shipping Containers,16248.95,13 days,Active,3.0/5.0
+8823,Soto-Turner,APAC,Pallet Jacks,4397.82,13 days,Pending,3.3/5.0
+8824,Friedman PLC,NA,Pallet Jacks,12278.12,5 days,Pending,4.9/5.0
+8825,Ramirez-Tanner,MEA,Shipping Containers,19238.48,24 days,Active,4.9/5.0
+8826,"Hall, Turner and Peters",NA,Shipping Containers,13901.83,18 days,Inactive,4.7/5.0
+8827,Ruiz-Hudson,EU,Shipping Containers,15821.5,39 days,Inactive,2.7/5.0
+8828,Ware-Jimenez,EU,Barcode Scanners,280.79,14 days,Active,3.0/5.0
+8829,"Torres, Fernandez and Ryan",MEA,Shipping Containers,11413.3,34 days,Pending,3.7/5.0
+8830,Holt LLC,NA,Barcode Scanners,8825.44,40 days,Pending,4.4/5.0
+8831,"Wood, Abbott and Conley",LATAM,Barcode Scanners,18584.75,32 days,Active,4.0/5.0
+8832,"Moon, Taylor and Mejia",LATAM,Shipping Containers,12975.22,20 days,Inactive,2.8/5.0
+8833,Clark and Sons,EU,Barcode Scanners,12188.68,26 days,Pending,3.2/5.0
+8834,Gonzalez-Herrera,LATAM,Pallet Jacks,2030.31,19 days,Inactive,4.2/5.0
+8835,Smith Group,EU,Conveyor Belts,13909.38,11 days,Active,4.6/5.0
+8836,Knox-Schmitt,LATAM,Forklifts,10490.96,32 days,Pending,4.2/5.0
+8837,"Walters, Coleman and Vargas",LATAM,Conveyor Belts,2764.82,24 days,Pending,4.1/5.0
+8838,Norris-West,LATAM,Pallet Jacks,6507.76,21 days,Active,3.9/5.0
+8839,"Duncan, Vega and Castillo",APAC,Forklifts,6931.76,37 days,Pending,3.8/5.0
+8840,"Stafford, Pena and Brown",NA,Shipping Containers,16375.47,28 days,Pending,4.4/5.0
+8841,"Fuller, Mills and Jones",EU,Barcode Scanners,7077.18,28 days,Pending,4.4/5.0
+8842,Arnold-Sharp,EU,Pallet Jacks,11673.93,29 days,Active,4.3/5.0
+8843,Gutierrez-Nash,EU,Conveyor Belts,4757.68,37 days,Pending,4.4/5.0
+8844,Franklin PLC,NA,Pallet Jacks,8147.24,28 days,Active,4.2/5.0
+8845,Hayes Ltd,EU,Pallet Jacks,2338.19,22 days,Active,3.4/5.0
+8846,Roberts Group,MEA,Shipping Containers,4400.71,8 days,Inactive,3.7/5.0
+8847,"Burgess, Duncan and Jones",APAC,Conveyor Belts,9057.9,17 days,Pending,3.4/5.0
+8848,James LLC,LATAM,Conveyor Belts,14767.33,29 days,Pending,4.0/5.0
+8849,Reyes Inc,LATAM,Pallet Jacks,4928.08,8 days,Pending,3.5/5.0
+8850,"Jackson, Manning and Cook",LATAM,Shipping Containers,2432.61,13 days,Inactive,2.9/5.0
+8851,Walton-Knapp,APAC,Pallet Jacks,10717.1,29 days,Inactive,3.6/5.0
+8852,"Manning, Brady and Carr",EU,Forklifts,2820.15,24 days,Pending,4.4/5.0
+8853,"Simmons, Davis and Palmer",NA,Shipping Containers,12371.68,12 days,Inactive,3.1/5.0
+8854,Robertson-Ellis,APAC,Barcode Scanners,14994.43,32 days,Inactive,4.1/5.0
+8855,Benson-Madden,LATAM,Conveyor Belts,12096.54,9 days,Pending,5.0/5.0
+8856,Williams-Sosa,APAC,Forklifts,11736.05,26 days,Pending,4.5/5.0
+8857,Ward-Randolph,LATAM,Conveyor Belts,15986.36,8 days,Pending,3.3/5.0
+8858,Odom Ltd,LATAM,Pallet Jacks,128.27,23 days,Pending,4.3/5.0
+8859,"Cook, Haynes and Molina",APAC,Forklifts,547.18,5 days,Pending,4.5/5.0
+8860,Combs Ltd,EU,Pallet Jacks,6900.71,12 days,Inactive,3.7/5.0
+8861,"Wallace, Howell and Keller",APAC,Barcode Scanners,10362.07,10 days,Pending,4.0/5.0
+8862,"Powell, Peterson and Watson",MEA,Barcode Scanners,11258.83,25 days,Active,4.5/5.0
+8863,Taylor-Dixon,EU,Conveyor Belts,17958.95,7 days,Active,3.8/5.0
+8864,Vega-Rodriguez,EU,Barcode Scanners,15732.75,16 days,Pending,3.6/5.0
+8865,Fox-Randolph,EU,Forklifts,4101.28,15 days,Inactive,4.9/5.0
+8866,"Smith, Brown and Gaines",LATAM,Forklifts,4700.93,22 days,Pending,4.1/5.0
+8867,Mcgrath PLC,EU,Shipping Containers,17806.83,27 days,Active,3.8/5.0
+8868,Mitchell Group,NA,Pallet Jacks,16699.95,24 days,Inactive,4.9/5.0
+8869,Benson-Hughes,NA,Pallet Jacks,8930.55,18 days,Inactive,3.5/5.0
+8870,Smith LLC,EU,Conveyor Belts,18722.43,36 days,Inactive,4.4/5.0
+8871,"Ayala, Mcdonald and Wallace",LATAM,Forklifts,12265.98,11 days,Active,2.5/5.0
+8872,Orr-Mack,APAC,Barcode Scanners,5994.12,12 days,Inactive,2.6/5.0
+8873,Hernandez-Thompson,LATAM,Conveyor Belts,11504.3,34 days,Inactive,3.3/5.0
+8874,Smith and Sons,EU,Conveyor Belts,12927.2,14 days,Pending,4.7/5.0
+8875,"Gonzales, Kirk and Wilson",EU,Conveyor Belts,4666.56,5 days,Inactive,3.2/5.0
+8876,Holmes-Golden,LATAM,Shipping Containers,14887.7,37 days,Inactive,2.9/5.0
+8877,Jackson-Norman,APAC,Barcode Scanners,9348.48,18 days,Pending,2.5/5.0
+8878,"Daugherty, Jones and Perkins",MEA,Forklifts,12975.59,21 days,Inactive,4.5/5.0
+8879,Ramos-Gray,LATAM,Barcode Scanners,8232.57,10 days,Inactive,4.9/5.0
+8880,Roy-Martin,LATAM,Conveyor Belts,11705.34,10 days,Active,3.7/5.0
+8881,Bridges Inc,NA,Shipping Containers,12745.29,18 days,Inactive,4.1/5.0
+8882,Allison Group,NA,Pallet Jacks,16892.2,30 days,Active,4.2/5.0
+8883,Austin Group,EU,Forklifts,8579.36,19 days,Pending,2.8/5.0
+8884,"Thomas, Moore and Mcdonald",MEA,Forklifts,16770.63,24 days,Inactive,4.9/5.0
+8885,"Marshall, Howard and Lewis",EU,Shipping Containers,10095.35,24 days,Pending,4.9/5.0
+8886,Tucker LLC,LATAM,Conveyor Belts,12583.55,40 days,Pending,2.7/5.0
+8887,"Robinson, Patton and Stout",LATAM,Conveyor Belts,13307.36,38 days,Active,4.6/5.0
+8888,Shah PLC,MEA,Shipping Containers,835.94,8 days,Inactive,2.5/5.0
+8889,Thompson and Sons,LATAM,Pallet Jacks,19845.12,6 days,Inactive,3.4/5.0
+8890,Rogers Inc,EU,Pallet Jacks,5008.78,30 days,Inactive,4.9/5.0
+8891,"Gonzalez, Patton and Goodman",APAC,Pallet Jacks,9925.23,36 days,Active,4.7/5.0
+8892,Allen Group,LATAM,Barcode Scanners,16781.41,28 days,Pending,3.5/5.0
+8893,Brewer PLC,LATAM,Forklifts,6347.92,34 days,Inactive,4.4/5.0
+8894,"Schmidt, Boyle and Garrett",MEA,Barcode Scanners,8402.22,11 days,Pending,3.9/5.0
+8895,Scott-Bell,APAC,Conveyor Belts,11672.78,30 days,Pending,3.3/5.0
+8896,"Bray, Smith and Solis",MEA,Shipping Containers,2760.21,25 days,Inactive,4.1/5.0
+8897,Terry PLC,MEA,Barcode Scanners,11740.65,5 days,Pending,3.5/5.0
+8898,Moore-Moody,LATAM,Conveyor Belts,5064.0,24 days,Active,3.0/5.0
+8899,Price LLC,APAC,Forklifts,15317.92,22 days,Inactive,3.6/5.0
+8900,Banks Ltd,MEA,Shipping Containers,7132.44,40 days,Pending,4.5/5.0
+8901,"Brown, Roberts and Hill",EU,Conveyor Belts,979.92,8 days,Pending,3.7/5.0
+8902,"Rogers, Turner and Robinson",MEA,Pallet Jacks,17943.96,28 days,Pending,3.8/5.0
+8903,Smith Group,APAC,Shipping Containers,17128.79,37 days,Pending,4.3/5.0
+8904,Jones-Hammond,EU,Forklifts,6773.02,21 days,Pending,4.7/5.0
+8905,Lucas-Montgomery,NA,Pallet Jacks,1891.16,33 days,Active,4.8/5.0
+8906,Cisneros-Ingram,EU,Forklifts,3107.93,13 days,Pending,4.2/5.0
+8907,Monroe-Mcdonald,MEA,Barcode Scanners,12723.23,40 days,Inactive,3.6/5.0
+8908,Harris-Cantu,MEA,Shipping Containers,4435.08,15 days,Inactive,4.8/5.0
+8909,"Lee, Stein and Rodriguez",MEA,Forklifts,7562.39,21 days,Pending,4.2/5.0
+8910,"Phillips, Clark and Morris",APAC,Barcode Scanners,177.32,24 days,Active,2.9/5.0
+8911,Russell Group,MEA,Conveyor Belts,17552.22,31 days,Active,4.9/5.0
+8912,Whitehead-Lang,EU,Conveyor Belts,7545.83,24 days,Inactive,4.4/5.0
+8913,Moore LLC,MEA,Pallet Jacks,3290.14,40 days,Inactive,4.5/5.0
+8914,"Maynard, Calderon and Long",APAC,Barcode Scanners,6685.0,13 days,Pending,3.6/5.0
+8915,Porter-Frazier,NA,Shipping Containers,13366.17,29 days,Inactive,3.0/5.0
+8916,Hill and Sons,NA,Shipping Containers,7910.59,32 days,Pending,3.9/5.0
+8917,"Colon, White and Burns",MEA,Pallet Jacks,9174.24,24 days,Pending,3.8/5.0
+8918,Blanchard-Rodriguez,APAC,Shipping Containers,3394.61,10 days,Active,4.0/5.0
+8919,Smith Group,NA,Pallet Jacks,16397.93,15 days,Pending,4.3/5.0
+8920,Anderson Inc,MEA,Barcode Scanners,9812.62,39 days,Pending,2.6/5.0
+8921,"Porter, Fisher and Orr",MEA,Forklifts,16275.17,8 days,Pending,3.4/5.0
+8922,Mccarty Ltd,LATAM,Pallet Jacks,5358.73,7 days,Active,3.7/5.0
+8923,"Patel, Proctor and Parker",MEA,Pallet Jacks,13369.44,6 days,Pending,2.7/5.0
+8924,"Rivas, Johnson and Collins",LATAM,Shipping Containers,19473.66,30 days,Active,3.3/5.0
+8925,Ellison-Douglas,NA,Conveyor Belts,993.38,37 days,Active,3.6/5.0
+8926,"Wright, Andrade and Brown",MEA,Conveyor Belts,3452.94,31 days,Inactive,3.3/5.0
+8927,Bradley-Butler,LATAM,Pallet Jacks,19569.86,15 days,Active,4.9/5.0
+8928,Sweeney and Sons,EU,Conveyor Belts,16705.54,16 days,Pending,3.7/5.0
+8929,Cole Group,APAC,Conveyor Belts,18282.27,8 days,Inactive,4.5/5.0
+8930,Campbell and Sons,APAC,Barcode Scanners,16401.45,40 days,Pending,2.8/5.0
+8931,Rose Inc,EU,Pallet Jacks,11293.85,5 days,Active,2.8/5.0
+8932,"Thomas, Burgess and Perkins",EU,Forklifts,4846.19,37 days,Inactive,3.3/5.0
+8933,Tapia-Stone,NA,Conveyor Belts,9459.33,24 days,Inactive,3.3/5.0
+8934,"Kelly, Callahan and Cross",APAC,Pallet Jacks,11412.61,40 days,Active,4.8/5.0
+8935,"Soto, Fox and Morton",APAC,Conveyor Belts,2041.72,36 days,Pending,4.3/5.0
+8936,Webb-Edwards,NA,Barcode Scanners,8308.71,40 days,Inactive,4.4/5.0
+8937,"Miller, Johnston and Riddle",EU,Shipping Containers,12987.37,29 days,Active,3.8/5.0
+8938,Huang-Myers,MEA,Shipping Containers,1638.29,9 days,Active,3.7/5.0
+8939,"West, Baker and Brooks",MEA,Forklifts,7774.71,25 days,Pending,2.8/5.0
+8940,Williams-Greene,MEA,Shipping Containers,12421.9,35 days,Pending,2.7/5.0
+8941,"Munoz, Hunt and Lee",EU,Barcode Scanners,13155.65,19 days,Inactive,4.8/5.0
+8942,Bennett Group,APAC,Pallet Jacks,11979.3,6 days,Pending,3.5/5.0
+8943,Hale-Nichols,EU,Shipping Containers,7701.1,6 days,Pending,3.3/5.0
+8944,Johnston and Sons,MEA,Pallet Jacks,8167.0,39 days,Active,3.2/5.0
+8945,Bradford-Hoffman,NA,Forklifts,15703.34,14 days,Inactive,2.7/5.0
+8946,"Harris, Sweeney and Vasquez",APAC,Conveyor Belts,7939.82,30 days,Active,4.0/5.0
+8947,"Johnson, Turner and Hall",APAC,Forklifts,2644.43,31 days,Inactive,3.6/5.0
+8948,"Reed, Roth and Franklin",LATAM,Conveyor Belts,7708.39,36 days,Inactive,4.0/5.0
+8949,Taylor and Sons,NA,Barcode Scanners,8561.08,11 days,Inactive,4.3/5.0
+8950,Brown-Hernandez,EU,Pallet Jacks,18705.35,24 days,Active,4.2/5.0
+8951,"Jackson, Hardy and Baker",APAC,Forklifts,7997.32,30 days,Pending,4.8/5.0
+8952,Gonzalez-Torres,APAC,Pallet Jacks,1122.8,8 days,Inactive,2.9/5.0
+8953,Green-Sanchez,EU,Forklifts,14836.54,40 days,Active,3.1/5.0
+8954,Mullins-Cooper,APAC,Shipping Containers,14904.53,11 days,Active,2.6/5.0
+8955,Lowe LLC,NA,Conveyor Belts,8378.54,35 days,Active,4.7/5.0
+8956,"Shepherd, Olsen and Osborne",EU,Forklifts,7056.08,7 days,Inactive,3.6/5.0
+8957,"Jordan, Ramos and Johnson",MEA,Barcode Scanners,17069.05,25 days,Pending,4.5/5.0
+8958,Harrison-Larson,EU,Pallet Jacks,12377.73,38 days,Pending,2.8/5.0
+8959,"Marshall, Browning and Levine",MEA,Conveyor Belts,2413.23,25 days,Inactive,4.0/5.0
+8960,"Moore, Christensen and West",LATAM,Conveyor Belts,13687.92,16 days,Pending,3.5/5.0
+8961,Khan-Beasley,LATAM,Conveyor Belts,15056.03,12 days,Pending,4.2/5.0
+8962,Smith-Melton,NA,Forklifts,19403.84,26 days,Active,2.8/5.0
+8963,Montgomery-Benjamin,NA,Pallet Jacks,15180.58,17 days,Active,4.1/5.0
+8964,Grant Ltd,MEA,Barcode Scanners,8331.66,8 days,Active,2.9/5.0
+8965,Garcia-Lyons,LATAM,Pallet Jacks,1476.63,20 days,Active,3.3/5.0
+8966,Liu Group,LATAM,Shipping Containers,9119.23,38 days,Inactive,2.7/5.0
+8967,Torres-Torres,LATAM,Barcode Scanners,3088.82,31 days,Pending,4.5/5.0
+8968,Hunter PLC,MEA,Forklifts,3421.04,34 days,Inactive,4.6/5.0
+8969,"Bailey, Hill and Ortega",NA,Shipping Containers,3991.19,12 days,Inactive,3.9/5.0
+8970,"Santos, Contreras and Lee",LATAM,Conveyor Belts,7863.95,35 days,Active,4.9/5.0
+8971,"Nelson, Moyer and Bennett",MEA,Barcode Scanners,2536.88,16 days,Pending,3.5/5.0
+8972,"Armstrong, Medina and Barry",MEA,Shipping Containers,16656.08,9 days,Pending,4.4/5.0
+8973,Foster and Sons,LATAM,Forklifts,13543.26,13 days,Inactive,2.5/5.0
+8974,Macias-Hurst,APAC,Forklifts,13307.67,21 days,Inactive,4.9/5.0
+8975,"Hardy, Garcia and Ingram",EU,Pallet Jacks,14365.21,16 days,Pending,3.2/5.0
+8976,Williams-Reyes,MEA,Pallet Jacks,4972.78,38 days,Inactive,2.6/5.0
+8977,"Miller, Burgess and Whitaker",EU,Conveyor Belts,4447.18,29 days,Inactive,4.6/5.0
+8978,"Krause, Pruitt and Hart",APAC,Barcode Scanners,4325.47,31 days,Active,4.1/5.0
+8979,Johnson PLC,LATAM,Pallet Jacks,13230.55,28 days,Pending,2.9/5.0
+8980,Collins-Rodriguez,MEA,Barcode Scanners,15160.15,14 days,Inactive,4.6/5.0
+8981,Gibson-Sanchez,LATAM,Pallet Jacks,19953.47,18 days,Pending,3.5/5.0
+8982,Harrison and Sons,LATAM,Shipping Containers,16229.96,13 days,Inactive,3.5/5.0
+8983,"Jones, Stephens and Allen",NA,Barcode Scanners,2518.33,9 days,Pending,2.9/5.0
+8984,"Baker, Lewis and Davis",NA,Forklifts,13900.95,23 days,Active,2.8/5.0
+8985,Salas-Saunders,MEA,Conveyor Belts,1348.96,39 days,Inactive,3.6/5.0
+8986,"Barajas, Miller and Holmes",LATAM,Conveyor Belts,18888.76,13 days,Inactive,3.4/5.0
+8987,"Johnson, Gardner and Burns",MEA,Forklifts,10904.45,39 days,Inactive,4.0/5.0
+8988,Alvarez-Lopez,EU,Shipping Containers,11921.08,22 days,Inactive,4.1/5.0
+8989,Davidson-Brennan,APAC,Forklifts,13955.16,21 days,Inactive,3.9/5.0
+8990,"Stephens, Washington and Reeves",MEA,Barcode Scanners,19636.12,21 days,Pending,2.8/5.0
+8991,Alvarado and Sons,APAC,Forklifts,4990.97,29 days,Active,4.2/5.0
+8992,Proctor-Villanueva,APAC,Shipping Containers,18004.0,29 days,Pending,4.7/5.0
+8993,Peterson-Osborne,EU,Shipping Containers,5393.37,35 days,Inactive,3.4/5.0
+8994,Baxter LLC,LATAM,Shipping Containers,15991.13,40 days,Inactive,4.1/5.0
+8995,Sanders-Flores,NA,Pallet Jacks,17692.4,7 days,Inactive,4.1/5.0
+8996,Peterson-Hamilton,APAC,Barcode Scanners,5977.08,32 days,Active,4.8/5.0
+8997,"Hartman, Friedman and Boyd",LATAM,Forklifts,2935.5,21 days,Pending,2.6/5.0
+8998,"Jones, Gray and Daniels",NA,Conveyor Belts,5160.33,24 days,Inactive,4.7/5.0
+8999,Jones-Reyes,LATAM,Pallet Jacks,7928.87,15 days,Inactive,3.1/5.0
+9000,"Bennett, Sexton and Taylor",APAC,Pallet Jacks,1265.42,39 days,Pending,3.5/5.0

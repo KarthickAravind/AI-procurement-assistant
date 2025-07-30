@@ -1,0 +1,1001 @@
+Supplier ID,Name,Region,Material,Price per Unit (USD),Lead Time,Status,Rating
+6001,"Avery, Hayes and Harris",MEA,Industrial Lubricants,9448.76,34 days,Active,4.0/5.0
+6002,Moreno-Walton,MEA,Aluminum Sheets,9127.87,33 days,Inactive,2.5/5.0
+6003,"Watts, Fowler and Ashley",NA,CNC Machine Parts,8144.61,39 days,Inactive,4.0/5.0
+6004,House-Hernandez,APAC,Hydraulic Pumps,2283.63,17 days,Active,4.7/5.0
+6005,Hurst-Moss,APAC,CNC Machine Parts,735.11,9 days,Pending,4.4/5.0
+6006,Ramirez LLC,APAC,CNC Machine Parts,3588.36,35 days,Active,3.0/5.0
+6007,Russo-Davila,LATAM,Aluminum Sheets,6030.28,39 days,Pending,4.8/5.0
+6008,Carson-Martinez,LATAM,Industrial Lubricants,791.44,9 days,Active,3.9/5.0
+6009,"Wilcox, Molina and Mcclure",EU,Hydraulic Pumps,3077.15,10 days,Active,3.1/5.0
+6010,"Scott, Yang and Yang",LATAM,Industrial Lubricants,5751.25,34 days,Pending,2.9/5.0
+6011,Harris-Jennings,MEA,Ball Bearings,2513.54,12 days,Inactive,3.1/5.0
+6012,Lewis-Jones,EU,Aluminum Sheets,2761.1,5 days,Active,2.8/5.0
+6013,Mora-Baker,EU,CNC Machine Parts,2295.46,22 days,Inactive,3.1/5.0
+6014,"Carter, Pena and Lara",NA,Hydraulic Pumps,4976.84,24 days,Pending,3.4/5.0
+6015,"Lee, Williams and Sutton",NA,Aluminum Sheets,7961.23,15 days,Active,3.0/5.0
+6016,Soto LLC,EU,CNC Machine Parts,6175.79,25 days,Inactive,3.0/5.0
+6017,Lewis-Horne,LATAM,Aluminum Sheets,7161.68,22 days,Inactive,3.3/5.0
+6018,Walker PLC,APAC,Hydraulic Pumps,2693.37,25 days,Active,4.4/5.0
+6019,Jacobs-Warner,NA,Aluminum Sheets,3455.16,8 days,Active,4.5/5.0
+6020,"Williams, Silva and Butler",MEA,Hydraulic Pumps,2897.09,28 days,Inactive,3.7/5.0
+6021,"Kirby, Allen and Garrison",LATAM,Industrial Lubricants,3700.57,40 days,Active,3.6/5.0
+6022,Espinoza Inc,EU,Ball Bearings,2966.17,23 days,Inactive,2.6/5.0
+6023,"Rivera, Gutierrez and Sloan",LATAM,Ball Bearings,8815.76,18 days,Pending,4.6/5.0
+6024,Martin Group,EU,Ball Bearings,4942.07,27 days,Inactive,4.7/5.0
+6025,"Thornton, Kim and Charles",MEA,Industrial Lubricants,9128.66,23 days,Pending,3.4/5.0
+6026,"Valdez, Mckenzie and Morton",MEA,Hydraulic Pumps,5195.36,19 days,Active,4.3/5.0
+6027,Robertson-Velasquez,EU,CNC Machine Parts,8377.69,18 days,Inactive,3.5/5.0
+6028,Ellis LLC,LATAM,Hydraulic Pumps,8821.01,30 days,Active,3.6/5.0
+6029,Clarke PLC,MEA,Industrial Lubricants,7919.21,10 days,Pending,3.8/5.0
+6030,Sanchez PLC,MEA,Industrial Lubricants,173.14,13 days,Pending,3.5/5.0
+6031,Mckinney LLC,EU,CNC Machine Parts,1384.13,18 days,Pending,4.3/5.0
+6032,Foster-Smith,APAC,CNC Machine Parts,495.07,39 days,Pending,4.2/5.0
+6033,"Mitchell, Williams and Martinez",LATAM,Aluminum Sheets,2558.16,37 days,Inactive,4.3/5.0
+6034,"Murphy, Reyes and Frank",APAC,Ball Bearings,3227.39,12 days,Inactive,4.8/5.0
+6035,"Morales, Casey and Walker",APAC,Hydraulic Pumps,2465.61,36 days,Active,3.6/5.0
+6036,Anderson LLC,MEA,CNC Machine Parts,288.33,30 days,Active,2.6/5.0
+6037,Davis-Guerra,APAC,CNC Machine Parts,9652.59,21 days,Inactive,3.0/5.0
+6038,"Chapman, King and Ferguson",EU,Aluminum Sheets,818.55,29 days,Active,4.0/5.0
+6039,Williamson Inc,EU,CNC Machine Parts,4843.55,30 days,Active,3.0/5.0
+6040,Anderson-Cuevas,NA,Aluminum Sheets,1844.01,5 days,Inactive,2.8/5.0
+6041,"Peterson, Obrien and Poole",LATAM,Ball Bearings,3226.63,22 days,Pending,3.8/5.0
+6042,"Montgomery, Riley and Olson",EU,Industrial Lubricants,7931.06,23 days,Active,3.5/5.0
+6043,Gamble Group,MEA,CNC Machine Parts,8528.17,29 days,Active,4.6/5.0
+6044,Lee Inc,NA,Aluminum Sheets,4815.51,7 days,Pending,3.5/5.0
+6045,Chapman-Bentley,LATAM,CNC Machine Parts,8886.72,20 days,Inactive,4.4/5.0
+6046,Evans-Owen,MEA,Ball Bearings,990.59,29 days,Pending,4.0/5.0
+6047,Richardson Inc,APAC,Industrial Lubricants,6712.58,17 days,Pending,3.2/5.0
+6048,Williams-Franklin,MEA,Hydraulic Pumps,1452.2,12 days,Pending,4.6/5.0
+6049,Harris Group,MEA,Hydraulic Pumps,6337.1,40 days,Inactive,4.2/5.0
+6050,Huber-Gonzalez,EU,Aluminum Sheets,2299.59,16 days,Inactive,3.5/5.0
+6051,"Thomas, Scott and Santos",APAC,Hydraulic Pumps,3296.15,18 days,Active,4.9/5.0
+6052,Montgomery-Anderson,MEA,Hydraulic Pumps,9140.97,11 days,Active,3.6/5.0
+6053,"Maxwell, Jones and Chambers",NA,Aluminum Sheets,5983.44,8 days,Pending,4.2/5.0
+6054,"Sanchez, Lucas and Anderson",NA,Aluminum Sheets,6724.78,23 days,Inactive,2.7/5.0
+6055,Adams-Tucker,LATAM,Hydraulic Pumps,1044.73,36 days,Pending,2.9/5.0
+6056,"White, Gibbs and Stafford",MEA,Aluminum Sheets,1808.74,27 days,Pending,3.9/5.0
+6057,"Cox, West and Mclaughlin",EU,Industrial Lubricants,5906.83,14 days,Active,2.6/5.0
+6058,"Brown, Rivera and Whitney",APAC,CNC Machine Parts,1228.42,24 days,Active,3.2/5.0
+6059,Mueller Group,NA,Aluminum Sheets,5255.58,31 days,Active,3.0/5.0
+6060,"Bennett, Green and Clark",MEA,Aluminum Sheets,5211.97,18 days,Pending,4.8/5.0
+6061,Bender-Young,NA,Industrial Lubricants,2331.97,24 days,Inactive,2.8/5.0
+6062,"Smith, Townsend and Davis",LATAM,Hydraulic Pumps,6886.6,37 days,Active,3.2/5.0
+6063,Blake LLC,LATAM,Ball Bearings,4557.1,26 days,Active,2.9/5.0
+6064,"Murphy, Greene and Conley",NA,CNC Machine Parts,1421.72,33 days,Active,4.7/5.0
+6065,"Price, Williams and Wyatt",APAC,CNC Machine Parts,3116.04,23 days,Inactive,4.2/5.0
+6066,Walsh and Sons,APAC,Aluminum Sheets,3755.01,28 days,Active,2.7/5.0
+6067,Luna-Hayes,EU,Ball Bearings,9096.89,31 days,Inactive,3.3/5.0
+6068,Thomas Inc,LATAM,Aluminum Sheets,7038.77,6 days,Inactive,4.4/5.0
+6069,"Collins, Harper and Valencia",EU,Hydraulic Pumps,7074.93,34 days,Pending,4.6/5.0
+6070,Smith-Munoz,NA,Hydraulic Pumps,8448.31,35 days,Pending,3.6/5.0
+6071,Arnold-Reynolds,EU,CNC Machine Parts,7761.51,16 days,Active,2.7/5.0
+6072,Castaneda-Thompson,LATAM,Industrial Lubricants,3054.71,6 days,Pending,3.7/5.0
+6073,Moon LLC,APAC,Hydraulic Pumps,4925.82,7 days,Pending,4.6/5.0
+6074,Townsend-Scott,APAC,Hydraulic Pumps,3202.96,29 days,Inactive,3.4/5.0
+6075,Bryant Ltd,NA,Aluminum Sheets,3107.62,7 days,Pending,4.7/5.0
+6076,Thompson-Hughes,EU,Industrial Lubricants,289.38,6 days,Active,2.8/5.0
+6077,Bauer-Atkins,EU,Ball Bearings,5328.01,31 days,Pending,4.8/5.0
+6078,Scott and Sons,LATAM,Aluminum Sheets,9861.97,37 days,Active,4.3/5.0
+6079,Thomas and Sons,NA,Aluminum Sheets,3237.69,40 days,Active,3.6/5.0
+6080,Lewis and Sons,LATAM,Industrial Lubricants,5981.63,28 days,Pending,2.6/5.0
+6081,Gray-Williams,APAC,Industrial Lubricants,2259.65,26 days,Active,4.5/5.0
+6082,Edwards LLC,APAC,Aluminum Sheets,2563.65,7 days,Inactive,3.4/5.0
+6083,King-Ramos,EU,CNC Machine Parts,5354.52,38 days,Pending,4.4/5.0
+6084,Johnson-Allen,EU,Hydraulic Pumps,4236.54,34 days,Active,3.5/5.0
+6085,Sandoval Inc,EU,Hydraulic Pumps,466.79,37 days,Active,4.5/5.0
+6086,Carpenter-Martin,LATAM,Aluminum Sheets,7395.53,20 days,Active,4.8/5.0
+6087,Mckee PLC,MEA,Ball Bearings,1862.89,18 days,Pending,4.7/5.0
+6088,Moore-Robinson,EU,Industrial Lubricants,4328.57,34 days,Pending,3.4/5.0
+6089,Bass-Cunningham,LATAM,Hydraulic Pumps,4698.41,9 days,Pending,4.1/5.0
+6090,Powers-Hall,MEA,Aluminum Sheets,1574.29,13 days,Active,3.1/5.0
+6091,Chapman Ltd,APAC,Aluminum Sheets,4141.61,22 days,Pending,3.1/5.0
+6092,"Barr, Lawson and Malone",LATAM,Hydraulic Pumps,6160.62,19 days,Active,4.2/5.0
+6093,Schwartz LLC,EU,Ball Bearings,8899.07,23 days,Inactive,3.4/5.0
+6094,"Bell, Hoffman and Perkins",APAC,Aluminum Sheets,5436.4,15 days,Active,4.2/5.0
+6095,"Serrano, Castillo and Jackson",EU,Ball Bearings,7546.09,11 days,Inactive,4.8/5.0
+6096,Brown Ltd,NA,Industrial Lubricants,2334.02,35 days,Active,3.4/5.0
+6097,Pierce LLC,LATAM,Hydraulic Pumps,2456.81,33 days,Pending,3.4/5.0
+6098,Fields-Baker,NA,Aluminum Sheets,2591.85,21 days,Inactive,3.7/5.0
+6099,Chan-Jones,APAC,Aluminum Sheets,6531.38,14 days,Active,4.1/5.0
+6100,"Gross, Ross and Lara",EU,CNC Machine Parts,6395.83,19 days,Inactive,4.8/5.0
+6101,"Johnson, Costa and Williams",EU,Aluminum Sheets,9207.53,13 days,Inactive,3.7/5.0
+6102,"Ferguson, Davis and Schroeder",LATAM,Aluminum Sheets,5630.9,30 days,Pending,4.0/5.0
+6103,George Inc,LATAM,Aluminum Sheets,1474.66,16 days,Active,4.1/5.0
+6104,Holland LLC,EU,CNC Machine Parts,9637.53,16 days,Active,3.3/5.0
+6105,Snyder Group,LATAM,Hydraulic Pumps,7703.44,13 days,Active,3.1/5.0
+6106,Carter Ltd,MEA,Aluminum Sheets,2425.6,19 days,Inactive,2.8/5.0
+6107,Rivers Group,MEA,CNC Machine Parts,6669.15,8 days,Pending,3.0/5.0
+6108,"Long, Davis and Perez",MEA,Ball Bearings,1111.42,21 days,Active,3.0/5.0
+6109,Snow-Allen,LATAM,Industrial Lubricants,3676.16,39 days,Pending,3.3/5.0
+6110,Myers LLC,NA,CNC Machine Parts,8544.94,36 days,Active,4.5/5.0
+6111,"Nelson, Harper and Dorsey",EU,Aluminum Sheets,8708.04,7 days,Inactive,3.0/5.0
+6112,"Ortega, Wilson and Adams",LATAM,CNC Machine Parts,3639.59,8 days,Pending,4.3/5.0
+6113,Maxwell and Sons,LATAM,CNC Machine Parts,786.15,32 days,Pending,3.5/5.0
+6114,"Murray, Phelps and Henry",MEA,CNC Machine Parts,969.63,8 days,Active,4.7/5.0
+6115,Barnes Inc,APAC,Hydraulic Pumps,9542.63,10 days,Inactive,3.0/5.0
+6116,"Harris, Gallegos and Davis",APAC,Ball Bearings,4677.34,33 days,Pending,3.1/5.0
+6117,"Keller, Jensen and Park",NA,CNC Machine Parts,8938.85,31 days,Active,2.6/5.0
+6118,"Tran, Anderson and Thomas",LATAM,CNC Machine Parts,9307.02,18 days,Pending,2.9/5.0
+6119,"Schwartz, Bradshaw and Hudson",LATAM,CNC Machine Parts,1591.62,35 days,Pending,2.6/5.0
+6120,Adams-Walker,NA,Hydraulic Pumps,8710.67,34 days,Active,3.5/5.0
+6121,Hernandez-Grant,APAC,Ball Bearings,5349.96,28 days,Inactive,4.7/5.0
+6122,"Butler, Castillo and Cook",EU,CNC Machine Parts,2511.27,34 days,Inactive,3.1/5.0
+6123,"Jackson, Conley and Burns",MEA,Ball Bearings,4593.95,20 days,Inactive,2.8/5.0
+6124,"Stanley, Flores and Mcdonald",NA,Hydraulic Pumps,8165.38,29 days,Pending,3.1/5.0
+6125,Smith Inc,LATAM,Hydraulic Pumps,4148.18,10 days,Pending,5.0/5.0
+6126,"Riley, Adams and Johnson",NA,Industrial Lubricants,1376.93,18 days,Inactive,3.7/5.0
+6127,Fernandez-Sosa,NA,CNC Machine Parts,5880.92,13 days,Inactive,3.5/5.0
+6128,"Vazquez, Robertson and Oliver",APAC,CNC Machine Parts,6988.28,22 days,Active,4.2/5.0
+6129,Graham-Morgan,MEA,Ball Bearings,4951.66,34 days,Inactive,3.9/5.0
+6130,Wilcox and Sons,LATAM,CNC Machine Parts,9037.77,12 days,Inactive,3.8/5.0
+6131,Gray-Morse,MEA,Hydraulic Pumps,257.75,33 days,Pending,3.1/5.0
+6132,Lee Ltd,MEA,Hydraulic Pumps,9795.97,6 days,Active,3.7/5.0
+6133,"Adams, Scott and Hughes",EU,Ball Bearings,2217.31,38 days,Pending,2.7/5.0
+6134,Elliott LLC,LATAM,CNC Machine Parts,5921.34,38 days,Active,3.7/5.0
+6135,Clark Inc,EU,Industrial Lubricants,6960.79,39 days,Pending,2.9/5.0
+6136,Sheppard-Lewis,EU,Industrial Lubricants,3873.3,15 days,Pending,4.5/5.0
+6137,Mcdonald-Griffin,EU,Aluminum Sheets,349.55,7 days,Active,2.7/5.0
+6138,Kelly-Kennedy,APAC,Aluminum Sheets,242.78,21 days,Pending,4.1/5.0
+6139,"Mckinney, Warren and Henderson",EU,CNC Machine Parts,6553.71,35 days,Pending,4.3/5.0
+6140,Gonzalez-Collins,LATAM,CNC Machine Parts,350.55,9 days,Active,4.3/5.0
+6141,Andrade-Franco,NA,Aluminum Sheets,8485.67,6 days,Active,3.8/5.0
+6142,Garrett PLC,EU,Ball Bearings,897.25,12 days,Pending,4.5/5.0
+6143,Mckinney PLC,APAC,Aluminum Sheets,4597.68,12 days,Inactive,4.2/5.0
+6144,"Martin, Smith and Davis",APAC,Industrial Lubricants,6591.1,11 days,Inactive,2.9/5.0
+6145,"Buck, Franklin and Anderson",LATAM,Aluminum Sheets,7921.52,6 days,Inactive,3.5/5.0
+6146,Perkins Inc,NA,Aluminum Sheets,9118.73,14 days,Inactive,4.5/5.0
+6147,"Knight, Mendez and Carter",MEA,Hydraulic Pumps,9362.59,7 days,Inactive,4.3/5.0
+6148,"Thomas, Clark and Cox",APAC,Hydraulic Pumps,2891.48,12 days,Pending,3.7/5.0
+6149,Marquez-Gregory,MEA,Ball Bearings,7375.49,33 days,Pending,2.9/5.0
+6150,Farmer Group,APAC,Hydraulic Pumps,1622.57,28 days,Active,2.9/5.0
+6151,Logan Group,MEA,Aluminum Sheets,7196.09,27 days,Pending,2.9/5.0
+6152,Martin Group,MEA,Hydraulic Pumps,2194.67,28 days,Active,4.5/5.0
+6153,"Smith, Mayer and Martinez",APAC,Ball Bearings,1327.03,16 days,Inactive,3.2/5.0
+6154,"Hunt, Smith and Miller",APAC,Hydraulic Pumps,1809.2,30 days,Active,3.6/5.0
+6155,Harrell-Daniels,APAC,Ball Bearings,8471.38,31 days,Pending,4.5/5.0
+6156,"Smith, Holland and Morris",EU,CNC Machine Parts,191.75,27 days,Pending,4.1/5.0
+6157,May and Sons,LATAM,Ball Bearings,9931.95,31 days,Pending,3.8/5.0
+6158,Brown PLC,MEA,Ball Bearings,8211.82,17 days,Active,4.9/5.0
+6159,Little Inc,APAC,CNC Machine Parts,4628.18,33 days,Pending,3.2/5.0
+6160,Saunders Group,EU,Ball Bearings,4538.32,30 days,Pending,2.9/5.0
+6161,Williams PLC,APAC,Ball Bearings,2600.36,20 days,Pending,4.8/5.0
+6162,Wilson-Randolph,LATAM,Hydraulic Pumps,2930.11,9 days,Pending,3.6/5.0
+6163,"Hernandez, Moore and Carlson",APAC,CNC Machine Parts,8995.41,23 days,Pending,4.3/5.0
+6164,Jensen Group,LATAM,Hydraulic Pumps,7477.43,6 days,Active,4.4/5.0
+6165,Cox and Sons,EU,Aluminum Sheets,1270.13,7 days,Inactive,2.7/5.0
+6166,Owens-Rice,LATAM,Ball Bearings,1304.83,33 days,Active,3.5/5.0
+6167,"French, Meyer and Ross",EU,Aluminum Sheets,3083.63,40 days,Active,3.2/5.0
+6168,Morrow-Hernandez,LATAM,CNC Machine Parts,1995.56,32 days,Pending,3.8/5.0
+6169,Jefferson PLC,APAC,Aluminum Sheets,8606.27,7 days,Pending,3.7/5.0
+6170,Mason PLC,EU,Industrial Lubricants,247.73,20 days,Inactive,4.5/5.0
+6171,Dyer Inc,NA,Hydraulic Pumps,8881.63,34 days,Pending,4.2/5.0
+6172,Walker-Cox,LATAM,CNC Machine Parts,6026.87,25 days,Pending,3.9/5.0
+6173,Davis-Roberts,LATAM,CNC Machine Parts,197.09,20 days,Active,4.5/5.0
+6174,Perry-Perry,EU,Ball Bearings,822.53,30 days,Pending,3.1/5.0
+6175,Huffman LLC,MEA,Ball Bearings,1105.84,5 days,Active,4.3/5.0
+6176,Garner PLC,MEA,Industrial Lubricants,9474.45,27 days,Pending,3.6/5.0
+6177,Carroll-Kerr,LATAM,Aluminum Sheets,6911.21,21 days,Pending,3.4/5.0
+6178,"English, Beard and Jimenez",APAC,Industrial Lubricants,2377.29,25 days,Pending,5.0/5.0
+6179,"Garcia, Marquez and Schneider",LATAM,CNC Machine Parts,9710.26,18 days,Pending,4.2/5.0
+6180,Phillips LLC,MEA,Aluminum Sheets,3159.15,14 days,Inactive,3.8/5.0
+6181,"Harrison, Park and Keller",MEA,Aluminum Sheets,8749.42,40 days,Pending,2.6/5.0
+6182,Mcclure PLC,LATAM,Industrial Lubricants,5663.84,36 days,Inactive,2.9/5.0
+6183,"Andrews, Campbell and Davis",APAC,CNC Machine Parts,2106.23,38 days,Pending,3.2/5.0
+6184,Stewart Group,LATAM,Ball Bearings,9131.04,33 days,Active,4.0/5.0
+6185,Patterson-Whitaker,APAC,Industrial Lubricants,5092.82,6 days,Inactive,3.8/5.0
+6186,Clark PLC,NA,Aluminum Sheets,8890.63,40 days,Inactive,2.5/5.0
+6187,"Wilson, Johnson and Gilbert",APAC,Hydraulic Pumps,1409.24,34 days,Pending,3.6/5.0
+6188,Richard Ltd,APAC,Aluminum Sheets,6364.01,8 days,Active,4.3/5.0
+6189,Rodriguez Ltd,EU,Ball Bearings,1687.9,32 days,Inactive,3.0/5.0
+6190,"Duran, Collins and Gordon",APAC,Ball Bearings,7380.47,6 days,Pending,3.0/5.0
+6191,Smith and Sons,APAC,Aluminum Sheets,6777.98,7 days,Inactive,4.5/5.0
+6192,Thomas Group,LATAM,CNC Machine Parts,9560.55,5 days,Inactive,4.8/5.0
+6193,"Gomez, Frazier and Schaefer",MEA,Hydraulic Pumps,2346.66,9 days,Active,4.6/5.0
+6194,"Austin, Cruz and Walker",EU,Aluminum Sheets,8082.61,19 days,Active,3.1/5.0
+6195,Dalton-Lewis,MEA,Hydraulic Pumps,2783.09,23 days,Pending,2.7/5.0
+6196,Anderson and Sons,MEA,Aluminum Sheets,9224.08,6 days,Pending,3.5/5.0
+6197,Moore-Richards,MEA,CNC Machine Parts,9103.83,27 days,Active,2.6/5.0
+6198,Russell-Garcia,NA,Hydraulic Pumps,2365.31,23 days,Inactive,4.4/5.0
+6199,Williams-Roberts,NA,Hydraulic Pumps,3008.86,13 days,Pending,2.5/5.0
+6200,Daugherty Ltd,APAC,CNC Machine Parts,6603.17,37 days,Active,4.7/5.0
+6201,Morales LLC,NA,Ball Bearings,5423.37,11 days,Pending,2.7/5.0
+6202,"Oneal, Wilson and Barnett",MEA,CNC Machine Parts,9984.38,13 days,Pending,4.6/5.0
+6203,Jones and Sons,EU,Industrial Lubricants,9844.2,38 days,Inactive,3.9/5.0
+6204,Harris LLC,NA,Aluminum Sheets,1706.38,19 days,Inactive,3.3/5.0
+6205,Brown and Sons,EU,Hydraulic Pumps,7158.63,40 days,Active,5.0/5.0
+6206,"Padilla, White and Campos",LATAM,CNC Machine Parts,1067.99,29 days,Inactive,3.9/5.0
+6207,Hunter-Baker,MEA,Aluminum Sheets,8927.68,22 days,Pending,3.6/5.0
+6208,Pacheco-Washington,MEA,Aluminum Sheets,4776.22,9 days,Inactive,4.1/5.0
+6209,Moyer-Lewis,MEA,Aluminum Sheets,3517.38,18 days,Pending,4.7/5.0
+6210,Williams Inc,NA,Hydraulic Pumps,734.33,24 days,Inactive,4.3/5.0
+6211,"Davis, Williams and Shaw",APAC,Hydraulic Pumps,5895.43,18 days,Pending,3.9/5.0
+6212,Powers-Coleman,EU,CNC Machine Parts,3501.06,17 days,Pending,4.5/5.0
+6213,"Campbell, Gilbert and Vargas",APAC,Hydraulic Pumps,6537.48,25 days,Pending,3.9/5.0
+6214,Lynch-Gonzalez,LATAM,Hydraulic Pumps,4055.71,31 days,Pending,3.1/5.0
+6215,"Jones, Nelson and Watkins",MEA,Aluminum Sheets,3340.27,26 days,Inactive,4.2/5.0
+6216,"Mcfarland, Owen and Stewart",NA,Hydraulic Pumps,4790.3,16 days,Active,4.0/5.0
+6217,Washington-Sanchez,MEA,Aluminum Sheets,6827.8,23 days,Inactive,3.9/5.0
+6218,Williams-Wood,MEA,Industrial Lubricants,6626.42,26 days,Pending,3.0/5.0
+6219,Green-Herrera,MEA,Ball Bearings,1121.73,8 days,Active,2.9/5.0
+6220,Taylor PLC,APAC,Industrial Lubricants,9173.24,14 days,Pending,3.4/5.0
+6221,"Diaz, Smith and Foster",APAC,Ball Bearings,3245.67,40 days,Inactive,4.2/5.0
+6222,"Johnson, Perry and Parker",MEA,Hydraulic Pumps,8576.44,37 days,Inactive,2.6/5.0
+6223,Wells PLC,EU,Hydraulic Pumps,1571.01,29 days,Inactive,4.5/5.0
+6224,Hoffman PLC,LATAM,Hydraulic Pumps,3981.75,26 days,Inactive,4.0/5.0
+6225,Graham PLC,LATAM,Aluminum Sheets,6747.62,18 days,Active,4.1/5.0
+6226,Ellis Group,APAC,Ball Bearings,975.84,26 days,Pending,3.1/5.0
+6227,Smith-Nguyen,EU,Aluminum Sheets,8831.79,11 days,Active,2.9/5.0
+6228,Joseph PLC,EU,Industrial Lubricants,6398.76,24 days,Inactive,4.4/5.0
+6229,Bowen-Rodriguez,APAC,Aluminum Sheets,7990.94,22 days,Inactive,5.0/5.0
+6230,"West, Johnston and Abbott",NA,Hydraulic Pumps,564.43,31 days,Pending,4.6/5.0
+6231,Rodriguez and Sons,LATAM,CNC Machine Parts,5675.56,33 days,Pending,4.3/5.0
+6232,"Reed, Wilkins and Walters",NA,Hydraulic Pumps,6354.02,30 days,Inactive,5.0/5.0
+6233,"Hall, Fowler and Fowler",NA,Aluminum Sheets,5579.81,35 days,Active,3.5/5.0
+6234,Turner LLC,EU,Industrial Lubricants,4671.96,30 days,Pending,3.0/5.0
+6235,Moore-Fox,APAC,CNC Machine Parts,3230.82,38 days,Pending,5.0/5.0
+6236,"Mayo, Rios and White",NA,Hydraulic Pumps,2505.37,16 days,Inactive,3.1/5.0
+6237,Fritz-Meadows,NA,Ball Bearings,2657.02,5 days,Inactive,3.3/5.0
+6238,Cohen-Evans,LATAM,Industrial Lubricants,7830.61,15 days,Inactive,4.7/5.0
+6239,"Middleton, Fry and Yang",NA,CNC Machine Parts,4535.43,21 days,Pending,4.7/5.0
+6240,Diaz-Meyer,MEA,Aluminum Sheets,7125.74,6 days,Pending,4.2/5.0
+6241,"Gilbert, Bell and Reese",MEA,Ball Bearings,9249.8,18 days,Pending,3.1/5.0
+6242,"Ortiz, Brady and Pace",EU,Aluminum Sheets,6268.87,10 days,Inactive,4.4/5.0
+6243,"Walker, Fox and Phillips",EU,Industrial Lubricants,6713.01,31 days,Pending,4.9/5.0
+6244,Murphy-Adams,NA,Aluminum Sheets,5945.01,36 days,Inactive,2.8/5.0
+6245,Lopez and Sons,NA,Industrial Lubricants,1782.1,6 days,Inactive,3.5/5.0
+6246,Anderson PLC,MEA,Aluminum Sheets,6947.85,14 days,Inactive,3.6/5.0
+6247,"Sheppard, Matthews and Nelson",EU,Hydraulic Pumps,6190.58,6 days,Pending,5.0/5.0
+6248,"Todd, Mccoy and Berry",NA,Industrial Lubricants,8475.54,20 days,Inactive,3.4/5.0
+6249,Yu-Pitts,MEA,Ball Bearings,8798.48,29 days,Inactive,4.8/5.0
+6250,"Smith, Ford and Peters",EU,Hydraulic Pumps,9500.65,27 days,Active,2.5/5.0
+6251,Garza-Malone,NA,CNC Machine Parts,3273.03,25 days,Pending,4.2/5.0
+6252,"Lynn, Cruz and Chang",EU,Industrial Lubricants,8769.32,32 days,Pending,3.7/5.0
+6253,"Atkinson, Rodgers and Stephenson",APAC,CNC Machine Parts,4986.71,20 days,Active,4.9/5.0
+6254,"Perez, Bates and Wise",NA,CNC Machine Parts,2167.78,26 days,Active,3.1/5.0
+6255,"Newton, Day and Li",EU,Ball Bearings,2215.01,8 days,Pending,4.2/5.0
+6256,Lucas-Hodge,NA,Hydraulic Pumps,3605.23,13 days,Inactive,4.2/5.0
+6257,"Lopez, Watson and Long",MEA,Ball Bearings,6617.22,36 days,Inactive,3.8/5.0
+6258,"Mills, Davis and Smith",EU,Hydraulic Pumps,6948.57,27 days,Inactive,3.2/5.0
+6259,Jones-Carney,EU,Industrial Lubricants,2009.36,26 days,Inactive,4.5/5.0
+6260,Cole-Smith,NA,Hydraulic Pumps,1312.17,17 days,Active,4.6/5.0
+6261,Thompson PLC,NA,Aluminum Sheets,8978.19,29 days,Inactive,2.5/5.0
+6262,"Hanson, Randall and Nguyen",APAC,Ball Bearings,7736.27,9 days,Inactive,4.8/5.0
+6263,Maldonado-Williams,LATAM,Ball Bearings,1093.4,20 days,Inactive,4.8/5.0
+6264,Richardson-Miller,LATAM,Ball Bearings,8280.68,8 days,Active,3.9/5.0
+6265,"Moody, Walker and Austin",LATAM,Aluminum Sheets,1488.98,36 days,Pending,4.8/5.0
+6266,Lara-Ibarra,LATAM,Hydraulic Pumps,1155.29,37 days,Inactive,4.2/5.0
+6267,Robinson-Fisher,EU,Aluminum Sheets,510.35,37 days,Inactive,2.6/5.0
+6268,Patel-Brown,MEA,Aluminum Sheets,9148.13,8 days,Inactive,3.3/5.0
+6269,Key-Vance,LATAM,Industrial Lubricants,7111.47,25 days,Pending,4.1/5.0
+6270,Woods Group,NA,Ball Bearings,7268.08,29 days,Pending,3.7/5.0
+6271,Preston Ltd,LATAM,Ball Bearings,6404.97,24 days,Active,4.2/5.0
+6272,Ross Inc,MEA,Ball Bearings,9669.42,26 days,Active,4.2/5.0
+6273,Young-Chavez,APAC,CNC Machine Parts,6565.66,31 days,Pending,4.9/5.0
+6274,Walsh Ltd,LATAM,Aluminum Sheets,6080.0,40 days,Pending,3.3/5.0
+6275,Brooks-Thornton,MEA,Hydraulic Pumps,8599.13,16 days,Active,4.8/5.0
+6276,Gibson Ltd,MEA,Aluminum Sheets,3351.48,29 days,Inactive,2.8/5.0
+6277,Guzman Group,EU,Hydraulic Pumps,6765.06,13 days,Active,4.0/5.0
+6278,"King, Ellis and Booker",LATAM,Aluminum Sheets,712.91,8 days,Active,3.2/5.0
+6279,Vargas-Duran,EU,Ball Bearings,110.95,35 days,Pending,4.1/5.0
+6280,Alvarez and Sons,LATAM,CNC Machine Parts,545.92,39 days,Inactive,4.7/5.0
+6281,Mills-Garner,LATAM,Ball Bearings,7766.05,24 days,Active,4.6/5.0
+6282,Hart-Hoffman,APAC,CNC Machine Parts,2459.86,15 days,Pending,4.4/5.0
+6283,Anderson Group,LATAM,Industrial Lubricants,2398.33,14 days,Active,3.8/5.0
+6284,Barr PLC,LATAM,Hydraulic Pumps,3507.11,6 days,Pending,4.3/5.0
+6285,Ryan Ltd,MEA,Ball Bearings,156.85,30 days,Inactive,3.7/5.0
+6286,Clark-Skinner,MEA,Industrial Lubricants,5282.28,5 days,Active,2.9/5.0
+6287,"Burnett, Buck and Shelton",LATAM,Industrial Lubricants,2125.59,37 days,Pending,3.4/5.0
+6288,"Wilkins, Clark and Bell",NA,Ball Bearings,4087.26,15 days,Pending,3.5/5.0
+6289,Jackson Ltd,LATAM,Ball Bearings,8832.09,37 days,Pending,3.4/5.0
+6290,Coleman Inc,EU,Aluminum Sheets,6772.76,31 days,Inactive,4.4/5.0
+6291,"Simmons, Wong and Scott",EU,Hydraulic Pumps,801.18,8 days,Pending,2.7/5.0
+6292,Ayala-Little,LATAM,CNC Machine Parts,7917.18,33 days,Pending,3.5/5.0
+6293,Lee Group,EU,CNC Machine Parts,2383.27,33 days,Pending,2.8/5.0
+6294,"Hernandez, Gilbert and Marquez",MEA,CNC Machine Parts,7606.74,7 days,Pending,4.4/5.0
+6295,Cobb LLC,NA,Hydraulic Pumps,5714.04,14 days,Pending,3.2/5.0
+6296,Allen Group,LATAM,Aluminum Sheets,1073.06,16 days,Pending,3.4/5.0
+6297,Stephens Inc,MEA,CNC Machine Parts,3126.53,24 days,Inactive,3.2/5.0
+6298,Harrell Ltd,EU,Hydraulic Pumps,8304.83,38 days,Active,3.5/5.0
+6299,Rice-Smith,EU,Aluminum Sheets,9464.35,29 days,Pending,4.3/5.0
+6300,Burton Inc,APAC,Industrial Lubricants,1011.41,17 days,Active,3.8/5.0
+6301,Reed LLC,NA,Ball Bearings,3772.84,27 days,Inactive,4.6/5.0
+6302,"Crawford, Kim and White",MEA,Aluminum Sheets,7532.32,5 days,Inactive,3.3/5.0
+6303,Salazar-Benjamin,NA,Industrial Lubricants,2045.94,33 days,Inactive,4.1/5.0
+6304,Patterson Inc,LATAM,Hydraulic Pumps,6470.74,13 days,Active,3.3/5.0
+6305,Jones-Arnold,APAC,Industrial Lubricants,7887.22,36 days,Inactive,2.5/5.0
+6306,Mcgee PLC,NA,Ball Bearings,1694.8,6 days,Inactive,4.2/5.0
+6307,"Villarreal, Sherman and Edwards",NA,Ball Bearings,6793.99,38 days,Active,5.0/5.0
+6308,Trujillo-Castro,EU,Industrial Lubricants,6031.17,29 days,Pending,2.6/5.0
+6309,"Sims, Lewis and Kennedy",EU,Hydraulic Pumps,7851.06,7 days,Inactive,5.0/5.0
+6310,Bird and Sons,LATAM,Aluminum Sheets,8144.4,22 days,Pending,4.0/5.0
+6311,Salinas-Jordan,NA,Hydraulic Pumps,7366.59,5 days,Pending,2.8/5.0
+6312,Gregory Group,LATAM,Industrial Lubricants,1566.61,26 days,Inactive,4.9/5.0
+6313,"Ingram, Wilson and Perez",EU,CNC Machine Parts,9308.53,25 days,Active,4.0/5.0
+6314,Black-Walter,APAC,Hydraulic Pumps,5105.26,13 days,Pending,4.6/5.0
+6315,"Murillo, Evans and Hogan",LATAM,Aluminum Sheets,7015.62,10 days,Inactive,4.0/5.0
+6316,Smith-Wilson,EU,CNC Machine Parts,2193.82,19 days,Active,3.5/5.0
+6317,"Valdez, Ellison and Carson",APAC,Ball Bearings,7546.39,36 days,Active,4.0/5.0
+6318,Grant LLC,LATAM,Ball Bearings,8188.81,16 days,Active,4.7/5.0
+6319,Maynard-Nichols,EU,Aluminum Sheets,3655.2,8 days,Inactive,2.9/5.0
+6320,Jackson-Brown,LATAM,Hydraulic Pumps,710.19,31 days,Inactive,4.0/5.0
+6321,Jones LLC,LATAM,CNC Machine Parts,3054.19,28 days,Active,3.2/5.0
+6322,Bright-Reed,APAC,Aluminum Sheets,4032.61,30 days,Inactive,2.8/5.0
+6323,Castro Inc,EU,Hydraulic Pumps,2778.62,20 days,Pending,3.6/5.0
+6324,Webb-Brown,MEA,Aluminum Sheets,161.42,5 days,Active,3.9/5.0
+6325,Wilson-Frank,LATAM,Industrial Lubricants,2510.98,14 days,Pending,4.1/5.0
+6326,"Garcia, Holland and Russell",EU,Aluminum Sheets,3465.18,16 days,Pending,4.4/5.0
+6327,"Bolton, Stewart and Perry",EU,Hydraulic Pumps,3408.01,6 days,Pending,4.1/5.0
+6328,"Brown, Zavala and Torres",NA,Industrial Lubricants,1324.06,15 days,Pending,4.3/5.0
+6329,"Campbell, Gonzalez and Church",EU,Hydraulic Pumps,2574.46,18 days,Active,3.3/5.0
+6330,"Lee, Morales and Ryan",NA,CNC Machine Parts,2583.18,13 days,Active,3.3/5.0
+6331,Walton-Francis,APAC,Ball Bearings,7848.12,28 days,Active,2.7/5.0
+6332,"Hernandez, Lamb and Lewis",NA,Aluminum Sheets,5889.53,7 days,Active,4.8/5.0
+6333,Wilkerson-Jones,NA,Hydraulic Pumps,4143.28,14 days,Pending,3.7/5.0
+6334,Hinton-Mcclure,APAC,Hydraulic Pumps,2089.91,6 days,Active,3.2/5.0
+6335,"Flores, Butler and Schultz",APAC,Ball Bearings,7921.87,26 days,Inactive,4.2/5.0
+6336,"Jackson, Gibson and Rogers",EU,CNC Machine Parts,7753.99,18 days,Inactive,3.3/5.0
+6337,Houston and Sons,MEA,CNC Machine Parts,6837.28,24 days,Inactive,4.0/5.0
+6338,"Lucas, Sandoval and Salinas",APAC,CNC Machine Parts,9133.8,8 days,Pending,4.2/5.0
+6339,Espinoza-Fisher,LATAM,Aluminum Sheets,3461.25,12 days,Pending,3.9/5.0
+6340,Prince PLC,LATAM,Aluminum Sheets,4387.25,30 days,Pending,4.9/5.0
+6341,"Bowen, Taylor and Banks",NA,Aluminum Sheets,6286.51,31 days,Inactive,3.2/5.0
+6342,Wilson-Davis,LATAM,Industrial Lubricants,9173.29,21 days,Active,4.6/5.0
+6343,"Chang, Harvey and Nelson",NA,Industrial Lubricants,7511.78,6 days,Inactive,3.1/5.0
+6344,"Jordan, Evans and Gray",LATAM,Industrial Lubricants,7384.4,32 days,Inactive,2.6/5.0
+6345,"Ramos, Miller and Christian",APAC,Ball Bearings,6181.18,36 days,Pending,2.9/5.0
+6346,Garcia-Jones,APAC,Ball Bearings,1645.85,15 days,Inactive,3.8/5.0
+6347,Nguyen PLC,LATAM,Aluminum Sheets,7865.29,12 days,Pending,2.6/5.0
+6348,"Huang, Holmes and Salas",LATAM,Ball Bearings,8174.51,26 days,Inactive,2.8/5.0
+6349,"Moreno, Townsend and Brown",NA,CNC Machine Parts,1941.78,25 days,Inactive,4.3/5.0
+6350,Mayo LLC,NA,Ball Bearings,6082.07,37 days,Inactive,4.7/5.0
+6351,"Jones, Warren and Parker",EU,Aluminum Sheets,8557.27,5 days,Active,4.1/5.0
+6352,Huerta PLC,LATAM,Hydraulic Pumps,9309.12,16 days,Active,3.8/5.0
+6353,"Nichols, Johnson and Blake",APAC,Hydraulic Pumps,5865.32,38 days,Pending,3.8/5.0
+6354,Reynolds Inc,MEA,Industrial Lubricants,8271.39,24 days,Inactive,2.9/5.0
+6355,Long-Fox,MEA,CNC Machine Parts,5893.69,25 days,Active,4.4/5.0
+6356,Burton-Mccormick,LATAM,Hydraulic Pumps,5899.31,12 days,Active,5.0/5.0
+6357,"Foster, Kaufman and Powell",LATAM,CNC Machine Parts,7097.65,34 days,Active,4.7/5.0
+6358,"Smith, Cox and Schmidt",NA,Ball Bearings,1801.01,37 days,Active,4.8/5.0
+6359,"Walker, Brown and Simmons",APAC,Ball Bearings,6052.88,12 days,Pending,3.9/5.0
+6360,"Tran, Bryant and Ramos",MEA,CNC Machine Parts,7321.91,22 days,Active,3.2/5.0
+6361,Nichols Inc,NA,Hydraulic Pumps,9482.54,23 days,Pending,4.9/5.0
+6362,Mooney-Nolan,EU,Ball Bearings,6616.11,8 days,Active,2.5/5.0
+6363,Hernandez LLC,MEA,Hydraulic Pumps,9370.0,17 days,Inactive,4.2/5.0
+6364,Liu-Gutierrez,LATAM,Industrial Lubricants,2322.03,13 days,Inactive,3.6/5.0
+6365,Lee Inc,EU,Industrial Lubricants,1240.12,15 days,Active,4.1/5.0
+6366,Hopkins-Lester,NA,Industrial Lubricants,3003.45,36 days,Inactive,3.0/5.0
+6367,Mitchell Group,APAC,CNC Machine Parts,3174.5,20 days,Pending,3.8/5.0
+6368,"Villanueva, Anderson and Smith",EU,Industrial Lubricants,296.82,31 days,Pending,3.8/5.0
+6369,Watson-Lee,NA,Aluminum Sheets,6118.73,24 days,Pending,3.8/5.0
+6370,Cortez-Forbes,NA,Aluminum Sheets,7858.6,5 days,Inactive,4.1/5.0
+6371,Hunter-Carter,EU,Hydraulic Pumps,7963.88,31 days,Active,2.6/5.0
+6372,Harper-Reed,NA,Hydraulic Pumps,2510.37,38 days,Active,3.7/5.0
+6373,"Goodman, Orozco and Reyes",NA,Hydraulic Pumps,4906.0,26 days,Inactive,4.7/5.0
+6374,Turner-Combs,LATAM,Ball Bearings,7503.34,17 days,Pending,4.2/5.0
+6375,"James, Blankenship and Hess",APAC,Hydraulic Pumps,8443.22,17 days,Active,2.7/5.0
+6376,"Howell, Velasquez and Castillo",MEA,Hydraulic Pumps,9624.64,21 days,Active,3.5/5.0
+6377,"Saunders, Kim and Thomas",NA,Hydraulic Pumps,2812.01,35 days,Inactive,3.8/5.0
+6378,Kemp-Lester,EU,Industrial Lubricants,5231.83,21 days,Inactive,3.4/5.0
+6379,Martinez Group,MEA,Industrial Lubricants,3190.88,27 days,Inactive,3.7/5.0
+6380,"Barnes, Beck and Morris",NA,Aluminum Sheets,9799.51,17 days,Inactive,4.1/5.0
+6381,"Ramsey, Moore and Walter",EU,Industrial Lubricants,7260.49,35 days,Pending,3.1/5.0
+6382,Smith-Melendez,NA,Hydraulic Pumps,3032.35,32 days,Inactive,4.4/5.0
+6383,Williams PLC,APAC,Aluminum Sheets,5380.39,30 days,Active,2.6/5.0
+6384,Schultz and Sons,NA,Hydraulic Pumps,8680.12,17 days,Inactive,3.9/5.0
+6385,Garrison and Sons,NA,Hydraulic Pumps,2157.11,34 days,Active,2.6/5.0
+6386,Ramos PLC,LATAM,Hydraulic Pumps,9173.63,32 days,Active,3.3/5.0
+6387,Hoffman Group,MEA,Hydraulic Pumps,6423.81,6 days,Inactive,4.5/5.0
+6388,"Ewing, Jones and Shields",NA,CNC Machine Parts,2393.73,38 days,Active,2.5/5.0
+6389,"Stephens, Buchanan and White",LATAM,Industrial Lubricants,100.91,23 days,Active,3.6/5.0
+6390,Phillips-Garcia,APAC,CNC Machine Parts,9641.48,11 days,Active,4.2/5.0
+6391,"Velasquez, Hood and Stewart",LATAM,Hydraulic Pumps,3104.17,30 days,Pending,3.0/5.0
+6392,Norman and Sons,EU,Aluminum Sheets,7063.33,27 days,Pending,3.0/5.0
+6393,Hays Ltd,APAC,Hydraulic Pumps,911.4,13 days,Active,3.7/5.0
+6394,Romero Inc,APAC,Hydraulic Pumps,7106.93,29 days,Active,4.2/5.0
+6395,Hopkins LLC,MEA,Ball Bearings,6572.84,30 days,Active,2.9/5.0
+6396,"Harris, Lane and Crawford",NA,Industrial Lubricants,6528.13,15 days,Active,4.4/5.0
+6397,Mitchell-Lynch,APAC,Industrial Lubricants,3648.83,34 days,Inactive,3.4/5.0
+6398,Jackson-Hernandez,MEA,Industrial Lubricants,1463.59,14 days,Pending,3.7/5.0
+6399,Gentry-Bishop,MEA,Aluminum Sheets,5347.5,10 days,Inactive,4.9/5.0
+6400,Rodgers-Russell,NA,Aluminum Sheets,7028.14,36 days,Active,4.4/5.0
+6401,Austin Ltd,MEA,CNC Machine Parts,2455.17,23 days,Inactive,4.8/5.0
+6402,Lewis-Nelson,MEA,CNC Machine Parts,2203.14,35 days,Inactive,3.2/5.0
+6403,"Barrett, Ellis and Hart",APAC,Aluminum Sheets,6827.56,25 days,Active,2.7/5.0
+6404,Dixon Group,MEA,Hydraulic Pumps,8345.7,36 days,Inactive,4.1/5.0
+6405,"Barnes, Mendoza and Gordon",MEA,Hydraulic Pumps,8897.57,19 days,Inactive,4.1/5.0
+6406,Reed-Martinez,EU,CNC Machine Parts,300.82,38 days,Inactive,3.0/5.0
+6407,"Henry, Clements and Henson",LATAM,Industrial Lubricants,1084.61,29 days,Inactive,3.4/5.0
+6408,Rogers LLC,EU,CNC Machine Parts,3980.68,14 days,Inactive,3.9/5.0
+6409,Lam Ltd,NA,Aluminum Sheets,3760.55,22 days,Inactive,2.9/5.0
+6410,"Davis, Cain and Hawkins",EU,Hydraulic Pumps,3598.65,39 days,Pending,4.7/5.0
+6411,"Lewis, Johnson and Mathis",EU,CNC Machine Parts,1142.99,18 days,Active,2.6/5.0
+6412,Hill and Sons,NA,Ball Bearings,6836.98,18 days,Inactive,2.7/5.0
+6413,Johnson Inc,APAC,Ball Bearings,2907.96,25 days,Inactive,3.2/5.0
+6414,Davies PLC,EU,Hydraulic Pumps,7542.03,30 days,Pending,4.1/5.0
+6415,"Morgan, Garcia and Hughes",MEA,Ball Bearings,2204.67,12 days,Active,2.7/5.0
+6416,Hicks and Sons,LATAM,Aluminum Sheets,9585.63,24 days,Active,4.2/5.0
+6417,Nichols-Kennedy,EU,Ball Bearings,5528.91,8 days,Active,3.1/5.0
+6418,"Hamilton, Henderson and Williams",NA,Ball Bearings,334.14,32 days,Pending,4.1/5.0
+6419,Malone-Ramirez,MEA,CNC Machine Parts,8472.89,28 days,Inactive,3.7/5.0
+6420,"Mann, Phillips and Nelson",APAC,Hydraulic Pumps,9798.34,20 days,Inactive,3.4/5.0
+6421,Rice PLC,LATAM,Ball Bearings,9965.71,6 days,Pending,3.7/5.0
+6422,Price-Mathis,NA,Aluminum Sheets,5124.31,26 days,Pending,4.4/5.0
+6423,"Johnson, Davis and Hayden",APAC,Industrial Lubricants,5311.44,12 days,Inactive,2.6/5.0
+6424,"Ramirez, Walker and Price",APAC,Aluminum Sheets,4469.6,11 days,Inactive,4.3/5.0
+6425,Bowman PLC,EU,Aluminum Sheets,7470.51,15 days,Pending,2.7/5.0
+6426,"Mann, Norris and Morrison",APAC,Aluminum Sheets,9783.31,29 days,Active,3.9/5.0
+6427,Miller-Mayo,APAC,Aluminum Sheets,9670.37,36 days,Pending,3.6/5.0
+6428,Craig PLC,APAC,CNC Machine Parts,9688.06,21 days,Pending,3.9/5.0
+6429,Keller-Lozano,NA,CNC Machine Parts,6355.57,10 days,Pending,4.4/5.0
+6430,Cobb-Fleming,MEA,Hydraulic Pumps,8690.72,11 days,Active,2.8/5.0
+6431,Ramirez Inc,LATAM,Industrial Lubricants,9704.4,30 days,Pending,3.2/5.0
+6432,Smith PLC,APAC,Industrial Lubricants,8053.52,30 days,Inactive,4.1/5.0
+6433,Sharp-Best,APAC,CNC Machine Parts,9053.67,28 days,Pending,3.0/5.0
+6434,"Johnson, Watson and Hardy",EU,CNC Machine Parts,601.42,40 days,Inactive,2.5/5.0
+6435,"Ellis, Salas and Gibson",MEA,CNC Machine Parts,420.5,25 days,Inactive,3.1/5.0
+6436,Bowers-Ramirez,NA,Hydraulic Pumps,8058.5,7 days,Inactive,4.4/5.0
+6437,Robles-Riley,EU,CNC Machine Parts,354.07,28 days,Active,3.7/5.0
+6438,Moore-Brown,APAC,CNC Machine Parts,7953.58,21 days,Active,3.9/5.0
+6439,Morgan-Simpson,MEA,Hydraulic Pumps,6373.26,32 days,Pending,4.0/5.0
+6440,King and Sons,MEA,Industrial Lubricants,5896.86,31 days,Inactive,4.2/5.0
+6441,"Wallace, Chavez and Matthews",LATAM,Hydraulic Pumps,6692.7,37 days,Active,3.2/5.0
+6442,Huang-Alexander,NA,Hydraulic Pumps,8281.5,12 days,Active,2.7/5.0
+6443,Burnett and Sons,EU,Hydraulic Pumps,8532.59,7 days,Pending,3.0/5.0
+6444,Oliver LLC,MEA,Aluminum Sheets,6929.17,14 days,Active,2.7/5.0
+6445,Lewis-Diaz,LATAM,CNC Machine Parts,1829.9,28 days,Inactive,3.0/5.0
+6446,Carlson-Macias,MEA,Ball Bearings,2761.61,28 days,Active,3.1/5.0
+6447,"Edwards, Morgan and Robinson",NA,Ball Bearings,9352.15,33 days,Pending,5.0/5.0
+6448,Bates Group,EU,Industrial Lubricants,1595.14,5 days,Pending,3.0/5.0
+6449,Munoz and Sons,EU,Ball Bearings,7437.4,36 days,Inactive,3.1/5.0
+6450,Williams-Barnes,APAC,CNC Machine Parts,3395.8,34 days,Inactive,4.3/5.0
+6451,"Moore, Farley and Wolf",APAC,Industrial Lubricants,2839.47,5 days,Active,2.6/5.0
+6452,Kramer LLC,NA,Industrial Lubricants,3218.74,25 days,Inactive,3.4/5.0
+6453,Robertson-Johnson,NA,CNC Machine Parts,4587.38,15 days,Pending,3.8/5.0
+6454,"Rodriguez, Johnston and Dennis",EU,Aluminum Sheets,128.35,40 days,Active,4.9/5.0
+6455,"Rodriguez, Mcintyre and Santos",MEA,CNC Machine Parts,4185.36,11 days,Pending,2.5/5.0
+6456,"Johnson, Strickland and Bell",EU,Ball Bearings,7267.42,6 days,Inactive,4.5/5.0
+6457,"Murphy, Knight and Owens",EU,Hydraulic Pumps,3591.86,30 days,Inactive,4.2/5.0
+6458,Cortez-Neal,NA,Hydraulic Pumps,4882.23,24 days,Inactive,4.9/5.0
+6459,"Chavez, Williams and Holmes",APAC,Industrial Lubricants,9038.72,15 days,Inactive,4.1/5.0
+6460,Bruce and Sons,APAC,Industrial Lubricants,6486.18,35 days,Active,4.0/5.0
+6461,"Nelson, Bailey and Brown",LATAM,Ball Bearings,2159.94,39 days,Active,4.9/5.0
+6462,Warren Ltd,LATAM,Aluminum Sheets,3705.29,29 days,Inactive,3.7/5.0
+6463,Yates-Jones,APAC,Ball Bearings,5850.28,36 days,Active,4.4/5.0
+6464,"Navarro, Richardson and Lewis",NA,Industrial Lubricants,3221.4,37 days,Active,4.7/5.0
+6465,Carr-Salas,EU,Aluminum Sheets,7802.91,32 days,Active,3.7/5.0
+6466,Nixon-Cherry,NA,Industrial Lubricants,7473.8,20 days,Active,4.3/5.0
+6467,Hendrix-Barton,NA,Industrial Lubricants,2317.86,29 days,Pending,2.6/5.0
+6468,"Lewis, Hammond and Elliott",LATAM,Industrial Lubricants,5368.79,17 days,Inactive,2.7/5.0
+6469,Holder-Fischer,APAC,Ball Bearings,6580.86,25 days,Pending,4.3/5.0
+6470,Roberts Group,EU,Industrial Lubricants,6533.77,8 days,Pending,4.1/5.0
+6471,Mendez Inc,EU,Ball Bearings,7647.12,29 days,Inactive,3.0/5.0
+6472,Riley PLC,NA,CNC Machine Parts,7339.66,19 days,Inactive,4.1/5.0
+6473,Moore-Wilson,NA,Aluminum Sheets,422.32,28 days,Pending,4.6/5.0
+6474,Kane-Ramos,EU,Aluminum Sheets,2217.67,12 days,Active,3.2/5.0
+6475,"Adams, Blair and Gonzalez",MEA,Aluminum Sheets,822.26,6 days,Active,4.8/5.0
+6476,"Kelley, Garcia and Taylor",LATAM,Hydraulic Pumps,6825.96,26 days,Pending,2.6/5.0
+6477,"Mills, Hopkins and Evans",NA,Industrial Lubricants,2543.68,18 days,Inactive,3.0/5.0
+6478,Garcia Ltd,LATAM,Ball Bearings,1323.72,5 days,Inactive,4.0/5.0
+6479,Ramirez-Yang,NA,CNC Machine Parts,9441.41,15 days,Active,4.1/5.0
+6480,"Cruz, Murray and Peters",APAC,Hydraulic Pumps,5456.41,21 days,Active,4.5/5.0
+6481,"Lynch, Wilson and Woods",LATAM,CNC Machine Parts,419.22,26 days,Inactive,3.5/5.0
+6482,Baker-Patterson,NA,Hydraulic Pumps,2262.29,36 days,Active,4.1/5.0
+6483,Parker and Sons,APAC,Hydraulic Pumps,665.64,35 days,Active,3.7/5.0
+6484,Joseph Inc,MEA,Aluminum Sheets,7931.18,16 days,Inactive,4.7/5.0
+6485,"Henderson, Ewing and Singh",APAC,Ball Bearings,9971.58,38 days,Active,3.3/5.0
+6486,Blanchard PLC,MEA,Industrial Lubricants,8115.55,21 days,Inactive,3.6/5.0
+6487,Harris LLC,MEA,Hydraulic Pumps,7197.28,24 days,Inactive,3.2/5.0
+6488,"Miller, Zamora and Graves",APAC,Industrial Lubricants,7499.67,25 days,Active,4.4/5.0
+6489,Clark PLC,MEA,Hydraulic Pumps,6185.93,9 days,Pending,2.7/5.0
+6490,Walker-James,NA,Aluminum Sheets,424.4,34 days,Pending,3.1/5.0
+6491,Martin LLC,APAC,Aluminum Sheets,712.81,27 days,Active,4.4/5.0
+6492,"Delacruz, Aguirre and Clark",EU,Industrial Lubricants,2197.77,5 days,Inactive,3.1/5.0
+6493,Zamora Group,LATAM,Hydraulic Pumps,7243.63,21 days,Active,3.8/5.0
+6494,"Simmons, Romero and Griffin",LATAM,CNC Machine Parts,5904.58,14 days,Active,4.1/5.0
+6495,Hayes Group,LATAM,Aluminum Sheets,202.15,29 days,Inactive,3.5/5.0
+6496,Perkins LLC,LATAM,Ball Bearings,101.37,19 days,Pending,3.7/5.0
+6497,Johnson-Sanchez,EU,Hydraulic Pumps,7931.65,30 days,Active,4.7/5.0
+6498,Gonzalez PLC,NA,Hydraulic Pumps,2305.72,30 days,Pending,4.7/5.0
+6499,"Hill, Parks and Raymond",NA,Industrial Lubricants,8606.17,37 days,Inactive,3.4/5.0
+6500,"Lee, Alvarez and Peters",MEA,Industrial Lubricants,1469.11,16 days,Active,3.8/5.0
+6501,Howell Group,MEA,Hydraulic Pumps,1295.75,5 days,Active,3.7/5.0
+6502,Patel Group,NA,CNC Machine Parts,8794.93,25 days,Active,4.0/5.0
+6503,Anderson-Carpenter,LATAM,Hydraulic Pumps,455.73,36 days,Active,5.0/5.0
+6504,Richardson Ltd,LATAM,Aluminum Sheets,7611.24,29 days,Pending,4.2/5.0
+6505,"Williams, Conley and Harris",APAC,CNC Machine Parts,1454.98,12 days,Active,2.7/5.0
+6506,Brown Ltd,NA,Aluminum Sheets,4542.27,35 days,Inactive,3.9/5.0
+6507,Anderson and Sons,APAC,CNC Machine Parts,3233.68,15 days,Pending,4.2/5.0
+6508,Russo Group,EU,Hydraulic Pumps,5152.59,5 days,Pending,2.6/5.0
+6509,"Gillespie, Carrillo and Valenzuela",APAC,Ball Bearings,1825.57,18 days,Pending,3.4/5.0
+6510,Lee Group,EU,Hydraulic Pumps,5115.02,30 days,Inactive,3.7/5.0
+6511,Wood Ltd,NA,Hydraulic Pumps,1907.56,37 days,Active,3.5/5.0
+6512,Leonard-Peterson,LATAM,Aluminum Sheets,1091.3,23 days,Pending,3.3/5.0
+6513,Carter Inc,NA,Hydraulic Pumps,9763.63,17 days,Inactive,3.8/5.0
+6514,Cohen Ltd,LATAM,Aluminum Sheets,9227.49,19 days,Pending,3.9/5.0
+6515,Abbott Ltd,LATAM,Hydraulic Pumps,612.5,32 days,Inactive,3.8/5.0
+6516,Vasquez-Campbell,LATAM,Hydraulic Pumps,1286.72,17 days,Inactive,4.5/5.0
+6517,"Ward, Leblanc and Robinson",APAC,CNC Machine Parts,6137.2,17 days,Inactive,3.6/5.0
+6518,Brown Inc,APAC,Ball Bearings,6399.95,33 days,Pending,4.2/5.0
+6519,Willis-Smith,MEA,Hydraulic Pumps,3717.24,26 days,Inactive,4.0/5.0
+6520,"Sexton, Williamson and Clark",NA,CNC Machine Parts,7873.55,36 days,Active,3.2/5.0
+6521,Sullivan-Moreno,NA,CNC Machine Parts,6550.81,14 days,Pending,3.6/5.0
+6522,"Brown, Nelson and Stein",LATAM,Industrial Lubricants,3452.35,25 days,Inactive,3.1/5.0
+6523,"Kelley, Reynolds and Roberts",MEA,CNC Machine Parts,3115.46,23 days,Pending,3.7/5.0
+6524,Roy Group,NA,CNC Machine Parts,5924.68,34 days,Pending,3.6/5.0
+6525,"George, Elliott and Richardson",LATAM,Industrial Lubricants,5128.03,16 days,Pending,3.5/5.0
+6526,Miller-Livingston,NA,CNC Machine Parts,4478.69,13 days,Inactive,3.6/5.0
+6527,"Ferguson, Conner and Smith",APAC,Industrial Lubricants,9105.38,30 days,Inactive,4.3/5.0
+6528,Campbell and Sons,NA,Ball Bearings,9010.12,24 days,Active,3.1/5.0
+6529,"Gonzalez, Nelson and Murphy",NA,CNC Machine Parts,3461.01,24 days,Pending,3.5/5.0
+6530,Ho-Carroll,EU,Industrial Lubricants,3399.79,34 days,Active,3.4/5.0
+6531,Webb-Nichols,NA,Ball Bearings,9618.42,27 days,Pending,4.0/5.0
+6532,"Casey, Gilmore and Shaffer",EU,Ball Bearings,3777.06,17 days,Active,4.5/5.0
+6533,"Barnes, Watson and Villegas",EU,Hydraulic Pumps,6614.41,34 days,Pending,2.5/5.0
+6534,Sims and Sons,LATAM,Industrial Lubricants,6866.99,23 days,Active,2.7/5.0
+6535,Jones PLC,APAC,Hydraulic Pumps,1602.6,32 days,Active,2.7/5.0
+6536,"Robbins, Perez and Ingram",EU,Industrial Lubricants,1088.53,36 days,Inactive,3.3/5.0
+6537,Garner-Cross,EU,Ball Bearings,5328.18,22 days,Inactive,4.0/5.0
+6538,"Wade, Cummings and Alexander",MEA,Hydraulic Pumps,5742.44,24 days,Active,2.6/5.0
+6539,"Roberts, Ortiz and Graves",NA,Aluminum Sheets,7513.29,29 days,Pending,3.4/5.0
+6540,Bailey-Bryant,LATAM,Industrial Lubricants,4229.8,22 days,Inactive,2.6/5.0
+6541,Conner Group,LATAM,Ball Bearings,8833.73,10 days,Inactive,4.0/5.0
+6542,"Warner, Hernandez and Jones",NA,Industrial Lubricants,8924.79,26 days,Pending,3.2/5.0
+6543,Jones LLC,MEA,Aluminum Sheets,2325.55,39 days,Pending,4.6/5.0
+6544,Williams-Hendricks,MEA,Industrial Lubricants,6914.23,40 days,Pending,4.6/5.0
+6545,"Oliver, Davis and Brewer",EU,Ball Bearings,873.19,36 days,Pending,4.0/5.0
+6546,Mills-Lane,LATAM,Hydraulic Pumps,6999.78,37 days,Inactive,4.6/5.0
+6547,"Park, Simpson and Cook",APAC,Hydraulic Pumps,4393.38,34 days,Pending,4.6/5.0
+6548,Williams Group,EU,Hydraulic Pumps,7569.71,5 days,Inactive,4.3/5.0
+6549,Martin Inc,LATAM,Industrial Lubricants,4796.88,30 days,Inactive,3.6/5.0
+6550,"Thompson, Sloan and Daniels",APAC,Ball Bearings,5897.93,13 days,Inactive,3.0/5.0
+6551,"Kidd, Patterson and Barron",NA,Industrial Lubricants,1436.81,11 days,Active,3.2/5.0
+6552,Vega-Juarez,EU,Ball Bearings,5867.22,27 days,Pending,3.4/5.0
+6553,"Smith, Hubbard and Lopez",NA,Aluminum Sheets,6619.79,16 days,Inactive,2.9/5.0
+6554,"Nelson, Clark and Gray",LATAM,Hydraulic Pumps,979.71,9 days,Pending,3.6/5.0
+6555,Aguilar and Sons,EU,Ball Bearings,975.94,31 days,Inactive,3.2/5.0
+6556,"White, Reyes and Baker",LATAM,Hydraulic Pumps,2938.59,31 days,Pending,2.5/5.0
+6557,Wood PLC,APAC,Industrial Lubricants,9298.06,21 days,Pending,3.2/5.0
+6558,Cervantes Inc,APAC,CNC Machine Parts,5760.17,38 days,Active,3.4/5.0
+6559,Ali-Smith,MEA,Ball Bearings,9197.01,40 days,Pending,3.8/5.0
+6560,Chapman Group,APAC,Ball Bearings,2569.42,36 days,Active,4.5/5.0
+6561,Palmer Group,LATAM,Industrial Lubricants,5963.3,5 days,Inactive,3.0/5.0
+6562,Mcdonald-Ramos,EU,Hydraulic Pumps,691.0,6 days,Inactive,4.3/5.0
+6563,Adams Inc,LATAM,Industrial Lubricants,5415.52,11 days,Inactive,3.4/5.0
+6564,Steele and Sons,LATAM,Hydraulic Pumps,9791.52,40 days,Pending,4.0/5.0
+6565,Clark PLC,EU,Aluminum Sheets,2933.46,22 days,Active,4.5/5.0
+6566,"Mayer, Williams and Odonnell",EU,CNC Machine Parts,4703.79,21 days,Active,3.6/5.0
+6567,Navarro-Calderon,NA,Aluminum Sheets,8386.16,26 days,Inactive,2.6/5.0
+6568,Schwartz Group,EU,Aluminum Sheets,8182.54,22 days,Active,3.2/5.0
+6569,Whitney Group,NA,Ball Bearings,939.39,20 days,Pending,3.3/5.0
+6570,"Horton, Wallace and Perez",MEA,Ball Bearings,9469.82,9 days,Active,3.1/5.0
+6571,Flores-Hale,MEA,CNC Machine Parts,5004.31,21 days,Inactive,4.4/5.0
+6572,Sutton-Nelson,APAC,Aluminum Sheets,4717.58,35 days,Pending,3.9/5.0
+6573,Hawkins-Taylor,APAC,Ball Bearings,3998.05,23 days,Active,3.7/5.0
+6574,Mcneil-Mcdowell,APAC,Industrial Lubricants,5367.0,9 days,Active,3.6/5.0
+6575,"Smith, Miranda and Mckenzie",EU,CNC Machine Parts,5961.65,12 days,Active,3.0/5.0
+6576,Sims PLC,LATAM,Hydraulic Pumps,1722.08,34 days,Pending,3.1/5.0
+6577,Mccullough LLC,APAC,Ball Bearings,494.36,7 days,Pending,4.7/5.0
+6578,"Torres, Turner and Nichols",APAC,Ball Bearings,2354.84,15 days,Active,3.9/5.0
+6579,"Allen, Patterson and Sanchez",NA,Hydraulic Pumps,4295.68,34 days,Inactive,4.3/5.0
+6580,Smith Group,NA,Ball Bearings,7579.58,33 days,Active,2.5/5.0
+6581,Clark and Sons,APAC,Hydraulic Pumps,2614.92,14 days,Pending,3.1/5.0
+6582,Navarro Inc,MEA,Aluminum Sheets,7588.44,39 days,Pending,4.7/5.0
+6583,"Nelson, Graham and Barnes",LATAM,Aluminum Sheets,7147.58,8 days,Pending,2.9/5.0
+6584,Williams and Sons,LATAM,CNC Machine Parts,703.33,34 days,Inactive,4.8/5.0
+6585,Martin-Marsh,EU,CNC Machine Parts,7140.17,12 days,Active,3.7/5.0
+6586,Bean LLC,NA,Aluminum Sheets,6401.28,23 days,Inactive,4.9/5.0
+6587,Shah-Joseph,NA,Industrial Lubricants,4607.79,39 days,Inactive,2.6/5.0
+6588,Vasquez LLC,LATAM,Industrial Lubricants,3211.04,31 days,Inactive,3.9/5.0
+6589,"Wells, Parker and Jones",MEA,CNC Machine Parts,4242.89,33 days,Active,3.5/5.0
+6590,Mcbride-Fuentes,APAC,Industrial Lubricants,6027.58,20 days,Inactive,2.7/5.0
+6591,Cook and Sons,NA,Hydraulic Pumps,8828.73,5 days,Inactive,4.1/5.0
+6592,Anderson-Morgan,EU,Aluminum Sheets,1045.79,16 days,Inactive,4.4/5.0
+6593,"Mack, Hendrix and Howell",APAC,Industrial Lubricants,8773.88,31 days,Pending,4.6/5.0
+6594,Carey-Phillips,NA,CNC Machine Parts,5456.81,6 days,Inactive,3.0/5.0
+6595,"Livingston, Sellers and Lloyd",MEA,CNC Machine Parts,9082.87,11 days,Inactive,3.8/5.0
+6596,Reed Group,NA,Hydraulic Pumps,3193.2,10 days,Pending,3.6/5.0
+6597,Simpson-Harmon,NA,CNC Machine Parts,2424.03,10 days,Pending,2.8/5.0
+6598,"Clayton, Smith and Peterson",MEA,Industrial Lubricants,2639.02,13 days,Pending,5.0/5.0
+6599,"Cochran, Daniels and Casey",LATAM,Industrial Lubricants,3522.59,38 days,Pending,4.0/5.0
+6600,Washington-Pierce,APAC,Aluminum Sheets,4810.4,6 days,Pending,3.8/5.0
+6601,Miller Group,APAC,Hydraulic Pumps,1203.99,40 days,Pending,2.9/5.0
+6602,James Group,LATAM,Hydraulic Pumps,7897.5,39 days,Active,4.0/5.0
+6603,Ramirez and Sons,MEA,Ball Bearings,7049.31,12 days,Active,3.0/5.0
+6604,Cole Group,EU,CNC Machine Parts,3814.03,32 days,Pending,4.0/5.0
+6605,Edwards-Valencia,NA,Hydraulic Pumps,1715.82,10 days,Pending,3.4/5.0
+6606,Simmons-Walker,MEA,Ball Bearings,1661.38,10 days,Pending,2.7/5.0
+6607,West-Griffin,APAC,CNC Machine Parts,783.87,11 days,Pending,4.1/5.0
+6608,Brown LLC,APAC,Ball Bearings,941.34,15 days,Active,2.8/5.0
+6609,Morales-Dean,NA,Hydraulic Pumps,5591.31,18 days,Pending,3.5/5.0
+6610,Olson-Berry,NA,Hydraulic Pumps,3838.78,12 days,Active,4.5/5.0
+6611,Lopez-Miller,LATAM,Hydraulic Pumps,8238.52,36 days,Pending,4.6/5.0
+6612,"Simmons, Turner and Smith",EU,Ball Bearings,1828.49,33 days,Inactive,4.9/5.0
+6613,Ward-Gutierrez,NA,Hydraulic Pumps,2350.75,40 days,Pending,3.3/5.0
+6614,Johnson LLC,MEA,Aluminum Sheets,3180.55,23 days,Active,3.1/5.0
+6615,"Walton, Bullock and Harvey",MEA,CNC Machine Parts,9869.3,27 days,Pending,4.3/5.0
+6616,"Bryant, Poole and Kemp",APAC,Hydraulic Pumps,9071.03,36 days,Active,2.9/5.0
+6617,Adams-Brown,NA,Hydraulic Pumps,3942.64,7 days,Inactive,3.0/5.0
+6618,Lee LLC,EU,Industrial Lubricants,7602.46,36 days,Inactive,4.2/5.0
+6619,"Martin, Hunt and Woods",NA,Industrial Lubricants,771.4,28 days,Pending,3.9/5.0
+6620,"Osborne, Morris and Phelps",EU,CNC Machine Parts,1337.54,38 days,Pending,3.8/5.0
+6621,Cox LLC,LATAM,Ball Bearings,1930.47,5 days,Pending,2.7/5.0
+6622,"Brown, Hall and Gordon",MEA,Ball Bearings,9597.84,39 days,Pending,2.9/5.0
+6623,Ramsey and Sons,APAC,Ball Bearings,2068.95,5 days,Active,4.8/5.0
+6624,Nguyen-White,LATAM,Ball Bearings,8933.05,36 days,Inactive,3.2/5.0
+6625,Jimenez LLC,LATAM,Industrial Lubricants,243.1,17 days,Active,2.8/5.0
+6626,Chavez-Moore,MEA,CNC Machine Parts,8592.35,39 days,Active,4.4/5.0
+6627,"Montoya, Reed and Davis",NA,Hydraulic Pumps,2246.44,16 days,Inactive,3.2/5.0
+6628,"Suarez, Rodriguez and Hunt",EU,Ball Bearings,8892.22,18 days,Pending,4.1/5.0
+6629,Allen-Miller,MEA,Industrial Lubricants,6390.5,22 days,Inactive,4.8/5.0
+6630,"Brooks, Green and Brown",MEA,Ball Bearings,4597.85,31 days,Active,3.7/5.0
+6631,Harris Group,EU,Aluminum Sheets,4169.17,14 days,Pending,4.0/5.0
+6632,"Williamson, Pittman and Nunez",APAC,Ball Bearings,6341.63,19 days,Pending,3.5/5.0
+6633,Johnson-Proctor,APAC,CNC Machine Parts,3467.28,29 days,Active,4.2/5.0
+6634,Day-Williams,LATAM,Industrial Lubricants,163.12,7 days,Active,3.2/5.0
+6635,"Tanner, Scott and Gomez",APAC,Aluminum Sheets,5001.26,23 days,Active,3.7/5.0
+6636,Smith LLC,APAC,CNC Machine Parts,2641.32,6 days,Active,4.2/5.0
+6637,Andrews LLC,EU,CNC Machine Parts,2773.47,7 days,Active,5.0/5.0
+6638,Williams PLC,MEA,Hydraulic Pumps,5672.01,25 days,Active,4.5/5.0
+6639,"Hughes, Tyler and Henderson",APAC,Hydraulic Pumps,9974.57,40 days,Inactive,3.9/5.0
+6640,Wright Group,MEA,CNC Machine Parts,2080.95,6 days,Pending,4.4/5.0
+6641,Morris and Sons,APAC,Hydraulic Pumps,7594.01,40 days,Inactive,3.9/5.0
+6642,"Krueger, Roberson and Gibson",NA,Industrial Lubricants,6752.69,24 days,Pending,4.8/5.0
+6643,Martin-Walker,MEA,Aluminum Sheets,4276.37,29 days,Inactive,2.9/5.0
+6644,Graham-Cruz,EU,Aluminum Sheets,4412.22,32 days,Active,3.8/5.0
+6645,Walters-Weber,APAC,CNC Machine Parts,3745.6,40 days,Pending,4.9/5.0
+6646,Fisher LLC,APAC,Hydraulic Pumps,7495.5,20 days,Active,4.5/5.0
+6647,Walls-Obrien,LATAM,Ball Bearings,1510.57,19 days,Active,2.8/5.0
+6648,Patterson-Garcia,MEA,Aluminum Sheets,1383.0,17 days,Pending,4.2/5.0
+6649,"Robinson, Lee and Perez",LATAM,Aluminum Sheets,7841.97,7 days,Inactive,4.4/5.0
+6650,Larson-Hall,APAC,Hydraulic Pumps,7850.76,25 days,Pending,4.7/5.0
+6651,Adams Inc,NA,CNC Machine Parts,3068.07,15 days,Pending,4.9/5.0
+6652,Cunningham-Clark,EU,Aluminum Sheets,1762.52,17 days,Inactive,3.2/5.0
+6653,"Ruiz, Smith and Small",EU,Industrial Lubricants,3838.29,25 days,Inactive,4.8/5.0
+6654,"Carey, Martinez and Moore",NA,CNC Machine Parts,560.57,28 days,Inactive,3.9/5.0
+6655,"Poole, Mckinney and Lloyd",EU,Aluminum Sheets,4768.55,12 days,Inactive,4.1/5.0
+6656,"Garcia, Little and Griffin",LATAM,Hydraulic Pumps,2863.11,7 days,Pending,2.9/5.0
+6657,Jordan LLC,APAC,Aluminum Sheets,659.84,25 days,Pending,3.8/5.0
+6658,Williamson Inc,LATAM,Industrial Lubricants,1117.17,20 days,Pending,2.7/5.0
+6659,Adkins PLC,LATAM,Hydraulic Pumps,960.51,7 days,Inactive,2.8/5.0
+6660,Jones PLC,NA,Aluminum Sheets,831.86,13 days,Inactive,2.6/5.0
+6661,Rhodes-Lewis,APAC,Industrial Lubricants,3332.26,14 days,Active,3.6/5.0
+6662,Russell PLC,NA,Industrial Lubricants,2528.17,31 days,Inactive,3.8/5.0
+6663,Warren-Hunt,MEA,Industrial Lubricants,9642.22,28 days,Inactive,4.9/5.0
+6664,"Barr, Jacobs and Lee",LATAM,Aluminum Sheets,6085.78,29 days,Active,3.1/5.0
+6665,Reese PLC,NA,Ball Bearings,7312.76,37 days,Pending,4.3/5.0
+6666,Barry-Reed,APAC,Hydraulic Pumps,1799.47,11 days,Inactive,2.8/5.0
+6667,Diaz Inc,MEA,Industrial Lubricants,8841.98,24 days,Inactive,2.7/5.0
+6668,Rodriguez-Leonard,EU,Ball Bearings,3416.59,11 days,Active,4.5/5.0
+6669,Bell-Barnett,MEA,Aluminum Sheets,9807.01,22 days,Inactive,4.8/5.0
+6670,Clark-Becker,LATAM,Hydraulic Pumps,5039.82,35 days,Pending,4.3/5.0
+6671,"Edwards, Ingram and Brown",LATAM,Hydraulic Pumps,8365.32,31 days,Active,2.7/5.0
+6672,Warner-Palmer,LATAM,Industrial Lubricants,278.85,10 days,Active,3.1/5.0
+6673,Montgomery Inc,EU,Hydraulic Pumps,9750.25,9 days,Active,4.4/5.0
+6674,"Roberts, Ramirez and Marshall",NA,Industrial Lubricants,4284.95,18 days,Active,3.3/5.0
+6675,Wallace PLC,NA,Aluminum Sheets,1334.6,22 days,Inactive,3.4/5.0
+6676,"Cox, Newman and Wagner",EU,CNC Machine Parts,8434.38,23 days,Inactive,3.8/5.0
+6677,Powell-Hancock,NA,Aluminum Sheets,4514.67,30 days,Active,4.0/5.0
+6678,Anderson-Macias,NA,CNC Machine Parts,2515.11,37 days,Active,2.7/5.0
+6679,Soto-Lozano,LATAM,CNC Machine Parts,4046.28,30 days,Active,4.3/5.0
+6680,Brown LLC,APAC,Hydraulic Pumps,3062.96,15 days,Pending,3.4/5.0
+6681,Watson-Gray,EU,Industrial Lubricants,3769.47,16 days,Inactive,3.4/5.0
+6682,"Young, Montes and Davis",EU,Hydraulic Pumps,833.17,20 days,Active,4.7/5.0
+6683,Hall Group,EU,Hydraulic Pumps,3809.8,21 days,Inactive,4.4/5.0
+6684,Cole LLC,LATAM,Ball Bearings,2835.4,18 days,Inactive,3.1/5.0
+6685,Bailey PLC,APAC,Hydraulic Pumps,5999.18,13 days,Inactive,3.3/5.0
+6686,"Hardin, Harris and Hernandez",MEA,Hydraulic Pumps,1413.16,13 days,Inactive,4.5/5.0
+6687,"Ortiz, Hickman and Ryan",NA,Aluminum Sheets,8424.75,15 days,Active,4.4/5.0
+6688,Cruz Inc,EU,Hydraulic Pumps,4878.63,11 days,Pending,3.2/5.0
+6689,Harding-Kane,EU,Hydraulic Pumps,3209.92,10 days,Inactive,4.9/5.0
+6690,Gonzales-Hunt,APAC,Aluminum Sheets,4064.71,14 days,Inactive,3.3/5.0
+6691,Hall-Gordon,MEA,CNC Machine Parts,1208.06,26 days,Inactive,4.5/5.0
+6692,Jimenez-Escobar,NA,Hydraulic Pumps,922.83,37 days,Active,3.7/5.0
+6693,"Anderson, Chen and Peterson",APAC,Ball Bearings,9984.63,10 days,Active,3.7/5.0
+6694,"Mclaughlin, Perry and Snyder",APAC,Ball Bearings,570.32,20 days,Inactive,3.8/5.0
+6695,"Preston, Williams and Coleman",EU,CNC Machine Parts,7094.82,23 days,Active,2.8/5.0
+6696,Jones and Sons,MEA,Ball Bearings,334.7,24 days,Inactive,3.4/5.0
+6697,Cabrera Inc,EU,Hydraulic Pumps,7324.22,10 days,Inactive,3.6/5.0
+6698,"Burnett, Carpenter and Smith",NA,Hydraulic Pumps,1996.79,9 days,Inactive,4.2/5.0
+6699,"Ho, Mejia and Rosario",LATAM,Industrial Lubricants,5553.51,30 days,Pending,4.8/5.0
+6700,"Coleman, Davis and Sanchez",LATAM,CNC Machine Parts,3403.38,16 days,Active,4.6/5.0
+6701,"Paul, Pruitt and Kline",NA,Aluminum Sheets,6299.86,34 days,Pending,3.8/5.0
+6702,Rodriguez-Young,NA,Hydraulic Pumps,2254.51,38 days,Active,4.4/5.0
+6703,"Chapman, Hull and Valdez",EU,Hydraulic Pumps,3908.91,7 days,Pending,2.6/5.0
+6704,Wang-Johnson,EU,Industrial Lubricants,5334.1,25 days,Active,3.7/5.0
+6705,Gentry-Sexton,MEA,Ball Bearings,9337.7,21 days,Inactive,2.9/5.0
+6706,West-Wilson,LATAM,Aluminum Sheets,6989.95,17 days,Active,4.6/5.0
+6707,Bonilla Ltd,EU,Industrial Lubricants,463.22,29 days,Inactive,4.1/5.0
+6708,"Neal, Noble and Martinez",EU,Ball Bearings,7570.85,6 days,Active,4.8/5.0
+6709,Johnson PLC,NA,CNC Machine Parts,1019.19,28 days,Active,2.8/5.0
+6710,Rodriguez LLC,MEA,Hydraulic Pumps,3100.33,18 days,Pending,2.6/5.0
+6711,"Carr, Barton and Reilly",NA,CNC Machine Parts,6695.62,17 days,Inactive,3.1/5.0
+6712,Davis PLC,MEA,Hydraulic Pumps,7162.39,15 days,Active,3.1/5.0
+6713,Martin-Lee,MEA,CNC Machine Parts,3547.8,39 days,Pending,3.9/5.0
+6714,Wright Group,MEA,Ball Bearings,6445.06,37 days,Pending,4.7/5.0
+6715,Williams-Vazquez,LATAM,Ball Bearings,1735.29,25 days,Pending,4.3/5.0
+6716,"Myers, Kelley and Johnson",LATAM,Aluminum Sheets,1319.04,10 days,Inactive,3.4/5.0
+6717,Chavez-Duran,NA,CNC Machine Parts,1449.57,10 days,Active,4.7/5.0
+6718,Allen-Carlson,LATAM,Industrial Lubricants,2371.95,33 days,Active,4.0/5.0
+6719,Holland-Butler,EU,Industrial Lubricants,1689.24,10 days,Pending,2.7/5.0
+6720,Barnes-Edwards,MEA,CNC Machine Parts,5951.0,30 days,Pending,3.3/5.0
+6721,"Garcia, Sweeney and Smith",MEA,CNC Machine Parts,7559.45,37 days,Active,4.5/5.0
+6722,"West, Taylor and Smith",LATAM,Industrial Lubricants,1398.53,33 days,Pending,4.5/5.0
+6723,Ruiz-Medina,APAC,Hydraulic Pumps,1046.63,25 days,Pending,3.2/5.0
+6724,"Meadows, Graham and Hanson",MEA,Aluminum Sheets,8772.06,28 days,Pending,3.0/5.0
+6725,Murray-Diaz,LATAM,Hydraulic Pumps,5521.4,33 days,Inactive,4.0/5.0
+6726,"Patel, Simmons and Freeman",EU,Industrial Lubricants,2461.45,32 days,Inactive,4.1/5.0
+6727,Bishop-Pope,APAC,CNC Machine Parts,3548.2,7 days,Pending,3.4/5.0
+6728,Fletcher LLC,APAC,Ball Bearings,228.43,33 days,Pending,3.1/5.0
+6729,"Cardenas, Smith and Cross",EU,Aluminum Sheets,1518.83,12 days,Inactive,2.8/5.0
+6730,"Palmer, Heath and Barnes",NA,Ball Bearings,8308.48,8 days,Inactive,3.9/5.0
+6731,Holt and Sons,APAC,Aluminum Sheets,261.67,15 days,Active,3.9/5.0
+6732,Fleming and Sons,NA,Hydraulic Pumps,4961.87,19 days,Inactive,3.3/5.0
+6733,"Adams, Wyatt and Scott",LATAM,Hydraulic Pumps,9942.19,10 days,Pending,2.7/5.0
+6734,"Sims, Wilson and Flores",MEA,Industrial Lubricants,8984.77,39 days,Active,2.6/5.0
+6735,Wilcox Ltd,LATAM,Ball Bearings,7509.23,7 days,Pending,3.6/5.0
+6736,Mcknight-Molina,EU,CNC Machine Parts,9276.74,28 days,Active,3.9/5.0
+6737,Walker PLC,LATAM,Ball Bearings,8018.35,18 days,Active,3.4/5.0
+6738,Lewis Ltd,EU,Aluminum Sheets,3767.24,32 days,Inactive,4.7/5.0
+6739,Williams Group,LATAM,Aluminum Sheets,6597.79,8 days,Inactive,2.5/5.0
+6740,Cruz-Jackson,LATAM,Ball Bearings,4600.7,31 days,Inactive,4.4/5.0
+6741,Browning-Cole,APAC,Industrial Lubricants,3707.69,22 days,Active,2.8/5.0
+6742,Grimes-Dunn,NA,Aluminum Sheets,5733.55,6 days,Active,2.8/5.0
+6743,Moore-Wright,NA,CNC Machine Parts,4114.72,28 days,Active,3.7/5.0
+6744,Aguirre-Andrews,MEA,Industrial Lubricants,1910.16,6 days,Active,4.2/5.0
+6745,"Kramer, Bennett and Williams",APAC,Aluminum Sheets,795.99,9 days,Active,4.3/5.0
+6746,Kelly-Warren,APAC,Aluminum Sheets,6312.52,27 days,Active,4.9/5.0
+6747,Byrd-Pugh,NA,Hydraulic Pumps,4146.28,26 days,Pending,4.2/5.0
+6748,"Vaughn, Johnson and Murillo",LATAM,CNC Machine Parts,9394.41,13 days,Inactive,4.3/5.0
+6749,Espinoza PLC,MEA,Aluminum Sheets,3178.08,8 days,Pending,4.6/5.0
+6750,"Jacobs, Wiggins and Blake",APAC,Ball Bearings,7615.72,32 days,Inactive,2.6/5.0
+6751,Mcmahon-Norris,APAC,CNC Machine Parts,3089.11,9 days,Active,4.1/5.0
+6752,Marsh-Martinez,MEA,Industrial Lubricants,932.76,24 days,Pending,3.8/5.0
+6753,"Joyce, Thompson and Smith",EU,Ball Bearings,7402.38,36 days,Active,4.1/5.0
+6754,Gill Ltd,NA,Hydraulic Pumps,9277.81,18 days,Active,4.2/5.0
+6755,Cherry-Huber,LATAM,Aluminum Sheets,5063.22,22 days,Pending,3.3/5.0
+6756,"Dunn, Fitzgerald and Johnson",NA,Aluminum Sheets,1829.75,29 days,Active,4.5/5.0
+6757,Love and Sons,MEA,Ball Bearings,163.04,34 days,Active,4.1/5.0
+6758,Turner Ltd,APAC,Hydraulic Pumps,4462.38,34 days,Active,4.1/5.0
+6759,Parker-Johnson,EU,Industrial Lubricants,7907.62,39 days,Active,3.3/5.0
+6760,Wilson-Kane,APAC,Industrial Lubricants,5423.59,20 days,Active,3.4/5.0
+6761,Herrera and Sons,MEA,Industrial Lubricants,811.03,25 days,Active,3.0/5.0
+6762,Young and Sons,MEA,Ball Bearings,8931.96,32 days,Active,3.8/5.0
+6763,Nelson Ltd,MEA,Hydraulic Pumps,3134.09,29 days,Pending,4.9/5.0
+6764,Gordon and Sons,APAC,Aluminum Sheets,7501.42,19 days,Inactive,3.1/5.0
+6765,Cooper-Beck,NA,Aluminum Sheets,5650.07,27 days,Pending,5.0/5.0
+6766,Blankenship-Frank,APAC,Ball Bearings,7679.05,17 days,Inactive,3.0/5.0
+6767,"Smith, Martin and Quinn",EU,Ball Bearings,8403.51,10 days,Inactive,3.6/5.0
+6768,Schultz-Anderson,MEA,Hydraulic Pumps,3664.48,23 days,Inactive,4.8/5.0
+6769,"Murphy, Davis and Baker",EU,CNC Machine Parts,2243.72,17 days,Active,3.7/5.0
+6770,"Rogers, Diaz and Ellis",EU,CNC Machine Parts,8536.47,39 days,Pending,4.0/5.0
+6771,Fisher PLC,EU,Industrial Lubricants,3825.79,14 days,Pending,3.9/5.0
+6772,"Williams, Watson and Bell",LATAM,Hydraulic Pumps,1588.44,7 days,Pending,4.8/5.0
+6773,Stewart-Fields,MEA,Aluminum Sheets,6298.66,21 days,Inactive,3.3/5.0
+6774,"Taylor, Anderson and Smith",APAC,CNC Machine Parts,840.57,17 days,Pending,2.6/5.0
+6775,"Lindsey, Walton and Lee",EU,CNC Machine Parts,947.52,30 days,Active,3.1/5.0
+6776,Johnson and Sons,LATAM,Ball Bearings,4906.98,22 days,Active,2.7/5.0
+6777,Green-Carter,NA,Ball Bearings,3647.21,22 days,Pending,2.9/5.0
+6778,Kim PLC,LATAM,Industrial Lubricants,6192.99,39 days,Pending,3.5/5.0
+6779,Becker Group,NA,CNC Machine Parts,2767.41,31 days,Inactive,4.4/5.0
+6780,Moore-Wilson,EU,CNC Machine Parts,1677.75,9 days,Active,4.7/5.0
+6781,Douglas-Johnson,APAC,Industrial Lubricants,1514.65,30 days,Pending,4.7/5.0
+6782,Spencer-Hurley,EU,CNC Machine Parts,9487.55,36 days,Active,3.2/5.0
+6783,Nelson-Martinez,LATAM,Ball Bearings,8528.66,20 days,Inactive,3.7/5.0
+6784,Hayes LLC,MEA,Ball Bearings,5788.34,34 days,Active,3.7/5.0
+6785,"Moss, Bennett and Mejia",MEA,Ball Bearings,502.4,10 days,Pending,2.7/5.0
+6786,"Roberts, Jacobs and Jones",EU,Hydraulic Pumps,9984.06,31 days,Inactive,4.3/5.0
+6787,Daniels Group,EU,Hydraulic Pumps,2684.4,12 days,Pending,3.9/5.0
+6788,Marshall LLC,NA,Ball Bearings,6945.57,21 days,Pending,4.3/5.0
+6789,Jennings-Estrada,EU,CNC Machine Parts,9410.31,37 days,Active,3.2/5.0
+6790,"Coleman, Fisher and Jones",MEA,Hydraulic Pumps,3518.95,16 days,Inactive,3.9/5.0
+6791,"Wolf, Warren and Olsen",LATAM,Ball Bearings,3449.98,15 days,Pending,2.7/5.0
+6792,Bautista and Sons,LATAM,Industrial Lubricants,3171.52,31 days,Inactive,3.4/5.0
+6793,Buck-Morris,MEA,Ball Bearings,4695.82,15 days,Inactive,4.7/5.0
+6794,Martin Group,LATAM,Aluminum Sheets,3127.8,18 days,Active,3.8/5.0
+6795,Singh-Herring,LATAM,Ball Bearings,1090.81,8 days,Inactive,4.7/5.0
+6796,Allen-Hawkins,NA,CNC Machine Parts,683.38,25 days,Pending,2.7/5.0
+6797,Taylor-Mcdonald,NA,Industrial Lubricants,4865.95,33 days,Pending,4.7/5.0
+6798,Taylor-Sims,EU,Hydraulic Pumps,4817.13,26 days,Pending,3.3/5.0
+6799,"Kelly, Hansen and Charles",LATAM,Ball Bearings,6581.27,40 days,Inactive,4.3/5.0
+6800,"Greene, Mcgee and Taylor",EU,Hydraulic Pumps,2833.25,22 days,Pending,3.7/5.0
+6801,"Mccullough, Kirby and Elliott",EU,Ball Bearings,2603.73,32 days,Active,3.2/5.0
+6802,Smith Ltd,MEA,Hydraulic Pumps,8761.22,19 days,Active,3.6/5.0
+6803,"Meyer, Hill and Parker",APAC,CNC Machine Parts,6126.22,38 days,Inactive,3.9/5.0
+6804,Richardson PLC,EU,CNC Machine Parts,2433.83,36 days,Inactive,4.5/5.0
+6805,Horne PLC,LATAM,CNC Machine Parts,1791.36,20 days,Active,3.2/5.0
+6806,White-Ramos,EU,Ball Bearings,3589.08,5 days,Pending,4.4/5.0
+6807,Walls Inc,LATAM,Industrial Lubricants,3612.98,37 days,Pending,3.4/5.0
+6808,Tran-Miller,LATAM,CNC Machine Parts,2665.93,40 days,Inactive,3.8/5.0
+6809,"Harris, Gonzalez and Lucero",LATAM,CNC Machine Parts,161.08,28 days,Pending,4.0/5.0
+6810,"Ramirez, Mckenzie and Sloan",NA,Industrial Lubricants,1256.62,21 days,Active,3.4/5.0
+6811,"Bass, Gutierrez and Smith",EU,Hydraulic Pumps,2501.21,34 days,Inactive,4.7/5.0
+6812,Spears LLC,LATAM,Industrial Lubricants,8955.09,20 days,Inactive,3.6/5.0
+6813,Ward-Chavez,LATAM,Ball Bearings,7157.94,7 days,Inactive,2.8/5.0
+6814,"Burns, Walls and Perez",LATAM,CNC Machine Parts,285.53,30 days,Pending,3.8/5.0
+6815,Wilson-Smith,NA,CNC Machine Parts,6128.04,38 days,Pending,3.7/5.0
+6816,Parrish-Banks,EU,Aluminum Sheets,3835.32,5 days,Active,2.7/5.0
+6817,"Ross, Silva and Berry",EU,Hydraulic Pumps,5028.1,18 days,Inactive,4.0/5.0
+6818,Hall-Garrett,EU,Hydraulic Pumps,8126.21,5 days,Inactive,4.4/5.0
+6819,Wong and Sons,LATAM,Industrial Lubricants,5400.86,15 days,Active,4.3/5.0
+6820,Pena-Combs,LATAM,Hydraulic Pumps,8017.36,7 days,Inactive,4.8/5.0
+6821,Velasquez-Perez,LATAM,Industrial Lubricants,8681.9,32 days,Inactive,4.9/5.0
+6822,"Henderson, Shelton and Greer",NA,Aluminum Sheets,8269.03,29 days,Inactive,3.5/5.0
+6823,"Coffey, Chavez and Schmidt",NA,Ball Bearings,2974.85,12 days,Pending,4.3/5.0
+6824,Richard Ltd,APAC,Ball Bearings,2089.91,31 days,Inactive,4.4/5.0
+6825,"Galloway, Whitehead and Stewart",NA,CNC Machine Parts,4552.85,10 days,Active,3.8/5.0
+6826,"Abbott, Brock and Frazier",NA,CNC Machine Parts,3933.32,39 days,Active,3.0/5.0
+6827,Jimenez Ltd,EU,Hydraulic Pumps,148.57,7 days,Inactive,3.3/5.0
+6828,Smith Ltd,MEA,Industrial Lubricants,4364.3,40 days,Active,4.1/5.0
+6829,Dickerson and Sons,MEA,CNC Machine Parts,8463.86,34 days,Inactive,3.9/5.0
+6830,Humphrey LLC,EU,Ball Bearings,6751.85,32 days,Inactive,4.0/5.0
+6831,"Peterson, Li and Richards",APAC,Industrial Lubricants,4768.13,38 days,Inactive,3.5/5.0
+6832,Delgado and Sons,EU,Industrial Lubricants,5706.94,18 days,Pending,3.9/5.0
+6833,"Marsh, Lewis and Butler",APAC,Industrial Lubricants,3054.41,28 days,Pending,3.6/5.0
+6834,Thomas-Williams,NA,Industrial Lubricants,8562.2,31 days,Active,4.5/5.0
+6835,Rogers LLC,LATAM,Aluminum Sheets,4424.92,27 days,Active,3.2/5.0
+6836,"Pena, Potts and Harmon",MEA,Aluminum Sheets,7896.21,38 days,Active,3.4/5.0
+6837,"Jacobson, Cross and Elliott",APAC,Ball Bearings,2900.58,15 days,Pending,4.3/5.0
+6838,"Mcclure, Young and Johnson",EU,Industrial Lubricants,9849.59,34 days,Pending,4.9/5.0
+6839,"Smith, Huynh and Thomas",NA,Aluminum Sheets,5199.32,20 days,Active,2.6/5.0
+6840,"Davis, Sanchez and Oconnor",LATAM,Hydraulic Pumps,1376.77,33 days,Active,4.9/5.0
+6841,"Mccoy, Finley and Kelly",MEA,Ball Bearings,9637.47,25 days,Inactive,4.6/5.0
+6842,Solis Ltd,EU,CNC Machine Parts,1843.66,29 days,Inactive,3.2/5.0
+6843,Simmons-Taylor,MEA,Aluminum Sheets,788.25,39 days,Inactive,3.6/5.0
+6844,"Cain, Reeves and Walton",APAC,Aluminum Sheets,778.7,11 days,Inactive,3.6/5.0
+6845,Keller PLC,LATAM,Aluminum Sheets,9518.93,16 days,Pending,3.3/5.0
+6846,Thompson-Griffith,LATAM,Aluminum Sheets,4564.41,19 days,Inactive,3.0/5.0
+6847,"Johnson, Lutz and Lloyd",NA,Hydraulic Pumps,7593.97,33 days,Active,4.0/5.0
+6848,Chapman-Fox,EU,Industrial Lubricants,5767.13,11 days,Pending,3.8/5.0
+6849,"Ford, Horton and Clay",APAC,Hydraulic Pumps,8134.88,23 days,Inactive,4.3/5.0
+6850,"Carter, Rivera and Jones",APAC,Aluminum Sheets,4443.28,36 days,Active,2.6/5.0
+6851,"Bennett, Stevenson and Chung",LATAM,Aluminum Sheets,4136.27,36 days,Pending,2.8/5.0
+6852,Hurley-Vaughan,MEA,Ball Bearings,153.08,26 days,Active,3.9/5.0
+6853,"Bell, Miller and Perkins",LATAM,CNC Machine Parts,8403.7,7 days,Inactive,3.1/5.0
+6854,"Pittman, Pearson and Harris",EU,CNC Machine Parts,6483.45,27 days,Inactive,3.0/5.0
+6855,Pollard-Aguirre,LATAM,CNC Machine Parts,9021.39,8 days,Pending,4.7/5.0
+6856,"Robinson, Brown and Osborne",EU,CNC Machine Parts,6146.11,24 days,Active,4.1/5.0
+6857,Green LLC,LATAM,Hydraulic Pumps,899.35,23 days,Pending,4.4/5.0
+6858,Saunders-Coleman,LATAM,Hydraulic Pumps,9580.29,24 days,Pending,2.5/5.0
+6859,"Miller, Guerrero and Fletcher",MEA,Hydraulic Pumps,6590.27,12 days,Pending,3.7/5.0
+6860,"Gill, Hines and Flores",MEA,Industrial Lubricants,7115.73,34 days,Active,4.6/5.0
+6861,"Gonzalez, Lewis and Clayton",MEA,Ball Bearings,6711.72,23 days,Pending,4.7/5.0
+6862,Smith LLC,NA,Aluminum Sheets,7235.2,27 days,Active,2.8/5.0
+6863,"Jones, Murphy and Ward",NA,Industrial Lubricants,6064.54,22 days,Inactive,3.3/5.0
+6864,Brown and Sons,MEA,Aluminum Sheets,8228.47,36 days,Pending,2.6/5.0
+6865,Rice Group,EU,Aluminum Sheets,1718.52,13 days,Active,3.6/5.0
+6866,Miller and Sons,EU,Ball Bearings,5423.75,26 days,Active,3.4/5.0
+6867,"Campbell, Miller and Anderson",NA,Aluminum Sheets,1087.45,5 days,Inactive,3.0/5.0
+6868,Guerrero Group,NA,CNC Machine Parts,9100.76,34 days,Active,4.6/5.0
+6869,Price Inc,LATAM,Aluminum Sheets,4263.2,25 days,Active,3.0/5.0
+6870,"Mccormick, Warren and Love",MEA,Industrial Lubricants,1772.9,17 days,Active,4.8/5.0
+6871,"Porter, Shaffer and Peck",EU,Hydraulic Pumps,4557.05,6 days,Pending,4.6/5.0
+6872,Patterson LLC,APAC,Hydraulic Pumps,7950.22,32 days,Active,2.7/5.0
+6873,Bryant-Rodriguez,LATAM,Ball Bearings,9695.5,7 days,Active,4.1/5.0
+6874,Long-Mcdaniel,NA,CNC Machine Parts,2291.1,10 days,Pending,4.5/5.0
+6875,"Chan, Mckee and Williams",LATAM,CNC Machine Parts,2942.75,12 days,Pending,2.5/5.0
+6876,Walker-Anderson,EU,CNC Machine Parts,5961.25,19 days,Inactive,4.5/5.0
+6877,Lynch-Taylor,APAC,CNC Machine Parts,6118.18,8 days,Inactive,3.2/5.0
+6878,Wong-Richardson,MEA,Aluminum Sheets,3240.28,14 days,Active,4.9/5.0
+6879,Valentine PLC,LATAM,Industrial Lubricants,8273.01,9 days,Pending,4.7/5.0
+6880,"Wyatt, Perry and Campbell",MEA,Ball Bearings,6127.8,25 days,Pending,2.8/5.0
+6881,Young Group,APAC,Ball Bearings,253.73,16 days,Active,3.4/5.0
+6882,"Martinez, Lyons and Evans",MEA,Aluminum Sheets,8008.86,24 days,Active,4.2/5.0
+6883,"Coleman, Luna and Dunn",NA,CNC Machine Parts,3691.85,31 days,Active,3.8/5.0
+6884,Pope and Sons,MEA,CNC Machine Parts,9728.14,15 days,Pending,3.4/5.0
+6885,"Cervantes, Pruitt and Campbell",NA,CNC Machine Parts,3237.31,13 days,Pending,2.6/5.0
+6886,Garcia-Patton,EU,CNC Machine Parts,1057.77,24 days,Active,2.8/5.0
+6887,Simon-Williams,APAC,Aluminum Sheets,1972.46,25 days,Pending,2.9/5.0
+6888,Gibbs and Sons,EU,Aluminum Sheets,299.14,32 days,Active,4.3/5.0
+6889,Munoz PLC,APAC,Ball Bearings,9082.27,12 days,Inactive,3.9/5.0
+6890,"Gordon, Ritter and Parks",LATAM,Ball Bearings,4282.16,38 days,Inactive,3.2/5.0
+6891,Kramer-Stewart,LATAM,Industrial Lubricants,9597.16,18 days,Inactive,2.9/5.0
+6892,White-Ramirez,LATAM,CNC Machine Parts,5218.76,22 days,Pending,4.3/5.0
+6893,Padilla-Taylor,NA,Aluminum Sheets,1429.99,30 days,Active,4.9/5.0
+6894,Parks Ltd,MEA,CNC Machine Parts,6370.9,22 days,Pending,4.2/5.0
+6895,Hahn-Solis,NA,Hydraulic Pumps,2101.14,24 days,Pending,3.7/5.0
+6896,Jackson LLC,NA,Hydraulic Pumps,867.82,6 days,Pending,5.0/5.0
+6897,Snow Group,APAC,Industrial Lubricants,2131.41,29 days,Active,5.0/5.0
+6898,Schwartz-Trevino,LATAM,Hydraulic Pumps,264.65,22 days,Pending,4.6/5.0
+6899,Parker-Lane,LATAM,Hydraulic Pumps,866.36,33 days,Active,4.7/5.0
+6900,"Cox, Stone and Tucker",LATAM,Industrial Lubricants,7181.35,17 days,Active,3.7/5.0
+6901,"Bell, Perez and White",LATAM,Aluminum Sheets,9936.8,7 days,Pending,3.4/5.0
+6902,Crawford Group,APAC,Aluminum Sheets,4011.8,13 days,Inactive,3.2/5.0
+6903,Trevino-Brown,NA,Ball Bearings,6120.53,16 days,Pending,4.4/5.0
+6904,Thompson Inc,MEA,Ball Bearings,5865.06,31 days,Inactive,4.6/5.0
+6905,Owens-Brown,LATAM,Ball Bearings,6619.07,24 days,Active,3.8/5.0
+6906,Simpson-Ramirez,MEA,Industrial Lubricants,4911.18,36 days,Pending,3.5/5.0
+6907,Hicks-Walton,NA,CNC Machine Parts,353.58,36 days,Pending,4.9/5.0
+6908,Caldwell Inc,MEA,CNC Machine Parts,7032.98,25 days,Pending,3.4/5.0
+6909,Ray LLC,NA,Ball Bearings,9877.89,15 days,Inactive,3.7/5.0
+6910,Vasquez PLC,MEA,Hydraulic Pumps,7532.37,22 days,Pending,3.2/5.0
+6911,Jennings Group,APAC,Industrial Lubricants,2414.04,15 days,Inactive,2.6/5.0
+6912,Fuentes Ltd,MEA,Hydraulic Pumps,4977.94,34 days,Pending,3.6/5.0
+6913,"Erickson, Owen and Snyder",LATAM,Hydraulic Pumps,7504.53,7 days,Inactive,4.1/5.0
+6914,"Gutierrez, Mccormick and Singh",NA,CNC Machine Parts,7586.66,9 days,Active,3.8/5.0
+6915,Johnson LLC,MEA,Hydraulic Pumps,9271.88,40 days,Pending,4.3/5.0
+6916,"Miller, Cummings and Cummings",NA,CNC Machine Parts,2969.28,39 days,Pending,3.7/5.0
+6917,Benson-Edwards,EU,Aluminum Sheets,4187.06,18 days,Active,5.0/5.0
+6918,Anderson Ltd,LATAM,Ball Bearings,3167.35,36 days,Inactive,2.6/5.0
+6919,Newton LLC,APAC,Aluminum Sheets,5847.58,9 days,Inactive,2.7/5.0
+6920,Torres Inc,NA,Hydraulic Pumps,322.16,13 days,Pending,4.5/5.0
+6921,Caldwell Inc,MEA,Ball Bearings,6786.1,20 days,Pending,2.8/5.0
+6922,"Miller, Hayes and Hill",EU,CNC Machine Parts,5627.84,24 days,Active,4.5/5.0
+6923,Jimenez Group,APAC,CNC Machine Parts,5020.58,31 days,Inactive,3.5/5.0
+6924,Schmidt Ltd,APAC,CNC Machine Parts,2703.48,34 days,Active,4.2/5.0
+6925,Villanueva Ltd,LATAM,Aluminum Sheets,2293.63,38 days,Active,4.8/5.0
+6926,"Rogers, Boyd and Goodman",NA,Industrial Lubricants,3869.13,17 days,Active,4.7/5.0
+6927,Anderson-White,EU,Hydraulic Pumps,7581.67,20 days,Active,3.9/5.0
+6928,Bender-Thompson,MEA,Hydraulic Pumps,3434.52,19 days,Pending,4.4/5.0
+6929,Wright LLC,LATAM,Hydraulic Pumps,5719.31,7 days,Pending,3.0/5.0
+6930,"Matthews, Hale and Bennett",MEA,Industrial Lubricants,3130.02,18 days,Inactive,2.7/5.0
+6931,Brown LLC,EU,Hydraulic Pumps,6742.7,10 days,Inactive,3.9/5.0
+6932,Goodman-Thomas,NA,Aluminum Sheets,2126.64,29 days,Pending,4.9/5.0
+6933,Coleman-Newton,NA,CNC Machine Parts,4375.88,8 days,Pending,3.8/5.0
+6934,"Porter, Ward and Orozco",NA,Ball Bearings,8147.31,30 days,Pending,3.2/5.0
+6935,Baker PLC,NA,Hydraulic Pumps,8535.61,28 days,Inactive,3.4/5.0
+6936,Choi-Davis,LATAM,Ball Bearings,1987.14,10 days,Inactive,3.1/5.0
+6937,Lee Group,MEA,CNC Machine Parts,351.16,8 days,Pending,3.4/5.0
+6938,Garcia-Welch,APAC,Industrial Lubricants,9148.86,11 days,Pending,4.0/5.0
+6939,Vasquez-Gomez,MEA,Aluminum Sheets,2190.29,28 days,Pending,3.1/5.0
+6940,Dunlap LLC,NA,Ball Bearings,6757.02,37 days,Active,4.3/5.0
+6941,Payne-Bates,APAC,Industrial Lubricants,5940.4,24 days,Pending,4.6/5.0
+6942,"Hughes, Adams and Jones",APAC,Aluminum Sheets,6447.61,27 days,Inactive,3.0/5.0
+6943,Lloyd LLC,NA,Hydraulic Pumps,2618.02,38 days,Inactive,4.7/5.0
+6944,"Gibson, Black and Bennett",LATAM,Ball Bearings,5467.71,7 days,Pending,4.3/5.0
+6945,Mullins Inc,MEA,Industrial Lubricants,4089.52,38 days,Active,4.2/5.0
+6946,"Whitney, Price and Haney",MEA,Aluminum Sheets,6392.9,35 days,Inactive,4.6/5.0
+6947,James-Willis,EU,Hydraulic Pumps,6770.85,12 days,Pending,4.4/5.0
+6948,Wells PLC,NA,Hydraulic Pumps,9625.5,12 days,Inactive,2.9/5.0
+6949,"Huber, Villegas and Rogers",LATAM,CNC Machine Parts,1359.67,27 days,Active,4.1/5.0
+6950,Hernandez-Johnson,APAC,Aluminum Sheets,1430.39,34 days,Pending,2.6/5.0
+6951,Wilkerson-Gardner,EU,Ball Bearings,5704.8,16 days,Active,3.8/5.0
+6952,"Mcdonald, Maynard and Nixon",LATAM,Hydraulic Pumps,5324.02,5 days,Active,3.6/5.0
+6953,Moore Inc,MEA,CNC Machine Parts,2871.96,12 days,Inactive,2.7/5.0
+6954,"Hunt, Smith and Kelly",LATAM,Industrial Lubricants,5881.03,7 days,Pending,4.8/5.0
+6955,Long-Jones,EU,Aluminum Sheets,8602.83,26 days,Active,4.0/5.0
+6956,White-Olsen,NA,Ball Bearings,4397.9,25 days,Inactive,3.3/5.0
+6957,"Lindsey, Arias and Small",EU,Industrial Lubricants,7589.37,11 days,Active,4.2/5.0
+6958,Stephens PLC,EU,Hydraulic Pumps,2596.65,37 days,Pending,3.2/5.0
+6959,"Allen, Woods and Lewis",APAC,Ball Bearings,2364.92,34 days,Inactive,3.0/5.0
+6960,Murphy PLC,LATAM,Industrial Lubricants,1188.0,17 days,Inactive,4.9/5.0
+6961,Buchanan-Murphy,LATAM,Aluminum Sheets,5514.7,22 days,Inactive,4.4/5.0
+6962,Thomas Ltd,MEA,Aluminum Sheets,3811.73,27 days,Inactive,3.7/5.0
+6963,Griffin-Davis,EU,Industrial Lubricants,9170.02,28 days,Inactive,4.0/5.0
+6964,Peters-James,EU,Hydraulic Pumps,2329.19,7 days,Inactive,4.3/5.0
+6965,"Hill, Martin and Mitchell",EU,Ball Bearings,4762.19,34 days,Pending,4.8/5.0
+6966,Mejia LLC,LATAM,Industrial Lubricants,8460.61,34 days,Inactive,4.1/5.0
+6967,"Good, Sosa and Miller",LATAM,CNC Machine Parts,7067.36,28 days,Active,3.8/5.0
+6968,Shaffer-Mcmillan,LATAM,Aluminum Sheets,1199.89,29 days,Pending,4.7/5.0
+6969,Stevens LLC,EU,CNC Machine Parts,4300.57,35 days,Pending,4.9/5.0
+6970,"Taylor, Williams and Meyer",APAC,Hydraulic Pumps,7691.07,36 days,Inactive,4.9/5.0
+6971,"Simpson, Yoder and Russell",MEA,Ball Bearings,9985.83,37 days,Pending,2.9/5.0
+6972,"Swanson, Dougherty and Thompson",APAC,CNC Machine Parts,8076.86,21 days,Pending,3.1/5.0
+6973,Bradley-Rodriguez,EU,CNC Machine Parts,9739.62,38 days,Inactive,2.5/5.0
+6974,"Valdez, Blair and Obrien",NA,Aluminum Sheets,3309.34,31 days,Inactive,4.1/5.0
+6975,"Griffin, Griffin and Oconnell",EU,Aluminum Sheets,651.24,6 days,Inactive,3.5/5.0
+6976,"Jackson, Hunter and Patterson",APAC,Hydraulic Pumps,4872.71,14 days,Active,4.3/5.0
+6977,Owens-Ray,EU,Aluminum Sheets,6301.74,29 days,Active,3.6/5.0
+6978,"Luna, Shaw and Ramos",EU,CNC Machine Parts,2768.76,8 days,Active,3.9/5.0
+6979,"Ford, Lee and Johnson",MEA,Ball Bearings,4882.59,26 days,Pending,4.2/5.0
+6980,"Werner, Lopez and Smith",MEA,Aluminum Sheets,6553.04,38 days,Active,3.6/5.0
+6981,Cole and Sons,LATAM,Aluminum Sheets,2771.67,37 days,Pending,3.8/5.0
+6982,"Lopez, Garza and Pena",LATAM,Industrial Lubricants,6143.1,36 days,Pending,3.3/5.0
+6983,"Guerrero, Rollins and Holland",LATAM,Hydraulic Pumps,6089.28,19 days,Inactive,2.7/5.0
+6984,Williams-Hall,APAC,Hydraulic Pumps,9582.57,29 days,Pending,3.5/5.0
+6985,"Sharp, Ruiz and Taylor",APAC,Hydraulic Pumps,1934.34,23 days,Active,3.4/5.0
+6986,Todd PLC,NA,Ball Bearings,7294.39,39 days,Active,3.4/5.0
+6987,Brown-Keller,MEA,CNC Machine Parts,3798.66,34 days,Pending,3.7/5.0
+6988,Garza-Lowery,APAC,Hydraulic Pumps,2690.71,5 days,Active,3.9/5.0
+6989,Hernandez Group,LATAM,CNC Machine Parts,4619.79,14 days,Pending,3.0/5.0
+6990,"Baker, Burnett and Wilkinson",APAC,CNC Machine Parts,5654.91,7 days,Pending,2.7/5.0
+6991,"Carey, Murphy and Riggs",LATAM,Ball Bearings,1702.24,10 days,Active,4.7/5.0
+6992,Curtis Ltd,MEA,Ball Bearings,3466.07,29 days,Pending,4.3/5.0
+6993,"Hunter, Jordan and Bell",MEA,CNC Machine Parts,6477.17,16 days,Active,3.5/5.0
+6994,Bell-Marsh,MEA,Hydraulic Pumps,3243.7,9 days,Inactive,4.4/5.0
+6995,Kemp-Reed,NA,Industrial Lubricants,4548.58,18 days,Pending,3.0/5.0
+6996,Taylor PLC,EU,Aluminum Sheets,6667.27,17 days,Inactive,2.7/5.0
+6997,Thompson-Lawson,EU,Aluminum Sheets,9149.9,6 days,Inactive,4.1/5.0
+6998,"Bailey, Jones and Johnston",EU,Industrial Lubricants,5406.38,22 days,Active,4.6/5.0
+6999,Gardner-Powers,MEA,CNC Machine Parts,2886.22,14 days,Active,4.4/5.0
+7000,"Jordan, Johnson and Johnson",MEA,Hydraulic Pumps,8794.73,22 days,Inactive,4.0/5.0

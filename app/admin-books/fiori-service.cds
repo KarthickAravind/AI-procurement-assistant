@@ -1,17 +1,17 @@
 using { AdminService } from '../../srv/admin-service.cds';
-using { sap.capire.bookshop } from '../../db/schema';
+using { sap.procurement } from '../../db/schema';
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//	Books Object Page
+//	Suppliers Object Page
 //
 
-annotate AdminService.Books with @(UI: {
+annotate AdminService.Suppliers with @(UI: {
   HeaderInfo       : {
-    TypeName      : '{i18n>Book}',
-    TypeNamePlural: '{i18n>Books}',
-    Title         : {Value: title},
-    Description   : {Value: author.name}
+    TypeName      : '{i18n>Supplier}',
+    TypeNamePlural: '{i18n>Suppliers}',
+    Title         : {Value: name},
+    Description   : {Value: region}
   },
   Facets: [
     {
@@ -21,13 +21,8 @@ annotate AdminService.Books with @(UI: {
     },
     {
       $Type : 'UI.ReferenceFacet',
-      Label : '{i18n>Translations}',
-      Target: 'texts/@UI.LineItem'
-    },
-    {
-      $Type : 'UI.ReferenceFacet',
-      Label : '{i18n>Details}',
-      Target: '@UI.FieldGroup#Details'
+      Label : '{i18n>Contact}',
+      Target: '@UI.FieldGroup#Contact'
     },
     {
       $Type : 'UI.ReferenceFacet',
@@ -36,18 +31,18 @@ annotate AdminService.Books with @(UI: {
     },
   ],
   FieldGroup #General: {Data: [
-    {Value: title},
-    {Value: author_ID},
-    {Value: genre_ID},
-    {Value: descr},
+    {Value: name},
+    {Value: region},
+    {Value: category},
+    {Value: material},
+    {Value: pricePerUnit},
+    {Value: leadTime},
+    {Value: rating},
   ]},
-  FieldGroup #Details: {Data: [
-    {Value: stock},
-    {Value: price},
-    {
-      Value: currency_code,
-      Label: '{i18n>Currency}'
-    },
+  FieldGroup #Contact: {Data: [
+    {Value: contactEmail},
+    {Value: contactPhone},
+    {Value: address},
   ]},
   FieldGroup #Admin: {Data: [
     {Value: createdBy},
@@ -60,60 +55,57 @@ annotate AdminService.Books with @(UI: {
 
 ////////////////////////////////////////////////////////////
 //
-//  Draft for Localized Data
+//  Materials Object Page
 //
 
-annotate sap.capire.bookshop.Books with @fiori.draft.enabled;
-annotate AdminService.Books with @odata.draft.enabled;
-
-annotate AdminService.Books.texts with @(UI: {
-  Identification: [{Value: title}],
-  SelectionFields: [
-    locale,
-    title
+annotate AdminService.Materials with @(UI: {
+  HeaderInfo       : {
+    TypeName      : '{i18n>Material}',
+    TypeNamePlural: '{i18n>Materials}',
+    Title         : {Value: name},
+    Description   : {Value: category}
+  },
+  Facets: [
+    {
+      $Type : 'UI.ReferenceFacet',
+      Label : '{i18n>General}',
+      Target: '@UI.FieldGroup#General'
+    },
+    {
+      $Type : 'UI.ReferenceFacet',
+      Label : '{i18n>Stock}',
+      Target: '@UI.FieldGroup#Stock'
+    },
+    {
+      $Type : 'UI.ReferenceFacet',
+      Label : '{i18n>Admin}',
+      Target: '@UI.FieldGroup#Admin'
+    },
   ],
-  LineItem: [
-    {
-      Value: locale,
-      Label: 'Locale'
-    },
-    {
-      Value: title,
-      Label: 'Title'
-    },
-    {
-      Value: descr,
-      Label: 'Description'
-    },
-  ]
+  FieldGroup #General: {Data: [
+    {Value: name},
+    {Value: category},
+    {Value: description},
+    {Value: unitPrice},
+    {Value: unit},
+  ]},
+  FieldGroup #Stock: {Data: [
+    {Value: quantity},
+    {Value: minStockLevel},
+    {Value: maxStockLevel},
+    {Value: location},
+  ]},
+  FieldGroup #Admin: {Data: [
+    {Value: createdBy},
+    {Value: createdAt},
+    {Value: modifiedBy},
+    {Value: modifiedAt}
+  ]}
 });
-
-annotate AdminService.Books.texts with {
-  ID       @UI.Hidden;
-  ID_texts @UI.Hidden;
-};
-
-// Add Value Help for Locales
-annotate AdminService.Books.texts {
-  locale @(
-    ValueList.entity: 'Languages',
-    Common.ValueListWithFixedValues, //show as drop down, not a dialog
-  )
-};
 
 // In addition we need to expose Languages through AdminService as a target for ValueList
 using {sap} from '@sap/cds/common';
 
 extend service AdminService {
   @readonly entity Languages as projection on sap.common.Languages;
-}
-
-// Workaround for Fiori popup for asking user to enter a new UUID on Create
-annotate AdminService.Books with {
-  ID @Core.Computed;
-}
-
-// Show Genre as drop down, not a dialog
-annotate AdminService.Books with {
-  genre @Common.ValueListWithFixedValues;
 }
