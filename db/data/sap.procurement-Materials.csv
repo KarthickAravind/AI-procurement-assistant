@@ -1,16 +1,16 @@
-ID;name;category;quantity;unitPrice;currency_code;minStockLevel;maxStockLevel;unit;description;location;supplier_ID
-MAT001;Aluminum Sheets;Construction;150;2500.00;USD;20;500;sheets;High-grade aluminum sheets for construction;Warehouse A;9001
-MAT002;Ball Bearings;Manufacturing;500;45.50;USD;50;2000;pcs;Precision ball bearings for machinery;Warehouse B;9010
-MAT003;Barcode Scanners;Logistics;25;350.00;USD;5;100;pcs;Handheld barcode scanners for inventory;Warehouse C;9020
-MAT004;CNC Machine Parts;Manufacturing;75;1200.00;USD;10;200;pcs;Replacement parts for CNC machines;Warehouse B;9015
-MAT005;Cement Bags;Construction;800;25.00;USD;100;3000;bags;Portland cement bags 50kg each;Warehouse A;9003
-MAT006;Concrete Mixers;Construction;12;8500.00;USD;2;50;units;Industrial concrete mixing equipment;Warehouse A;9002
-MAT007;Conveyor Belts;Logistics;30;750.00;USD;5;150;meters;Heavy-duty conveyor belt systems;Warehouse C;9025
-MAT008;Forklifts;Logistics;8;25000.00;USD;1;20;units;Electric forklifts for warehouse operations;Warehouse C;9030
-MAT009;Glass Panels;Construction;200;180.00;USD;25;800;panels;Tempered glass panels for buildings;Warehouse A;9001
-MAT010;Hydraulic Pumps;Manufacturing;45;950.00;USD;8;150;units;High-pressure hydraulic pumps;Warehouse B;9012
-MAT011;Industrial Lubricants;Manufacturing;300;85.00;USD;50;1000;liters;Premium industrial lubricating oils;Warehouse B;9018
-MAT012;Pallet Jacks;Logistics;20;1200.00;USD;3;80;units;Manual pallet jacks for material handling;Warehouse C;9028
-MAT013;Scaffolding;Construction;100;450.00;USD;15;400;sets;Modular scaffolding systems;Warehouse A;9000
-MAT014;Shipping Containers;Logistics;5;12000.00;USD;1;25;units;20ft shipping containers;Warehouse C;9035
-MAT015;Steel Rebars;Construction;500;120.00;USD;75;2000;bars;Reinforcement steel bars various sizes;Warehouse A;9005
+ID;name;supplier_ID;quantity;category;unitPrice;currency_code;minStockLevel;maxStockLevel;unit;description;location;isActive;stockStatus
+MAT001;Aluminum Sheets;9001;150;Construction;2500.00;USD;20;500;sheets;High-grade aluminum sheets for construction;Warehouse A;true;Normal
+MAT002;Ball Bearings;9010;500;Manufacturing;45.50;USD;50;2000;pcs;Precision ball bearings for machinery;Warehouse B;true;Normal
+MAT003;Barcode Scanners;9020;25;Logistics;350.00;USD;5;100;pcs;Handheld barcode scanners for inventory;Warehouse C;true;Normal
+MAT004;CNC Machine Parts;9015;75;Manufacturing;1200.00;USD;10;200;pcs;Replacement parts for CNC machines;Warehouse B;true;Normal
+MAT005;Cement Bags;9003;800;Construction;25.00;USD;100;3000;bags;Portland cement bags 50kg each;Warehouse A;true;Normal
+MAT006;Concrete Mixers;9002;12;Construction;8500.00;USD;2;50;units;Industrial concrete mixing equipment;Warehouse A;true;Normal
+MAT007;Conveyor Belts;9025;30;Logistics;750.00;USD;5;150;meters;Heavy-duty conveyor belt systems;Warehouse C;true;Normal
+MAT008;Forklifts;9030;8;Logistics;25000.00;USD;1;20;units;Electric forklifts for warehouse operations;Warehouse C;true;Low Stock
+MAT009;Glass Panels;9001;200;Construction;180.00;USD;25;800;panels;Tempered glass panels for buildings;Warehouse A;true;Normal
+MAT010;Hydraulic Pumps;9012;45;Manufacturing;950.00;USD;8;150;units;High-pressure hydraulic pumps;Warehouse B;true;Normal
+MAT011;Industrial Lubricants;9018;300;Manufacturing;85.00;USD;50;1000;liters;Premium industrial lubricating oils;Warehouse B;true;Normal
+MAT012;Pallet Jacks;9028;20;Logistics;1200.00;USD;3;80;units;Manual pallet jacks for material handling;Warehouse C;true;Normal
+MAT013;Scaffolding;9000;100;Construction;450.00;USD;15;400;sets;Modular scaffolding systems;Warehouse A;true;Normal
+MAT014;Shipping Containers;9035;5;Logistics;12000.00;USD;1;25;units;20ft shipping containers;Warehouse C;true;Normal
+MAT015;Steel Rebars;9005;500;Construction;120.00;USD;75;2000;bars;Reinforcement steel bars various sizes;Warehouse A;true;Normal

@@ -1,0 +1,42 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog id="addMaterialDialog" title="Add New Material" contentWidth="500px" contentHeight="600px">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <Label text="Material ID *" class="sapUiTinyMarginBottom"/>
+                <Input id="materialIdInput" placeholder="e.g., MAT016" required="true" class="sapUiMediumMarginBottom"/>
+                
+                <Label text="Material Name *" class="sapUiTinyMarginBottom"/>
+                <Input id="materialNameInput" placeholder="e.g., Steel Pipes" required="true" class="sapUiMediumMarginBottom"/>
+                
+                <Label text="Supplier ID *" class="sapUiTinyMarginBottom"/>
+                <Input id="supplierInput" placeholder="e.g., 9001" required="true" class="sapUiMediumMarginBottom"/>
+                
+                <Label text="Quantity *" class="sapUiTinyMarginBottom"/>
+                <Input id="quantityInput" type="Number" placeholder="e.g., 100" required="true" class="sapUiMediumMarginBottom"/>
+                
+                <Label text="Category" class="sapUiTinyMarginBottom"/>
+                <Select id="categoryInput" class="sapUiMediumMarginBottom">
+                    <core:Item key="Construction" text="Construction"/>
+                    <core:Item key="Manufacturing" text="Manufacturing"/>
+                    <core:Item key="Logistics" text="Logistics"/>
+                    <core:Item key="General" text="General"/>
+                </Select>
+                
+                <Label text="Unit Price" class="sapUiTinyMarginBottom"/>
+                <Input id="priceInput" type="Number" placeholder="e.g., 150.00" class="sapUiMediumMarginBottom"/>
+                
+                <Label text="Unit" class="sapUiTinyMarginBottom"/>
+                <Input id="unitInput" placeholder="e.g., pcs, kg, meters" value="pcs" class="sapUiMediumMarginBottom"/>
+                
+                <Label text="Description" class="sapUiTinyMarginBottom"/>
+                <TextArea id="descriptionInput" placeholder="Material description..." rows="3" class="sapUiMediumMarginBottom"/>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="Save" type="Emphasized" press="onSaveNewMaterial"/>
+            <Button text="Cancel" press="onCancelAddMaterial"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

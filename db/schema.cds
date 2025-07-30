@@ -26,13 +26,17 @@ entity Suppliers : managed {
 
 /**
  * Materials/Warehouse Inventory Entity
- * Contains warehouse inventory with quantities and pricing
+ * Phase 3: Updated for warehouse management with new columns
+ * Columns: Material ID, Name, Supplier, Quantity
  */
 entity Materials : managed {
-  key ID : String(20); // e.g., MAT001
-  @mandatory name : String(255);
-  @mandatory category : String(100);
-  quantity : Integer default 0;
+  key ID : String(20); // Material ID - e.g., MAT001
+  @mandatory name : String(255); // Material Name
+  @mandatory supplier : Association to Suppliers; // Supplier reference
+  @mandatory quantity : Integer default 0; // Current stock quantity
+
+  // Additional warehouse management fields
+  category : String(100); // Construction, Manufacturing, Logistics
   unitPrice : Decimal(10,2);
   currency : Currency;
   minStockLevel : Integer default 10;
@@ -42,8 +46,9 @@ entity Materials : managed {
   location : String(100); // warehouse location
   lastUpdated : DateTime;
 
-  // Navigation to supplier
-  supplier : Association to Suppliers;
+  // Warehouse management status
+  stockStatus : String(20); // Low Stock, Normal, Overstock
+  isActive : Boolean default true;
 }
 
 /**

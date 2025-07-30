@@ -6,6 +6,35 @@
           "catalogs": [],
           "groups": [
             {
+              "id": "Procurement",
+              "title": "AI-Powered Procurement Assistant",
+              "isPreset": true,
+              "isVisible": true,
+              "isGroupLocked": false,
+              "tiles": [
+                {
+                  "id": "ProcurementAssistant",
+                  "tileType": "sap.ushell.ui.tile.StaticTile",
+                  "properties": {
+                    "title": "Procurement Assistant",
+                    "subtitle": "AI-Powered Warehouse Management",
+                    "icon": "sap-icon://supplier",
+                    "targetURL": "#Procurement-assistant"
+                  }
+                },
+                {
+                  "id": "ProcurementTest",
+                  "tileType": "sap.ushell.ui.tile.StaticTile",
+                  "properties": {
+                    "title": "Phase 3 Backend Test",
+                    "subtitle": "Test Warehouse CRUD Operations",
+                    "icon": "sap-icon://test-automation",
+                    "targetURL": "#Procurement-test"
+                  }
+                }
+              ]
+            },
+            {
               "id": "Bookshop",
               "title": "Bookshop",
               "isPreset": true,
@@ -52,6 +81,33 @@
       "adapter": {
         "config": {
           "inbounds": {
+            "ProcurementAssistant": {
+              "semanticObject": "Procurement",
+              "action": "assistant",
+              "title": "AI-Powered Procurement Assistant",
+              "signature": {
+                "parameters": {},
+                "additionalParameters": "allowed"
+              },
+              "resolutionResult": {
+                "applicationType": "SAPUI5",
+                "additionalInformation": "SAPUI5.Component=procurement.assistant",
+                "url": "procurement-assistant/webapp"
+              }
+            },
+            "ProcurementTest": {
+              "semanticObject": "Procurement",
+              "action": "test",
+              "title": "Phase 3 Backend Test",
+              "signature": {
+                "parameters": {},
+                "additionalParameters": "allowed"
+              },
+              "resolutionResult": {
+                "applicationType": "URL",
+                "url": "procurement-assistant/webapp/test-backend.html"
+              }
+            },
             "BrowseBooks": {
               "semanticObject": "Books",
               "action": "display",

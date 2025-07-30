@@ -4,3 +4,4 @@
 using from './common';
 using from './browse/fiori-service';
 using from './admin-books/fiori-service';
+using from './procurement-assistant/fiori-service';

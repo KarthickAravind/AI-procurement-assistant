@@ -46,6 +46,34 @@ service ProcurementService {
     suppliers: array of Suppliers:ID
   ) returns { rfqNumber: String };
 
+  // Phase 3: Warehouse Management Actions
+  @requires: 'authenticated-user'
+  action addMaterial (
+    ID: String @mandatory,
+    name: String @mandatory,
+    supplier: Suppliers:ID @mandatory,
+    quantity: Integer @mandatory,
+    category: String,
+    unitPrice: Decimal,
+    currency: String,
+    unit: String,
+    description: String,
+    location: String
+  ) returns { success: Boolean; message: String };
+
+  @requires: 'authenticated-user'
+  action updateMaterialQuantity (
+    materialID: Materials:ID @mandatory,
+    newQuantity: Integer @mandatory
+  ) returns { success: Boolean; message: String };
+
+  @requires: 'authenticated-user'
+  action importMaterialsFromCSV (
+    csvData: String @mandatory
+  ) returns { success: Boolean; imported: Integer; errors: array of String };
+
+  action exportMaterialsToCSV () returns { csvData: String };
+
   // Events for procurement processes
   event PurchaseOrderCreated : { orderNumber: String; supplier: String; totalAmount: Decimal };
   event RFQSent : { rfqNumber: String; title: String; supplierCount: Integer };
