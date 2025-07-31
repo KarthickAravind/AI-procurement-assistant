@@ -1,4 +1,14 @@
 const cds = require('@sap/cds')
+const { GoogleGenerativeAI } = require('@google/generative-ai')
+require('dotenv').config()
+
+// Initialize Gemini AI
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY
+console.log('Gemini API Key loaded:', GEMINI_API_KEY ? 'Yes' : 'No')
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY)
+
+// Chat sessions storage (in production, use proper database)
+const chatSessions = new Map()
 
 module.exports = class ProcurementService extends cds.ApplicationService {
   async init() {
@@ -264,6 +274,116 @@ module.exports = class ProcurementService extends cds.ApplicationService {
     })
 
     return { rfqNumber }
+  })
+
+  // Phase 4: Gemini AI Chat Integration
+
+  // Initialize chat session
+  this.on('initChatSession', async (req) => {
+    const sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+
+    // Create new chat session with Gemini
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
+    const chat = model.startChat({
+      history: [
+        {
+          role: 'user',
+          parts: [{ text: 'You are an AI-powered procurement assistant. You help with supplier management, material procurement, inventory management, purchase orders, and RFQs. Be helpful, professional, and provide specific procurement-related advice.' }]
+        },
+        {
+          role: 'model',
+          parts: [{ text: 'Hello! I\'m your AI-powered procurement assistant. I can help you with supplier management, material procurement, inventory tracking, creating purchase orders, sending RFQs, and providing procurement insights. How can I assist you today?' }]
+        }
+      ]
+    })
+
+    chatSessions.set(sessionId, {
+      chat: chat,
+      history: [],
+      createdAt: new Date()
+    })
+
+    return {
+      sessionId: sessionId,
+      welcomeMessage: 'Hello! I\'m your AI-powered procurement assistant. I can help you with supplier management, material procurement, inventory tracking, creating purchase orders, sending RFQs, and providing procurement insights. How can I assist you today?'
+    }
+  })
+
+  // Send chat message
+  this.on('sendChatMessage', async (req) => {
+    const { sessionId, message } = req.data
+
+    try {
+      if (!sessionId || !chatSessions.has(sessionId)) {
+        return {
+          success: false,
+          error: 'Invalid session. Please refresh the page to start a new session.'
+        }
+      }
+
+      const session = chatSessions.get(sessionId)
+      const chat = session.chat
+
+      // Add user message to history
+      session.history.push({
+        role: 'user',
+        message: message,
+        timestamp: new Date()
+      })
+
+      // Get AI response from Gemini
+      const result = await chat.sendMessage(message)
+      const response = await result.response
+      const aiMessage = response.text()
+
+      // Add AI response to history
+      session.history.push({
+        role: 'assistant',
+        message: aiMessage,
+        timestamp: new Date()
+      })
+
+      return {
+        success: true,
+        response: aiMessage,
+        sessionId: sessionId
+      }
+
+    } catch (error) {
+      console.error('Chat error details:', error.message, error.stack)
+      return {
+        success: false,
+        error: 'Sorry, I encountered an error. Please try again.',
+        fallbackResponse: 'I apologize, but I\'m having trouble connecting to my AI service right now. However, I can still help you with basic procurement tasks. What would you like to do?',
+        sessionId: sessionId
+      }
+    }
+  })
+
+  // Get chat history
+  this.on('getChatHistory', async (req) => {
+    const { sessionId } = req.data
+
+    if (!sessionId || !chatSessions.has(sessionId)) {
+      return { success: false, history: [] }
+    }
+
+    const session = chatSessions.get(sessionId)
+    return {
+      success: true,
+      history: session.history
+    }
+  })
+
+  // Clear chat session
+  this.on('clearChatSession', async (req) => {
+    const { sessionId } = req.data
+
+    if (sessionId && chatSessions.has(sessionId)) {
+      chatSessions.delete(sessionId)
+    }
+
+    return { success: true }
   })
 
   // Delegate requests to the underlying generic service

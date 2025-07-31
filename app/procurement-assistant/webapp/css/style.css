@@ -231,6 +231,36 @@
     box-shadow: 0 0 0 3px rgba(0,112,243,0.1);
 }
 
+/* Chat Input TextArea Styling */
+.chatInputTextArea .sapMTextArea {
+    border-radius: 8px !important;
+    border: 2px solid #e0e0e0 !important;
+    background-color: #ffffff !important;
+    font-family: "72", "72full", Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    padding: 12px !important;
+    resize: vertical !important;
+    min-height: 80px !important;
+    max-height: 150px !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.chatInputTextArea .sapMTextArea:focus {
+    border-color: #0070f3 !important;
+    box-shadow: 0 0 0 3px rgba(0,112,243,0.1) !important;
+    outline: none !important;
+}
+
+.chatInputTextArea .sapMTextArea:hover {
+    border-color: #b0b0b0 !important;
+}
+
+.chatInputTextArea .sapMTextArea::placeholder {
+    color: #888 !important;
+    font-style: italic !important;
+}
+
 /* Button Spacing Improvements */
 .sapMBtn {
     margin: 2px 4px !important;

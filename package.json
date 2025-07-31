@@ -8,9 +8,11 @@
   "dependencies": {
     "@cap-js/audit-logging": ">=0",
     "@cap-js/hana": "^2",
+    "@google/generative-ai": "^0.24.1",
     "@sap/cds": "^9",
     "@sap/xssec": "^4",
     "csv-parser": "^3.2.0",
+    "dotenv": "^17.2.1",
     "express": "^4"
   },
   "engines": {

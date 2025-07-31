@@ -74,6 +74,22 @@ service ProcurementService {
 
   action exportMaterialsToCSV () returns { csvData: String };
 
+  // Phase 4: Chat Interface Actions
+  action initChatSession () returns { sessionId: String; welcomeMessage: String };
+
+  action sendChatMessage (
+    sessionId: String @mandatory,
+    message: String @mandatory
+  ) returns { success: Boolean; response: String; error: String; fallbackResponse: String; sessionId: String };
+
+  action getChatHistory (
+    sessionId: String @mandatory
+  ) returns { success: Boolean; history: array of { role: String; message: String; timestamp: DateTime } };
+
+  action clearChatSession (
+    sessionId: String @mandatory
+  ) returns { success: Boolean };
+
   // Events for procurement processes
   event PurchaseOrderCreated : { orderNumber: String; supplier: String; totalAmount: Decimal };
   event RFQSent : { rfqNumber: String; title: String; supplierCount: Integer };

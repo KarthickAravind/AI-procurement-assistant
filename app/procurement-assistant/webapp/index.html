@@ -163,14 +163,19 @@
                                                     new sap.m.HBox({
                                                         width: "100%",
                                                         items: [
-                                                            new sap.m.Input({
+                                                            new sap.m.TextArea({
                                                                 id: "chatInput",
                                                                 placeholder: "Type your message here... (e.g., 'Find laptops under ₹50K')",
                                                                 width: "100%",
-                                                                submit: function() {
-                                                                    sendChatMessage();
-                                                                }
-                                                            }),
+                                                                rows: 3,
+                                                                maxLength: 1000,
+                                                                growing: false,
+                                                                growingMaxLines: 5,
+                                                                class: "sapUiMediumMarginBottom",
+                                                                wrapping: "Soft",
+                                                                showExceededText: true,
+                                                                valueLiveUpdate: true
+                                                            }).addStyleClass("chatInputTextArea"),
                                                             new sap.m.Button({
                                                                 text: "Send",
                                                                 type: "Emphasized",
@@ -338,7 +343,51 @@
 
             console.log("App created and placed in DOM successfully");
 
-            // Chat functionality
+            // Initialize chat session after app is loaded
+            setTimeout(function() {
+                window.initializeChatSession();
+
+                // Add keyboard event handler for TextArea
+                var oInput = sap.ui.getCore().byId("chatInput");
+                if (oInput) {
+                    oInput.attachBrowserEvent("keydown", function(e) {
+                        if (e.key === "Enter" && !e.shiftKey) {
+                            e.preventDefault();
+                            sendChatMessage();
+                        }
+                    });
+                }
+            }, 1000);
+
+            // Phase 4: Real AI Chat functionality with Gemini
+            window.chatSessionId = null;
+
+            // Initialize chat session on page load
+            window.initializeChatSession = function() {
+                console.log("Initializing chat session...");
+
+                fetch('http://localhost:4005/odata/v4/procurement/initChatSession', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Chat session initialized:", data);
+                    window.chatSessionId = data.sessionId;
+
+                    // Add welcome message
+                    if (data.welcomeMessage) {
+                        addChatMessage(data.welcomeMessage, "assistant");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error initializing chat session:", error);
+                    addChatMessage("Welcome! I'm your AI procurement assistant. How can I help you today?", "assistant");
+                });
+            };
+
             window.sendChatMessage = function() {
                 var oInput = sap.ui.getCore().byId("chatInput");
                 var sMessage = oInput.getValue().trim();
@@ -354,11 +403,61 @@
                 // Clear input
                 oInput.setValue("");
 
-                // Simulate AI response
-                setTimeout(function() {
-                    var response = generateSmartResponse(sMessage);
+                // Show typing indicator
+                var typingMessage = addChatMessage("🤖 Assistant is typing...", "typing");
+
+                // Send message to Gemini AI
+                if (!window.chatSessionId) {
+                    console.warn("No chat session, initializing...");
+                    window.initializeChatSession();
+                    setTimeout(() => window.sendMessageToAI(sMessage, typingMessage), 1000);
+                } else {
+                    window.sendMessageToAI(sMessage, typingMessage);
+                }
+            };
+
+            window.sendMessageToAI = function(message, typingMessage) {
+                fetch('http://localhost:4005/odata/v4/procurement/sendChatMessage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sessionId: window.chatSessionId,
+                        message: message
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("AI response received:", data);
+
+                    // Remove typing indicator
+                    if (typingMessage) {
+                        var oContainer = sap.ui.getCore().byId("chatMessagesContainer");
+                        oContainer.removeItem(typingMessage);
+                    }
+
+                    if (data.success && data.response) {
+                        addChatMessage(data.response, "assistant");
+                    } else if (data.fallbackResponse) {
+                        addChatMessage(data.fallbackResponse, "assistant");
+                    } else {
+                        addChatMessage("I apologize, but I'm having trouble right now. Please try again.", "assistant");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error sending message to AI:", error);
+
+                    // Remove typing indicator
+                    if (typingMessage) {
+                        var oContainer = sap.ui.getCore().byId("chatMessagesContainer");
+                        oContainer.removeItem(typingMessage);
+                    }
+
+                    // Fallback to smart response
+                    var response = generateSmartResponse(message);
                     addChatMessage(response, "assistant");
-                }, 1000);
+                });
             };
 
             window.fillChatInput = function(text) {
@@ -369,8 +468,18 @@
 
             window.addChatMessage = function(message, type) {
                 var oContainer = sap.ui.getCore().byId("chatMessagesContainer");
-                var messageType = type === "user" ? "Success" : "Information";
-                var messageIcon = type === "user" ? "👤 You: " : "🤖 Assistant: ";
+                var messageType, messageIcon;
+
+                if (type === "user") {
+                    messageType = "Success";
+                    messageIcon = "👤 You: ";
+                } else if (type === "typing") {
+                    messageType = "None";
+                    messageIcon = "";
+                } else {
+                    messageType = "Information";
+                    messageIcon = "🤖 Assistant: ";
+                }
 
                 var oMessage = new sap.m.MessageStrip({
                     text: messageIcon + message,
@@ -387,6 +496,8 @@
                         oScrollContainer.scrollToElement(oMessage);
                     }
                 }, 100);
+
+                return oMessage; // Return message for removal if needed
             };
 
             window.generateSmartResponse = function(userMessage) {
@@ -411,7 +522,7 @@
             window.loadMaterials = function() {
                 console.log("Loading materials from backend...");
 
-                fetch('/odata/v4/procurement/Materials')
+                fetch('http://localhost:4005/odata/v4/procurement/Materials')
                     .then(response => response.json())
                     .then(data => {
                         console.log("Materials loaded:", data);
@@ -476,7 +587,7 @@
             };
 
             window.exportMaterials = function() {
-                fetch('/odata/v4/procurement/exportMaterialsToCSV', {
+                fetch('http://localhost:4005/odata/v4/procurement/exportMaterialsToCSV', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -511,7 +622,7 @@
 
                 console.log("Searching materials for:", query);
 
-                fetch('/odata/v4/procurement/Materials?$filter=contains(tolower(name),\'' + query.toLowerCase() + '\') or contains(tolower(ID),\'' + query.toLowerCase() + '\') or contains(tolower(supplier_ID),\'' + query.toLowerCase() + '\')')
+                fetch('http://localhost:4005/odata/v4/procurement/Materials?$filter=contains(tolower(name),\'' + query.toLowerCase() + '\') or contains(tolower(ID),\'' + query.toLowerCase() + '\') or contains(tolower(supplier_ID),\'' + query.toLowerCase() + '\')')
                     .then(response => response.json())
                     .then(data => {
                         console.log("Search results:", data);
@@ -952,7 +1063,7 @@
             function addMaterial(material) {
                 console.log('Adding material:', material);
 
-                fetch('/odata/v4/procurement/Materials', {
+                fetch('http://localhost:4005/odata/v4/procurement/Materials', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1026,7 +1137,7 @@
             window.deleteMaterial = function(materialId, materialName) {
                 console.log('Deleting material:', materialId, materialName);
 
-                fetch(`/odata/v4/procurement/Materials('${materialId}')`, {
+                fetch(`http://localhost:4005/odata/v4/procurement/Materials('${materialId}')`, {
                     method: 'DELETE',
                     headers: {
                         'Accept': 'application/json'
