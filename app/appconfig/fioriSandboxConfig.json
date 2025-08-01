@@ -16,9 +16,19 @@
                   "id": "ProcurementAssistant",
                   "tileType": "sap.ushell.ui.tile.StaticTile",
                   "properties": {
-                    "title": "Procurement Assistant",
-                    "subtitle": "AI-Powered Warehouse Management",
-                    "icon": "sap-icon://supplier",
+                    "title": "AI Procurement Assistant",
+                    "subtitle": "Modern Fiori UI5 Interface",
+                    "icon": "sap-icon://business-objects-experience",
+                    "targetURL": "#Procurement-modern"
+                  }
+                },
+                {
+                  "id": "ProcurementLegacy",
+                  "tileType": "sap.ushell.ui.tile.StaticTile",
+                  "properties": {
+                    "title": "Legacy Procurement UI",
+                    "subtitle": "Original Static HTML Interface",
+                    "icon": "sap-icon://legacy",
                     "targetURL": "#Procurement-assistant"
                   }
                 },
@@ -30,40 +40,6 @@
                     "subtitle": "Test Warehouse CRUD Operations",
                     "icon": "sap-icon://test-automation",
                     "targetURL": "#Procurement-test"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "Bookshop",
-              "title": "Bookshop",
-              "isPreset": true,
-              "isVisible": true,
-              "isGroupLocked": false,
-              "tiles": [
-                {
-                  "id": "BrowseBooks",
-                  "tileType": "sap.ushell.ui.tile.StaticTile",
-                  "properties": {
-                    "title": "Browse Books",
-                    "targetURL": "#Books-display"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "Administration",
-              "title": "Administration",
-              "isPreset": true,
-              "isVisible": true,
-              "isGroupLocked": false,
-              "tiles": [
-                {
-                  "id": "ManageBooks",
-                  "tileType": "sap.ushell.ui.tile.StaticTile",
-                  "properties": {
-                    "title": "Manage Books",
-                    "targetURL": "#Books-manage"
                   }
                 }
               ]
@@ -84,15 +60,27 @@
             "ProcurementAssistant": {
               "semanticObject": "Procurement",
               "action": "assistant",
-              "title": "AI-Powered Procurement Assistant",
+              "title": "Legacy Procurement Assistant",
               "signature": {
                 "parameters": {},
                 "additionalParameters": "allowed"
               },
               "resolutionResult": {
-                "applicationType": "SAPUI5",
-                "additionalInformation": "SAPUI5.Component=procurement.assistant",
-                "url": "procurement-assistant/webapp"
+                "applicationType": "URL",
+                "url": "procurement-assistant/webapp/index.html"
+              }
+            },
+            "ProcurementModern": {
+              "semanticObject": "Procurement",
+              "action": "modern",
+              "title": "Modern Procurement UI",
+              "signature": {
+                "parameters": {},
+                "additionalParameters": "allowed"
+              },
+              "resolutionResult": {
+                "applicationType": "URL",
+                "url": "procurement-assistant/webapp/working-modern.html"
               }
             },
             "ProcurementTest": {

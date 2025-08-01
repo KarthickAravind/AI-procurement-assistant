@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal UI5 Test</title>
+    
+    <!-- UI5 Bootstrap -->
+    <script
+        id="sap-ui-bootstrap"
+        src="https://ui5.sap.com/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_horizon"
+        data-sap-ui-libs="sap.m,sap.f"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true"
+        data-sap-ui-frameOptions="trusted">
+    </script>
+</head>
+
+<body class="sapUiBody">
+    <div id="content"></div>
+    
+    <script>
+        sap.ui.getCore().attachInit(function() {
+            console.log("UI5 Core initialized");
+            
+            try {
+                // Create a simple page
+                var oPage = new sap.m.Page({
+                    title: "Minimal Test Page",
+                    content: [
+                        new sap.m.Panel({
+                            headerText: "Test Panel",
+                            content: [
+                                new sap.m.Text({
+                                    text: "If you can see this, UI5 is working!"
+                                }),
+                                new sap.m.Button({
+                                    text: "Test Button",
+                                    type: "Emphasized",
+                                    press: function() {
+                                        sap.m.MessageToast.show("Button clicked!");
+                                    }
+                                })
+                            ]
+                        })
+                    ]
+                });
+                
+                oPage.placeAt("content");
+                console.log("Page created and placed");
+                
+            } catch (error) {
+                console.error("Error creating page:", error);
+                document.getElementById("content").innerHTML = "<h1>Error: " + error.message + "</h1>";
+            }
+        });
+        
+        // Error handler
+        window.addEventListener('error', function(e) {
+            console.error('Global error:', e.error);
+            document.getElementById("content").innerHTML = "<h1>JavaScript Error: " + e.error.message + "</h1>";
+        });
+    </script>
+</body>
+</html>

@@ -42,6 +42,16 @@
       "connectivity": true,
       "destinations": true,
       "html5-runtime": true
+    },
+    "odata": {
+      "max_rows": 5000,
+      "max_expand_rows": 5000
+    },
+    "query": {
+      "limit": {
+        "default": 5000,
+        "max": 5000
+      }
     }
   }
 }

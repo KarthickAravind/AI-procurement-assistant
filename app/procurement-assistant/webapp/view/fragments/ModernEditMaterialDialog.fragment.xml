@@ -1,0 +1,174 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form">
+    
+    <Dialog id="modernEditMaterialDialog"
+            title="Edit Material"
+            contentWidth="600px"
+            contentHeight="700px"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+            class="modernDialog">
+        
+        <content>
+            <VBox class="sapUiMediumMargin">
+                
+                <!-- Header with Icon -->
+                <HBox alignItems="Center" class="sapUiMediumMarginBottom">
+                    <core:Icon src="sap-icon://edit" size="2rem" color="#0070f3" class="sapUiMediumMarginEnd"/>
+                    <VBox>
+                        <Title text="Edit Material" level="H3"/>
+                        <Text text="Modify material details" class="sapUiTinyText"/>
+                    </VBox>
+                </HBox>
+                
+                <!-- Modern Form -->
+                <form:SimpleForm id="editMaterialForm"
+                                editable="true"
+                                layout="ResponsiveGridLayout"
+                                labelSpanXL="4"
+                                labelSpanL="4"
+                                labelSpanM="4"
+                                labelSpanS="12"
+                                adjustLabelSpan="false"
+                                emptySpanXL="0"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                emptySpanS="0"
+                                columnsXL="1"
+                                columnsL="1"
+                                columnsM="1"
+                                singleContainerFullSize="false"
+                                class="modernForm">
+                    
+                    <form:content>
+                        
+                        <!-- Material ID (Read-only) -->
+                        <Label text="Material ID" class="modernLabel"/>
+                        <Input id="modernEditMaterialId"
+                               editable="false"
+                               class="modernInput modernInputReadonly"/>
+                        
+                        <!-- Material Name -->
+                        <Label text="Material Name" required="true" class="modernLabel"/>
+                        <Input id="modernEditMaterialName"
+                               placeholder="Enter material name"
+                               required="true"
+                               valueState="None"
+                               class="modernInput"
+                               maxLength="255"/>
+                        
+                        <!-- Supplier -->
+                        <Label text="Supplier ID" required="true" class="modernLabel"/>
+                        <Input id="modernEditMaterialSupplier"
+                               placeholder="Enter supplier ID"
+                               required="true"
+                               valueState="None"
+                               class="modernInput"/>
+                        
+                        <!-- Quantity -->
+                        <Label text="Quantity" required="true" class="modernLabel"/>
+                        <Input id="modernEditMaterialQuantity"
+                               placeholder="Enter quantity"
+                               type="Number"
+                               required="true"
+                               valueState="None"
+                               class="modernInput"/>
+                        
+                        <!-- Unit -->
+                        <Label text="Unit" class="modernLabel"/>
+                        <ComboBox id="modernEditMaterialUnit"
+                                 placeholder="Select unit"
+                                 class="modernComboBox">
+                            <core:Item key="pcs" text="Pieces"/>
+                            <core:Item key="kg" text="Kilograms"/>
+                            <core:Item key="liters" text="Liters"/>
+                            <core:Item key="meters" text="Meters"/>
+                            <core:Item key="sheets" text="Sheets"/>
+                            <core:Item key="bags" text="Bags"/>
+                            <core:Item key="units" text="Units"/>
+                            <core:Item key="panels" text="Panels"/>
+                            <core:Item key="bars" text="Bars"/>
+                            <core:Item key="sets" text="Sets"/>
+                        </ComboBox>
+                        
+                        <!-- Category -->
+                        <Label text="Category" class="modernLabel"/>
+                        <ComboBox id="modernEditMaterialCategory"
+                                 placeholder="Select category"
+                                 class="modernComboBox">
+                            <core:Item key="General" text="General"/>
+                            <core:Item key="Construction" text="Construction"/>
+                            <core:Item key="Manufacturing" text="Manufacturing"/>
+                            <core:Item key="Logistics" text="Logistics"/>
+                        </ComboBox>
+                        
+                        <!-- Unit Price -->
+                        <Label text="Unit Price (USD)" class="modernLabel"/>
+                        <Input id="modernEditMaterialPrice"
+                               placeholder="0.00"
+                               type="Number"
+                               class="modernInput"/>
+                        
+                        <!-- Description -->
+                        <Label text="Description" class="modernLabel"/>
+                        <TextArea id="modernEditMaterialDescription"
+                                 placeholder="Enter material description"
+                                 rows="3"
+                                 maxLength="1000"
+                                 class="modernTextArea"/>
+                        
+                        <!-- Location -->
+                        <Label text="Warehouse Location" class="modernLabel"/>
+                        <ComboBox id="modernEditMaterialLocation"
+                                 placeholder="Select location"
+                                 class="modernComboBox">
+                            <core:Item key="Warehouse A" text="Warehouse A"/>
+                            <core:Item key="Warehouse B" text="Warehouse B"/>
+                            <core:Item key="Warehouse C" text="Warehouse C"/>
+                            <core:Item key="Storage Yard" text="Storage Yard"/>
+                        </ComboBox>
+                        
+                        <!-- Stock Status -->
+                        <Label text="Stock Status" class="modernLabel"/>
+                        <Text id="modernEditStockStatus" class="modernStatusText"/>
+                        
+                    </form:content>
+                </form:SimpleForm>
+                
+                <!-- Warning Panel -->
+                <MessageStrip text="Changes will be saved immediately. Use delete button to remove this material permanently." 
+                             type="Warning" 
+                             class="sapUiMediumMarginTop modernMessageStrip"/>
+                
+            </VBox>
+        </content>
+        
+        <!-- Modern Action Buttons -->
+        <beginButton>
+            <Button text="Save Changes"
+                    type="Emphasized"
+                    icon="sap-icon://save"
+                    press="onSaveEditMaterial"
+                    class="modernActionButton"/>
+        </beginButton>
+        
+        <endButton>
+            <HBox>
+                <Button text="Delete"
+                        type="Reject"
+                        icon="sap-icon://delete"
+                        press="onDeleteMaterialFromEdit"
+                        class="modernActionButton sapUiTinyMarginEnd"/>
+                <Button text="Cancel"
+                        icon="sap-icon://decline"
+                        press="onCancelEditMaterial"
+                        class="modernActionButton"/>
+            </HBox>
+        </endButton>
+        
+    </Dialog>
+    
+</core:FragmentDefinition>

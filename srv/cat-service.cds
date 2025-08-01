@@ -3,6 +3,9 @@ using { sap.procurement as my } from '../db/schema';
 service ProcurementService {
 
   /** Suppliers - for finding and managing suppliers */
+  @readonly
+  @Capabilities.TopSupported: true
+  @Capabilities.SkipSupported: true
   entity Suppliers as projection on my.Suppliers;
 
   /** Materials - for warehouse inventory management */

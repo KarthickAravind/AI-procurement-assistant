@@ -1,0 +1,51 @@
+{
+  "sap.app/id": "procurement.assistant",
+  "sap.app/crossNavigation": {
+    "inbounds": {
+      "procurement-display": {
+        "semanticObject": "Procurement",
+        "action": "display",
+        "title": "AI Procurement Assistant",
+        "subTitle": "Intelligent Procurement & Warehouse Management",
+        "icon": "sap-icon://business-objects-experience",
+        "signature": {
+          "parameters": {},
+          "additionalParameters": "allowed"
+        }
+      },
+      "warehouse-manage": {
+        "semanticObject": "Warehouse",
+        "action": "manage",
+        "title": "Warehouse Management",
+        "subTitle": "Material Inventory & Stock Control",
+        "icon": "sap-icon://inventory",
+        "signature": {
+          "parameters": {},
+          "additionalParameters": "allowed"
+        }
+      },
+      "supplier-find": {
+        "semanticObject": "Supplier",
+        "action": "find",
+        "title": "Supplier Discovery",
+        "subTitle": "AI-Powered Supplier Recommendations",
+        "icon": "sap-icon://supplier",
+        "signature": {
+          "parameters": {},
+          "additionalParameters": "allowed"
+        }
+      }
+    }
+  },
+  "sap.flp": {
+    "type": "application",
+    "config": {
+      "sapui5": {
+        "componentName": "procurement.assistant"
+      }
+    }
+  },
+  "sap.platform.cf": {
+    "ui5VersionRange": ">=1.120.0"
+  }
+}

@@ -1,0 +1,317 @@
+<mvc:View
+    controllerName="procurement.assistant.controller.ModernMain"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:uxap="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+    xmlns:table="sap.ui.table"
+    xmlns:comp="sap.ui.comp"
+    displayBlock="true">
+    
+    <f:DynamicPage id="dynamicPageId" headerExpanded="true" showFooter="false">
+        
+        <!-- Dynamic Page Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="AI-Powered Procurement Assistant" level="H1"/>
+                </f:heading>
+                <f:breadcrumbs>
+                    <Breadcrumbs>
+                        <Link text="Home" press="onNavToHome"/>
+                        <Link text="Procurement Dashboard"/>
+                    </Breadcrumbs>
+                </f:breadcrumbs>
+                <f:actions>
+                    <Button text="Settings" icon="sap-icon://action-settings" press="onOpenSettings"/>
+                    <Button text="Help" icon="sap-icon://sys-help" press="onOpenHelp"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        
+        <!-- Dynamic Page Header with KPI Cards -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <f:content>
+                    <HBox wrap="Wrap" class="sapUiMediumMargin">
+                        
+                        <!-- KPI Cards Row -->
+                        <VBox class="sapUiMediumMarginEnd">
+                            <Panel class="modernKpiCard sapUiMediumMarginBottom" width="300px" height="150px">
+                                <headerToolbar>
+                                    <Toolbar>
+                                        <core:Icon src="sap-icon://inventory" size="1.5rem" color="#0070f3" class="sapUiTinyMarginEnd"/>
+                                        <Title text="Total Materials" level="H5"/>
+                                        <ToolbarSpacer/>
+                                    </Toolbar>
+                                </headerToolbar>
+                                <content>
+                                    <VBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+                                        <Title text="{/materialsCount}" level="H1" class="sapUiTinyMarginBottom"/>
+                                        <Text text="Active Items" class="sapUiTinyText"/>
+                                    </VBox>
+                                </content>
+                            </Panel>
+                        </VBox>
+
+                        <VBox class="sapUiMediumMarginEnd">
+                            <Panel class="modernKpiCard sapUiMediumMarginBottom" width="300px" height="150px">
+                                <headerToolbar>
+                                    <Toolbar>
+                                        <core:Icon src="sap-icon://supplier" size="1.5rem" color="#0070f3" class="sapUiTinyMarginEnd"/>
+                                        <Title text="Active Suppliers" level="H5"/>
+                                        <ToolbarSpacer/>
+                                    </Toolbar>
+                                </headerToolbar>
+                                <content>
+                                    <VBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+                                        <Title text="{/suppliersCount}" level="H1" class="sapUiTinyMarginBottom"/>
+                                        <Text text="Verified Partners" class="sapUiTinyText"/>
+                                    </VBox>
+                                </content>
+                            </Panel>
+                        </VBox>
+
+                        <VBox class="sapUiMediumMarginEnd">
+                            <Panel class="modernKpiCard sapUiMediumMarginBottom" width="300px" height="150px">
+                                <headerToolbar>
+                                    <Toolbar>
+                                        <core:Icon src="sap-icon://business-objects-experience" size="1.5rem" color="#0070f3" class="sapUiTinyMarginEnd"/>
+                                        <Title text="AI Insights" level="H5"/>
+                                        <ToolbarSpacer/>
+                                    </Toolbar>
+                                </headerToolbar>
+                                <content>
+                                    <VBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+                                        <Title text="{/aiInsightsCount}" level="H1" class="sapUiTinyMarginBottom"/>
+                                        <Text text="Active Suggestions" class="sapUiTinyText"/>
+                                    </VBox>
+                                </content>
+                            </Panel>
+                        </VBox>
+                        
+                    </HBox>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        
+        <!-- Main Content with Flexible Column Layout -->
+        <f:content>
+            <f:FlexibleColumnLayout id="fcl" layout="TwoColumnsBeginExpanded" 
+                                   backgroundDesign="Solid" class="sapUiContentPadding">
+                
+                <!-- Begin Column - AI Chat Assistant -->
+                <f:beginColumnPages>
+                    <Page title="AI Assistant" showNavButton="false" 
+                          class="sapUiResponsiveContentPadding">
+                        
+                        <content>
+                            <VBox height="100%" class="sapUiMediumMargin">
+                                
+                                <!-- Quick Action Cards -->
+                                <Panel headerText="Quick Actions" expandable="false" 
+                                       class="sapUiMediumMarginBottom">
+                                    <content>
+                                        <HBox wrap="Wrap" class="sapUiSmallMargin">
+                                            <Button text="Create PO" icon="sap-icon://create-form" 
+                                                   type="Emphasized" class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                                                   press="onQuickActionCreatePO"/>
+                                            <Button text="Send RFQ" icon="sap-icon://email" 
+                                                   type="Emphasized" class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                                                   press="onQuickActionSendRFQ"/>
+                                            <Button text="Find Suppliers" icon="sap-icon://supplier" 
+                                                   type="Default" class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                                                   press="onQuickActionFindSuppliers"/>
+                                            <Button text="Check Inventory" icon="sap-icon://inventory" 
+                                                   type="Default" class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                                                   press="onQuickActionCheckInventory"/>
+                                        </HBox>
+                                    </content>
+                                </Panel>
+                                
+                                <!-- Modern Chat Interface -->
+                                <Panel headerText="AI Chat" expandable="false" height="500px">
+                                    <content>
+                                        <VBox height="100%">
+                                            
+                                            <!-- Chat Messages Container -->
+                                            <ScrollContainer id="chatScrollContainer" 
+                                                           height="400px" vertical="true" 
+                                                           class="sapUiMediumMarginBottom">
+                                                <content>
+                                                    <VBox id="chatMessagesContainer" class="sapUiSmallMargin">
+                                                        <!-- Welcome Messages -->
+                                                        <MessageStrip text="👋 Hello! I'm your AI procurement assistant. I can help you with suppliers, materials, pricing, and procurement processes." 
+                                                                     type="Information" class="sapUiMediumMarginBottom"/>
+                                                        <MessageStrip text="💡 Try the quick action buttons above or ask me anything!" 
+                                                                     type="Success" class="sapUiMediumMarginBottom"/>
+                                                    </VBox>
+                                                </content>
+                                            </ScrollContainer>
+                                            
+                                            <!-- Modern Chat Input -->
+                                            <VBox>
+                                                <HBox width="100%" alignItems="End">
+                                                    <FeedInput id="chatInput" 
+                                                             placeholder="Type your message here... (e.g., 'Find laptops under ₹50K')"
+                                                             maxLength="1000" 
+                                                             growing="true"
+                                                             growingMaxLines="5"
+                                                             class="sapUiMediumMarginEnd"
+                                                             post="onSendChatMessage"/>
+                                                    <Button text="Send" type="Emphasized" 
+                                                           icon="sap-icon://paper-plane" 
+                                                           press="onSendChatMessage"/>
+                                                </HBox>
+                                            </VBox>
+                                            
+                                        </VBox>
+                                    </content>
+                                </Panel>
+                                
+                            </VBox>
+                        </content>
+                        
+                    </Page>
+                </f:beginColumnPages>
+                
+                <!-- Mid Column - Warehouse Management -->
+                <f:midColumnPages>
+                    <Page title="Warehouse Management" showNavButton="false" 
+                          class="sapUiResponsiveContentPadding">
+                        
+                        <content>
+                            <VBox height="100%" class="sapUiMediumMargin">
+                                
+                                <!-- Smart Filter Bar -->
+                                <Panel headerText="Filters & Search" expandable="true" expanded="false" 
+                                       class="sapUiMediumMarginBottom">
+                                    <content>
+                                        <VBox class="sapUiSmallMargin">
+                                            <SearchField id="materialSearchField" 
+                                                       placeholder="Search materials by name, ID, or supplier..." 
+                                                       width="100%" search="onSearchMaterials" 
+                                                       class="sapUiMediumMarginBottom"/>
+                                            <HBox wrap="Wrap">
+                                                <ComboBox id="categoryFilter" placeholder="Filter by Category" 
+                                                         class="sapUiTinyMarginEnd" selectionChange="onFilterChange">
+                                                    <core:Item key="" text="All Categories"/>
+                                                    <core:Item key="Construction" text="Construction"/>
+                                                    <core:Item key="Manufacturing" text="Manufacturing"/>
+                                                    <core:Item key="Logistics" text="Logistics"/>
+                                                </ComboBox>
+                                                <ComboBox id="statusFilter" placeholder="Filter by Status" 
+                                                         class="sapUiTinyMarginEnd" selectionChange="onFilterChange">
+                                                    <core:Item key="" text="All Status"/>
+                                                    <core:Item key="Normal" text="Normal Stock"/>
+                                                    <core:Item key="Low Stock" text="Low Stock"/>
+                                                    <core:Item key="Overstock" text="Overstock"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </VBox>
+                                    </content>
+                                </Panel>
+                                
+                                <!-- Modern Materials Table -->
+                                <Panel headerText="Materials Inventory" class="sapUiMediumMarginBottom">
+                                    <headerToolbar>
+                                        <Toolbar>
+                                            <Title text="Warehouse Supplies" level="H4"/>
+                                            <ToolbarSpacer/>
+                                            <Button text="Add Material" type="Emphasized" 
+                                                   icon="sap-icon://add" press="onAddMaterial"/>
+                                            <Button text="Import CSV" icon="sap-icon://download" 
+                                                   press="onImportCSV"/>
+                                            <Button text="Export" icon="sap-icon://upload" 
+                                                   press="onExportMaterials"/>
+                                            <Button text="Refresh" icon="sap-icon://refresh" 
+                                                   press="onRefreshMaterials"/>
+                                            <Text id="materialsCountText" text="Loading..." 
+                                                 class="sapUiMediumMarginBegin"/>
+                                        </Toolbar>
+                                    </headerToolbar>
+                                    <content>
+                                        <table:Table id="materialsTable" 
+                                                   rows="{/materials}" 
+                                                   selectionMode="Single"
+                                                   enableSelectAll="false"
+                                                   ariaLabelledBy="title"
+                                                   visibleRowCount="10"
+                                                   minAutoRowCount="5"
+                                                   class="sapUiMediumMarginTop">
+                                            
+                                            <table:columns>
+                                                <table:Column width="120px" sortProperty="ID" filterProperty="ID">
+                                                    <Label text="Material ID"/>
+                                                    <table:template>
+                                                        <Text text="{ID}" wrapping="false"/>
+                                                    </table:template>
+                                                </table:Column>
+                                                
+                                                <table:Column width="200px" sortProperty="name" filterProperty="name">
+                                                    <Label text="Name"/>
+                                                    <table:template>
+                                                        <Text text="{name}" wrapping="false"/>
+                                                    </table:template>
+                                                </table:Column>
+                                                
+                                                <table:Column width="150px" sortProperty="supplier_ID" filterProperty="supplier_ID">
+                                                    <Label text="Supplier"/>
+                                                    <table:template>
+                                                        <Text text="{supplier_ID}" wrapping="false"/>
+                                                    </table:template>
+                                                </table:Column>
+                                                
+                                                <table:Column width="100px" sortProperty="quantity" filterProperty="quantity">
+                                                    <Label text="Quantity"/>
+                                                    <table:template>
+                                                        <Text text="{quantity} {unit}" wrapping="false"/>
+                                                    </table:template>
+                                                </table:Column>
+                                                
+                                                <table:Column width="120px" sortProperty="category" filterProperty="category">
+                                                    <Label text="Category"/>
+                                                    <table:template>
+                                                        <Text text="{category}" wrapping="false"/>
+                                                    </table:template>
+                                                </table:Column>
+                                                
+                                                <table:Column width="100px" sortProperty="stockStatus" filterProperty="stockStatus">
+                                                    <Label text="Status"/>
+                                                    <table:template>
+                                                        <ObjectStatus text="{stockStatus}" 
+                                                                     state="{path: 'stockStatus', formatter: '.formatStockStatus'}"/>
+                                                    </table:template>
+                                                </table:Column>
+                                                
+                                                <table:Column width="150px">
+                                                    <Label text="Actions"/>
+                                                    <table:template>
+                                                        <HBox>
+                                                            <Button icon="sap-icon://edit" type="Transparent" 
+                                                                   tooltip="Edit Material" press="onEditMaterial"/>
+                                                            <Button icon="sap-icon://delete" type="Transparent" 
+                                                                   tooltip="Delete Material" press="onDeleteMaterial"/>
+                                                        </HBox>
+                                                    </table:template>
+                                                </table:Column>
+                                                
+                                            </table:columns>
+                                        </table:Table>
+                                    </content>
+                                </Panel>
+                                
+                            </VBox>
+                        </content>
+                        
+                    </Page>
+                </f:midColumnPages>
+                
+            </f:FlexibleColumnLayout>
+        </f:content>
+        
+    </f:DynamicPage>
+    
+</mvc:View>

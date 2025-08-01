@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Procurement Assistant - Working Modern UI</title>
+    
+    <!-- UI5 Bootstrap -->
+    <script
+        id="sap-ui-bootstrap"
+        src="https://ui5.sap.com/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_horizon"
+        data-sap-ui-libs="sap.m,sap.f,sap.ui.table"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true"
+        data-sap-ui-frameOptions="trusted">
+    </script>
+    
+    <style>
+        .modernKpiTile {
+            background: linear-gradient(135deg, #0070f3, #00d4ff);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .modernKpiTile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tile spacing - 0.5cm gap */
+        .modernKpiTile {
+            margin-right: 0.5cm;
+            margin-bottom: 0.5cm;
+        }
+
+        /* Rating color classes */
+        .ratingGreen {
+            color: #2E7D32 !important; /* Green: 4.50-5.00 */
+            font-weight: bold;
+        }
+
+        .ratingLightGreen {
+            color: #4CAF50 !important; /* Light Green: 4.00-4.49 */
+            font-weight: bold;
+        }
+
+        .ratingYellow {
+            color: #F57C00 !important; /* Yellow: 3.50-3.99 */
+            font-weight: bold;
+        }
+
+        .ratingOrange {
+            color: #FF9800 !important; /* Orange: 3.00-3.49 */
+            font-weight: bold;
+        }
+
+        .ratingDarkOrange {
+            color: #FF5722 !important; /* Dark Orange: 2.50-2.99 */
+            font-weight: bold;
+        }
+
+        .ratingRed {
+            color: #D32F2F !important; /* Red: Below 2.49 */
+            font-weight: bold;
+        }
+        
+        .chatMessage {
+            border-radius: 8px;
+            margin: 4px 0;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body class="sapUiBody">
+    <div id="content"></div>
+    
+    <script>
+        var oApp, oModel, oChatModel;
+        
+        sap.ui.getCore().attachInit(function() {
+            console.log("Working Modern UI5 initialized");
+            
+            try {
+                // Initialize models
+                initializeModels();
+                
+                // Create the main application
+                createMainApplication();
+                
+                // Load initial data
+                loadInitialData();
+                
+                console.log("Working Modern UI loaded successfully");
+                
+            } catch (error) {
+                console.error("Error initializing app:", error);
+                showError("Initialization Error: " + error.message);
+            }
+        });
+        
+        function initializeModels() {
+            // Main data model
+            oModel = new sap.ui.model.json.JSONModel({
+                materials: [],
+                suppliers: [],
+                materialsCount: 0,
+                suppliersCount: 3000, // Default to 3000, will update with actual count
+                loading: false
+            });
+            
+            // Chat model
+            oChatModel = new sap.ui.model.json.JSONModel({
+                sessionId: null,
+                isConnected: false,
+                messages: []
+            });
+            
+            sap.ui.getCore().setModel(oModel);
+            sap.ui.getCore().setModel(oChatModel, "chat");
+        }
+        
+        function createMainApplication() {
+            // Create KPI Tiles
+            var oMaterialsTile = new sap.m.GenericTile({
+                header: "Total Materials",
+                subheader: "Inventory Overview",
+                frameType: "OneByOne",
+                class: "modernKpiTile",
+                press: openMaterialsDialog,
+                tileContent: [
+                    new sap.m.TileContent({
+                        content: new sap.m.NumericContent({
+                            value: "{/materialsCount}",
+                            indicator: "Up",
+                            size: "M",
+                            valueColor: "Good"
+                        })
+                    })
+                ]
+            });
+            
+            var oSuppliersTile = new sap.m.GenericTile({
+                header: "Active Suppliers",
+                subheader: "Network Status",
+                frameType: "OneByOne",
+                class: "modernKpiTile",
+                press: openSuppliersDialog,
+                tileContent: [
+                    new sap.m.TileContent({
+                        content: new sap.m.NumericContent({
+                            value: "{/suppliersCount}",
+                            indicator: "Up",
+                            size: "M",
+                            valueColor: "Good"
+                        })
+                    })
+                ]
+            });
+            
+            var oAITile = new sap.m.GenericTile({
+                header: "My Dear Assistant",
+                subheader: "Smart Recommendations",
+                frameType: "OneByOne",
+                class: "modernKpiTile",
+                press: openAIAssistantDialog,
+                tileContent: [
+                    new sap.m.TileContent({
+                        content: new sap.m.ImageContent({
+                            src: "sap-icon://ai",
+                            size: "L"
+                        })
+                    })
+                ]
+            });
+            
+            // Create Chat Panel
+            var oChatInput = new sap.m.TextArea("chatInput", {
+                placeholder: "Type your message here... (e.g., 'Find laptops under ₹50K')",
+                growing: true,
+                growingMaxLines: 3,
+                width: "100%"
+            });
+            
+            var oChatContainer = new sap.m.VBox("chatContainer", {
+                class: "sapUiMediumMargin"
+            });
+            
+            var oChatPanel = new sap.m.Panel({
+                headerText: "AI Chat Assistant",
+                expandable: false,
+                height: "500px",
+                content: [
+                    new sap.m.VBox({
+                        height: "100%",
+                        items: [
+                            // Quick Actions
+                            new sap.m.Panel({
+                                headerText: "Quick Actions",
+                                expandable: false,
+                                class: "sapUiMediumMarginBottom",
+                                content: [
+                                    new sap.m.HBox({
+                                        wrap: "Wrap",
+                                        class: "sapUiSmallMargin",
+                                        items: [
+                                            new sap.m.Button({
+                                                text: "Create PO",
+                                                icon: "sap-icon://create-form",
+                                                type: "Emphasized",
+                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                press: function() {
+                                                    addChatMessage("I'll help you create a Purchase Order. What materials do you need?", "assistant");
+                                                }
+                                            }),
+                                            new sap.m.Button({
+                                                text: "Find Suppliers",
+                                                icon: "sap-icon://supplier",
+                                                type: "Default",
+                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                press: function() {
+                                                    addChatMessage("I'll help you find the best suppliers. What type of materials are you looking for?", "assistant");
+                                                }
+                                            }),
+                                            new sap.m.Button({
+                                                text: "Check Inventory",
+                                                icon: "sap-icon://inventory",
+                                                type: "Default",
+                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                press: function() {
+                                                    addChatMessage("Here's your current inventory status. Which materials would you like to check?", "assistant");
+                                                }
+                                            })
+                                        ]
+                                    })
+                                ]
+                            }),
+                            
+                            // Chat Messages
+                            new sap.m.ScrollContainer({
+                                height: "300px",
+                                vertical: true,
+                                class: "sapUiMediumMarginBottom",
+                                content: [oChatContainer]
+                            }),
+                            
+                            // Chat Input
+                            new sap.m.HBox({
+                                width: "100%",
+                                alignItems: "End",
+                                items: [
+                                    oChatInput,
+                                    new sap.m.Button({
+                                        text: "Send",
+                                        type: "Emphasized",
+                                        icon: "sap-icon://paper-plane",
+                                        class: "sapUiTinyMarginBegin",
+                                        press: sendChatMessage
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                ]
+            });
+            
+            // Create Materials Table
+            var oMaterialsTable = new sap.m.Table("materialsTable", {
+                headerToolbar: new sap.m.Toolbar({
+                    content: [
+                        new sap.m.Title({text: "Materials Inventory"}),
+                        new sap.m.ToolbarSpacer(),
+                        new sap.m.Button({
+                            text: "Add Material",
+                            type: "Emphasized",
+                            icon: "sap-icon://add",
+                            press: function() {
+                                sap.m.MessageToast.show("Add Material functionality");
+                            }
+                        }),
+                        new sap.m.Button({
+                            text: "Refresh",
+                            icon: "sap-icon://refresh",
+                            press: loadMaterials
+                        })
+                    ]
+                }),
+                columns: [
+                    new sap.m.Column({header: new sap.m.Text({text: "ID"})}),
+                    new sap.m.Column({header: new sap.m.Text({text: "Name"})}),
+                    new sap.m.Column({header: new sap.m.Text({text: "Supplier"})}),
+                    new sap.m.Column({header: new sap.m.Text({text: "Quantity"})}),
+                    new sap.m.Column({header: new sap.m.Text({text: "Category"})}),
+                    new sap.m.Column({header: new sap.m.Text({text: "Actions"})})
+                ]
+            });
+            
+            oMaterialsTable.bindItems({
+                path: "/materials",
+                template: new sap.m.ColumnListItem({
+                    cells: [
+                        new sap.m.Text({text: "{ID}"}),
+                        new sap.m.Text({text: "{name}"}),
+                        new sap.m.Text({text: "{supplier_ID}"}),
+                        new sap.m.Text({text: "{quantity} {unit}"}),
+                        new sap.m.Text({text: "{category}"}),
+                        new sap.m.HBox({
+                            items: [
+                                new sap.m.Button({
+                                    icon: "sap-icon://edit",
+                                    type: "Transparent",
+                                    press: function(oEvent) {
+                                        var oContext = oEvent.getSource().getBindingContext();
+                                        var oMaterial = oContext.getObject();
+                                        sap.m.MessageToast.show("Edit: " + oMaterial.name);
+                                    }
+                                }),
+                                new sap.m.Button({
+                                    icon: "sap-icon://delete",
+                                    type: "Transparent",
+                                    press: function(oEvent) {
+                                        var oContext = oEvent.getSource().getBindingContext();
+                                        var oMaterial = oContext.getObject();
+                                        sap.m.MessageBox.confirm("Delete " + oMaterial.name + "?", {
+                                            onClose: function(sAction) {
+                                                if (sAction === sap.m.MessageBox.Action.OK) {
+                                                    deleteMaterial(oMaterial.ID);
+                                                }
+                                            }
+                                        });
+                                    }
+                                })
+                            ]
+                        })
+                    ]
+                })
+            });
+            
+            // Create main layout using FlexibleColumnLayout
+            var oFCL = new sap.f.FlexibleColumnLayout({
+                layout: "TwoColumnsBeginExpanded",
+                backgroundDesign: "Solid",
+                beginColumnPages: [
+                    new sap.m.Page({
+                        title: "AI Assistant",
+                        content: [oChatPanel]
+                    })
+                ],
+                midColumnPages: [
+                    new sap.m.Page({
+                        title: "Warehouse Management",
+                        content: [
+                            new sap.m.Panel({
+                                headerText: "Search & Filters",
+                                expandable: true,
+                                expanded: false,
+                                class: "sapUiMediumMarginBottom",
+                                content: [
+                                    new sap.m.SearchField({
+                                        placeholder: "Search materials...",
+                                        width: "100%",
+                                        class: "sapUiMediumMargin",
+                                        search: function(oEvent) {
+                                            var sQuery = oEvent.getParameter("query");
+                                            filterMaterials(sQuery);
+                                        }
+                                    })
+                                ]
+                            }),
+                            oMaterialsTable
+                        ]
+                    })
+                ]
+            });
+            
+            // Create Dynamic Page
+            var oDynamicPage = new sap.f.DynamicPage({
+                title: new sap.f.DynamicPageTitle({
+                    heading: new sap.m.HBox({
+                        alignItems: "Center",
+                        items: [
+                            new sap.m.Image({
+                                src: "https://sapui5.hana.ondemand.com/resources/sap/ushell/themes/base/img/SAPLogo.svg",
+                                alt: "SAP Logo",
+                                width: "4rem",
+                                height: "4rem",
+                                class: "sapUiMediumMarginEnd"
+                            }),
+                            new sap.m.Title({
+                                text: "AI-Powered Procurement Assistant",
+                                level: "H1"
+                            })
+                        ]
+                    }),
+                    actions: [
+                        new sap.m.Button({
+                            text: "Settings",
+                            icon: "sap-icon://action-settings"
+                        }),
+                        new sap.m.Button({
+                            text: "Help",
+                            icon: "sap-icon://sys-help"
+                        })
+                    ]
+                }),
+                header: new sap.f.DynamicPageHeader({
+                    pinnable: true,
+                    content: [
+                        new sap.m.HBox({
+                            wrap: "Wrap",
+                            class: "sapUiMediumMargin",
+                            justifyContent: "Start",
+                            items: [
+                                oMaterialsTile,
+                                oSuppliersTile,
+                                oAITile
+                            ]
+                        })
+                    ]
+                }),
+                content: [oFCL]
+            });
+            
+            // Set models
+            oDynamicPage.setModel(oModel);
+            oDynamicPage.setModel(oChatModel, "chat");
+            
+            // Place in DOM
+            oDynamicPage.placeAt("content");
+            
+            // Add welcome messages
+            addChatMessage("👋 Hello! I'm your AI procurement assistant. I can help you with suppliers, materials, pricing, and procurement processes.", "assistant");
+            addChatMessage("💡 Try the quick action buttons above or ask me anything!", "assistant");
+        }
+        
+        function loadInitialData() {
+            loadMaterials();
+            loadSuppliers();
+            initializeChatSession();
+        }
+
+        // Dialog Management
+        var oMaterialsDialog = null;
+        var oAddMaterialDialog = null;
+        var oEditMaterialDialog = null;
+        var oSuppliersDialog = null;
+        var oAIAssistantDialog = null;
+        var oCurrentMaterial = null;
+
+        function openMaterialsDialog() {
+            if (!oMaterialsDialog) {
+                createMaterialsDialog();
+            }
+            oMaterialsDialog.open();
+        }
+
+        function createMaterialsDialog() {
+            // Create Materials Table for Dialog
+            var oDialogMaterialsTable = new sap.m.Table("dialogMaterialsTable", {
+                growing: true,
+                growingThreshold: 20,
+                mode: "None",
+                columns: [
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Material ID"}),
+                        minScreenWidth: "Tablet",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Name"}),
+                        minScreenWidth: "Tablet",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Supplier ID"}),
+                        minScreenWidth: "Desktop",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Quantity"}),
+                        minScreenWidth: "Tablet",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Category"}),
+                        minScreenWidth: "Desktop",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Actions"}),
+                        minScreenWidth: "Tablet",
+                        demandPopin: false
+                    })
+                ]
+            });
+
+            // Bind items to the dialog table
+            oDialogMaterialsTable.bindItems({
+                path: "/materials",
+                template: new sap.m.ColumnListItem({
+                    cells: [
+                        new sap.m.Text({text: "{ID}"}),
+                        new sap.m.Text({text: "{name}"}),
+                        new sap.m.Text({text: "{supplier_ID}"}),
+                        new sap.m.Text({text: "{quantity} {unit}"}),
+                        new sap.m.Text({text: "{category}"}),
+                        new sap.m.Button({
+                            icon: "sap-icon://delete",
+                            type: "Reject",
+                            tooltip: "Delete Material",
+                            press: function(oEvent) {
+                                var oContext = oEvent.getSource().getBindingContext();
+                                var oMaterial = oContext.getObject();
+                                confirmDeleteMaterial(oMaterial);
+                            }
+                        })
+                    ]
+                })
+            });
+
+            // Create the main Materials Dialog
+            oMaterialsDialog = new sap.m.Dialog("materialsDialog", {
+                title: "Inventory Overview",
+                contentWidth: "80%",
+                contentHeight: "70%",
+                verticalScrolling: true,
+                horizontalScrolling: false,
+                content: [
+                    new sap.m.VBox({
+                        items: [
+                            // Search and Filter Bar
+                            new sap.m.Bar({
+                                contentLeft: [
+                                    new sap.m.SearchField("dialogSearchField", {
+                                        placeholder: "Search materials...",
+                                        width: "300px",
+                                        search: function(oEvent) {
+                                            var sQuery = oEvent.getParameter("query");
+                                            filterDialogMaterials(sQuery);
+                                        }
+                                    })
+                                ],
+                                contentRight: [
+                                    new sap.m.Button({
+                                        text: "Add Material",
+                                        type: "Emphasized",
+                                        icon: "sap-icon://add",
+                                        class: "sapUiTinyMarginEnd",
+                                        press: openAddMaterialDialog
+                                    }),
+                                    new sap.m.Button({
+                                        text: "Export CSV",
+                                        icon: "sap-icon://download",
+                                        class: "sapUiTinyMarginEnd",
+                                        press: exportMaterialsToCSV
+                                    }),
+                                    new sap.m.Button({
+                                        text: "Refresh",
+                                        icon: "sap-icon://refresh",
+                                        press: function() {
+                                            loadMaterials();
+                                            sap.m.MessageToast.show("Materials refreshed");
+                                        }
+                                    })
+                                ]
+                            }),
+
+                            // Materials Table in ScrollContainer
+                            new sap.m.ScrollContainer({
+                                height: "400px",
+                                vertical: true,
+                                horizontal: false,
+                                content: [oDialogMaterialsTable]
+                            })
+                        ]
+                    })
+                ],
+                beginButton: new sap.m.Button({
+                    text: "Close",
+                    press: function() {
+                        oMaterialsDialog.close();
+                    }
+                })
+            });
+
+            // Set model to dialog
+            oMaterialsDialog.setModel(oModel);
+        }
+
+        function openAddMaterialDialog() {
+            if (!oAddMaterialDialog) {
+                createAddMaterialDialog();
+            }
+            clearAddMaterialForm();
+            oAddMaterialDialog.open();
+        }
+
+        function createAddMaterialDialog() {
+            oAddMaterialDialog = new sap.m.Dialog("addMaterialDialog", {
+                title: "Add New Material",
+                contentWidth: "500px",
+                contentHeight: "600px",
+                verticalScrolling: false,
+                content: [
+                    new sap.m.VBox({
+                        class: "sapUiMediumMargin",
+                        items: [
+                            // Material ID
+                            new sap.m.Label({text: "Material ID *", class: "sapUiTinyMarginTop"}),
+                            new sap.m.Input("addMaterialId", {
+                                placeholder: "e.g., MAT001",
+                                required: true,
+                                maxLength: 20
+                            }),
+
+                            // Material Name
+                            new sap.m.Label({text: "Material Name *", class: "sapUiTinyMarginTop"}),
+                            new sap.m.Input("addMaterialName", {
+                                placeholder: "Enter material name",
+                                required: true,
+                                maxLength: 255
+                            }),
+
+                            // Supplier ID
+                            new sap.m.Label({text: "Supplier ID *", class: "sapUiTinyMarginTop"}),
+                            new sap.m.Input("addMaterialSupplier", {
+                                placeholder: "Enter supplier ID (e.g., 9001)",
+                                required: true,
+                                type: "Number"
+                            }),
+
+                            // Quantity
+                            new sap.m.Label({text: "Quantity *", class: "sapUiTinyMarginTop"}),
+                            new sap.m.Input("addMaterialQuantity", {
+                                placeholder: "Enter quantity",
+                                required: true,
+                                type: "Number"
+                            }),
+
+                            // Unit
+                            new sap.m.Label({text: "Unit", class: "sapUiTinyMarginTop"}),
+                            new sap.m.ComboBox("addMaterialUnit", {
+                                placeholder: "Select unit",
+                                selectedKey: "pcs",
+                                items: [
+                                    new sap.ui.core.Item({key: "pcs", text: "Pieces"}),
+                                    new sap.ui.core.Item({key: "kg", text: "Kilograms"}),
+                                    new sap.ui.core.Item({key: "liters", text: "Liters"}),
+                                    new sap.ui.core.Item({key: "meters", text: "Meters"}),
+                                    new sap.ui.core.Item({key: "sheets", text: "Sheets"}),
+                                    new sap.ui.core.Item({key: "bags", text: "Bags"}),
+                                    new sap.ui.core.Item({key: "units", text: "Units"})
+                                ]
+                            }),
+
+                            // Category
+                            new sap.m.Label({text: "Category", class: "sapUiTinyMarginTop"}),
+                            new sap.m.ComboBox("addMaterialCategory", {
+                                placeholder: "Select category",
+                                selectedKey: "General",
+                                items: [
+                                    new sap.ui.core.Item({key: "General", text: "General"}),
+                                    new sap.ui.core.Item({key: "Construction", text: "Construction"}),
+                                    new sap.ui.core.Item({key: "Manufacturing", text: "Manufacturing"}),
+                                    new sap.ui.core.Item({key: "Logistics", text: "Logistics"})
+                                ]
+                            })
+                        ]
+                    })
+                ],
+                beginButton: new sap.m.Button({
+                    text: "Add Material",
+                    type: "Emphasized",
+                    icon: "sap-icon://add",
+                    press: saveNewMaterial
+                }),
+                endButton: new sap.m.Button({
+                    text: "Cancel",
+                    press: function() {
+                        oAddMaterialDialog.close();
+                    }
+                })
+            });
+        }
+
+        function clearAddMaterialForm() {
+            sap.ui.getCore().byId("addMaterialId").setValue("");
+            sap.ui.getCore().byId("addMaterialName").setValue("");
+            sap.ui.getCore().byId("addMaterialSupplier").setValue("");
+            sap.ui.getCore().byId("addMaterialQuantity").setValue("");
+            sap.ui.getCore().byId("addMaterialUnit").setSelectedKey("pcs");
+            sap.ui.getCore().byId("addMaterialCategory").setSelectedKey("General");
+        }
+
+        function saveNewMaterial() {
+            var sId = sap.ui.getCore().byId("addMaterialId").getValue();
+            var sName = sap.ui.getCore().byId("addMaterialName").getValue();
+            var sSupplier = sap.ui.getCore().byId("addMaterialSupplier").getValue();
+            var iQuantity = parseInt(sap.ui.getCore().byId("addMaterialQuantity").getValue());
+            var sUnit = sap.ui.getCore().byId("addMaterialUnit").getSelectedKey();
+            var sCategory = sap.ui.getCore().byId("addMaterialCategory").getSelectedKey();
+
+            if (!sId || !sName || !sSupplier || !iQuantity) {
+                sap.m.MessageToast.show("Please fill all required fields");
+                return;
+            }
+
+            // Call backend service
+            fetch('/odata/v4/procurement/addMaterial', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ID: sId,
+                    name: sName,
+                    supplier: sSupplier,
+                    quantity: iQuantity,
+                    category: sCategory || "General",
+                    unit: sUnit || "pcs"
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    sap.m.MessageToast.show(data.message);
+                    loadMaterials(); // Refresh materials and update tile count
+                    oAddMaterialDialog.close();
+                } else {
+                    sap.m.MessageToast.show("Error: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Error adding material:", error);
+                sap.m.MessageToast.show("Error adding material");
+            });
+        }
+
+        function openEditMaterialDialog(oMaterial) {
+            oCurrentMaterial = oMaterial;
+            if (!oEditMaterialDialog) {
+                createEditMaterialDialog();
+            }
+            populateEditMaterialForm(oMaterial);
+            oEditMaterialDialog.open();
+        }
+
+        function createEditMaterialDialog() {
+            oEditMaterialDialog = new sap.m.Dialog("editMaterialDialog", {
+                title: "Edit Material",
+                contentWidth: "500px",
+                contentHeight: "600px",
+                verticalScrolling: false,
+                content: [
+                    new sap.m.VBox({
+                        class: "sapUiMediumMargin",
+                        items: [
+                            // Material ID (Read-only)
+                            new sap.m.Label({text: "Material ID", class: "sapUiTinyMarginTop"}),
+                            new sap.m.Input("editMaterialId", {
+                                editable: false
+                            }),
+
+                            // Material Name
+                            new sap.m.Label({text: "Material Name *", class: "sapUiTinyMarginTop"}),
+                            new sap.m.Input("editMaterialName", {
+                                placeholder: "Enter material name",
+                                required: true,
+                                maxLength: 255
+                            }),
+
+                            // Supplier ID
+                            new sap.m.Label({text: "Supplier ID *", class: "sapUiTinyMarginTop"}),
+                            new sap.m.Input("editMaterialSupplier", {
+                                placeholder: "Enter supplier ID",
+                                required: true
+                            }),
+
+                            // Quantity
+                            new sap.m.Label({text: "Quantity *", class: "sapUiTinyMarginTop"}),
+                            new sap.m.Input("editMaterialQuantity", {
+                                placeholder: "Enter quantity",
+                                required: true,
+                                type: "Number"
+                            }),
+
+                            // Unit
+                            new sap.m.Label({text: "Unit", class: "sapUiTinyMarginTop"}),
+                            new sap.m.ComboBox("editMaterialUnit", {
+                                placeholder: "Select unit",
+                                items: [
+                                    new sap.ui.core.Item({key: "pcs", text: "Pieces"}),
+                                    new sap.ui.core.Item({key: "kg", text: "Kilograms"}),
+                                    new sap.ui.core.Item({key: "liters", text: "Liters"}),
+                                    new sap.ui.core.Item({key: "meters", text: "Meters"}),
+                                    new sap.ui.core.Item({key: "sheets", text: "Sheets"}),
+                                    new sap.ui.core.Item({key: "bags", text: "Bags"}),
+                                    new sap.ui.core.Item({key: "units", text: "Units"})
+                                ]
+                            }),
+
+                            // Category
+                            new sap.m.Label({text: "Category", class: "sapUiTinyMarginTop"}),
+                            new sap.m.ComboBox("editMaterialCategory", {
+                                placeholder: "Select category",
+                                items: [
+                                    new sap.ui.core.Item({key: "General", text: "General"}),
+                                    new sap.ui.core.Item({key: "Construction", text: "Construction"}),
+                                    new sap.ui.core.Item({key: "Manufacturing", text: "Manufacturing"}),
+                                    new sap.ui.core.Item({key: "Logistics", text: "Logistics"})
+                                ]
+                            }),
+
+                            // Unit Price
+                            new sap.m.Label({text: "Unit Price (USD)", class: "sapUiTinyMarginTop"}),
+                            new sap.m.Input("editMaterialPrice", {
+                                placeholder: "0.00",
+                                type: "Number"
+                            })
+                        ]
+                    })
+                ],
+                beginButton: new sap.m.Button({
+                    text: "Save Changes",
+                    type: "Emphasized",
+                    icon: "sap-icon://save",
+                    press: saveEditMaterial
+                }),
+                endButton: new sap.m.HBox({
+                    items: [
+                        new sap.m.Button({
+                            text: "Delete",
+                            type: "Reject",
+                            icon: "sap-icon://delete",
+                            press: function() {
+                                confirmDeleteMaterial(oCurrentMaterial);
+                                oEditMaterialDialog.close();
+                            }
+                        }),
+                        new sap.m.Button({
+                            text: "Cancel",
+                            press: function() {
+                                oEditMaterialDialog.close();
+                            }
+                        })
+                    ]
+                })
+            });
+        }
+
+        function populateEditMaterialForm(oMaterial) {
+            sap.ui.getCore().byId("editMaterialId").setValue(oMaterial.ID);
+            sap.ui.getCore().byId("editMaterialName").setValue(oMaterial.name);
+            sap.ui.getCore().byId("editMaterialSupplier").setValue(oMaterial.supplier_ID || "");
+            sap.ui.getCore().byId("editMaterialQuantity").setValue(oMaterial.quantity);
+            sap.ui.getCore().byId("editMaterialUnit").setSelectedKey(oMaterial.unit || "pcs");
+            sap.ui.getCore().byId("editMaterialCategory").setSelectedKey(oMaterial.category || "General");
+            sap.ui.getCore().byId("editMaterialPrice").setValue(oMaterial.unitPrice || "");
+        }
+
+        function saveEditMaterial() {
+            var sName = sap.ui.getCore().byId("editMaterialName").getValue();
+            var sSupplier = sap.ui.getCore().byId("editMaterialSupplier").getValue();
+            var iQuantity = parseInt(sap.ui.getCore().byId("editMaterialQuantity").getValue());
+            var sUnit = sap.ui.getCore().byId("editMaterialUnit").getSelectedKey();
+            var sCategory = sap.ui.getCore().byId("editMaterialCategory").getSelectedKey();
+            var fPrice = parseFloat(sap.ui.getCore().byId("editMaterialPrice").getValue()) || 0;
+
+            if (!sName || !sSupplier || !iQuantity) {
+                sap.m.MessageToast.show("Please fill all required fields");
+                return;
+            }
+
+            // Call backend service
+            fetch('/odata/v4/procurement/Materials(\'' + oCurrentMaterial.ID + '\')', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: sName,
+                    supplier_ID: sSupplier,
+                    quantity: iQuantity,
+                    category: sCategory,
+                    unitPrice: fPrice,
+                    unit: sUnit
+                })
+            })
+            .then(() => {
+                sap.m.MessageToast.show("Material updated successfully");
+                loadMaterials(); // Refresh materials and update tile count
+                oEditMaterialDialog.close();
+            })
+            .catch(error => {
+                console.error("Error updating material:", error);
+                sap.m.MessageToast.show("Error updating material");
+            });
+        }
+
+        function confirmDeleteMaterial(oMaterial) {
+            // Use simple confirm dialog like test-backend.html
+            if (confirm(`Are you sure you want to delete material ${oMaterial.ID} (${oMaterial.name})?`)) {
+                deleteMaterialFromBackend(oMaterial.ID);
+            }
+        }
+
+        async function deleteMaterialFromBackend(sMaterialId) {
+            sap.m.MessageToast.show(`Deleting material ${sMaterialId}...`);
+
+            try {
+                const response = await fetch(`/odata/v4/procurement/Materials('${sMaterialId}')`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    sap.m.MessageToast.show(`✅ Material ${sMaterialId} deleted successfully!`);
+                    // Reload materials to reflect the deletion
+                    setTimeout(() => {
+                        loadMaterials();
+                        if (oMaterialsDialog && oMaterialsDialog.isOpen()) {
+                            loadMaterialsForDialog();
+                        }
+                    }, 1000);
+                } else {
+                    sap.m.MessageToast.show(`❌ Delete failed for material ${sMaterialId}`);
+                }
+            } catch (error) {
+                console.error('Error deleting material:', error);
+                sap.m.MessageToast.show(`❌ Delete error: ${error.message}`);
+            }
+        }
+
+        function filterDialogMaterials(sQuery) {
+            if (!sQuery || !sQuery.trim()) {
+                // If no query, reload all materials
+                loadMaterialsForDialog();
+                return;
+            }
+
+            // Use OData filtering like in test-backend.html
+            var sQueryLower = sQuery.toLowerCase();
+            var sFilterUrl = `/odata/v4/procurement/Materials?$filter=contains(tolower(name),'${sQueryLower}') or contains(tolower(ID),'${sQueryLower}') or contains(tolower(supplier_ID),'${sQueryLower}') or contains(tolower(category),'${sQueryLower}')`;
+
+            fetch(sFilterUrl)
+                .then(response => response.json())
+                .then(data => {
+                    var materials = data.value || [];
+                    oModel.setProperty("/materials", materials);
+                    console.log(`Search found ${materials.length} materials for query: ${sQuery}`);
+                })
+                .catch(error => {
+                    console.error("Error searching materials:", error);
+                    sap.m.MessageToast.show("Error searching materials");
+                });
+        }
+
+        function loadMaterialsForDialog() {
+            // Reload all materials for the dialog
+            fetch('/odata/v4/procurement/Materials')
+                .then(response => response.json())
+                .then(data => {
+                    var materials = data.value || [];
+                    oModel.setProperty("/materials", materials);
+                })
+                .catch(error => {
+                    console.error("Error loading materials:", error);
+                });
+        }
+
+        function exportMaterialsToCSV() {
+            fetch('/odata/v4/procurement/exportMaterialsToCSV', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.csvData) {
+                    var element = document.createElement('a');
+                    element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(data.csvData));
+                    element.setAttribute('download', 'materials_export.csv');
+                    element.style.display = 'none';
+                    document.body.appendChild(element);
+                    element.click();
+                    document.body.removeChild(element);
+                    sap.m.MessageToast.show("Materials exported successfully!");
+                } else {
+                    sap.m.MessageToast.show("No data to export");
+                }
+            })
+            .catch(error => {
+                console.error("Error exporting materials:", error);
+                sap.m.MessageToast.show("Error exporting materials");
+            });
+        }
+        
+        function loadMaterials() {
+            oModel.setProperty("/loading", true);
+            
+            fetch('/odata/v4/procurement/Materials')
+                .then(response => response.json())
+                .then(data => {
+                    var materials = data.value || [];
+                    oModel.setProperty("/materials", materials);
+                    oModel.setProperty("/materialsCount", materials.length);
+                    oModel.setProperty("/loading", false);
+                    sap.m.MessageToast.show("Materials loaded successfully!");
+                })
+                .catch(error => {
+                    console.error("Error loading materials:", error);
+                    oModel.setProperty("/loading", false);
+                    sap.m.MessageToast.show("Error loading materials");
+                });
+        }
+        
+        function loadSuppliers() {
+            // Use $top=5000 to ensure we get all suppliers (3000+)
+            fetch('/odata/v4/procurement/Suppliers?$top=5000')
+                .then(response => response.json())
+                .then(data => {
+                    var suppliers = data.value || [];
+                    oModel.setProperty("/suppliersCount", suppliers.length);
+                    console.log(`Loaded ${suppliers.length} suppliers for tile count`);
+
+                    // Ensure we have the expected 3000+ suppliers
+                    if (suppliers.length < 3000) {
+                        console.warn(`Expected 3000+ suppliers, but got ${suppliers.length}`);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading suppliers:", error);
+                    // Keep default count of 3000 if loading fails
+                });
+        }
+        
+        function initializeChatSession() {
+            fetch('/odata/v4/procurement/initChatSession', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then(response => response.json())
+            .then(data => {
+                oChatModel.setProperty("/sessionId", data.sessionId);
+                oChatModel.setProperty("/isConnected", true);
+            })
+            .catch(error => {
+                console.error("Error initializing chat:", error);
+            });
+        }
+        
+        function sendChatMessage() {
+            var oInput = sap.ui.getCore().byId("chatInput");
+            var sMessage = oInput.getValue().trim();
+            
+            if (!sMessage) {
+                sap.m.MessageToast.show("Please enter a message");
+                return;
+            }
+            
+            addChatMessage(sMessage, "user");
+            oInput.setValue("");
+            
+            var oTypingMessage = addChatMessage("🤖 Assistant is typing...", "typing");
+            
+            var sSessionId = oChatModel.getProperty("/sessionId");
+            
+            fetch('/odata/v4/procurement/sendChatMessage', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    sessionId: sSessionId,
+                    message: sMessage
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remove typing indicator
+                var oChatContainer = sap.ui.getCore().byId("chatContainer");
+                oChatContainer.removeItem(oTypingMessage);
+                
+                if (data.success && data.response) {
+                    addChatMessage(data.response, "assistant");
+                } else {
+                    addChatMessage(generateSmartResponse(sMessage), "assistant");
+                }
+            })
+            .catch(error => {
+                console.error("Error sending message:", error);
+                var oChatContainer = sap.ui.getCore().byId("chatContainer");
+                oChatContainer.removeItem(oTypingMessage);
+                addChatMessage(generateSmartResponse(sMessage), "assistant");
+            });
+        }
+        
+        function addChatMessage(sMessage, sType) {
+            var sMessageType = sType === "user" ? "Success" : "Information";
+            var sIcon = sType === "user" ? "👤 You: " : (sType === "typing" ? "" : "🤖 Assistant: ");
+            
+            var oMessage = new sap.m.MessageStrip({
+                text: sIcon + sMessage,
+                type: sMessageType,
+                class: "chatMessage sapUiMediumMarginBottom"
+            });
+            
+            var oChatContainer = sap.ui.getCore().byId("chatContainer");
+            oChatContainer.addItem(oMessage);
+            
+            return oMessage;
+        }
+        
+        function generateSmartResponse(sUserMessage) {
+            var sMessage = sUserMessage.toLowerCase();
+            
+            if (sMessage.includes("laptop") || sMessage.includes("computer")) {
+                return "I found 3 suppliers for laptops:\n• TechCorp India - ₹42,000/unit, 7 days delivery\n• Digital Solutions - ₹48,500/unit, 5 days delivery\n• CompuWorld - ₹45,200/unit, 10 days delivery\n\nWould you like me to create a PO or send RFQ?";
+            } else if (sMessage.includes("supplier")) {
+                return "Here are our top-rated suppliers:\n🏆 TechCorp India (4.8/5) - Electronics\n🏆 Furniture Plus (4.6/5) - Office Furniture\n🏆 Stationery World (4.7/5) - Office Supplies\n\nWhich category interests you?";
+            } else {
+                return "I understand you're asking about: '" + sUserMessage + "'. I can help with:\n• Finding suppliers and pricing\n• Creating purchase orders\n• Sending RFQs\n• Checking inventory\n• Compliance verification\n\nTry using the quick action buttons above or ask me something specific!";
+            }
+        }
+        
+        function filterMaterials(sQuery) {
+            var oTable = sap.ui.getCore().byId("materialsTable");
+            var oBinding = oTable.getBinding("items");
+            
+            if (sQuery) {
+                var oFilter = new sap.ui.model.Filter([
+                    new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.Contains, sQuery),
+                    new sap.ui.model.Filter("ID", sap.ui.model.FilterOperator.Contains, sQuery)
+                ], false);
+                oBinding.filter([oFilter]);
+            } else {
+                oBinding.filter([]);
+            }
+        }
+        
+        function deleteMaterial(sMaterialId) {
+            fetch('/odata/v4/procurement/Materials(\'' + sMaterialId + '\')', {
+                method: 'DELETE'
+            })
+            .then(() => {
+                sap.m.MessageToast.show("Material deleted successfully");
+                loadMaterials();
+            })
+            .catch(error => {
+                console.error("Error deleting material:", error);
+                sap.m.MessageToast.show("Error deleting material");
+            });
+        }
+        
+        function openSuppliersDialog() {
+            if (!oSuppliersDialog) {
+                createSuppliersDialog();
+            }
+            loadSuppliersForDialog();
+            oSuppliersDialog.open();
+        }
+
+        function createSuppliersDialog() {
+            // Create Suppliers Table for Dialog
+            var oDialogSuppliersTable = new sap.m.Table("dialogSuppliersTable", {
+                growing: true,
+                growingThreshold: 100,
+                growingScrollToLoad: false,
+                growingTriggerText: "Load More Suppliers ({0})",
+                mode: "None",
+                columns: [
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "ID"}),
+                        minScreenWidth: "Tablet",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Category"}),
+                        minScreenWidth: "Desktop",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Company Name"}),
+                        minScreenWidth: "Tablet",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Material"}),
+                        minScreenWidth: "Desktop",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Region"}),
+                        minScreenWidth: "Desktop",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Lead Time"}),
+                        minScreenWidth: "Desktop",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Contact Email"}),
+                        minScreenWidth: "Desktop",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Rating"}),
+                        minScreenWidth: "Desktop",
+                        demandPopin: true
+                    })
+                ]
+            });
+
+            // Bind items to the dialog table
+            oDialogSuppliersTable.bindItems({
+                path: "/suppliers",
+                template: new sap.m.ColumnListItem({
+                    cells: [
+                        new sap.m.Text({text: "{ID}"}),
+                        new sap.m.Text({text: "{category}"}),
+                        new sap.m.Text({text: "{name}"}),
+                        new sap.m.Text({text: "{material}"}),
+                        new sap.m.Text({text: "{region}"}),
+                        new sap.m.Text({text: "{leadTime} days"}),
+                        new sap.m.Text({text: "{contactEmail}"}),
+                        new sap.m.Text({
+                            text: "{rating}",
+                            class: {
+                                path: "rating",
+                                formatter: function(rating) {
+                                    var numRating = parseFloat(rating);
+                                    if (numRating >= 4.50) return "ratingGreen";      // Green: 4.50-5.00
+                                    if (numRating >= 4.00) return "ratingLightGreen"; // Light Green: 4.00-4.49
+                                    if (numRating >= 3.50) return "ratingYellow";     // Yellow: 3.50-3.99
+                                    if (numRating >= 3.00) return "ratingOrange";     // Orange: 3.00-3.49
+                                    if (numRating >= 2.50) return "ratingDarkOrange"; // Dark Orange: 2.50-2.99
+                                    return "ratingRed";                               // Red: Below 2.49
+                                }
+                            }
+                        })
+                    ]
+                })
+            });
+
+            // Create the main Suppliers Dialog
+            oSuppliersDialog = new sap.m.Dialog("suppliersDialog", {
+                title: "Active Suppliers Directory",
+                contentWidth: "90%",
+                contentHeight: "80%",
+                verticalScrolling: true,
+                horizontalScrolling: false,
+                content: [
+                    new sap.m.VBox({
+                        items: [
+                            // Search and Filter Bar
+                            new sap.m.Bar({
+                                contentLeft: [
+                                    new sap.m.SearchField("dialogSuppliersSearchField", {
+                                        placeholder: "Search suppliers by company name, category, region, material...",
+                                        width: "400px",
+                                        search: function(oEvent) {
+                                            var sQuery = oEvent.getParameter("query");
+                                            filterDialogSuppliers(sQuery);
+                                        }
+                                    })
+                                ],
+                                contentRight: [
+                                    new sap.m.Button({
+                                        text: "Refresh",
+                                        icon: "sap-icon://refresh",
+                                        press: function() {
+                                            loadSuppliersForDialog();
+                                            sap.m.MessageToast.show("Suppliers refreshed");
+                                        }
+                                    })
+                                ]
+                            }),
+
+                            // Suppliers Table in ScrollContainer
+                            new sap.m.ScrollContainer({
+                                height: "500px",
+                                vertical: true,
+                                horizontal: false,
+                                content: [oDialogSuppliersTable]
+                            })
+                        ]
+                    })
+                ],
+                beginButton: new sap.m.Button({
+                    text: "Close",
+                    press: function() {
+                        oSuppliersDialog.close();
+                    }
+                })
+            });
+
+            // Set model to dialog
+            oSuppliersDialog.setModel(oModel);
+        }
+
+        function loadSuppliersForDialog() {
+            // Use $top=5000 to ensure we get all suppliers (3000+)
+            fetch('/odata/v4/procurement/Suppliers?$top=5000')
+                .then(response => response.json())
+                .then(data => {
+                    var suppliers = data.value || [];
+
+                    console.log(`Fetched ${suppliers.length} suppliers from backend`);
+
+                    // Randomize the suppliers array to show random data instead of sorted by ID
+                    suppliers = shuffleArray(suppliers);
+
+                    oModel.setProperty("/suppliers", suppliers);
+                    console.log(`Loaded ${suppliers.length} suppliers for dialog`);
+                    sap.m.MessageToast.show(` Loaded ${suppliers.length} suppliers`);
+
+                    // Ensure we have the expected 3000+ suppliers
+                    if (suppliers.length < 3000) {
+                        console.warn(`Expected 3000+ suppliers, but got ${suppliers.length}`);
+                        sap.m.MessageToast.show(`⚠️ Warning: Only ${suppliers.length} suppliers loaded (expected 3000+)`);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading suppliers:", error);
+                    sap.m.MessageToast.show(" Error loading suppliers");
+                });
+        }
+
+        // Function to shuffle array randomly
+        function shuffleArray(array) {
+            var shuffled = [...array]; // Create a copy
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function filterDialogSuppliers(sQuery) {
+            if (!sQuery || !sQuery.trim()) {
+                // If no query, reload all suppliers
+                loadSuppliersForDialog();
+                return;
+            }
+
+            // Use OData filtering for suppliers with correct field names
+            var sQueryLower = sQuery.toLowerCase();
+            var sFilterUrl = `/odata/v4/procurement/Suppliers?$filter=contains(tolower(name),'${sQueryLower}') or contains(tolower(category),'${sQueryLower}') or contains(tolower(region),'${sQueryLower}') or contains(tolower(material),'${sQueryLower}') or contains(tolower(contactEmail),'${sQueryLower}')`;
+
+            fetch(sFilterUrl)
+                .then(response => response.json())
+                .then(data => {
+                    var suppliers = data.value || [];
+                    oModel.setProperty("/suppliers", suppliers);
+                    console.log(`Search found ${suppliers.length} suppliers for query: ${sQuery}`);
+                    if (suppliers.length === 0) {
+                        sap.m.MessageToast.show(`No suppliers found for "${sQuery}"`);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error searching suppliers:", error);
+                    sap.m.MessageToast.show("Error searching suppliers");
+                });
+        }
+
+        function openAIAssistantDialog() {
+            if (!oAIAssistantDialog) {
+                createAIAssistantDialog();
+            }
+            oAIAssistantDialog.open();
+        }
+
+        function createAIAssistantDialog() {
+            // Chat Messages Container
+            var oChatContainer = new sap.m.VBox("aiChatContainer", {
+                class: "sapUiMediumMargin"
+            });
+
+            // Chat Input
+            var oChatInput = new sap.m.TextArea("aiChatInput", {
+                placeholder: "Type your message here... (e.g., 'Find laptops under ₹50K')",
+                growing: true,
+                growingMaxLines: 3,
+                width: "100%"
+            });
+
+            // Create the AI Assistant Dialog
+            oAIAssistantDialog = new sap.m.Dialog("aiAssistantDialog", {
+                title: "My Dear Assistant - AI Chat",
+                contentWidth: "70%",
+                contentHeight: "80%",
+                verticalScrolling: false,
+                horizontalScrolling: false,
+                content: [
+                    new sap.m.VBox({
+                        height: "100%",
+                        items: [
+                            // Quick Actions Panel
+                            new sap.m.Panel({
+                                headerText: "Quick Actions",
+                                expandable: false,
+                                class: "sapUiMediumMarginBottom",
+                                content: [
+                                    new sap.m.HBox({
+                                        wrap: "Wrap",
+                                        class: "sapUiSmallMargin",
+                                        items: [
+                                            new sap.m.Button({
+                                                text: "Create PO",
+                                                icon: "sap-icon://create-form",
+                                                type: "Emphasized",
+                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                press: function() {
+                                                    addAIChatMessage("I'll help you create a Purchase Order. What materials do you need?", "assistant");
+                                                }
+                                            }),
+                                            new sap.m.Button({
+                                                text: "Find Suppliers",
+                                                icon: "sap-icon://supplier",
+                                                type: "Default",
+                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                press: function() {
+                                                    addAIChatMessage("I'll help you find the best suppliers. What type of materials are you looking for?", "assistant");
+                                                }
+                                            }),
+                                            new sap.m.Button({
+                                                text: "Check Inventory",
+                                                icon: "sap-icon://inventory",
+                                                type: "Default",
+                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                press: function() {
+                                                    addAIChatMessage("Here's your current inventory status. Which materials would you like to check?", "assistant");
+                                                }
+                                            }),
+                                            new sap.m.Button({
+                                                text: "Price Analysis",
+                                                icon: "sap-icon://line-chart",
+                                                type: "Default",
+                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                press: function() {
+                                                    addAIChatMessage("I'll analyze pricing trends for you. Which materials or suppliers are you interested in?", "assistant");
+                                                }
+                                            })
+                                        ]
+                                    })
+                                ]
+                            }),
+
+                            // Chat Messages Area
+                            new sap.m.ScrollContainer({
+                                height: "400px",
+                                vertical: true,
+                                class: "sapUiMediumMarginBottom",
+                                content: [oChatContainer]
+                            }),
+
+                            // Chat Input Area
+                            new sap.m.HBox({
+                                width: "100%",
+                                alignItems: "End",
+                                items: [
+                                    oChatInput,
+                                    new sap.m.Button({
+                                        text: "Send",
+                                        type: "Emphasized",
+                                        icon: "sap-icon://paper-plane",
+                                        class: "sapUiTinyMarginBegin",
+                                        press: sendAIChatMessage
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                ],
+                beginButton: new sap.m.Button({
+                    text: "Close",
+                    press: function() {
+                        oAIAssistantDialog.close();
+                    }
+                })
+            });
+
+            // Add welcome messages
+            setTimeout(() => {
+                addAIChatMessage("👋 Hello! I'm your AI procurement assistant. I can help you with suppliers, materials, pricing, and procurement processes.", "assistant");
+                addAIChatMessage("💡 Try the quick action buttons above or ask me anything!", "assistant");
+            }, 500);
+        }
+
+        function sendAIChatMessage() {
+            var oInput = sap.ui.getCore().byId("aiChatInput");
+            var sMessage = oInput.getValue().trim();
+
+            if (!sMessage) {
+                sap.m.MessageToast.show("Please enter a message");
+                return;
+            }
+
+            addAIChatMessage(sMessage, "user");
+            oInput.setValue("");
+
+            var oTypingMessage = addAIChatMessage("🤖 Assistant is typing...", "typing");
+
+            // Simulate AI response (you can integrate with actual AI service here)
+            setTimeout(() => {
+                var oChatContainer = sap.ui.getCore().byId("aiChatContainer");
+                oChatContainer.removeItem(oTypingMessage);
+                addAIChatMessage(generateAIResponse(sMessage), "assistant");
+            }, 2000);
+        }
+
+        function addAIChatMessage(sMessage, sType) {
+            var sMessageType = sType === "user" ? "Success" : "Information";
+            var sIcon = sType === "user" ? "👤 You: " : (sType === "typing" ? "" : "🤖 Assistant: ");
+
+            var oMessage = new sap.m.MessageStrip({
+                text: sIcon + sMessage,
+                type: sMessageType,
+                class: "chatMessage sapUiMediumMarginBottom"
+            });
+
+            var oChatContainer = sap.ui.getCore().byId("aiChatContainer");
+            oChatContainer.addItem(oMessage);
+
+            // Scroll to bottom
+            setTimeout(() => {
+                var oScrollContainer = oMessage.getParent().getParent();
+                if (oScrollContainer && oScrollContainer.scrollTo) {
+                    oScrollContainer.scrollTo(0, oScrollContainer.getScrollHeight());
+                }
+            }, 100);
+
+            return oMessage;
+        }
+
+        function generateAIResponse(sUserMessage) {
+            var sMessage = sUserMessage.toLowerCase();
+
+            if (sMessage.includes("laptop") || sMessage.includes("computer")) {
+                return "I found 3 suppliers for laptops:\n• TechCorp India - ₹42,000/unit, 7 days delivery\n• Digital Solutions - ₹48,500/unit, 5 days delivery\n• CompuWorld - ₹45,200/unit, 10 days delivery\n\nWould you like me to create a PO or send RFQ?";
+            } else if (sMessage.includes("supplier")) {
+                return "Here are our top-rated suppliers:\n🏆 TechCorp India (4.8/5) - Electronics\n🏆 Furniture Plus (4.6/5) - Office Furniture\n🏆 Stationery World (4.7/5) - Office Supplies\n\nWhich category interests you?";
+            } else if (sMessage.includes("price") || sMessage.includes("cost")) {
+                return "I'll analyze pricing for you:\n📊 Current market trends show:\n• Electronics: 5% price increase this quarter\n• Construction materials: Stable pricing\n• Office supplies: 2% decrease\n\nWhich specific materials need pricing analysis?";
+            } else if (sMessage.includes("inventory") || sMessage.includes("stock")) {
+                return "Current inventory status:\n📦 Total materials: 15 items\n⚠️ Low stock alerts: 3 items\n✅ Well-stocked: 12 items\n\nWould you like details on specific categories?";
+            } else {
+                return "I understand you're asking about: '" + sUserMessage + "'. I can help with:\n• Finding suppliers and pricing\n• Creating purchase orders\n• Sending RFQs\n• Checking inventory\n• Compliance verification\n• Market analysis\n\nTry using the quick action buttons above or ask me something specific!";
+            }
+        }
+
+        function showError(sMessage) {
+            document.getElementById("content").innerHTML =
+                "<div style='padding: 20px; text-align: center;'>" +
+                "<h2>Error Loading Application</h2>" +
+                "<p>" + sMessage + "</p>" +
+                "<button onclick='location.reload()'>Reload Page</button>" +
+                "</div>";
+        }
+        
+        // Global error handler
+        window.addEventListener('error', function(e) {
+            console.error('Global error:', e.error);
+        });
+    </script>
+</body>
+</html>

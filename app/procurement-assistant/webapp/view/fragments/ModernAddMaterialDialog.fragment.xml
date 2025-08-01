@@ -1,0 +1,170 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form">
+    
+    <Dialog id="modernAddMaterialDialog"
+            title="Add New Material"
+            contentWidth="600px"
+            contentHeight="700px"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+            class="modernDialog">
+        
+        <content>
+            <VBox class="sapUiMediumMargin">
+                
+                <!-- Header with Icon -->
+                <HBox alignItems="Center" class="sapUiMediumMarginBottom">
+                    <core:Icon src="sap-icon://add-product" size="2rem" color="#0070f3" class="sapUiMediumMarginEnd"/>
+                    <VBox>
+                        <Title text="Add New Material" level="H3"/>
+                        <Text text="Enter material details to add to inventory" class="sapUiTinyText"/>
+                    </VBox>
+                </HBox>
+                
+                <!-- Modern Form -->
+                <form:SimpleForm id="addMaterialForm"
+                                editable="true"
+                                layout="ResponsiveGridLayout"
+                                labelSpanXL="4"
+                                labelSpanL="4"
+                                labelSpanM="4"
+                                labelSpanS="12"
+                                adjustLabelSpan="false"
+                                emptySpanXL="0"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                emptySpanS="0"
+                                columnsXL="1"
+                                columnsL="1"
+                                columnsM="1"
+                                singleContainerFullSize="false"
+                                class="modernForm">
+                    
+                    <form:content>
+                        
+                        <!-- Material ID -->
+                        <Label text="Material ID" required="true" class="modernLabel"/>
+                        <Input id="modernMaterialId"
+                               placeholder="e.g., MAT001"
+                               required="true"
+                               valueState="None"
+                               class="modernInput"
+                               maxLength="20"/>
+                        
+                        <!-- Material Name -->
+                        <Label text="Material Name" required="true" class="modernLabel"/>
+                        <Input id="modernMaterialName"
+                               placeholder="Enter material name"
+                               required="true"
+                               valueState="None"
+                               class="modernInput"
+                               maxLength="255"/>
+                        
+                        <!-- Supplier -->
+                        <Label text="Supplier ID" required="true" class="modernLabel"/>
+                        <Input id="modernMaterialSupplier"
+                               placeholder="Enter supplier ID (e.g., 9001)"
+                               required="true"
+                               valueState="None"
+                               type="Number"
+                               class="modernInput"/>
+                        
+                        <!-- Quantity -->
+                        <Label text="Quantity" required="true" class="modernLabel"/>
+                        <Input id="modernMaterialQuantity"
+                               placeholder="Enter quantity"
+                               type="Number"
+                               required="true"
+                               valueState="None"
+                               class="modernInput"/>
+                        
+                        <!-- Unit -->
+                        <Label text="Unit" class="modernLabel"/>
+                        <ComboBox id="modernMaterialUnit"
+                                 placeholder="Select unit"
+                                 class="modernComboBox"
+                                 selectedKey="pcs">
+                            <core:Item key="pcs" text="Pieces"/>
+                            <core:Item key="kg" text="Kilograms"/>
+                            <core:Item key="liters" text="Liters"/>
+                            <core:Item key="meters" text="Meters"/>
+                            <core:Item key="sheets" text="Sheets"/>
+                            <core:Item key="bags" text="Bags"/>
+                            <core:Item key="units" text="Units"/>
+                            <core:Item key="panels" text="Panels"/>
+                            <core:Item key="bars" text="Bars"/>
+                            <core:Item key="sets" text="Sets"/>
+                        </ComboBox>
+                        
+                        <!-- Category -->
+                        <Label text="Category" class="modernLabel"/>
+                        <ComboBox id="modernMaterialCategory"
+                                 placeholder="Select category"
+                                 class="modernComboBox"
+                                 selectedKey="General">
+                            <core:Item key="General" text="General"/>
+                            <core:Item key="Construction" text="Construction"/>
+                            <core:Item key="Manufacturing" text="Manufacturing"/>
+                            <core:Item key="Logistics" text="Logistics"/>
+                        </ComboBox>
+                        
+                        <!-- Unit Price -->
+                        <Label text="Unit Price (USD)" class="modernLabel"/>
+                        <Input id="modernMaterialPrice"
+                               placeholder="0.00"
+                               type="Number"
+                               class="modernInput"/>
+                        
+                        <!-- Description -->
+                        <Label text="Description" class="modernLabel"/>
+                        <TextArea id="modernMaterialDescription"
+                                 placeholder="Enter material description (optional)"
+                                 rows="3"
+                                 maxLength="1000"
+                                 class="modernTextArea"/>
+                        
+                        <!-- Location -->
+                        <Label text="Warehouse Location" class="modernLabel"/>
+                        <ComboBox id="modernMaterialLocation"
+                                 placeholder="Select location"
+                                 class="modernComboBox"
+                                 selectedKey="Warehouse A">
+                            <core:Item key="Warehouse A" text="Warehouse A"/>
+                            <core:Item key="Warehouse B" text="Warehouse B"/>
+                            <core:Item key="Warehouse C" text="Warehouse C"/>
+                            <core:Item key="Storage Yard" text="Storage Yard"/>
+                        </ComboBox>
+                        
+                    </form:content>
+                </form:SimpleForm>
+                
+                <!-- Information Panel -->
+                <MessageStrip text="All required fields must be filled. Material ID must be unique." 
+                             type="Information" 
+                             class="sapUiMediumMarginTop modernMessageStrip"/>
+                
+            </VBox>
+        </content>
+        
+        <!-- Modern Action Buttons -->
+        <beginButton>
+            <Button text="Add Material"
+                    type="Emphasized"
+                    icon="sap-icon://add"
+                    press="onSaveNewMaterial"
+                    class="modernActionButton"/>
+        </beginButton>
+        
+        <endButton>
+            <Button text="Cancel"
+                    icon="sap-icon://decline"
+                    press="onCancelAddMaterial"
+                    class="modernActionButton"/>
+        </endButton>
+        
+    </Dialog>
+    
+</core:FragmentDefinition>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Procurement Assistant - Modern UI</title>
+    
+    <!-- UI5 Bootstrap with Latest Version -->
+    <script
+        id="sap-ui-bootstrap"
+        src="https://ui5.sap.com/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_horizon"
+        data-sap-ui-libs="sap.m,sap.f,sap.ui.core,sap.ui.comp,sap.ui.table,sap.uxap"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true"
+        data-sap-ui-frameOptions="trusted"
+        data-sap-ui-resourceroots='{
+            "procurement.assistant": "./"
+        }'>
+    </script>
+    
+    <!-- Modern CSS Styles -->
+    <style>
+        /* Modern Fiori Horizon Theme Enhancements */
+        .sapUiBody {
+            font-family: "72", "72full", Arial, Helvetica, sans-serif;
+            background: var(--sapBackgroundColor);
+        }
+        
+        /* Custom Chat Styling */
+        .chatMessageUser {
+            background: var(--sapButton_Emphasized_Background);
+            color: var(--sapButton_Emphasized_TextColor);
+            border-radius: 12px;
+            padding: 8px 12px;
+            margin: 4px 0;
+            max-width: 80%;
+            align-self: flex-end;
+        }
+        
+        .chatMessageAssistant {
+            background: var(--sapInformationBackground);
+            color: var(--sapInformationColor);
+            border-radius: 12px;
+            padding: 8px 12px;
+            margin: 4px 0;
+            max-width: 80%;
+            align-self: flex-start;
+        }
+        
+        /* Modern Card Styling */
+        .modernKpiCard {
+            background: linear-gradient(135deg, var(--sapButton_Emphasized_Background), var(--sapButton_Accept_Background));
+            border-radius: 8px;
+            box-shadow: var(--sapContent_Shadow1);
+        }
+        
+        .modernKpiCard .sapMTitle {
+            color: white;
+            font-weight: 600;
+        }
+        
+        .modernKpiCard .sapMText {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Enhanced Table Styling */
+        .sapUiTableRowHvr {
+            background: var(--sapList_Hover_Background) !important;
+        }
+        
+        .sapUiTableRowSel {
+            background: var(--sapList_SelectionBackground) !important;
+        }
+        
+        /* Modern Button Styling */
+        .modernActionButton {
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .modernActionButton:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--sapContent_Shadow2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sapFFCLColumnBegin {
+                width: 100% !important;
+            }
+            
+            .sapFFCLColumnMid {
+                width: 100% !important;
+            }
+        }
+        
+        /* Loading Animation */
+        .modernLoader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--sapContent_ForegroundBorderColor);
+            border-radius: 50%;
+            border-top-color: var(--sapButton_Emphasized_Background);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Modern Panel Styling */
+        .modernPanel .sapMPanelHdr {
+            background: var(--sapObjectHeader_Background);
+            border-bottom: 1px solid var(--sapContent_ForegroundBorderColor);
+        }
+        
+        /* Enhanced Message Strip */
+        .modernMessageStrip {
+            border-radius: 8px;
+            margin: 4px 0;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Modern Search Field */
+        .modernSearchField .sapMInputBaseInner {
+            border-radius: 20px;
+            background: var(--sapField_Background);
+        }
+        
+        /* Enhanced Dynamic Page */
+        .sapFDynamicPageTitle {
+            background: linear-gradient(135deg, var(--sapPageHeader_Background), var(--sapObjectHeader_Background));
+        }
+        
+        /* Modern Flexible Column Layout */
+        .sapFFCL {
+            background: var(--sapBackgroundColor);
+        }
+        
+        .sapFFCLColumn {
+            border-right: 1px solid var(--sapContent_ForegroundBorderColor);
+        }
+        
+        /* Custom Scrollbar */
+        .sapMScrollCont::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .sapMScrollCont::-webkit-scrollbar-track {
+            background: var(--sapScrollBar_Track_Color);
+            border-radius: 4px;
+        }
+        
+        .sapMScrollCont::-webkit-scrollbar-thumb {
+            background: var(--sapScrollBar_Face_Color);
+            border-radius: 4px;
+        }
+        
+        .sapMScrollCont::-webkit-scrollbar-thumb:hover {
+            background: var(--sapScrollBar_Hover_Face_Color);
+        }
+    </style>
+</head>
+
+<body class="sapUiBody">
+    <div id="content"></div>
+    
+    <script>
+        sap.ui.getCore().attachInit(function() {
+            console.log("Modern UI5 Core initialized successfully");
+            
+            // Create and display the modern view
+            sap.ui.xmlview({
+                id: "modernMainView",
+                viewName: "procurement.assistant.view.ModernMain"
+            }).placeAt("content");
+            
+            console.log("Modern Procurement Assistant loaded successfully");
+        });
+        
+        // Global error handler
+        window.addEventListener('error', function(e) {
+            console.error('Global error:', e.error);
+        });
+        
+        // Service Worker for offline capabilities (future enhancement)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
+</body>
+</html>
