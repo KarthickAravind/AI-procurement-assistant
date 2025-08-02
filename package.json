@@ -13,8 +13,7 @@
     "@sap/xssec": "^4",
     "csv-parser": "^3.2.0",
     "dotenv": "^17.2.1",
-    "express": "^4",
-    "sqlite3": "^5.1.7"
+    "express": "^4"
   },
   "engines": {
     "node": ">=20"

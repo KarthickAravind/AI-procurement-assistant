@@ -37,12 +37,13 @@ entity SupplierProducts : cuid, managed {
 /**
  * Materials/Warehouse Inventory Entity
  * Phase 3: Updated for warehouse management with new columns
- * Columns: Material ID, Name, Supplier, Quantity
+ * Columns: Material ID, Name, Supplier, Quantity, Delivery Period
  */
 entity Materials : managed {
-  key ID : String(20); // Material ID - e.g., MAT001
+  key ID : String(50); // Material ID - e.g., RFQ-123456-P1
   @mandatory name : String(255); // Material Name
-  @mandatory supplier : Association to Suppliers; // Supplier reference
+  supplier : Association to Suppliers; // Supplier reference (optional for backward compatibility)
+  supplierName : String(255); // Supplier name (for display)
   @mandatory quantity : Integer default 0; // Current stock quantity
 
   // Additional warehouse management fields
@@ -55,6 +56,7 @@ entity Materials : managed {
   description : String(1000);
   location : String(100); // warehouse location
   lastUpdated : DateTime;
+  deliveryPeriod : String(50); // Lead time from supplier (e.g., "7-10 days")
 
   // Warehouse management status
   stockStatus : String(20); // Low Stock, Normal, Overstock

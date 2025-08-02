@@ -65,7 +65,7 @@ module.exports = class ProcurementService extends cds.ApplicationService {
 
   // Add Material Action
   this.on('addMaterial', async (req) => {
-    const { ID, name, supplier, quantity, category, unitPrice, currency, unit, description, location } = req.data
+    const { ID, name, supplier, supplierName, quantity, category, unitPrice, currency, unit, description, location, deliveryPeriod } = req.data
 
     try {
       // Check if material ID already exists
@@ -74,11 +74,10 @@ module.exports = class ProcurementService extends cds.ApplicationService {
         return { success: false, message: `Material with ID ${ID} already exists` }
       }
 
-      // Insert new material
-      await INSERT.into(Materials).entries({
+      // Prepare material data
+      const materialData = {
         ID,
         name,
-        supplier_ID: supplier,
         quantity,
         category: category || 'General',
         unitPrice: unitPrice || 0,
@@ -86,9 +85,35 @@ module.exports = class ProcurementService extends cds.ApplicationService {
         unit: unit || 'pcs',
         description: description || '',
         location: location || 'Warehouse A',
+        deliveryPeriod: deliveryPeriod || '',
         isActive: true,
         lastUpdated: new Date().toISOString()
-      })
+      };
+
+      // Handle supplier - can be either ID or name
+      if (supplier && typeof supplier === 'number') {
+        // If supplier is a number, treat as supplier ID
+        materialData.supplier_ID = supplier;
+
+        // Try to get supplier name
+        try {
+          const supplierData = await SELECT.one.from(Suppliers).where({ ID: supplier });
+          if (supplierData) {
+            materialData.supplierName = supplierData.name;
+          }
+        } catch (err) {
+          console.log('Could not fetch supplier name:', err);
+        }
+      } else if (supplierName) {
+        // If supplierName is provided, use it directly
+        materialData.supplierName = supplierName;
+      } else if (supplier && typeof supplier === 'string') {
+        // If supplier is a string, treat as supplier name
+        materialData.supplierName = supplier;
+      }
+
+      // Insert new material
+      await INSERT.into(Materials).entries(materialData);
 
       return { success: true, message: `Material ${name} added successfully` }
     } catch (error) {

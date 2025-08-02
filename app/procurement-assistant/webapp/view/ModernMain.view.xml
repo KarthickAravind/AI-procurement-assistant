@@ -257,10 +257,10 @@
                                                     </table:template>
                                                 </table:Column>
                                                 
-                                                <table:Column width="150px" sortProperty="supplier_ID" filterProperty="supplier_ID">
+                                                <table:Column width="150px" sortProperty="supplierName" filterProperty="supplierName">
                                                     <Label text="Supplier"/>
                                                     <table:template>
-                                                        <Text text="{supplier_ID}" wrapping="false"/>
+                                                        <Text text="{supplierName}" wrapping="false"/>
                                                     </table:template>
                                                 </table:Column>
                                                 
@@ -281,11 +281,18 @@
                                                 <table:Column width="100px" sortProperty="stockStatus" filterProperty="stockStatus">
                                                     <Label text="Status"/>
                                                     <table:template>
-                                                        <ObjectStatus text="{stockStatus}" 
+                                                        <ObjectStatus text="{stockStatus}"
                                                                      state="{path: 'stockStatus', formatter: '.formatStockStatus'}"/>
                                                     </table:template>
                                                 </table:Column>
-                                                
+
+                                                <table:Column width="120px" sortProperty="deliveryPeriod" filterProperty="deliveryPeriod">
+                                                    <Label text="Delivery Period"/>
+                                                    <table:template>
+                                                        <Text text="{deliveryPeriod}" wrapping="false"/>
+                                                    </table:template>
+                                                </table:Column>
+
                                                 <table:Column width="150px">
                                                     <Label text="Actions"/>
                                                     <table:template>

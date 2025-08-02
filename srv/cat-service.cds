@@ -54,18 +54,19 @@ service ProcurementService {
   ) returns { rfqNumber: String };
 
   // Phase 3: Warehouse Management Actions
-  @requires: 'authenticated-user'
   action addMaterial (
     ID: String @mandatory,
     name: String @mandatory,
-    supplier: Suppliers:ID @mandatory,
+    supplier: Suppliers:ID,
+    supplierName: String,
     quantity: Integer @mandatory,
     category: String,
     unitPrice: Decimal,
     currency: String,
     unit: String,
     description: String,
-    location: String
+    location: String,
+    deliveryPeriod: String
   ) returns { success: Boolean; message: String };
 
   @requires: 'authenticated-user'

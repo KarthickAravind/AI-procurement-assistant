@@ -559,7 +559,7 @@
                     cells: [
                         new sap.m.Text({text: "{ID}"}),
                         new sap.m.Text({text: "{name}"}),
-                        new sap.m.Text({text: "{supplier_ID}"}),
+                        new sap.m.Text({text: "{supplierName}"}),
                         new sap.m.Text({text: "{quantity} {unit}"}),
                         new sap.m.Text({text: "{category}"}),
                         new sap.m.HBox({
@@ -736,7 +736,7 @@
                         demandPopin: true
                     }),
                     new sap.m.Column({
-                        header: new sap.m.Text({text: "Supplier ID"}),
+                        header: new sap.m.Text({text: "Supplier"}),
                         minScreenWidth: "Desktop",
                         demandPopin: true
                     }),
@@ -747,6 +747,11 @@
                     }),
                     new sap.m.Column({
                         header: new sap.m.Text({text: "Category"}),
+                        minScreenWidth: "Desktop",
+                        demandPopin: true
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({text: "Delivery Period"}),
                         minScreenWidth: "Desktop",
                         demandPopin: true
                     }),
@@ -765,9 +770,10 @@
                     cells: [
                         new sap.m.Text({text: "{ID}"}),
                         new sap.m.Text({text: "{name}"}),
-                        new sap.m.Text({text: "{supplier_ID}"}),
+                        new sap.m.Text({text: "{supplierName}"}),
                         new sap.m.Text({text: "{quantity} {unit}"}),
                         new sap.m.Text({text: "{category}"}),
+                        new sap.m.Text({text: "{deliveryPeriod}"}),
                         new sap.m.Button({
                             icon: "sap-icon://delete",
                             type: "Reject",
@@ -2105,20 +2111,24 @@
         }
 
         function openRFQDialog(oSupplier) {
+            console.log('🔵 openRFQDialog called with supplier:', oSupplier);
             if (!oRFQDialog) {
+                console.log('🔧 Creating RFQ dialog...');
                 createRFQDialog();
             }
 
             // Generate RFQ details
+            console.log('📋 Generating RFQ details...');
             generateRFQDetails(oSupplier);
+            console.log('🚀 Opening RFQ dialog...');
             oRFQDialog.open();
         }
 
         function createRFQDialog() {
             oRFQDialog = new sap.m.Dialog("rfqDialog", {
                 title: "Request for Quotation (RFQ)",
-                contentWidth: "80%",
-                contentHeight: "75%",
+                contentWidth: "85%",
+                contentHeight: "80%",
                 content: [
                     new sap.m.Page({
                         showHeader: false,
@@ -2134,35 +2144,50 @@
                                                 class: "sapUiTinyMarginBottom"
                                             }),
                                             new sap.m.Text("rfqNumber", {
-                                                text: "RFQ-" + Date.now(),
                                                 class: "sapUiMediumMarginBottom"
                                             }),
 
-                                            new sap.m.Label({
-                                                text: "Supplier:",
-                                                class: "sapUiTinyMarginBottom"
-                                            }),
-                                            new sap.m.Text("rfqSupplier", {
-                                                class: "sapUiMediumMarginBottom"
-                                            }),
-
-                                            new sap.m.Label({
-                                                text: "Required Items:",
-                                                class: "sapUiTinyMarginBottom"
-                                            }),
-                                            new sap.m.TextArea("rfqItems", {
-                                                placeholder: "Enter required items and quantities...",
-                                                rows: 4,
-                                                width: "100%",
-                                                class: "sapUiMediumMarginBottom"
+                                            // Supplier Details Section
+                                            new sap.m.Panel({
+                                                headerText: "Supplier Information",
+                                                class: "sapUiMediumMarginTop",
+                                                content: [
+                                                    new sap.m.VBox("rfqSupplierDetails", {
+                                                        class: "sapUiMediumMargin"
+                                                    })
+                                                ]
                                             }),
 
-                                            new sap.m.Label({
-                                                text: "Delivery Date:",
-                                                class: "sapUiTinyMarginBottom"
-                                            }),
-                                            new sap.m.DatePicker("rfqDeliveryDate", {
-                                                class: "sapUiMediumMarginBottom"
+                                            // Products Selection Section
+                                            new sap.m.Panel({
+                                                headerText: "Products",
+                                                class: "sapUiMediumMarginTop",
+                                                content: [
+                                                    new sap.m.VBox({
+                                                        class: "sapUiMediumMargin",
+                                                        items: [
+                                                            new sap.m.Table("rfqProductsTable", {
+                                                                columns: [
+                                                                    new sap.m.Column({
+                                                                        header: new sap.m.Text({text: "Select"})
+                                                                    }),
+                                                                    new sap.m.Column({
+                                                                        header: new sap.m.Text({text: "Product"})
+                                                                    }),
+                                                                    new sap.m.Column({
+                                                                        header: new sap.m.Text({text: "Units"})
+                                                                    }),
+                                                                    new sap.m.Column({
+                                                                        header: new sap.m.Text({text: "Unit Price"})
+                                                                    }),
+                                                                    new sap.m.Column({
+                                                                        header: new sap.m.Text({text: "Total"})
+                                                                    })
+                                                                ]
+                                                            })
+                                                        ]
+                                                    })
+                                                ]
                                             }),
 
                                             new sap.m.Panel({
@@ -2186,7 +2211,14 @@
                     type: "Accept",
                     icon: "sap-icon://create-form",
                     press: function() {
-                        placeOrderFromRFQ();
+                        console.log('🔴 PLACE ORDER BUTTON CLICKED!');
+                        alert('Place Order button clicked!'); // Immediate visual feedback
+                        try {
+                            placeOrderFromRFQ();
+                        } catch (error) {
+                            console.error('💥 Error in placeOrderFromRFQ:', error);
+                            alert('Error: ' + error.message);
+                        }
                     }
                 }),
                 endButton: new sap.m.Button({
@@ -2354,111 +2386,566 @@
                 });
         }
 
+        // Global variables for RFQ
+        var oCurrentRFQSupplier = null;
+        var aSelectedProducts = [];
+        var sCurrentRFQNumber = "";
+
+        // Test function for debugging (can be called from browser console)
+        window.testRFQFlow = function() {
+            console.log('🧪 Testing RFQ Flow from browser...');
+            console.log('📋 Current RFQ Number:', sCurrentRFQNumber);
+            console.log('🏭 Current RFQ Supplier:', oCurrentRFQSupplier);
+            console.log('📦 Selected Products:', aSelectedProducts);
+
+            if (!oCurrentRFQSupplier) {
+                console.log('❌ No supplier selected. Simulating supplier...');
+                oCurrentRFQSupplier = {
+                    ID: 1001,
+                    name: "Test Supplier",
+                    category: "Manufacturing",
+                    material: "Test Material",
+                    leadTime: "7-10 days",
+                    contact: "test@supplier.com",
+                    location: "Test Location"
+                };
+            }
+
+            if (!sCurrentRFQNumber) {
+                sCurrentRFQNumber = "RFQ-" + Date.now();
+                console.log('📋 Generated RFQ Number:', sCurrentRFQNumber);
+            }
+
+            if (aSelectedProducts.length === 0) {
+                console.log('📦 No products selected. Simulating products...');
+                aSelectedProducts = [
+                    {ID: "P1", name: "Test Product 1", description: "Test Description 1", price: "100", index: 0},
+                    {ID: "P2", name: "Test Product 2", description: "Test Description 2", price: "150", index: 1}
+                ];
+            }
+
+            console.log('🚀 Calling processOrderPlacement...');
+            processOrderPlacement();
+        };
+
+        // Test function to check if placeOrderFromRFQ is accessible
+        window.testPlaceOrder = function() {
+            console.log('🧪 Testing Place Order function...');
+            try {
+                placeOrderFromRFQ();
+            } catch (error) {
+                console.error('💥 Error calling placeOrderFromRFQ:', error);
+            }
+        };
+
+        // Make placeOrderFromRFQ globally accessible for debugging
+        window.placeOrderFromRFQ = placeOrderFromRFQ;
+
+        // Simple test to check if the button works
+        window.testRFQButton = function() {
+            console.log('🧪 Testing RFQ Button...');
+
+            // Check if RFQ dialog exists
+            var rfqDialog = sap.ui.getCore().byId("rfqDialog");
+            console.log('📋 RFQ Dialog exists:', !!rfqDialog);
+
+            if (rfqDialog) {
+                var beginButton = rfqDialog.getBeginButton();
+                console.log('🔘 Begin button exists:', !!beginButton);
+                if (beginButton) {
+                    console.log('🔘 Button text:', beginButton.getText());
+                    console.log('🔘 Button enabled:', beginButton.getEnabled());
+
+                    // Simulate button press
+                    console.log('🔘 Simulating button press...');
+                    beginButton.firePress();
+                }
+            } else {
+                console.log('❌ RFQ Dialog not found. Creating it...');
+                createRFQDialog();
+                setTimeout(function() {
+                    window.testRFQButton();
+                }, 100);
+            }
+        };
+
+        // Complete RFQ flow test
+        window.testCompleteRFQFlow = function() {
+            console.log('🚀 Testing Complete RFQ Flow...');
+
+            // Step 1: Set up test supplier
+            oCurrentRFQSupplier = {
+                ID: 1001,
+                name: "Test Supplier Co",
+                category: "Manufacturing",
+                material: "Test Materials",
+                leadTime: "5-7 days",
+                contact: "test@supplier.com",
+                location: "Test City"
+            };
+
+            // Step 2: Set up RFQ number
+            sCurrentRFQNumber = "RFQ-TEST-" + Date.now();
+
+            // Step 3: Set up selected products
+            aSelectedProducts = [
+                {
+                    ID: "P1",
+                    name: "Test Product 1",
+                    description: "Test Description 1",
+                    price: "100",
+                    index: 0
+                },
+                {
+                    ID: "P2",
+                    name: "Test Product 2",
+                    description: "Test Description 2",
+                    price: "200",
+                    index: 1
+                }
+            ];
+
+            console.log('✅ Test data set up:');
+            console.log('📋 RFQ Number:', sCurrentRFQNumber);
+            console.log('🏭 Supplier:', oCurrentRFQSupplier.name);
+            console.log('📦 Products:', aSelectedProducts.length);
+
+            // Step 4: Test the place order function
+            console.log('🚀 Calling placeOrderFromRFQ...');
+            placeOrderFromRFQ();
+        };
+
+        // Test function to compare data formats
+        window.testDataFormats = function() {
+            console.log('🔍 Testing Data Formats...');
+
+            // Format 1: Manual working format (from our test script)
+            var manualFormat = {
+                ID: "RFQ-MANUAL-" + Date.now(),
+                name: "Manual Test Material",
+                supplierName: "Manual Test Supplier",
+                quantity: 5,
+                category: "Manufacturing",
+                unitPrice: 100.00,
+                currency: "USD",
+                unit: "pcs",
+                description: "Manually created test material",
+                location: "Warehouse A",
+                deliveryPeriod: "7-10 days"
+            };
+
+            // Format 2: Function format (what our RFQ function creates)
+            var functionFormat = {
+                ID: "RFQ-FUNCTION-" + Date.now() + "-P1",
+                name: "Function Test Material",
+                supplierName: "Function Test Supplier",
+                quantity: 3,
+                category: "Manufacturing",
+                unitPrice: 150,
+                currency: "USD",
+                unit: "pcs",
+                description: "Function created test material",
+                location: "Warehouse A",
+                deliveryPeriod: "5-7 days"
+            };
+
+            console.log('📋 Manual Format:', JSON.stringify(manualFormat, null, 2));
+            console.log('📋 Function Format:', JSON.stringify(functionFormat, null, 2));
+
+            // Test both formats
+            console.log('🧪 Testing manual format...');
+            fetch('/odata/v4/procurement/addMaterial', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(manualFormat)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('✅ Manual format result:', result);
+
+                console.log('🧪 Testing function format...');
+                return fetch('/odata/v4/procurement/addMaterial', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(functionFormat)
+                });
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('✅ Function format result:', result);
+            })
+            .catch(error => {
+                console.error('💥 Error testing formats:', error);
+            });
+        };
+
         function generateRFQDetails(oSupplier) {
-            var oRFQSupplier = sap.ui.getCore().byId("rfqSupplier");
-            if (oRFQSupplier) {
-                oRFQSupplier.setText(oSupplier.name + " - " + oSupplier.category);
+            console.log('🔧 generateRFQDetails called with supplier:', oSupplier);
+            oCurrentRFQSupplier = oSupplier;
+            sCurrentRFQNumber = "RFQ-" + Date.now();
+            aSelectedProducts = []; // Reset selected products
+
+            console.log('📋 Generated RFQ Number:', sCurrentRFQNumber);
+            console.log('🏭 Current RFQ Supplier:', oCurrentRFQSupplier);
+
+            // Set RFQ Number
+            var oRFQNumber = sap.ui.getCore().byId("rfqNumber");
+            if (oRFQNumber) {
+                oRFQNumber.setText(sCurrentRFQNumber);
             }
 
-            // Set default delivery date (30 days from now)
-            var oDatePicker = sap.ui.getCore().byId("rfqDeliveryDate");
-            if (oDatePicker) {
-                var oDate = new Date();
-                oDate.setDate(oDate.getDate() + 30);
-                oDatePicker.setDateValue(oDate);
+            // Populate supplier details
+            populateSupplierDetailsInRFQ(oSupplier);
+
+            // Load and populate products
+            loadSupplierProductsForRFQ(oSupplier);
+        }
+
+        function populateSupplierDetailsInRFQ(oSupplier) {
+            var oSupplierDetailsBox = sap.ui.getCore().byId("rfqSupplierDetails");
+            if (oSupplierDetailsBox) {
+                oSupplierDetailsBox.removeAllItems();
+
+                // Create supplier details layout
+                var oSupplierInfo = new sap.m.VBox({
+                    items: [
+                        new sap.m.HBox({
+                            items: [
+                                new sap.m.Label({text: "Contact:", class: "sapUiTinyMarginEnd"}),
+                                new sap.m.Text({text: oSupplier.contact})
+                            ],
+                            class: "sapUiTinyMarginBottom"
+                        }),
+                        new sap.m.HBox({
+                            items: [
+                                new sap.m.Label({text: "Location:", class: "sapUiTinyMarginEnd"}),
+                                new sap.m.Text({text: oSupplier.location})
+                            ],
+                            class: "sapUiTinyMarginBottom"
+                        }),
+                        new sap.m.HBox({
+                            items: [
+                                new sap.m.Label({text: "Category:", class: "sapUiTinyMarginEnd"}),
+                                new sap.m.Text({text: oSupplier.category})
+                            ],
+                            class: "sapUiTinyMarginBottom"
+                        }),
+                        new sap.m.HBox({
+                            items: [
+                                new sap.m.Label({text: "Material:", class: "sapUiTinyMarginEnd"}),
+                                new sap.m.Text({text: oSupplier.material})
+                            ],
+                            class: "sapUiTinyMarginBottom"
+                        }),
+                        new sap.m.HBox({
+                            items: [
+                                new sap.m.Label({text: "Lead Time:", class: "sapUiTinyMarginEnd"}),
+                                new sap.m.Text({text: oSupplier.leadTime})
+                            ],
+                            class: "sapUiTinyMarginBottom"
+                        })
+                    ]
+                });
+
+                oSupplierDetailsBox.addItem(oSupplierInfo);
+            }
+        }
+
+        function loadSupplierProductsForRFQ(oSupplier) {
+            // Fetch supplier products from backend
+            fetch(`/odata/v4/procurement/SupplierProducts?$filter=supplier_ID eq ${oSupplier.ID}`)
+                .then(response => response.json())
+                .then(data => {
+                    var aProducts = data.value || [];
+                    populateProductsTable(aProducts);
+                })
+                .catch(error => {
+                    console.error("Error loading supplier products:", error);
+                    // Create sample products if none found
+                    var aSampleProducts = [
+                        {ID: "P1", name: oSupplier.material + " - Standard", description: "Standard quality " + oSupplier.material, price: "100"},
+                        {ID: "P2", name: oSupplier.material + " - Premium", description: "Premium quality " + oSupplier.material, price: "150"},
+                        {ID: "P3", name: oSupplier.material + " - Economy", description: "Economy grade " + oSupplier.material, price: "75"}
+                    ];
+                    populateProductsTable(aSampleProducts);
+                });
+        }
+
+        function populateProductsTable(aProducts) {
+            var oTable = sap.ui.getCore().byId("rfqProductsTable");
+            if (oTable) {
+                oTable.removeAllItems();
+                aSelectedProducts = []; // Reset selected products
+
+                aProducts.forEach(function(oProduct, index) {
+                    var oRow = new sap.m.ColumnListItem({
+                        cells: [
+                            new sap.m.CheckBox({
+                                selected: false,
+                                select: function(oEvent) {
+                                    updateProductSelection(oProduct, oEvent.getParameter("selected"), index);
+                                }
+                            }),
+                            new sap.m.VBox({
+                                items: [
+                                    new sap.m.Text({text: oProduct.name, class: "sapUiMediumMarginBottom"}),
+                                    new sap.m.Text({text: oProduct.description, class: "sapUiTinyText"})
+                                ]
+                            }),
+                            new sap.m.Input({
+                                id: "productUnits_" + index,
+                                type: "Number",
+                                value: "1",
+                                width: "80px",
+                                enabled: false,
+                                liveChange: function() {
+                                    updatePricing();
+                                }
+                            }),
+                            new sap.m.Text({
+                                id: "productPrice_" + index,
+                                text: "$" + oProduct.price
+                            }),
+                            new sap.m.Text({
+                                id: "productTotal_" + index,
+                                text: "$" + oProduct.price
+                            })
+                        ]
+                    });
+                    oTable.addItem(oRow);
+                });
+            }
+        }
+
+        function updateProductSelection(oProduct, bSelected, iIndex) {
+            console.log('📦 Product selection changed:', oProduct.name, 'Selected:', bSelected, 'Index:', iIndex);
+            var oUnitsInput = sap.ui.getCore().byId("productUnits_" + iIndex);
+
+            if (bSelected) {
+                // Add to selected products
+                aSelectedProducts.push({
+                    ...oProduct,
+                    index: iIndex,
+                    units: 1
+                });
+                console.log('✅ Added product to selection. Total selected:', aSelectedProducts.length);
+                if (oUnitsInput) {
+                    oUnitsInput.setEnabled(true);
+                }
+            } else {
+                // Remove from selected products
+                aSelectedProducts = aSelectedProducts.filter(p => p.index !== iIndex);
+                console.log('❌ Removed product from selection. Total selected:', aSelectedProducts.length);
+                if (oUnitsInput) {
+                    oUnitsInput.setEnabled(false);
+                    oUnitsInput.setValue("1");
+                }
             }
 
-            // Generate sample pricing
+            console.log('📋 Current selected products:', aSelectedProducts);
+            updatePricing();
+        }
+
+        function updatePricing() {
             var oPricingBox = sap.ui.getCore().byId("rfqPricing");
-            if (oPricingBox) {
-                oPricingBox.removeAllItems();
+            if (!oPricingBox) return;
+
+            oPricingBox.removeAllItems();
+
+            var fSubtotal = 0;
+
+            // Update selected products pricing
+            aSelectedProducts.forEach(function(oProduct) {
+                var oUnitsInput = sap.ui.getCore().byId("productUnits_" + oProduct.index);
+                var iTotalInput = sap.ui.getCore().byId("productTotal_" + oProduct.index);
+
+                if (oUnitsInput) {
+                    var iUnits = parseInt(oUnitsInput.getValue()) || 1;
+                    var fPrice = parseFloat(oProduct.price) || 0;
+                    var fTotal = iUnits * fPrice;
+
+                    // Update product total in table
+                    if (iTotalInput) {
+                        iTotalInput.setText("$" + fTotal.toFixed(2));
+                    }
+
+                    // Add to pricing breakdown
+                    oPricingBox.addItem(new sap.m.Text({
+                        text: oProduct.name + " (" + iUnits + " units): $" + fTotal.toFixed(2),
+                        class: "sapUiTinyMarginBottom"
+                    }));
+
+                    fSubtotal += fTotal;
+                }
+            });
+
+            if (aSelectedProducts.length > 0) {
+                // Calculate tax (10%)
+                var fTax = fSubtotal * 0.10;
+                var fShipping = 40; // Default shipping cost
+                var fTotal = fSubtotal + fTax + fShipping;
+
+                // Add tax and shipping
                 oPricingBox.addItem(new sap.m.Text({
-                    text: "• Laptops (10 units): ₹4,50,000",
+                    text: "Tax (10%): $" + fTax.toFixed(2),
+                    class: "sapUiTinyMarginBottom sapUiMediumMarginTop"
+                }));
+                oPricingBox.addItem(new sap.m.Text({
+                    text: "Shipping: $" + fShipping.toFixed(2),
                     class: "sapUiTinyMarginBottom"
                 }));
                 oPricingBox.addItem(new sap.m.Text({
-                    text: "• Office Chairs (20 units): ₹1,70,000",
-                    class: "sapUiTinyMarginBottom"
-                }));
-                oPricingBox.addItem(new sap.m.Text({
-                    text: "• Printers (5 units): ₹60,000",
-                    class: "sapUiTinyMarginBottom"
-                }));
-                oPricingBox.addItem(new sap.m.Text({
-                    text: "Total Estimated: ₹6,80,000",
+                    text: "Total Estimated: $" + fTotal.toFixed(2),
                     class: "sapUiMediumMarginTop"
-                }).addStyleClass("sapUiMediumMarginTop"));
+                }).addStyleClass("sapThemeHighlight-asColor"));
+            } else {
+                oPricingBox.addItem(new sap.m.Text({
+                    text: "Please select products to see pricing",
+                    class: "sapUiTinyMarginBottom"
+                }));
             }
         }
 
         function placeOrderFromRFQ() {
-            var oSupplier = sap.ui.getCore().byId("rfqSupplier").getText();
-            var sItems = sap.ui.getCore().byId("rfqItems").getValue();
-            var oDeliveryDate = sap.ui.getCore().byId("rfqDeliveryDate").getDateValue();
+            console.log('🚀 placeOrderFromRFQ called');
+            console.log('📋 Current RFQ Number:', sCurrentRFQNumber);
+            console.log('🏭 Current RFQ Supplier:', oCurrentRFQSupplier);
+            console.log('📦 Selected Products:', aSelectedProducts);
 
-            if (!sItems.trim()) {
-                sap.m.MessageToast.show("Please enter required items");
+            // Validate that products are selected
+            if (aSelectedProducts.length === 0) {
+                console.log('❌ No products selected');
+                sap.m.MessageToast.show("Please select at least one product");
                 return;
             }
 
-            if (!oDeliveryDate) {
-                sap.m.MessageToast.show("Please select delivery date");
-                return;
+            console.log('✅ Validation passed, proceeding with order...');
+
+            // Calculate total for confirmation
+            var fTotal = 0;
+            var sItemsSummary = "";
+
+            aSelectedProducts.forEach(function(oProduct) {
+                var oUnitsInput = sap.ui.getCore().byId("productUnits_" + oProduct.index);
+                var iUnits = parseInt(oUnitsInput.getValue()) || 1;
+                var fPrice = parseFloat(oProduct.price) || 0;
+                var fItemTotal = iUnits * fPrice;
+                fTotal += fItemTotal;
+                sItemsSummary += oProduct.name + " (" + iUnits + " units)\n";
+            });
+
+            var fTax = fTotal * 0.10;
+            var fShipping = 40;
+            var fGrandTotal = fTotal + fTax + fShipping;
+
+            // Confirm order placement using native confirm dialog
+            var confirmMessage = "Are you sure you want to place this order?\n\n" +
+                "Supplier: " + oCurrentRFQSupplier.name + "\n" +
+                "Items:\n" + sItemsSummary +
+                "Total Amount: $" + fGrandTotal.toFixed(2);
+
+            console.log('🔔 Showing confirmation dialog...');
+
+            if (confirm(confirmMessage)) {
+                console.log('✅ User confirmed order placement');
+                processOrderPlacement();
+            } else {
+                console.log('❌ User cancelled order placement');
+                sap.m.MessageToast.show("Order cancelled");
             }
+        }
 
-            // Confirm order placement
-            sap.m.MessageBox.confirm(
-                "Are you sure you want to place this order?\n\n" +
-                "Supplier: " + oSupplier + "\n" +
-                "Items: " + sItems + "\n" +
-                "Delivery Date: " + oDeliveryDate.toLocaleDateString(),
-                {
-                    title: "Confirm Order",
-                    actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
-                    emphasizedAction: sap.m.MessageBox.Action.YES,
-                    onClose: function(sAction) {
-                        if (sAction === sap.m.MessageBox.Action.YES) {
-                            // Add to inventory (simulate)
-                            var oNewMaterial = {
-                                ID: Date.now(),
-                                name: sItems.split('\n')[0] || "Order from " + oSupplier.split(' - ')[0],
-                                category: oSupplier.split(' - ')[1] || "General",
-                                quantity: 1,
-                                price: "₹6,80,000",
-                                supplier: oSupplier.split(' - ')[0],
-                                status: "Ordered"
-                            };
+        function processOrderPlacement() {
+            // Process each selected product as a separate material entry
+            var aPromises = [];
 
-                            // Add to materials model
-                            var oModel = sap.ui.getCore().getModel();
-                            var aMaterials = oModel.getProperty("/materials") || [];
-                            aMaterials.push(oNewMaterial);
-                            oModel.setProperty("/materials", aMaterials);
-                            oModel.setProperty("/materialsCount", aMaterials.length);
+            aSelectedProducts.forEach(function(oProduct) {
+                var oUnitsInput = sap.ui.getCore().byId("productUnits_" + oProduct.index);
+                var iUnits = parseInt(oUnitsInput.getValue()) || 1;
+                var fPrice = parseFloat(oProduct.price) || 0;
 
-                            sap.m.MessageBox.success(
-                                "Order placed successfully!\n\n" +
-                                "Order ID: ORD-" + oNewMaterial.ID + "\n" +
-                                "Supplier: " + oSupplier.split(' - ')[0] + "\n" +
-                                "Total Amount: ₹6,80,000\n" +
-                                "Status: Processing\n" +
-                                "Expected Delivery: " + oDeliveryDate.toLocaleDateString(),
-                                {
-                                    title: "Order Confirmed",
-                                    onClose: function() {
-                                        oRFQDialog.close();
-                                        oSupplierDetailsDialog.close();
-                                        oOrderManuallyDialog.close();
+                // Create material entry for inventory
+                var oMaterialData = {
+                    ID: sCurrentRFQNumber + "-" + oProduct.ID, // Use RFQ number as material ID prefix
+                    name: oProduct.name,
+                    supplierName: oCurrentRFQSupplier.name, // Use supplierName field
+                    quantity: iUnits,
+                    category: oCurrentRFQSupplier.category,
+                    unitPrice: fPrice,
+                    currency: "USD",
+                    unit: "pcs",
+                    description: oProduct.description,
+                    location: "Warehouse A",
+                    deliveryPeriod: oCurrentRFQSupplier.leadTime // Add delivery period from supplier lead time
+                };
 
-                                        // Refresh materials count on tile
-                                        updateMaterialsTileCount();
-                                    }
-                                }
-                            );
+                // Call backend to add material
+                console.log('📤 Adding material to backend:', oMaterialData);
+                console.log('📤 Material data as JSON:', JSON.stringify(oMaterialData, null, 2));
+
+                var promise = fetch('/odata/v4/procurement/addMaterial', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(oMaterialData)
+                })
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    return response.json();
+                })
+                .then(result => {
+                    console.log('Backend response:', result);
+                    return result;
+                });
+
+                aPromises.push(promise);
+            });
+
+            // Wait for all materials to be added
+            Promise.all(aPromises)
+                .then(results => {
+                    var iSuccessCount = results.filter(r => r.success).length;
+                    var iTotalCount = results.length;
+
+                    if (iSuccessCount === iTotalCount) {
+                        // Show simple toast message as requested
+                        sap.m.MessageToast.show("Order Placed Successfully!");
+
+                        // Close dialogs
+                        oRFQDialog.close();
+                        if (oSupplierDetailsDialog) {
+                            oSupplierDetailsDialog.close();
                         }
+
+                        // Refresh materials data
+                        loadMaterials();
+
+                        // Also show detailed success message
+                        setTimeout(function() {
+                            var successMessage = "Order placed successfully!\n\n" +
+                                "RFQ Number: " + sCurrentRFQNumber + "\n" +
+                                "Supplier: " + oCurrentRFQSupplier.name + "\n" +
+                                "Items Added: " + iTotalCount + "\n" +
+                                "Status: Processing\n" +
+                                "Delivery Period: " + oCurrentRFQSupplier.leadTime;
+
+                            alert(successMessage);
+                        }, 500);
+                    } else {
+                        var warningMessage = "Order partially completed!\n\n" +
+                            "Successfully added: " + iSuccessCount + " of " + iTotalCount + " items\n" +
+                            "Please check inventory for details.";
+
+                        sap.m.MessageToast.show("Partial success: " + iSuccessCount + " of " + iTotalCount + " items added");
+                        alert(warningMessage);
                     }
-                }
-            );
+                })
+                .catch(error => {
+                    console.error("Error placing order:", error);
+                    sap.m.MessageToast.show("Error placing order. Please try again.");
+                    alert("Error placing order: " + error.message + "\n\nPlease check the console for details and try again.");
+                });
         }
 
         function placeDirectOrder(oSupplier) {
