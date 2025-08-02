@@ -8,6 +8,10 @@ service ProcurementService {
   @Capabilities.SkipSupported: true
   entity Suppliers as projection on my.Suppliers;
 
+  /** Supplier Products - products offered by suppliers */
+  @readonly
+  entity SupplierProducts as projection on my.SupplierProducts;
+
   /** Materials - for warehouse inventory management */
   entity Materials as projection on my.Materials;
 
@@ -92,6 +96,11 @@ service ProcurementService {
   action clearChatSession (
     sessionId: String @mandatory
   ) returns { success: Boolean };
+
+  // Data Management Actions
+  action loadSuppliersData () returns { success: Boolean; loaded: Integer; errors: Integer; message: String };
+
+  action initializeMaterialsData () returns { success: Boolean; message: String };
 
   // Events for procurement processes
   event PurchaseOrderCreated : { orderNumber: String; supplier: String; totalAmount: Decimal };

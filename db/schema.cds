@@ -3,25 +3,35 @@ namespace sap.procurement;
 
 /**
  * Suppliers Entity
- * Contains supplier information with pricing, lead times, and ratings
+ * Updated to match new JSON structure with products
  */
 entity Suppliers : managed {
   key ID : Integer;
   @mandatory name : String(255);
-  region : String(50);
-  @mandatory material : String(255);
-  pricePerUnit : Decimal(10,2);
-  currency : Currency;
-  leadTime : Integer; // in days
-  rating : Decimal(2,1); // e.g., 4.5 out of 5.0
-  category : String(100); // construction, logistics, manufacturing
-  contactEmail : String(255);
-  contactPhone : String(50);
-  address : String(500);
+  @mandatory category : String(100); // Manufacturing, Construction, Logistics, Electronics
+  @mandatory material : String(255); // Primary material type
+  @mandatory region : String(50); // Geographic region
+  @mandatory leadTime : String(20); // e.g., "7-10 days"
+  @mandatory rating : Decimal(2,1); // e.g., 4.5 out of 5.0
+  @mandatory contact : String(255); // Contact information
+  @mandatory location : String(255); // Detailed location
   isActive : Boolean default true;
 
+  // Navigation to products they supply
+  products : Composition of many SupplierProducts on products.supplier = $self;
   // Navigation to materials they can supply
   materials : Association to many Materials on materials.supplier = $self;
+}
+
+/**
+ * Supplier Products Entity
+ * Products offered by each supplier
+ */
+entity SupplierProducts : cuid, managed {
+  @mandatory supplier : Association to Suppliers;
+  @mandatory name : String(255);
+  @mandatory description : String(500);
+  @mandatory price : String(20); // Price as string to match JSON
 }
 
 /**

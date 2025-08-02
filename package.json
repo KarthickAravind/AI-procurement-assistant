@@ -13,7 +13,8 @@
     "@sap/xssec": "^4",
     "csv-parser": "^3.2.0",
     "dotenv": "^17.2.1",
-    "express": "^4"
+    "express": "^4",
+    "sqlite3": "^5.1.7"
   },
   "engines": {
     "node": ">=20"
@@ -26,8 +27,10 @@
   "scripts": {
     "start": "cds-serve",
     "convert-datasets": "node scripts/convert-datasets.js",
+    "load-data": "node scripts/load-data.js",
     "deploy": "cds deploy --to sqlite:db.sqlite",
-    "build": "cds build"
+    "build": "cds build",
+    "setup": "npm run deploy && npm run load-data"
   },
   "sapux": [
     "app/admin-books",

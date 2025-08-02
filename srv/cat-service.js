@@ -1,5 +1,6 @@
 const cds = require('@sap/cds')
 const { GoogleGenerativeAI } = require('@google/generative-ai')
+const { loadSuppliersData, initializeMaterialsData } = require('./data-loader')
 require('dotenv').config()
 
 // Initialize Gemini AI
@@ -384,6 +385,47 @@ module.exports = class ProcurementService extends cds.ApplicationService {
     }
 
     return { success: true }
+  })
+
+  // Data Management Action Handlers
+  this.on('loadSuppliersData', async (req) => {
+    try {
+      console.log('🔄 Loading suppliers data from JSON...')
+      const result = await loadSuppliersData()
+
+      return {
+        success: true,
+        loaded: result.loaded,
+        errors: result.errors,
+        message: `Successfully loaded ${result.loaded} suppliers with ${result.errors} errors`
+      }
+    } catch (error) {
+      console.error('❌ Error loading suppliers data:', error)
+      return {
+        success: false,
+        loaded: 0,
+        errors: 1,
+        message: `Error loading suppliers: ${error.message}`
+      }
+    }
+  })
+
+  this.on('initializeMaterialsData', async (req) => {
+    try {
+      console.log('🔄 Initializing materials data...')
+      await initializeMaterialsData()
+
+      return {
+        success: true,
+        message: 'Successfully initialized sample materials data'
+      }
+    } catch (error) {
+      console.error('❌ Error initializing materials:', error)
+      return {
+        success: false,
+        message: `Error initializing materials: ${error.message}`
+      }
+    }
   })
 
   // Delegate requests to the underlying generic service

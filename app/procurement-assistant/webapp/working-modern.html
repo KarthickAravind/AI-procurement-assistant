@@ -415,6 +415,22 @@
                     })
                 ]
             });
+
+            var oOrderManuallyTile = new sap.m.GenericTile({
+                header: "Order Manually",
+                subheader: "Manual Procurement",
+                frameType: "OneByOne",
+                class: "modernKpiTile",
+                press: openOrderManuallyPage,
+                tileContent: [
+                    new sap.m.TileContent({
+                        content: new sap.m.ImageContent({
+                            src: "sap-icon://create-form",
+                            size: "L"
+                        })
+                    })
+                ]
+            });
             
             // Create Chat Panel
             var oChatInput = new sap.m.TextArea("chatInput", {
@@ -654,9 +670,10 @@
                             justifyContent: "Start",
                             renderType: "Bare",
                             items: [
-                                oMaterialsTile,
+                                oAITile,
                                 oSuppliersTile,
-                                oAITile
+                                oMaterialsTile,
+                                oOrderManuallyTile
                             ]
                         })
                     ]
@@ -688,7 +705,11 @@
         var oEditMaterialDialog = null;
         var oSuppliersDialog = null;
         var oAIAssistantDialog = null;
+        var oOrderManuallyDialog = null;
+        var oSupplierDetailsDialog = null;
+        var oRFQDialog = null;
         var oCurrentMaterial = null;
+        var oCurrentSupplier = null;
 
         function openMaterialsDialog() {
             if (!oMaterialsDialog) {
@@ -1612,6 +1633,14 @@
             oAIAssistantDialog.open();
         }
 
+        function openOrderManuallyPage() {
+            if (!oOrderManuallyDialog) {
+                createOrderManuallyDialog();
+            }
+            oOrderManuallyDialog.open();
+            loadSuppliersForOrdering();
+        }
+
         function createAIAssistantDialog() {
             // Chat Messages Container with WhatsApp styling
             var oChatContainer = new sap.m.VBox("aiChatContainer", {
@@ -1855,6 +1884,647 @@
             if (oStatusCard) {
                 oStatusCard.setVisible(!oStatusCard.getVisible());
             }
+        }
+
+        function createOrderManuallyDialog() {
+            // Create suppliers table for ordering - matching Active Suppliers structure
+            var oOrderSuppliersTable = new sap.m.Table("orderSuppliersTable", {
+                growing: true,
+                growingThreshold: 20,
+                growingScrollToLoad: true,
+                columns: [
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Category" }),
+                        width: "15%"
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Company Name" }),
+                        width: "20%"
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Material" }),
+                        width: "15%"
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Region" }),
+                        width: "15%"
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Lead Time" }),
+                        width: "10%"
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Rating" }),
+                        width: "10%"
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Actions" }),
+                        width: "15%"
+                    })
+                ]
+            });
+
+            // Create search field for suppliers
+            var oOrderSupplierSearchField = new sap.m.SearchField("orderSupplierSearch", {
+                placeholder: "Search suppliers by name, category, material, or region...",
+                width: "100%",
+                search: function(oEvent) {
+                    var sQuery = oEvent.getParameter("query");
+                    searchOrderSuppliers(sQuery);
+                }
+            });
+
+            // Create filter bar
+            var oOrderFilterBar = new sap.m.HBox({
+                wrap: "Wrap",
+                class: "sapUiMediumMarginBottom",
+                items: [
+                    new sap.m.ComboBox("orderCategoryFilter", {
+                        placeholder: "Filter by Category",
+                        width: "200px",
+                        class: "sapUiTinyMarginEnd",
+                        items: [
+                            new sap.ui.core.Item({ key: "", text: "All Categories" }),
+                            new sap.ui.core.Item({ key: "Manufacturing", text: "Manufacturing" }),
+                            new sap.ui.core.Item({ key: "Construction", text: "Construction" }),
+                            new sap.ui.core.Item({ key: "Logistics", text: "Logistics" }),
+                            new sap.ui.core.Item({ key: "Electronics", text: "Electronics" })
+                        ],
+                        selectionChange: function() {
+                            filterOrderSuppliersByCategory();
+                        }
+                    }),
+                    new sap.m.ComboBox("orderRegionFilter", {
+                        placeholder: "Filter by Region",
+                        width: "200px",
+                        class: "sapUiTinyMarginEnd",
+                        items: [
+                            new sap.ui.core.Item({ key: "", text: "All Regions" }),
+                            new sap.ui.core.Item({ key: "Africa", text: "Africa" }),
+                            new sap.ui.core.Item({ key: "Asia", text: "Asia" }),
+                            new sap.ui.core.Item({ key: "Americas", text: "Americas" }),
+                            new sap.ui.core.Item({ key: "Europe", text: "Europe" }),
+                            new sap.ui.core.Item({ key: "Oceania", text: "Oceania" })
+                        ],
+                        selectionChange: function() {
+                            filterOrderSuppliersByCategory();
+                        }
+                    }),
+                    new sap.m.Button({
+                        text: "Clear Filters",
+                        type: "Transparent",
+                        press: function() {
+                            clearOrderFilters();
+                        }
+                    })
+                ]
+            });
+
+            oOrderManuallyDialog = new sap.m.Dialog("orderManuallyDialog", {
+                title: "Order Manually - Select Supplier",
+                contentWidth: "95%",
+                contentHeight: "85%",
+                verticalScrolling: false,
+                content: [
+                    new sap.m.Page({
+                        showHeader: false,
+                        content: [
+                            new sap.m.Panel({
+                                headerText: "Search & Filter Suppliers",
+                                expandable: true,
+                                expanded: true,
+                                class: "sapUiMediumMarginBottom",
+                                content: [
+                                    new sap.m.VBox({
+                                        class: "sapUiMediumMargin",
+                                        items: [
+                                            oOrderSupplierSearchField,
+                                            oOrderFilterBar
+                                        ]
+                                    })
+                                ]
+                            }),
+
+                            // Suppliers Table in ScrollContainer
+                            new sap.m.ScrollContainer({
+                                height: "100%",
+                                vertical: true,
+                                horizontal: false,
+                                content: [oOrderSuppliersTable]
+                            })
+                        ]
+                    })
+                ],
+                beginButton: new sap.m.Button({
+                    text: "Close",
+                    press: function() {
+                        oOrderManuallyDialog.close();
+                    }
+                })
+            });
+        }
+
+        function openSupplierDetailsDialog(oSupplier) {
+            oCurrentSupplier = oSupplier;
+            if (!oSupplierDetailsDialog) {
+                createSupplierDetailsDialog();
+            }
+
+            // Populate supplier details
+            populateSupplierDetails(oSupplier);
+            oSupplierDetailsDialog.open();
+        }
+
+        function createSupplierDetailsDialog() {
+            oSupplierDetailsDialog = new sap.m.Dialog("supplierDetailsDialog", {
+                title: "Supplier Details",
+                contentWidth: "70%",
+                contentHeight: "70%",
+                content: [
+                    new sap.m.Page({
+                        showHeader: false,
+                        content: [
+                            new sap.m.ObjectHeader("supplierObjectHeader", {
+                                title: "{name}",
+                                number: "{rating}",
+                                numberUnit: "★",
+                                attributes: [
+                                    new sap.m.ObjectAttribute({
+                                        title: "Category",
+                                        text: "{category}"
+                                    }),
+                                    new sap.m.ObjectAttribute({
+                                        title: "Location",
+                                        text: "{location}"
+                                    }),
+                                    new sap.m.ObjectAttribute({
+                                        title: "Contact",
+                                        text: "{contact}"
+                                    })
+                                ]
+                            }),
+
+                            new sap.m.Panel({
+                                headerText: "Available Products",
+                                class: "sapUiMediumMarginTop",
+                                content: [
+                                    new sap.m.List("supplierProductsList", {
+                                        items: {
+                                            path: "/products",
+                                            template: new sap.m.StandardListItem({
+                                                title: "{name}",
+                                                description: "{description}",
+                                                info: "₹{price}",
+                                                infoState: "Success"
+                                            })
+                                        }
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                ],
+                beginButton: new sap.m.Button({
+                    text: "Send RFQ",
+                    type: "Emphasized",
+                    icon: "sap-icon://email",
+                    press: function() {
+                        openRFQDialog(oCurrentSupplier);
+                    }
+                }),
+                endButton: new sap.m.Button({
+                    text: "Close",
+                    press: function() {
+                        oSupplierDetailsDialog.close();
+                    }
+                }),
+                afterClose: function() {
+                    oSupplierDetailsDialog.close();
+                }
+            });
+        }
+
+        function openRFQDialog(oSupplier) {
+            if (!oRFQDialog) {
+                createRFQDialog();
+            }
+
+            // Generate RFQ details
+            generateRFQDetails(oSupplier);
+            oRFQDialog.open();
+        }
+
+        function createRFQDialog() {
+            oRFQDialog = new sap.m.Dialog("rfqDialog", {
+                title: "Request for Quotation (RFQ)",
+                contentWidth: "80%",
+                contentHeight: "75%",
+                content: [
+                    new sap.m.Page({
+                        showHeader: false,
+                        content: [
+                            new sap.m.Panel({
+                                headerText: "RFQ Details",
+                                content: [
+                                    new sap.m.VBox({
+                                        class: "sapUiMediumMargin",
+                                        items: [
+                                            new sap.m.Label({
+                                                text: "RFQ Number:",
+                                                class: "sapUiTinyMarginBottom"
+                                            }),
+                                            new sap.m.Text("rfqNumber", {
+                                                text: "RFQ-" + Date.now(),
+                                                class: "sapUiMediumMarginBottom"
+                                            }),
+
+                                            new sap.m.Label({
+                                                text: "Supplier:",
+                                                class: "sapUiTinyMarginBottom"
+                                            }),
+                                            new sap.m.Text("rfqSupplier", {
+                                                class: "sapUiMediumMarginBottom"
+                                            }),
+
+                                            new sap.m.Label({
+                                                text: "Required Items:",
+                                                class: "sapUiTinyMarginBottom"
+                                            }),
+                                            new sap.m.TextArea("rfqItems", {
+                                                placeholder: "Enter required items and quantities...",
+                                                rows: 4,
+                                                width: "100%",
+                                                class: "sapUiMediumMarginBottom"
+                                            }),
+
+                                            new sap.m.Label({
+                                                text: "Delivery Date:",
+                                                class: "sapUiTinyMarginBottom"
+                                            }),
+                                            new sap.m.DatePicker("rfqDeliveryDate", {
+                                                class: "sapUiMediumMarginBottom"
+                                            }),
+
+                                            new sap.m.Panel({
+                                                headerText: "Estimated Pricing",
+                                                class: "sapUiMediumMarginTop",
+                                                content: [
+                                                    new sap.m.VBox("rfqPricing", {
+                                                        class: "sapUiMediumMargin"
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                ],
+                beginButton: new sap.m.Button({
+                    text: "Place Order",
+                    type: "Accept",
+                    icon: "sap-icon://create-form",
+                    press: function() {
+                        placeOrderFromRFQ();
+                    }
+                }),
+                endButton: new sap.m.Button({
+                    text: "Cancel",
+                    press: function() {
+                        oRFQDialog.close();
+                    }
+                })
+            });
+        }
+
+        function loadSuppliersForOrdering() {
+            fetch('/odata/v4/procurement/Suppliers')
+                .then(response => response.json())
+                .then(data => {
+                    var oModel = new sap.ui.model.json.JSONModel(data.value);
+                    var oTable = sap.ui.getCore().byId("orderSuppliersTable");
+                    if (oTable) {
+                        oTable.setModel(oModel);
+                        oTable.bindItems({
+                            path: "/",
+                            template: new sap.m.ColumnListItem({
+                                cells: [
+                                    new sap.m.Text({ text: "{category}" }),
+                                    new sap.m.Text({ text: "{name}" }),
+                                    new sap.m.Text({ text: "{material}" }),
+                                    new sap.m.Text({ text: "{region}" }),
+                                    new sap.m.Text({ text: "{leadTime}" }),
+                                    new sap.m.Text({ text: "{rating}" }),
+                                    new sap.m.Button({
+                                        text: "View Details",
+                                        type: "Emphasized",
+                                        icon: "sap-icon://detail-view",
+                                        press: function(oEvent) {
+                                            var oContext = oEvent.getSource().getBindingContext();
+                                            var oSupplier = oContext.getObject();
+                                            openSupplierDetailsDialog(oSupplier);
+                                        }
+                                    })
+                                ]
+                            })
+                        });
+
+                        // Update count display
+                        updateOrderSuppliersCount(data.value.length);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading suppliers:", error);
+                    sap.m.MessageToast.show("Error loading suppliers");
+                });
+        }
+
+        function searchOrderSuppliers(sQuery) {
+            var oTable = sap.ui.getCore().byId("orderSuppliersTable");
+            var oBinding = oTable.getBinding("items");
+
+            if (sQuery && sQuery.length > 0) {
+                var oFilter = new sap.ui.model.Filter([
+                    new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.Contains, sQuery),
+                    new sap.ui.model.Filter("category", sap.ui.model.FilterOperator.Contains, sQuery),
+                    new sap.ui.model.Filter("material", sap.ui.model.FilterOperator.Contains, sQuery),
+                    new sap.ui.model.Filter("region", sap.ui.model.FilterOperator.Contains, sQuery)
+                ], false);
+                oBinding.filter([oFilter]);
+            } else {
+                oBinding.filter([]);
+            }
+
+            // Update count after search
+            setTimeout(() => {
+                var iFilteredCount = oBinding.getLength();
+                updateOrderSuppliersCount(iFilteredCount);
+            }, 100);
+        }
+
+        function filterOrderSuppliersByCategory() {
+            var oCategoryFilter = sap.ui.getCore().byId("orderCategoryFilter");
+            var oRegionFilter = sap.ui.getCore().byId("orderRegionFilter");
+            var oTable = sap.ui.getCore().byId("orderSuppliersTable");
+            var oBinding = oTable.getBinding("items");
+
+            var aFilters = [];
+
+            if (oCategoryFilter && oCategoryFilter.getSelectedKey()) {
+                aFilters.push(new sap.ui.model.Filter("category", sap.ui.model.FilterOperator.EQ, oCategoryFilter.getSelectedKey()));
+            }
+
+            if (oRegionFilter && oRegionFilter.getSelectedKey()) {
+                aFilters.push(new sap.ui.model.Filter("region", sap.ui.model.FilterOperator.Contains, oRegionFilter.getSelectedKey()));
+            }
+
+            oBinding.filter(aFilters);
+
+            // Update count after filter
+            setTimeout(() => {
+                var iFilteredCount = oBinding.getLength();
+                updateOrderSuppliersCount(iFilteredCount);
+            }, 100);
+        }
+
+        function clearOrderFilters() {
+            var oCategoryFilter = sap.ui.getCore().byId("orderCategoryFilter");
+            var oRegionFilter = sap.ui.getCore().byId("orderRegionFilter");
+            var oSearchField = sap.ui.getCore().byId("orderSupplierSearch");
+            var oTable = sap.ui.getCore().byId("orderSuppliersTable");
+
+            if (oCategoryFilter) oCategoryFilter.setSelectedKey("");
+            if (oRegionFilter) oRegionFilter.setSelectedKey("");
+            if (oSearchField) oSearchField.setValue("");
+
+            if (oTable) {
+                var oBinding = oTable.getBinding("items");
+                oBinding.filter([]);
+
+                // Update count after clearing filters
+                setTimeout(() => {
+                    var iTotalCount = oBinding.getLength();
+                    updateOrderSuppliersCount(iTotalCount);
+                }, 100);
+            }
+        }
+
+        function updateOrderSuppliersCount(iCount) {
+            var oDialog = sap.ui.getCore().byId("orderManuallyDialog");
+            if (oDialog) {
+                oDialog.setTitle("Order Manually - Select Supplier (" + iCount + " suppliers)");
+            }
+        }
+
+        function populateSupplierDetails(oSupplier) {
+            // Fetch products for this supplier from the backend
+            fetch(`/odata/v4/procurement/SupplierProducts?$filter=supplier_ID eq ${oSupplier.ID}`)
+                .then(response => response.json())
+                .then(data => {
+                    var oSupplierModel = new sap.ui.model.json.JSONModel({
+                        ...oSupplier,
+                        products: data.value || []
+                    });
+
+                    var oHeader = sap.ui.getCore().byId("supplierObjectHeader");
+                    if (oHeader) {
+                        oHeader.setModel(oSupplierModel);
+                        oHeader.bindElement("/");
+                    }
+
+                    var oList = sap.ui.getCore().byId("supplierProductsList");
+                    if (oList) {
+                        oList.setModel(oSupplierModel);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading supplier products:", error);
+                    // Fallback to supplier data without products
+                    var oSupplierModel = new sap.ui.model.json.JSONModel({
+                        ...oSupplier,
+                        products: []
+                    });
+
+                    var oHeader = sap.ui.getCore().byId("supplierObjectHeader");
+                    if (oHeader) {
+                        oHeader.setModel(oSupplierModel);
+                        oHeader.bindElement("/");
+                    }
+                });
+        }
+
+        function generateRFQDetails(oSupplier) {
+            var oRFQSupplier = sap.ui.getCore().byId("rfqSupplier");
+            if (oRFQSupplier) {
+                oRFQSupplier.setText(oSupplier.name + " - " + oSupplier.category);
+            }
+
+            // Set default delivery date (30 days from now)
+            var oDatePicker = sap.ui.getCore().byId("rfqDeliveryDate");
+            if (oDatePicker) {
+                var oDate = new Date();
+                oDate.setDate(oDate.getDate() + 30);
+                oDatePicker.setDateValue(oDate);
+            }
+
+            // Generate sample pricing
+            var oPricingBox = sap.ui.getCore().byId("rfqPricing");
+            if (oPricingBox) {
+                oPricingBox.removeAllItems();
+                oPricingBox.addItem(new sap.m.Text({
+                    text: "• Laptops (10 units): ₹4,50,000",
+                    class: "sapUiTinyMarginBottom"
+                }));
+                oPricingBox.addItem(new sap.m.Text({
+                    text: "• Office Chairs (20 units): ₹1,70,000",
+                    class: "sapUiTinyMarginBottom"
+                }));
+                oPricingBox.addItem(new sap.m.Text({
+                    text: "• Printers (5 units): ₹60,000",
+                    class: "sapUiTinyMarginBottom"
+                }));
+                oPricingBox.addItem(new sap.m.Text({
+                    text: "Total Estimated: ₹6,80,000",
+                    class: "sapUiMediumMarginTop"
+                }).addStyleClass("sapUiMediumMarginTop"));
+            }
+        }
+
+        function placeOrderFromRFQ() {
+            var oSupplier = sap.ui.getCore().byId("rfqSupplier").getText();
+            var sItems = sap.ui.getCore().byId("rfqItems").getValue();
+            var oDeliveryDate = sap.ui.getCore().byId("rfqDeliveryDate").getDateValue();
+
+            if (!sItems.trim()) {
+                sap.m.MessageToast.show("Please enter required items");
+                return;
+            }
+
+            if (!oDeliveryDate) {
+                sap.m.MessageToast.show("Please select delivery date");
+                return;
+            }
+
+            // Confirm order placement
+            sap.m.MessageBox.confirm(
+                "Are you sure you want to place this order?\n\n" +
+                "Supplier: " + oSupplier + "\n" +
+                "Items: " + sItems + "\n" +
+                "Delivery Date: " + oDeliveryDate.toLocaleDateString(),
+                {
+                    title: "Confirm Order",
+                    actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+                    emphasizedAction: sap.m.MessageBox.Action.YES,
+                    onClose: function(sAction) {
+                        if (sAction === sap.m.MessageBox.Action.YES) {
+                            // Add to inventory (simulate)
+                            var oNewMaterial = {
+                                ID: Date.now(),
+                                name: sItems.split('\n')[0] || "Order from " + oSupplier.split(' - ')[0],
+                                category: oSupplier.split(' - ')[1] || "General",
+                                quantity: 1,
+                                price: "₹6,80,000",
+                                supplier: oSupplier.split(' - ')[0],
+                                status: "Ordered"
+                            };
+
+                            // Add to materials model
+                            var oModel = sap.ui.getCore().getModel();
+                            var aMaterials = oModel.getProperty("/materials") || [];
+                            aMaterials.push(oNewMaterial);
+                            oModel.setProperty("/materials", aMaterials);
+                            oModel.setProperty("/materialsCount", aMaterials.length);
+
+                            sap.m.MessageBox.success(
+                                "Order placed successfully!\n\n" +
+                                "Order ID: ORD-" + oNewMaterial.ID + "\n" +
+                                "Supplier: " + oSupplier.split(' - ')[0] + "\n" +
+                                "Total Amount: ₹6,80,000\n" +
+                                "Status: Processing\n" +
+                                "Expected Delivery: " + oDeliveryDate.toLocaleDateString(),
+                                {
+                                    title: "Order Confirmed",
+                                    onClose: function() {
+                                        oRFQDialog.close();
+                                        oSupplierDetailsDialog.close();
+                                        oOrderManuallyDialog.close();
+
+                                        // Refresh materials count on tile
+                                        updateMaterialsTileCount();
+                                    }
+                                }
+                            );
+                        }
+                    }
+                }
+            );
+        }
+
+        function placeDirectOrder(oSupplier) {
+            sap.m.MessageBox.confirm(
+                "Are you sure you want to place a direct order with " + oSupplier.name + "?",
+                {
+                    title: "Confirm Order",
+                    actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+                    emphasizedAction: sap.m.MessageBox.Action.YES,
+                    onClose: function(sAction) {
+                        if (sAction === sap.m.MessageBox.Action.YES) {
+                            // Add to inventory (simulate)
+                            var oNewMaterial = {
+                                ID: Date.now(),
+                                name: "Order from " + oSupplier.name,
+                                category: oSupplier.category,
+                                quantity: 1,
+                                price: "₹50,000",
+                                supplier: oSupplier.name,
+                                status: "Ordered"
+                            };
+
+                            // Add to materials model
+                            var oModel = sap.ui.getCore().getModel();
+                            var aMaterials = oModel.getProperty("/materials") || [];
+                            aMaterials.push(oNewMaterial);
+                            oModel.setProperty("/materials", aMaterials);
+                            oModel.setProperty("/materialsCount", aMaterials.length);
+
+                            sap.m.MessageBox.success(
+                                "Order placed successfully!\n\n" +
+                                "Order ID: ORD-" + oNewMaterial.ID + "\n" +
+                                "Supplier: " + oSupplier.name + "\n" +
+                                "Status: Processing\n" +
+                                "Expected Delivery: 7-10 business days",
+                                {
+                                    title: "Order Confirmed",
+                                    onClose: function() {
+                                        oSupplierDetailsDialog.close();
+                                        oOrderManuallyDialog.close();
+
+                                        // Refresh materials count on tile
+                                        updateMaterialsTileCount();
+                                    }
+                                }
+                            );
+                        }
+                    }
+                }
+            );
+        }
+
+        function updateMaterialsTileCount() {
+            var oModel = sap.ui.getCore().getModel();
+            var iCount = oModel.getProperty("/materialsCount") || 0;
+
+            // Update the materials tile if it exists
+            setTimeout(() => {
+                var oMaterialsTile = sap.ui.getCore().byId("materialsTile");
+                if (oMaterialsTile) {
+                    var oTileContent = oMaterialsTile.getTileContent()[0];
+                    if (oTileContent && oTileContent.getContent()) {
+                        oTileContent.getContent().setValue(iCount.toString());
+                    }
+                }
+            }, 100);
         }
 
 
