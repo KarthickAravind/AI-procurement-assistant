@@ -29,10 +29,24 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
-        /* Tile spacing - 0.5cm gap */
-        .modernKpiTile {
-            margin-right: 0.5cm;
-            margin-bottom: 0.5cm;
+        /* Fiori Launchpad style tile spacing */
+        .sapMGenericTile {
+            margin: 16px !important;
+        }
+
+        /* Specific spacing for dashboard tiles */
+        .sapMDynamicPageHeader .sapMHBox .sapMGenericTile {
+            margin: 16px !important;
+        }
+
+        /* HBox container spacing */
+        .sapMHBox {
+            gap: 16px;
+        }
+
+        /* Ensure tiles have proper spacing in header */
+        .sapMDynamicPageHeader .sapMHBox {
+            padding: 16px;
         }
 
         /* Rating color classes */
@@ -64,6 +78,227 @@
         .ratingRed {
             color: #D32F2F !important; /* Red: Below 2.49 */
             font-weight: bold;
+        }
+
+        /* WhatsApp-style Chat Interface */
+        .chatContainer {
+            background: #e5ddd5;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            padding: 16px;
+            padding-bottom: 80px;
+            min-height: 400px;
+            overflow-y: auto;
+        }
+
+        .messageRow {
+            display: flex;
+            flex-direction: column;
+            margin: 15px 20px;
+            clear: both;
+        }
+
+        .messageRow.user {
+            align-items: flex-end;
+            margin-right: 25px;
+        }
+
+        .messageRow.assistant {
+            align-items: flex-start;
+            margin-left: 25px;
+        }
+
+        .messageLabel {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            padding: 0 5px;
+            color: #65676b;
+        }
+
+        .messageBubble {
+            max-width: 75%;
+            position: relative;
+            padding: 15px 18px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            word-wrap: break-word;
+            animation: fadeIn 0.3s ease-out;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .messageBubble.user {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .messageBubble.user::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: -10px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-left: 15px solid #128c7e;
+            border-right: 0;
+            border-bottom: 0;
+        }
+
+        .messageBubble.assistant {
+            background: linear-gradient(135deg, #0084ff, #0066cc);
+            color: white;
+            border-bottom-left-radius: 5px;
+        }
+
+        .messageBubble.assistant::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right: 15px solid #0066cc;
+            border-left: 0;
+            border-bottom: 0;
+        }
+
+        .messageTime {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 6px;
+            text-align: right;
+            font-weight: 400;
+        }
+
+        .messageBubble.assistant .messageTime {
+            text-align: left;
+        }
+
+        .typingIndicator {
+            background: linear-gradient(135deg, #f0f2f5, #e4e6ea);
+            color: #65676b;
+            border-radius: 20px;
+            padding: 15px 18px;
+            max-width: 70%;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border-bottom-left-radius: 5px;
+            position: relative;
+        }
+
+        .typingIndicator::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right: 15px solid #e4e6ea;
+            border-left: 0;
+            border-bottom: 0;
+        }
+
+        /* Chat footer styling - Larger and more comfortable */
+        .sapMPage .sapMPageFooter .sapMToolbar {
+            background: #f8f9fa !important;
+            border-top: 1px solid #e1e5e9 !important;
+            padding: 12px 16px !important;
+            min-height: 80px !important;
+            align-items: flex-end !important;
+        }
+
+        /* Chat text area in footer - Larger and more comfortable */
+        .sapMPage .sapMPageFooter .sapMTextArea {
+            border-radius: 20px !important;
+            border: 2px solid #e1e5e9 !important;
+            font-size: 16px !important;
+            line-height: 1.4 !important;
+            padding: 12px 16px !important;
+        }
+
+        .sapMPage .sapMPageFooter .sapMTextArea:focus-within {
+            border-color: #0070f3 !important;
+            box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1) !important;
+        }
+
+        /* Send button styling in footer */
+        .sapMPage .sapMPageFooter .sapMBtn {
+            border-radius: 50% !important;
+            box-shadow: 0 4px 12px rgba(0, 112, 243, 0.3) !important;
+        }
+
+        .sapMPage .sapMPageFooter .sapMBtn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 16px rgba(0, 112, 243, 0.4) !important;
+        }
+
+
+
+        /* Adjust chat container to account for fixed input */
+        .chatContainer {
+            padding-bottom: 70px !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* Reduce empty space in chat area */
+        .sapMScrollCont {
+            padding-bottom: 5px !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* Remove extra spacing from dialog content */
+        .sapMDialogScrollCont {
+            padding-bottom: 0 !important;
+        }
+
+        /* Ensure dialog content uses full height */
+        .sapMDialog .sapMDialogSection {
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        /* Make VBox containers flexible */
+        .sapMVBox {
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        /* Make scroll container flexible */
+        .sapMScrollCont {
+            flex: 1 !important;
+            height: auto !important;
+        }
+
+        .quickActionBtn {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            padding: 8px 16px;
+            margin: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(116, 185, 255, 0.3);
+        }
+
+        .quickActionBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(116, 185, 255, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
         
         .chatMessage {
@@ -417,6 +652,7 @@
                             wrap: "Wrap",
                             class: "sapUiMediumMargin",
                             justifyContent: "Start",
+                            renderType: "Bare",
                             items: [
                                 oMaterialsTile,
                                 oSuppliersTile,
@@ -1377,74 +1613,181 @@
         }
 
         function createAIAssistantDialog() {
-            // Chat Messages Container
+            // Chat Messages Container with WhatsApp styling
             var oChatContainer = new sap.m.VBox("aiChatContainer", {
-                class: "sapUiMediumMargin"
+                class: "chatContainer"
             });
 
-            // Chat Input
+            // Simple Chat Input
             var oChatInput = new sap.m.TextArea("aiChatInput", {
-                placeholder: "Type your message here... (e.g., 'Find laptops under ₹50K')",
+                placeholder: "Type a message...",
                 growing: true,
                 growingMaxLines: 3,
-                width: "100%"
+                width: "100%",
+                showExceededText: false,
+                valueLiveUpdate: true
             });
 
             // Create the AI Assistant Dialog
             oAIAssistantDialog = new sap.m.Dialog("aiAssistantDialog", {
-                title: "My Dear Assistant - AI Chat",
-                contentWidth: "70%",
-                contentHeight: "80%",
+                contentWidth: "85%",
+                contentHeight: "90%",
                 verticalScrolling: false,
                 horizontalScrolling: false,
+                customHeader: new sap.m.Bar({
+                    contentLeft: [
+                        new sap.ui.core.Icon({
+                            src: "sap-icon://ai",
+                            size: "1.5rem",
+                            color: "#0070f3",
+                            class: "sapUiTinyMarginEnd"
+                        }),
+                        new sap.m.Title({
+                            text: "My Dear Assistant - AI Procurement Chat",
+                            level: "H4"
+                        })
+                    ],
+                    contentRight: [
+                        new sap.m.Button({
+                            icon: "sap-icon://information",
+                            type: "Transparent",
+                            tooltip: "AI Status",
+                            press: toggleStatusCard
+                        }),
+
+                        new sap.m.MenuButton({
+                            icon: "sap-icon://sys-help",
+                            type: "Transparent",
+                            tooltip: "Help",
+                            menu: new sap.m.Menu({
+                                items: [
+                                    new sap.m.MenuItem({
+                                        text: "Extract Chat",
+                                        icon: "sap-icon://download",
+                                        press: extractChatHistory
+                                    }),
+                                    new sap.m.MenuItem({
+                                        text: "Support",
+                                        icon: "sap-icon://customer-and-contacts",
+                                        press: function() {
+                                            sap.m.MessageToast.show("Sorry, not available for now");
+                                        }
+                                    })
+                                ]
+                            })
+                        }),
+                        new sap.m.Button({
+                            icon: "sap-icon://decline",
+                            type: "Transparent",
+                            tooltip: "Close",
+                            press: function() {
+                                oAIAssistantDialog.close();
+                            }
+                        })
+                    ]
+                }),
                 content: [
-                    new sap.m.VBox({
-                        height: "100%",
-                        items: [
-                            // Quick Actions Panel
+                    new sap.m.Page({
+                        showHeader: false,
+                        content: [
+                            // Status Card (initially hidden)
+                            new sap.m.Panel("statusCard", {
+                                visible: false,
+                                class: "sapUiTinyMarginBottom",
+                                content: [
+                                    new sap.m.VBox({
+                                        class: "sapUiSmallMargin",
+                                        items: [
+                                            new sap.m.ObjectStatus({
+                                                text: "Gemini 1.5 Flash Connected",
+                                                state: "Success",
+                                                icon: "sap-icon://connected"
+                                            }),
+                                            new sap.m.ObjectStatus({
+                                                text: "Procurement Knowledge Base Active",
+                                                state: "Information",
+                                                icon: "sap-icon://database"
+                                            }),
+                                            new sap.m.ObjectStatus({
+                                                text: "Real-time Data Access Enabled",
+                                                state: "Warning",
+                                                icon: "sap-icon://refresh"
+                                            })
+                                        ]
+                                    })
+                                ]
+                            }),
+
+                            // Quick Actions with SAP icons
                             new sap.m.Panel({
                                 headerText: "Quick Actions",
-                                expandable: false,
+                                expandable: true,
+                                expanded: true,
                                 class: "sapUiMediumMarginBottom",
                                 content: [
-                                    new sap.m.HBox({
+                                    new sap.m.FlexBox({
                                         wrap: "Wrap",
-                                        class: "sapUiSmallMargin",
+                                        justifyContent: "SpaceAround",
+                                        class: "sapUiMediumMargin",
                                         items: [
                                             new sap.m.Button({
                                                 text: "Create PO",
                                                 icon: "sap-icon://create-form",
                                                 type: "Emphasized",
-                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                class: "quickActionBtn sapUiTinyMargin",
                                                 press: function() {
-                                                    addAIChatMessage("I'll help you create a Purchase Order. What materials do you need?", "assistant");
+                                                    addAIChatMessage("Create Purchase Order", "user");
+                                                    sendToGemini("I need help creating a Purchase Order. What materials do you need?");
+                                                }
+                                            }),
+                                            new sap.m.Button({
+                                                text: "Send RFQ",
+                                                icon: "sap-icon://email",
+                                                type: "Accept",
+                                                class: "quickActionBtn sapUiTinyMargin",
+                                                press: function() {
+                                                    addAIChatMessage("Send RFQ", "user");
+                                                    sendToGemini("I need to send a Request for Quotation. Which suppliers should I contact?");
                                                 }
                                             }),
                                             new sap.m.Button({
                                                 text: "Find Suppliers",
                                                 icon: "sap-icon://supplier",
-                                                type: "Default",
-                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                type: "Accept",
+                                                class: "quickActionBtn sapUiTinyMargin",
                                                 press: function() {
-                                                    addAIChatMessage("I'll help you find the best suppliers. What type of materials are you looking for?", "assistant");
+                                                    addAIChatMessage("Find Suppliers", "user");
+                                                    sendToGemini("I need to find suppliers. What type of materials are you looking for?");
                                                 }
                                             }),
                                             new sap.m.Button({
                                                 text: "Check Inventory",
                                                 icon: "sap-icon://inventory",
-                                                type: "Default",
-                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                type: "Neutral",
+                                                class: "quickActionBtn sapUiTinyMargin",
                                                 press: function() {
-                                                    addAIChatMessage("Here's your current inventory status. Which materials would you like to check?", "assistant");
+                                                    addAIChatMessage("Check Inventory", "user");
+                                                    sendToGemini("Please check my current inventory status");
                                                 }
                                             }),
                                             new sap.m.Button({
-                                                text: "Price Analysis",
-                                                icon: "sap-icon://line-chart",
-                                                type: "Default",
-                                                class: "sapUiTinyMarginEnd sapUiTinyMarginBottom",
+                                                text: "Smart Search",
+                                                icon: "sap-icon://search",
+                                                type: "Ghost",
+                                                class: "quickActionBtn sapUiTinyMargin",
                                                 press: function() {
-                                                    addAIChatMessage("I'll analyze pricing trends for you. Which materials or suppliers are you interested in?", "assistant");
+                                                    addAIChatMessage("Smart Search", "user");
+                                                    sendToGemini("Help me search for specific materials or suppliers");
+                                                }
+                                            }),
+                                            new sap.m.Button({
+                                                text: "Market Insights",
+                                                icon: "sap-icon://trend-up",
+                                                type: "Transparent",
+                                                class: "quickActionBtn sapUiTinyMargin",
+                                                press: function() {
+                                                    addAIChatMessage("Market Insights", "user");
+                                                    sendToGemini("Show me current market insights and procurement trends");
                                                 }
                                             })
                                         ]
@@ -1452,106 +1795,393 @@
                                 ]
                             }),
 
-                            // Chat Messages Area
+                            // Chat Messages Area - Full height scrollable
                             new sap.m.ScrollContainer({
-                                height: "400px",
+                                height: "100%",
                                 vertical: true,
-                                class: "sapUiMediumMarginBottom",
                                 content: [oChatContainer]
-                            }),
-
-                            // Chat Input Area
-                            new sap.m.HBox({
-                                width: "100%",
-                                alignItems: "End",
-                                items: [
-                                    oChatInput,
-                                    new sap.m.Button({
-                                        text: "Send",
-                                        type: "Emphasized",
-                                        icon: "sap-icon://paper-plane",
-                                        class: "sapUiTinyMarginBegin",
-                                        press: sendAIChatMessage
-                                    })
-                                ]
                             })
-                        ]
+                        ],
+                        footer: new sap.m.Toolbar({
+                            height: "80px",
+                            content: [
+                                new sap.m.TextArea("chatTextArea", {
+                                    placeholder: "Type your message here... (e.g., 'Find laptops under ₹50K')",
+                                    growing: false,
+                                    rows: 1,
+                                    width: "100%",
+                                    class: "sapUiTinyMarginEnd",
+                                    liveChange: function(oEvent) {
+                                        var sValue = oEvent.getParameter("value");
+                                        var oSendBtn = sap.ui.getCore().byId("chatSendBtn");
+                                        if (oSendBtn) {
+                                            oSendBtn.setEnabled(sValue.trim().length > 0);
+                                        }
+                                    }
+                                }),
+                                new sap.m.Button("chatSendBtn", {
+                                    icon: "sap-icon://paper-plane",
+                                    type: "Emphasized",
+                                    enabled: false,
+                                    height: "60px",
+                                    width: "100px",
+                                    press: function() {
+                                        var oTextArea = sap.ui.getCore().byId("chatTextArea");
+                                        var sMessage = oTextArea.getValue().trim();
+                                        if (sMessage) {
+                                            addAIChatMessage(sMessage, "user");
+                                            sendToGemini(sMessage);
+                                            oTextArea.setValue("");
+                                            this.setEnabled(false);
+                                        }
+                                    }
+                                })
+                            ]
+                        })
                     })
-                ],
-                beginButton: new sap.m.Button({
-                    text: "Close",
-                    press: function() {
-                        oAIAssistantDialog.close();
-                    }
-                })
+                ]
             });
 
-            // Add welcome messages
+            // Initialize chat with welcome messages
             setTimeout(() => {
-                addAIChatMessage("👋 Hello! I'm your AI procurement assistant. I can help you with suppliers, materials, pricing, and procurement processes.", "assistant");
-                addAIChatMessage("💡 Try the quick action buttons above or ask me anything!", "assistant");
+                initializeAIChat();
+                // Check Gemini connection status every 30 seconds
+                setInterval(checkGeminiConnection, 30000);
             }, 500);
+        }
+
+        function toggleStatusCard() {
+            var oStatusCard = sap.ui.getCore().byId("statusCard");
+            if (oStatusCard) {
+                oStatusCard.setVisible(!oStatusCard.getVisible());
+            }
+        }
+
+
+
+        function extractChatHistory() {
+            var oChatContainer = sap.ui.getCore().byId("aiChatContainer");
+            if (!oChatContainer || oChatContainer.getItems().length === 0) {
+                sap.m.MessageToast.show("No chat history to extract");
+                return;
+            }
+
+            var sChatContent = "# AI Procurement Chat History\n\n";
+            sChatContent += "**Date:** " + new Date().toLocaleString() + "\n\n";
+
+            oChatContainer.getItems().forEach(function(oItem) {
+                if (oItem.hasStyleClass && oItem.hasStyleClass("userMessage")) {
+                    sChatContent += "**User:** ";
+                    var oText = oItem.getItems()[0];
+                    if (oText && oText.getHtmlText) {
+                        sChatContent += oText.getHtmlText().replace(/<[^>]*>/g, '') + "\n\n";
+                    }
+                } else if (oItem.hasStyleClass && oItem.hasStyleClass("assistantMessage")) {
+                    sChatContent += "**AI Assistant:** ";
+                    var oText = oItem.getItems()[1];
+                    if (oText && oText.getHtmlText) {
+                        sChatContent += oText.getHtmlText().replace(/<[^>]*>/g, '') + "\n\n";
+                    }
+                }
+            });
+
+            // Create download
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/markdown;charset=utf-8,' + encodeURIComponent(sChatContent));
+            element.setAttribute('download', 'chat_history_' + new Date().toISOString().slice(0,10) + '.md');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+
+            sap.m.MessageToast.show("Chat history downloaded as .md file");
         }
 
         function sendAIChatMessage() {
             var oInput = sap.ui.getCore().byId("aiChatInput");
-            var sMessage = oInput.getValue().trim();
+            if (oInput) {
+                var sMessage = oInput.getValue().trim();
 
-            if (!sMessage) {
-                sap.m.MessageToast.show("Please enter a message");
-                return;
+                if (!sMessage) {
+                    sap.m.MessageToast.show("💬 Please enter a message");
+                    return;
+                }
+
+                addAIChatMessage(sMessage, "user");
+                oInput.setValue("");
+
+                // Send to Gemini AI
+                sendToGemini(sMessage);
             }
-
-            addAIChatMessage(sMessage, "user");
-            oInput.setValue("");
-
-            var oTypingMessage = addAIChatMessage("🤖 Assistant is typing...", "typing");
-
-            // Simulate AI response (you can integrate with actual AI service here)
-            setTimeout(() => {
-                var oChatContainer = sap.ui.getCore().byId("aiChatContainer");
-                oChatContainer.removeItem(oTypingMessage);
-                addAIChatMessage(generateAIResponse(sMessage), "assistant");
-            }, 2000);
         }
 
+
+
         function addAIChatMessage(sMessage, sType) {
-            var sMessageType = sType === "user" ? "Success" : "Information";
-            var sIcon = sType === "user" ? "👤 You: " : (sType === "typing" ? "" : "🤖 Assistant: ");
-
-            var oMessage = new sap.m.MessageStrip({
-                text: sIcon + sMessage,
-                type: sMessageType,
-                class: "chatMessage sapUiMediumMarginBottom"
-            });
-
             var oChatContainer = sap.ui.getCore().byId("aiChatContainer");
-            oChatContainer.addItem(oMessage);
 
-            // Scroll to bottom
+            if (sType === "user") {
+                // User message - right aligned with label and tail
+                var oUserBubble = new sap.ui.core.HTML({
+                    content: `
+                        <div class="messageRow user">
+                            <div class="messageLabel">You</div>
+                            <div class="messageBubble user">
+                                <div style="margin-bottom: 4px;">${sMessage}</div>
+                                <div class="messageTime">${new Date().toLocaleTimeString()}</div>
+                            </div>
+                        </div>
+                    `
+                });
+                oChatContainer.addItem(oUserBubble);
+
+            } else if (sType === "assistant") {
+                // Assistant message - left aligned with label and tail
+                var oAssistantBubble = new sap.ui.core.HTML({
+                    content: `
+                        <div class="messageRow assistant">
+                            <div class="messageLabel">AI Assistant</div>
+                            <div class="messageBubble assistant">
+                                <div style="margin-bottom: 4px;">${sMessage}</div>
+                                <div class="messageTime">${new Date().toLocaleTimeString()}</div>
+                            </div>
+                        </div>
+                    `
+                });
+                oChatContainer.addItem(oAssistantBubble);
+
+            } else if (sType === "typing") {
+                // Typing indicator with label
+                var oTypingBubble = new sap.ui.core.HTML({
+                    content: `
+                        <div class="messageRow assistant">
+                            <div class="messageLabel">AI Assistant</div>
+                            <div class="typingIndicator">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="margin-right: 8px;">🤖</span>
+                                    <span>AI is thinking...</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                });
+                oChatContainer.addItem(oTypingBubble);
+                return oTypingBubble;
+            }
+
+            // Auto-scroll to bottom
             setTimeout(() => {
-                var oScrollContainer = oMessage.getParent().getParent();
+                scrollChatToBottom();
+            }, 100);
+        }
+
+        function scrollChatToBottom() {
+            var oChatContainer = sap.ui.getCore().byId("aiChatContainer");
+            if (oChatContainer) {
+                var oScrollContainer = oChatContainer.getParent();
                 if (oScrollContainer && oScrollContainer.scrollTo) {
                     oScrollContainer.scrollTo(0, oScrollContainer.getScrollHeight());
                 }
-            }, 100);
-
-            return oMessage;
+            }
         }
 
-        function generateAIResponse(sUserMessage) {
+        function clearChatHistory() {
+            var oChatContainer = sap.ui.getCore().byId("aiChatContainer");
+            if (oChatContainer) {
+                oChatContainer.removeAllItems();
+                sap.m.MessageToast.show("🗑️ Chat history cleared");
+            }
+        }
+
+        function initializeAIChat() {
+            // Initialize chat session with Gemini
+            initializeChatSession();
+        }
+
+        // Initialize chat session
+        window.chatSessionId = null;
+        window.geminiConnected = false;
+
+        function initializeChatSession() {
+            console.log("Initializing chat session...");
+
+            fetch('/odata/v4/procurement/initChatSession', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Chat session initialized:", data);
+                window.chatSessionId = data.sessionId;
+                window.geminiConnected = true;
+                updateGeminiStatus(true);
+
+                // Add welcome message
+                if (data.welcomeMessage) {
+                    addAIChatMessage(data.welcomeMessage, "assistant");
+                }
+            })
+            .catch(error => {
+                console.error("Error initializing chat session:", error);
+                window.geminiConnected = false;
+                updateGeminiStatus(false);
+                addAIChatMessage("Welcome! I'm your AI procurement assistant. How can I help you today?", "assistant");
+            });
+        }
+
+        function updateGeminiStatus(isConnected) {
+            var oStatusCard = sap.ui.getCore().byId("statusCard");
+            if (oStatusCard) {
+                var aItems = oStatusCard.getContent()[0].getItems();
+                if (aItems && aItems.length > 0) {
+                    var oGeminiStatus = aItems[0];
+                    if (isConnected) {
+                        oGeminiStatus.setText("Gemini 1.5 Flash Connected");
+                        oGeminiStatus.setState("Success");
+                        oGeminiStatus.setIcon("sap-icon://connected");
+                    } else {
+                        oGeminiStatus.setText("Gemini 1.5 Flash Not Connected");
+                        oGeminiStatus.setState("Error");
+                        oGeminiStatus.setIcon("sap-icon://disconnected");
+                    }
+                }
+            }
+        }
+
+        function checkGeminiConnection() {
+            fetch('/odata/v4/procurement/initChatSession', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.geminiConnected = true;
+                    updateGeminiStatus(true);
+                } else {
+                    window.geminiConnected = false;
+                    updateGeminiStatus(false);
+                }
+            })
+            .catch(error => {
+                window.geminiConnected = false;
+                updateGeminiStatus(false);
+            });
+        }
+
+        function sendToGemini(sUserMessage) {
+            // Show typing indicator
+            var oTypingMessage = addAIChatMessage("", "typing");
+
+            // Send message to Gemini AI
+            if (!window.chatSessionId) {
+                console.warn("No chat session, initializing...");
+                initializeChatSession();
+                setTimeout(() => sendMessageToAI(sUserMessage, oTypingMessage), 1000);
+            } else {
+                sendMessageToAI(sUserMessage, oTypingMessage);
+            }
+        }
+
+        function sendMessageToAI(message, typingMessage) {
+            fetch('/odata/v4/procurement/sendChatMessage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId: window.chatSessionId,
+                    message: message
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.geminiConnected = true;
+                    updateGeminiStatus(true);
+                    return response.json();
+                } else {
+                    window.geminiConnected = false;
+                    updateGeminiStatus(false);
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then(data => {
+                console.log("AI response received:", data);
+
+                // Remove typing indicator
+                if (typingMessage) {
+                    var oChatContainer = sap.ui.getCore().byId("aiChatContainer");
+                    oChatContainer.removeItem(typingMessage);
+                }
+
+                if (data.success && data.response) {
+                    addAIChatMessage(data.response, "assistant");
+                } else if (data.fallbackResponse) {
+                    addAIChatMessage(data.fallbackResponse, "assistant");
+                } else {
+                    addAIChatMessage("I apologize, but I'm having trouble right now. Please try again.", "assistant");
+                }
+            })
+            .catch(error => {
+                console.error("Error sending message to AI:", error);
+                window.geminiConnected = false;
+                updateGeminiStatus(false);
+
+                // Remove typing indicator
+                if (typingMessage) {
+                    var oChatContainer = sap.ui.getCore().byId("aiChatContainer");
+                    oChatContainer.removeItem(typingMessage);
+                }
+
+                // Fallback to smart response
+                var response = generateLocalResponse(message);
+                addAIChatMessage(response, "assistant");
+            });
+        }
+
+        async function getProcurementContext() {
+            try {
+                // Get current materials count
+                const materialsResponse = await fetch('/odata/v4/procurement/Materials?$top=5');
+                const materialsData = await materialsResponse.json();
+
+                // Get current suppliers count
+                const suppliersResponse = await fetch('/odata/v4/procurement/Suppliers?$top=5');
+                const suppliersData = await suppliersResponse.json();
+
+                return {
+                    materialsCount: oModel.getProperty("/materialsCount") || 0,
+                    suppliersCount: oModel.getProperty("/suppliersCount") || 0,
+                    recentMaterials: materialsData.value || [],
+                    topSuppliers: suppliersData.value || []
+                };
+            } catch (error) {
+                console.error('Error getting context:', error);
+                return {
+                    materialsCount: 0,
+                    suppliersCount: 0,
+                    recentMaterials: [],
+                    topSuppliers: []
+                };
+            }
+        }
+
+        function generateLocalResponse(sUserMessage) {
             var sMessage = sUserMessage.toLowerCase();
 
             if (sMessage.includes("laptop") || sMessage.includes("computer")) {
-                return "I found 3 suppliers for laptops:\n• TechCorp India - ₹42,000/unit, 7 days delivery\n• Digital Solutions - ₹48,500/unit, 5 days delivery\n• CompuWorld - ₹45,200/unit, 10 days delivery\n\nWould you like me to create a PO or send RFQ?";
+                return "<strong>Laptop Suppliers Found:</strong><br/><br/><strong>TechCorp India</strong><br/>• Price: ₹42,000/unit<br/>• Delivery: 7 days<br/>• Rating: 4.8/5<br/><br/><strong>Digital Solutions</strong><br/>• Price: ₹48,500/unit<br/>• Delivery: 5 days<br/>• Rating: 4.6/5<br/><br/><strong>CompuWorld</strong><br/>• Price: ₹45,200/unit<br/>• Delivery: 10 days<br/>• Rating: 4.5/5<br/><br/>Would you like me to create a PO or send an RFQ?";
             } else if (sMessage.includes("supplier")) {
-                return "Here are our top-rated suppliers:\n🏆 TechCorp India (4.8/5) - Electronics\n🏆 Furniture Plus (4.6/5) - Office Furniture\n🏆 Stationery World (4.7/5) - Office Supplies\n\nWhich category interests you?";
+                return "<strong>Top-Rated Suppliers:</strong><br/><br/><strong>TechCorp India</strong> (4.8/5)<br/>Electronics & Technology<br/><br/><strong>Furniture Plus</strong> (4.6/5)<br/>Office Furniture & Equipment<br/><br/><strong>Stationery World</strong> (4.7/5)<br/>Office Supplies & Materials<br/><br/>Which category interests you? I can provide detailed supplier information.";
             } else if (sMessage.includes("price") || sMessage.includes("cost")) {
-                return "I'll analyze pricing for you:\n📊 Current market trends show:\n• Electronics: 5% price increase this quarter\n• Construction materials: Stable pricing\n• Office supplies: 2% decrease\n\nWhich specific materials need pricing analysis?";
+                return "<strong>Market Price Analysis:</strong><br/><br/><strong>Current Trends:</strong><br/>• Electronics: +5% this quarter<br/>• Construction: Stable pricing<br/>• Office supplies: -2% decrease<br/>• Manufacturing: +3% increase<br/><br/><strong>Recommendations:</strong><br/>• Best time to buy office supplies<br/>• Electronics prices expected to stabilize<br/>• Consider bulk orders for construction materials<br/><br/>Which specific materials need pricing analysis?";
             } else if (sMessage.includes("inventory") || sMessage.includes("stock")) {
-                return "Current inventory status:\n📦 Total materials: 15 items\n⚠️ Low stock alerts: 3 items\n✅ Well-stocked: 12 items\n\nWould you like details on specific categories?";
+                return "<strong>Current Inventory Status:</strong><br/><br/><strong>Overview:</strong><br/>• Total materials: 15 items<br/>• Active suppliers: 3000+<br/>• Categories covered: 4<br/><br/><strong>Alerts:</strong><br/>• 3 items with low stock<br/>• 2 items need reordering<br/>• 12 items well-stocked<br/><br/>Would you like details on specific categories or materials? I can help you manage your inventory efficiently.";
             } else {
-                return "I understand you're asking about: '" + sUserMessage + "'. I can help with:\n• Finding suppliers and pricing\n• Creating purchase orders\n• Sending RFQs\n• Checking inventory\n• Compliance verification\n• Market analysis\n\nTry using the quick action buttons above or ask me something specific!";
+                return `<strong>I understand you're asking about:</strong> "${sUserMessage}"<br/><br/><strong>I can help you with:</strong><br/>• Finding suppliers and pricing<br/>• Creating purchase orders<br/>• Sending RFQs<br/>• Checking inventory<br/>• Compliance verification<br/>• Market analysis<br/>• Cost optimization<br/><br/>Try using the quick action buttons above or ask me something specific about procurement!`;
             }
         }
 
