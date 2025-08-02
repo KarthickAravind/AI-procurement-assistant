@@ -33,13 +33,13 @@
                   }
                 },
                 {
-                  "id": "ProcurementTest",
+                  "id": "BackendTesting",
                   "tileType": "sap.ushell.ui.tile.StaticTile",
                   "properties": {
-                    "title": "Phase 3 Backend Test",
-                    "subtitle": "Test Warehouse CRUD Operations",
-                    "icon": "sap-icon://test-automation",
-                    "targetURL": "#Procurement-test"
+                    "title": "Backend Testing Console",
+                    "subtitle": "API & Database Testing",
+                    "icon": "sap-icon://lab",
+                    "targetURL": "#Procurement-testing"
                   }
                 }
               ]
@@ -83,52 +83,17 @@
                 "url": "procurement-assistant/webapp/working-modern.html"
               }
             },
-            "ProcurementTest": {
+            "ProcurementTesting": {
               "semanticObject": "Procurement",
-              "action": "test",
-              "title": "Phase 3 Backend Test",
+              "action": "testing",
+              "title": "Backend Testing Console",
               "signature": {
                 "parameters": {},
                 "additionalParameters": "allowed"
               },
               "resolutionResult": {
                 "applicationType": "URL",
-                "url": "procurement-assistant/webapp/test-backend.html"
-              }
-            },
-            "BrowseBooks": {
-              "semanticObject": "Books",
-              "action": "display",
-              "title": "Browse Books",
-              "signature": {
-                "parameters": {
-                  "Books.ID": {
-                    "renameTo": "ID"
-                  },
-                  "Authors.books.ID": {
-                    "renameTo": "ID"
-                  }
-                },
-                "additionalParameters": "ignored"
-              },
-              "resolutionResult": {
-                "applicationType": "SAPUI5",
-                "additionalInformation": "SAPUI5.Component=bookshop",
-                "url": "browse/webapp"
-              }
-            },
-            "ManageBooks": {
-              "semanticObject": "Books",
-              "action": "manage",
-              "title": "Manage Books",
-              "signature": {
-                "parameters": {},
-                "additionalParameters": "allowed"
-              },
-              "resolutionResult": {
-                "applicationType": "SAPUI5",
-                "additionalInformation": "SAPUI5.Component=books",
-                "url": "admin-books/webapp"
+                "url": "procurement-assistant/webapp/backend-testing.html"
               }
             }
           }

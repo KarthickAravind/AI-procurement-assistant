@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AI Procurement Assistant - Backend Testing</title>
+    <style>
+        body { 
+            font-family: 'SAP-icons', Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header { 
+            background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%); 
+            color: white; 
+            padding: 30px; 
+            text-align: center;
+        }
+        .header h1 { margin: 0; font-size: 2.5em; font-weight: 300; }
+        .header p { margin: 10px 0 0 0; opacity: 0.9; font-size: 1.1em; }
+        
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .nav-tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: #6c757d;
+            transition: all 0.3s ease;
+        }
+        .nav-tab.active {
+            background: white;
+            color: #0070f3;
+            border-bottom: 3px solid #0070f3;
+        }
+        .nav-tab:hover {
+            background: #e9ecef;
+            color: #0070f3;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
+        .actions { 
+            margin: 20px 0; 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 10px;
+        }
+        .actions button { 
+            padding: 12px 20px; 
+            background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%); 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,112,243,0.3);
+        }
+        .actions button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,112,243,0.4);
+        }
+        .actions button.danger {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            box-shadow: 0 2px 8px rgba(220,53,69,0.3);
+        }
+        .actions button.success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            box-shadow: 0 2px 8px rgba(40,167,69,0.3);
+        }
+        
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        th, td { 
+            border: 1px solid #dee2e6; 
+            padding: 12px; 
+            text-align: left; 
+        }
+        th { 
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); 
+            font-weight: 600;
+            color: #495057;
+        }
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        tr:hover {
+            background: #e3f2fd;
+        }
+        
+        .status-low { color: #dc3545; font-weight: bold; }
+        .status-normal { color: #28a745; font-weight: bold; }
+        .status-overstock { color: #fd7e14; font-weight: bold; }
+        
+        .loading { 
+            text-align: center; 
+            padding: 40px; 
+            color: #6c757d; 
+            font-size: 18px;
+        }
+        .error { 
+            color: #721c24; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); 
+            border-radius: 8px; 
+            margin: 20px 0; 
+            border-left: 4px solid #dc3545;
+        }
+        .success { 
+            color: #155724; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); 
+            border-radius: 8px; 
+            margin: 20px 0; 
+            border-left: 4px solid #28a745;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+        
+        .form-group {
+            margin: 15px 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #495057;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #0070f3;
+            box-shadow: 0 0 0 2px rgba(0,112,243,0.25);
+        }
+        
+        .test-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #0070f3;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #0070f3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 Backend Testing Console</h1>
+            <p>Comprehensive testing interface for AI Procurement Assistant APIs</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('materials')">📦 Materials Testing</button>
+            <button class="nav-tab" onclick="showTab('suppliers')">🏭 Suppliers Testing</button>
+            <button class="nav-tab" onclick="showTab('rfq')">📋 RFQ Testing</button>
+            <button class="nav-tab" onclick="showTab('system')">⚙️ System Testing</button>
+        </div>
+
+        <!-- Materials Testing Tab -->
+        <div id="materials" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="materialsCount">-</div>
+                    <div class="stat-label">Total Materials</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="lowStockCount">-</div>
+                    <div class="stat-label">Low Stock Items</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgPrice">-</div>
+                    <div class="stat-label">Avg Unit Price</div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button onclick="loadMaterials()">🔄 Load All Materials</button>
+                <button onclick="testAddMaterial()" class="success">➕ Test Add Material</button>
+                <button onclick="searchMaterials('aluminum')">🔍 Search "Aluminum"</button>
+                <button onclick="exportMaterials()">📥 Export CSV</button>
+                <button onclick="clearResults()">🗑️ Clear Results</button>
+            </div>
+
+            <div class="test-section">
+                <h3>Add New Material</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label>Material ID:</label>
+                        <input type="text" id="newMaterialId" placeholder="e.g., MAT-001">
+                    </div>
+                    <div class="form-group">
+                        <label>Material Name:</label>
+                        <input type="text" id="newMaterialName" placeholder="e.g., Steel Pipes">
+                    </div>
+                    <div class="form-group">
+                        <label>Supplier Name:</label>
+                        <input type="text" id="newMaterialSupplier" placeholder="e.g., Steel Corp">
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity:</label>
+                        <input type="number" id="newMaterialQuantity" placeholder="100">
+                    </div>
+                </div>
+                <button onclick="addCustomMaterial()" class="success">Add Material</button>
+            </div>
+        </div>
+
+        <!-- Suppliers Testing Tab -->
+        <div id="suppliers" class="tab-content">
+            <div class="actions">
+                <button onclick="loadSuppliers()">🔄 Load All Suppliers</button>
+                <button onclick="loadSuppliersData()" class="success">📊 Load Sample Data (3000)</button>
+                <button onclick="searchSuppliers('manufacturing')">🔍 Search "Manufacturing"</button>
+                <button onclick="getSupplierStats()">📈 Get Statistics</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="suppliersCount">-</div>
+                    <div class="stat-label">Total Suppliers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="categoriesCount">-</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgRating">-</div>
+                    <div class="stat-label">Avg Rating</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RFQ Testing Tab -->
+        <div id="rfq" class="tab-content">
+            <div class="actions">
+                <button onclick="testRFQFlow()" class="success">🚀 Test Complete RFQ Flow</button>
+                <button onclick="testDataFormats()">🔍 Test Data Formats</button>
+                <button onclick="simulateOrderPlacement()">📋 Simulate Order</button>
+            </div>
+
+            <div class="test-section">
+                <h3>RFQ Flow Testing</h3>
+                <p>This section tests the complete Request for Quotation workflow including product selection, pricing calculation, and order placement.</p>
+                <div id="rfqResults"></div>
+            </div>
+        </div>
+
+        <!-- System Testing Tab -->
+        <div id="system" class="tab-content">
+            <div class="actions">
+                <button onclick="testAllEndpoints()">🔍 Test All Endpoints</button>
+                <button onclick="checkDatabaseHealth()">💾 Database Health</button>
+                <button onclick="performanceTest()">⚡ Performance Test</button>
+                <button onclick="clearAllData()" class="danger">🗑️ Clear All Data</button>
+            </div>
+
+            <div class="test-section">
+                <h3>System Health</h3>
+                <div id="systemHealth"></div>
+            </div>
+        </div>
+
+        <div id="status" class="loading">Ready to test backend functionality...</div>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        // Tab Management
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Status Management
+        function showStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'loading';
+            statusDiv.innerHTML = message;
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+            showStatus('Results cleared');
+        }
+
+        // Materials Testing Functions
+        async function loadMaterials() {
+            showStatus('Loading materials...', 'info');
+            try {
+                const response = await fetch('/odata/v4/procurement/Materials');
+                const data = await response.json();
+                const materials = data.value || [];
+
+                document.getElementById('materialsCount').textContent = materials.length;
+
+                // Calculate stats
+                const lowStock = materials.filter(m => m.quantity < m.minStockLevel || 10).length;
+                const avgPrice = materials.length > 0 ?
+                    (materials.reduce((sum, m) => sum + (m.unitPrice || 0), 0) / materials.length).toFixed(2) : 0;
+
+                document.getElementById('lowStockCount').textContent = lowStock;
+                document.getElementById('avgPrice').textContent = '$' + avgPrice;
+
+                displayMaterialsTable(materials);
+                showStatus(`✅ Loaded ${materials.length} materials successfully`, 'success');
+            } catch (error) {
+                showStatus(`❌ Error loading materials: ${error.message}`, 'error');
+            }
+        }
+
+        function displayMaterialsTable(materials) {
+            const html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Material ID</th>
+                            <th>Name</th>
+                            <th>Supplier</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Delivery Period</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${materials.map(material => `
+                            <tr>
+                                <td>${material.ID}</td>
+                                <td>${material.name}</td>
+                                <td>${material.supplierName || material.supplier_ID || 'N/A'}</td>
+                                <td>${material.quantity} ${material.unit || 'pcs'}</td>
+                                <td>$${material.unitPrice || 0}</td>
+                                <td>${material.deliveryPeriod || 'N/A'}</td>
+                                <td class="status-${material.stockStatus?.toLowerCase().replace(' ', '-') || 'normal'}">
+                                    ${material.stockStatus || 'Normal'}
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            document.getElementById('results').innerHTML = html;
+        }
+
+        async function testAddMaterial() {
+            const testMaterial = {
+                ID: 'TEST-' + Date.now(),
+                name: 'Test Material ' + Date.now(),
+                supplierName: 'Test Supplier',
+                quantity: Math.floor(Math.random() * 100) + 1,
+                category: 'Testing',
+                unitPrice: Math.floor(Math.random() * 1000) + 50,
+                currency: 'USD',
+                unit: 'pcs',
+                description: 'Auto-generated test material',
+                location: 'Test Warehouse',
+                deliveryPeriod: '3-5 days'
+            };
+
+            try {
+                showStatus('Adding test material...', 'info');
+                const response = await fetch('/odata/v4/procurement/addMaterial', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testMaterial)
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    showStatus(`✅ ${result.message}`, 'success');
+                    loadMaterials(); // Refresh the list
+                } else {
+                    showStatus(`❌ ${result.message}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Error adding material: ${error.message}`, 'error');
+            }
+        }
+
+        async function addCustomMaterial() {
+            const materialData = {
+                ID: document.getElementById('newMaterialId').value,
+                name: document.getElementById('newMaterialName').value,
+                supplierName: document.getElementById('newMaterialSupplier').value,
+                quantity: parseInt(document.getElementById('newMaterialQuantity').value) || 0,
+                category: 'Custom',
+                unitPrice: Math.floor(Math.random() * 500) + 50,
+                currency: 'USD',
+                unit: 'pcs',
+                description: 'Custom added material',
+                location: 'Warehouse A',
+                deliveryPeriod: '5-7 days'
+            };
+
+            if (!materialData.ID || !materialData.name) {
+                showStatus('❌ Please fill in Material ID and Name', 'error');
+                return;
+            }
+
+            try {
+                showStatus('Adding custom material...', 'info');
+                const response = await fetch('/odata/v4/procurement/addMaterial', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(materialData)
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    showStatus(`✅ ${result.message}`, 'success');
+                    // Clear form
+                    document.getElementById('newMaterialId').value = '';
+                    document.getElementById('newMaterialName').value = '';
+                    document.getElementById('newMaterialSupplier').value = '';
+                    document.getElementById('newMaterialQuantity').value = '';
+                    loadMaterials(); // Refresh the list
+                } else {
+                    showStatus(`❌ ${result.message}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Error adding material: ${error.message}`, 'error');
+            }
+        }
+
+        // Suppliers Testing Functions
+        async function loadSuppliers() {
+            showStatus('Loading suppliers...', 'info');
+            try {
+                const response = await fetch('/odata/v4/procurement/Suppliers?$top=100');
+                const data = await response.json();
+                const suppliers = data.value || [];
+
+                document.getElementById('suppliersCount').textContent = suppliers.length;
+
+                // Calculate stats
+                const categories = [...new Set(suppliers.map(s => s.category))].length;
+                const avgRating = suppliers.length > 0 ?
+                    (suppliers.reduce((sum, s) => sum + (parseFloat(s.rating) || 0), 0) / suppliers.length).toFixed(1) : 0;
+
+                document.getElementById('categoriesCount').textContent = categories;
+                document.getElementById('avgRating').textContent = avgRating;
+
+                displaySuppliersTable(suppliers);
+                showStatus(`✅ Loaded ${suppliers.length} suppliers successfully`, 'success');
+            } catch (error) {
+                showStatus(`❌ Error loading suppliers: ${error.message}`, 'error');
+            }
+        }
+
+        function displaySuppliersTable(suppliers) {
+            const html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Region</th>
+                            <th>Material</th>
+                            <th>Rating</th>
+                            <th>Lead Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${suppliers.map(supplier => `
+                            <tr>
+                                <td>${supplier.ID}</td>
+                                <td>${supplier.name}</td>
+                                <td>${supplier.category}</td>
+                                <td>${supplier.region}</td>
+                                <td>${supplier.material}</td>
+                                <td>${supplier.rating}</td>
+                                <td>${supplier.leadTime}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            document.getElementById('results').innerHTML = html;
+        }
+
+        async function loadSuppliersData() {
+            showStatus('Loading 3000 suppliers data...', 'info');
+            try {
+                const response = await fetch('/odata/v4/procurement/loadSuppliersData', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    showStatus(`✅ ${result.message}`, 'success');
+                    loadSuppliers(); // Refresh the list
+                } else {
+                    showStatus(`❌ Failed to load suppliers data`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Error loading suppliers data: ${error.message}`, 'error');
+            }
+        }
+
+        // RFQ Testing Functions
+        async function testRFQFlow() {
+            showStatus('Testing complete RFQ flow...', 'info');
+            const rfqNumber = 'RFQ-TEST-' + Date.now();
+
+            const testProducts = [
+                {
+                    ID: 'P1',
+                    name: 'Test Product 1',
+                    description: 'Test Description 1',
+                    price: '100',
+                    quantity: 2
+                },
+                {
+                    ID: 'P2',
+                    name: 'Test Product 2',
+                    description: 'Test Description 2',
+                    price: '150',
+                    quantity: 1
+                }
+            ];
+
+            try {
+                let successCount = 0;
+                for (const product of testProducts) {
+                    const materialData = {
+                        ID: rfqNumber + '-' + product.ID,
+                        name: product.name,
+                        supplierName: 'Test RFQ Supplier',
+                        quantity: product.quantity,
+                        category: 'RFQ Testing',
+                        unitPrice: parseFloat(product.price),
+                        currency: 'USD',
+                        unit: 'pcs',
+                        description: product.description,
+                        location: 'Warehouse A',
+                        deliveryPeriod: '7-10 days'
+                    };
+
+                    const response = await fetch('/odata/v4/procurement/addMaterial', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(materialData)
+                    });
+                    const result = await response.json();
+
+                    if (result.success) {
+                        successCount++;
+                    }
+                }
+
+                if (successCount === testProducts.length) {
+                    showStatus(`✅ RFQ Flow Test PASSED! Added ${successCount} materials with RFQ number ${rfqNumber}`, 'success');
+                    document.getElementById('rfqResults').innerHTML = `
+                        <div class="success">
+                            <h4>RFQ Test Results</h4>
+                            <p><strong>RFQ Number:</strong> ${rfqNumber}</p>
+                            <p><strong>Products Added:</strong> ${successCount}</p>
+                            <p><strong>Status:</strong> All materials successfully added to inventory</p>
+                        </div>
+                    `;
+                    loadMaterials(); // Refresh materials list
+                } else {
+                    showStatus(`⚠️ RFQ Flow Test PARTIAL: Added ${successCount} of ${testProducts.length} materials`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ RFQ Flow Test FAILED: ${error.message}`, 'error');
+            }
+        }
+
+        // System Testing Functions
+        async function testAllEndpoints() {
+            showStatus('Testing all API endpoints...', 'info');
+            const endpoints = [
+                { name: 'Materials', url: '/odata/v4/procurement/Materials?$top=1' },
+                { name: 'Suppliers', url: '/odata/v4/procurement/Suppliers?$top=1' },
+                { name: 'SupplierProducts', url: '/odata/v4/procurement/SupplierProducts?$top=1' }
+            ];
+
+            let results = '<h3>Endpoint Test Results</h3>';
+            let allPassed = true;
+
+            for (const endpoint of endpoints) {
+                try {
+                    const response = await fetch(endpoint.url);
+                    const status = response.ok ? '✅ PASS' : '❌ FAIL';
+                    results += `<p><strong>${endpoint.name}:</strong> ${status} (${response.status})</p>`;
+                    if (!response.ok) allPassed = false;
+                } catch (error) {
+                    results += `<p><strong>${endpoint.name}:</strong> ❌ ERROR - ${error.message}</p>`;
+                    allPassed = false;
+                }
+            }
+
+            document.getElementById('systemHealth').innerHTML = results;
+            showStatus(allPassed ? '✅ All endpoints are working' : '❌ Some endpoints have issues', allPassed ? 'success' : 'error');
+        }
+
+        // Utility Functions
+        async function searchMaterials(query) {
+            showStatus(`Searching materials for "${query}"...`, 'info');
+            try {
+                const response = await fetch(`/odata/v4/procurement/Materials?$filter=contains(tolower(name),'${query.toLowerCase()}')`);
+                const data = await response.json();
+                const materials = data.value || [];
+
+                displayMaterialsTable(materials);
+                showStatus(`✅ Found ${materials.length} materials matching "${query}"`, 'success');
+            } catch (error) {
+                showStatus(`❌ Error searching materials: ${error.message}`, 'error');
+            }
+        }
+
+        async function searchSuppliers(query) {
+            showStatus(`Searching suppliers for "${query}"...`, 'info');
+            try {
+                const response = await fetch(`/odata/v4/procurement/Suppliers?$filter=contains(tolower(category),'${query.toLowerCase()}')`);
+                const data = await response.json();
+                const suppliers = data.value || [];
+
+                displaySuppliersTable(suppliers);
+                showStatus(`✅ Found ${suppliers.length} suppliers matching "${query}"`, 'success');
+            } catch (error) {
+                showStatus(`❌ Error searching suppliers: ${error.message}`, 'error');
+            }
+        }
+
+        async function exportMaterials() {
+            showStatus('Exporting materials to CSV...', 'info');
+            try {
+                const response = await fetch('/odata/v4/procurement/exportMaterialsToCSV', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+                const result = await response.json();
+
+                if (result.csvData) {
+                    // Create download link
+                    const blob = new Blob([result.csvData], { type: 'text/csv' });
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'materials_export.csv';
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+
+                    showStatus('✅ Materials exported successfully', 'success');
+                } else {
+                    showStatus('❌ No data to export', 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Error exporting materials: ${error.message}`, 'error');
+            }
+        }
+
+        async function checkDatabaseHealth() {
+            showStatus('Checking database health...', 'info');
+            try {
+                const [materialsRes, suppliersRes] = await Promise.all([
+                    fetch('/odata/v4/procurement/Materials?$top=1'),
+                    fetch('/odata/v4/procurement/Suppliers?$top=1')
+                ]);
+
+                const materialsOk = materialsRes.ok;
+                const suppliersOk = suppliersRes.ok;
+
+                const healthStatus = materialsOk && suppliersOk ? 'Healthy' : 'Issues Detected';
+                const statusClass = materialsOk && suppliersOk ? 'success' : 'error';
+
+                document.getElementById('systemHealth').innerHTML = `
+                    <div class="${statusClass}">
+                        <h4>Database Health Check</h4>
+                        <p><strong>Overall Status:</strong> ${healthStatus}</p>
+                        <p><strong>Materials Table:</strong> ${materialsOk ? '✅ OK' : '❌ Error'}</p>
+                        <p><strong>Suppliers Table:</strong> ${suppliersOk ? '✅ OK' : '❌ Error'}</p>
+                        <p><strong>Last Checked:</strong> ${new Date().toLocaleString()}</p>
+                    </div>
+                `;
+
+                showStatus(`Database health check: ${healthStatus}`, statusClass);
+            } catch (error) {
+                showStatus(`❌ Error checking database health: ${error.message}`, 'error');
+            }
+        }
+
+        async function performanceTest() {
+            showStatus('Running performance test...', 'info');
+            const startTime = performance.now();
+
+            try {
+                const response = await fetch('/odata/v4/procurement/Materials?$top=100');
+                const endTime = performance.now();
+                const duration = (endTime - startTime).toFixed(2);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const recordCount = data.value?.length || 0;
+
+                    document.getElementById('systemHealth').innerHTML = `
+                        <div class="success">
+                            <h4>Performance Test Results</h4>
+                            <p><strong>Response Time:</strong> ${duration} ms</p>
+                            <p><strong>Records Fetched:</strong> ${recordCount}</p>
+                            <p><strong>Performance:</strong> ${duration < 1000 ? '✅ Excellent' : duration < 3000 ? '⚠️ Good' : '❌ Slow'}</p>
+                        </div>
+                    `;
+
+                    showStatus(`✅ Performance test completed in ${duration}ms`, 'success');
+                } else {
+                    showStatus('❌ Performance test failed', 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Performance test error: ${error.message}`, 'error');
+            }
+        }
+
+        function testDataFormats() {
+            showStatus('Testing data formats...', 'info');
+
+            const manualFormat = {
+                ID: "MANUAL-" + Date.now(),
+                name: "Manual Test Material",
+                supplierName: "Manual Test Supplier",
+                quantity: 5,
+                category: "Testing",
+                unitPrice: 100.00,
+                currency: "USD",
+                unit: "pcs",
+                description: "Manual format test",
+                location: "Warehouse A",
+                deliveryPeriod: "7-10 days"
+            };
+
+            const functionFormat = {
+                ID: "FUNCTION-" + Date.now(),
+                name: "Function Test Material",
+                supplierName: "Function Test Supplier",
+                quantity: 3,
+                category: "Testing",
+                unitPrice: 150,
+                currency: "USD",
+                unit: "pcs",
+                description: "Function format test",
+                location: "Warehouse A",
+                deliveryPeriod: "5-7 days"
+            };
+
+            document.getElementById('rfqResults').innerHTML = `
+                <div class="test-section">
+                    <h4>Data Format Comparison</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <h5>Manual Format:</h5>
+                            <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; font-size: 12px;">${JSON.stringify(manualFormat, null, 2)}</pre>
+                        </div>
+                        <div>
+                            <h5>Function Format:</h5>
+                            <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; font-size: 12px;">${JSON.stringify(functionFormat, null, 2)}</pre>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            showStatus('✅ Data formats displayed for comparison', 'success');
+        }
+
+        function simulateOrderPlacement() {
+            showStatus('Simulating order placement...', 'info');
+
+            // Simulate the RFQ flow
+            setTimeout(() => {
+                document.getElementById('rfqResults').innerHTML = `
+                    <div class="success">
+                        <h4>Order Placement Simulation</h4>
+                        <p>✅ Step 1: Supplier selected</p>
+                        <p>✅ Step 2: RFQ generated</p>
+                        <p>✅ Step 3: Products selected</p>
+                        <p>✅ Step 4: Pricing calculated</p>
+                        <p>✅ Step 5: Order confirmed</p>
+                        <p><strong>Status:</strong> Order placed successfully!</p>
+                    </div>
+                `;
+                showStatus('✅ Order placement simulation completed', 'success');
+            }, 2000);
+        }
+
+        async function clearAllData() {
+            if (!confirm('⚠️ This will delete ALL materials and suppliers data. Are you sure?')) {
+                return;
+            }
+
+            showStatus('Clearing all data...', 'info');
+            try {
+                // Note: This would need to be implemented in the backend
+                showStatus('⚠️ Clear all data function not implemented for safety', 'error');
+            } catch (error) {
+                showStatus(`❌ Error clearing data: ${error.message}`, 'error');
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showStatus('Backend Testing Console loaded. Ready to test APIs.');
+            loadMaterials();
+        });
+    </script>
+</body>
+</html>
