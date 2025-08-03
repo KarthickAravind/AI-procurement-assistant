@@ -1,15 +1,20 @@
 const cds = require('@sap/cds')
 const { GoogleGenerativeAI } = require('@google/generative-ai')
 const { loadSuppliersData, initializeMaterialsData } = require('./data-loader')
+const { AIChatRouter } = require('./ai-chat/index')
+const productMapper = require('./ai-chat/productMaterialMapper')
 require('dotenv').config()
 
-// Initialize Gemini AI
+// Initialize Gemini AI (legacy)
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY
 console.log('Gemini API Key loaded:', GEMINI_API_KEY ? 'Yes' : 'No')
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY)
 
 // Chat sessions storage (in production, use proper database)
 const chatSessions = new Map()
+
+// Initialize AI Chat Router
+const aiChatRouter = new AIChatRouter()
 
 module.exports = class ProcurementService extends cds.ApplicationService {
   async init() {
@@ -335,7 +340,7 @@ module.exports = class ProcurementService extends cds.ApplicationService {
     }
   })
 
-  // Send chat message
+  // Send chat message - Enhanced with Agentic RAG
   this.on('sendChatMessage', async (req) => {
     const { sessionId, message } = req.data
 
@@ -347,44 +352,90 @@ module.exports = class ProcurementService extends cds.ApplicationService {
         }
       }
 
-      const session = chatSessions.get(sessionId)
-      const chat = session.chat
+      console.log(`🤖 Processing message: "${message}" for session: ${sessionId}`);
 
-      // Add user message to history
-      session.history.push({
-        role: 'user',
-        message: message,
-        timestamp: new Date()
-      })
+      // Use new AI Chat Router for enhanced processing
+      const aiResponse = await aiChatRouter.processMessage(message, sessionId);
 
-      // Get AI response from Gemini
-      const result = await chat.sendMessage(message)
-      const response = await result.response
-      const aiMessage = response.text()
+      if (aiResponse.success) {
+        // Update session history
+        const session = chatSessions.get(sessionId);
+        session.history.push({
+          role: 'user',
+          message: message,
+          timestamp: new Date()
+        });
+        session.history.push({
+          role: 'assistant',
+          message: aiResponse.response,
+          timestamp: new Date(),
+          intent: aiResponse.intent,
+          confidence: aiResponse.confidence
+        });
 
-      // Add AI response to history
-      session.history.push({
-        role: 'assistant',
-        message: aiMessage,
-        timestamp: new Date()
-      })
-
-      return {
-        success: true,
-        response: aiMessage,
-        sessionId: sessionId
+        return {
+          success: true,
+          response: aiResponse.response,
+          intent: aiResponse.intent,
+          confidence: aiResponse.confidence,
+          actions: aiResponse.actions,
+          sessionId: sessionId
+        };
+      } else {
+        // Fallback to legacy Gemini if AI Router fails
+        console.log('🔄 Falling back to legacy Gemini...');
+        return await this.legacyGeminiChat(sessionId, message);
       }
 
     } catch (error) {
-      console.error('Chat error details:', error.message, error.stack)
-      return {
-        success: false,
-        error: 'Sorry, I encountered an error. Please try again.',
-        fallbackResponse: 'I apologize, but I\'m having trouble connecting to my AI service right now. However, I can still help you with basic procurement tasks. What would you like to do?',
-        sessionId: sessionId
+      console.error('Chat error details:', error.message, error.stack);
+
+      // Fallback to legacy system
+      try {
+        return await this.legacyGeminiChat(sessionId, message);
+      } catch (fallbackError) {
+        console.error('Fallback also failed:', fallbackError);
+        return {
+          success: false,
+          error: 'Sorry, I encountered an error. Please try again.',
+          fallbackResponse: 'I apologize, but I\'m having trouble connecting to my AI service right now. However, I can still help you with basic procurement tasks. What would you like to do?',
+          sessionId: sessionId
+        };
       }
     }
   })
+
+  // Legacy Gemini chat method (fallback)
+  this.legacyGeminiChat = async (sessionId, message) => {
+    const session = chatSessions.get(sessionId);
+    const chat = session.chat;
+
+    // Add user message to history
+    session.history.push({
+      role: 'user',
+      message: message,
+      timestamp: new Date()
+    });
+
+    // Get AI response from Gemini
+    const result = await chat.sendMessage(message);
+    const response = await result.response;
+    const aiMessage = response.text();
+
+    // Add AI response to history
+    session.history.push({
+      role: 'assistant',
+      message: aiMessage,
+      timestamp: new Date()
+    });
+
+    return {
+      success: true,
+      response: aiMessage,
+      sessionId: sessionId,
+      fallback: true
+    };
+  }
 
   // Get chat history
   this.on('getChatHistory', async (req) => {
@@ -452,6 +503,407 @@ module.exports = class ProcurementService extends cds.ApplicationService {
       }
     }
   })
+
+  // Enhanced supplier search endpoint for manual ordering
+  this.on('enhancedSupplierSearch', async (req) => {
+    try {
+      const { searchTerm, region, category, minRating, limit } = req.data;
+      console.log('🔍 Enhanced supplier search request:', req.data);
+
+      if (!searchTerm) {
+        return {
+          success: false,
+          message: 'Search term is required',
+          suppliers: []
+        };
+      }
+
+      // Get enhanced search terms using product mapping
+      const enhancedSearch = productMapper.getEnhancedSearchTerms(searchTerm);
+      console.log('🔍 Enhanced search terms:', enhancedSearch);
+
+      // Build query filters
+      const filters = [];
+      const materialFilters = [];
+
+      // Add original search term
+      materialFilters.push(`contains(tolower(material), '${searchTerm.toLowerCase()}')`);
+      materialFilters.push(`contains(tolower(name), '${searchTerm.toLowerCase()}')`);
+
+      // Add mapped material categories
+      enhancedSearch.matchingMaterials.forEach(material => {
+        materialFilters.push(`contains(material, '${material}')`);
+      });
+
+      // Combine material filters with OR logic
+      if (materialFilters.length > 0) {
+        filters.push(`(${materialFilters.join(' or ')})`);
+      }
+
+      // Add other filters
+      if (region) {
+        filters.push(`region eq '${region}'`);
+      }
+      if (category) {
+        filters.push(`category eq '${category}'`);
+      }
+      if (minRating) {
+        filters.push(`rating ge ${minRating}`);
+      }
+
+      // Get suppliers with their products using separate queries for efficiency
+      const allSuppliers = await SELECT.from('sap.procurement.Suppliers')
+        .columns([
+          'ID', 'name', 'category', 'material', 'region', 'leadTime',
+          'rating', 'contact', 'location', 'isActive'
+        ])
+        .orderBy('rating desc');
+
+      // Get all supplier products separately for efficient searching
+      const allProducts = await SELECT.from('sap.procurement.SupplierProducts')
+        .columns(['supplier_ID', 'name', 'description', 'price']);
+
+      // Create a map of supplier ID to products for efficient lookup
+      const supplierProductsMap = {};
+      allProducts.forEach(product => {
+        if (!supplierProductsMap[product.supplier_ID]) {
+          supplierProductsMap[product.supplier_ID] = [];
+        }
+        supplierProductsMap[product.supplier_ID].push(product);
+      });
+
+      // Attach products to suppliers
+      allSuppliers.forEach(supplier => {
+        supplier.products = supplierProductsMap[supplier.ID] || [];
+      });
+
+      // Enhanced filtering with product search
+      console.log(`🔍 Filtering ${allSuppliers.length} suppliers for term: "${searchTerm}"`);
+      console.log(`🔍 Enhanced materials to search:`, enhancedSearch.matchingMaterials);
+
+      const filteredSuppliers = allSuppliers.filter(supplier => {
+        // Check material matches
+        let materialMatch = false;
+
+        // Direct search term match in material
+        if (supplier.material && supplier.material.toLowerCase().includes(searchTerm.toLowerCase())) {
+          materialMatch = true;
+        }
+
+        // Enhanced material matches
+        for (const material of enhancedSearch.matchingMaterials) {
+          if (supplier.material === material) {
+            materialMatch = true;
+            break;
+          }
+        }
+
+        // Check product matches (NEW!)
+        let productMatch = false;
+        if (supplier.products && Array.isArray(supplier.products)) {
+          productMatch = supplier.products.some(product => {
+            if (product.name && product.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return true;
+            }
+            if (product.description && product.description.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return true;
+            }
+            return false;
+          });
+        }
+
+        // Check supplier name match
+        const nameMatch = supplier.name && supplier.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+        // Apply other filters
+        const regionMatch = !region || supplier.region === region;
+        const categoryMatch = !category || supplier.category === category;
+        const ratingMatch = !minRating || supplier.rating >= minRating;
+
+        const finalMatch = (materialMatch || productMatch || nameMatch) && regionMatch && categoryMatch && ratingMatch;
+
+        // Debug matches
+        if (finalMatch) {
+          const matchType = materialMatch ? 'Material' : productMatch ? 'Product' : 'Name';
+          console.log(`✅ MATCH (${matchType}): ${supplier.name} - ${supplier.material} (${supplier.region})`);
+          if (productMatch && supplier.products) {
+            const matchingProducts = supplier.products.filter(p =>
+              p.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              p.description?.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            console.log(`   📦 Matching products:`, matchingProducts.map(p => p.name));
+          }
+        }
+
+        return finalMatch;
+      });
+
+      // Limit results
+      const limitedResults = limit ? filteredSuppliers.slice(0, limit) : filteredSuppliers;
+
+      return {
+        success: true,
+        suppliers: limitedResults,
+        totalFound: filteredSuppliers.length,
+        searchTerms: enhancedSearch,
+        message: `Found ${limitedResults.length} suppliers matching "${searchTerm}"`
+      };
+
+    } catch (error) {
+      console.error('❌ Error in enhanced supplier search:', error);
+      return {
+        success: false,
+        message: `Search error: ${error.message}`,
+        suppliers: []
+      };
+    }
+  });
+
+  // API Key status endpoint
+  this.on('getAPIKeyStatus', async (req) => {
+    try {
+      const apiKeyManager = require('./ai-chat/apiKeyManager');
+      const status = apiKeyManager.getDetailedStatus();
+
+      console.log('📊 API Key status requested');
+      return {
+        success: true,
+        status: status,
+        timestamp: new Date().toISOString()
+      };
+    } catch (error) {
+      console.error('❌ API Key status error:', error);
+      req.error(500, `Failed to get API key status: ${error.message}`);
+    }
+  });
+
+  // Switch API Key endpoint
+  this.on('switchAPIKey', async (req) => {
+    try {
+      const { keyIndex } = req.data;
+      const apiKeyManager = require('./ai-chat/apiKeyManager');
+
+      if (!keyIndex || keyIndex < 1) {
+        req.error(400, 'Invalid key index. Must be 1 or greater.');
+        return;
+      }
+
+      const newKey = apiKeyManager.switchToKey(keyIndex - 1); // Convert to 0-based index
+      const status = apiKeyManager.getDetailedStatus();
+
+      console.log(`🔄 API Key switched to ${keyIndex} via endpoint`);
+      return {
+        success: true,
+        message: `Switched to API_KEY_${keyIndex}`,
+        currentKey: status.currentKeyName,
+        status: status,
+        timestamp: new Date().toISOString()
+      };
+    } catch (error) {
+      console.error('❌ API Key switch error:', error);
+      req.error(500, `Failed to switch API key: ${error.message}`);
+    }
+  });
+
+  // Unified RFQ Generation endpoint
+  this.on('generateRFQ', async (req) => {
+    try {
+      let { suppliers, material, product, quantity } = req.data;
+
+      console.log('📋 Generating RFQ:', { suppliers, material, product, quantity });
+
+      // Parse suppliers if it's a string
+      if (typeof suppliers === 'string') {
+        try {
+          console.log('🔄 Parsing suppliers JSON string:', suppliers);
+          suppliers = JSON.parse(suppliers);
+          console.log('✅ Parsed suppliers:', suppliers);
+        } catch (error) {
+          console.error('❌ Error parsing suppliers JSON:', error);
+          req.error(400, 'Invalid suppliers JSON format');
+          return;
+        }
+      }
+
+      console.log('📊 Final suppliers array:', suppliers, 'Type:', typeof suppliers, 'IsArray:', Array.isArray(suppliers));
+
+      if (!suppliers || !Array.isArray(suppliers) || suppliers.length === 0) {
+        console.error('❌ Suppliers validation failed:', { suppliers, isArray: Array.isArray(suppliers), length: suppliers?.length });
+        req.error(400, 'Suppliers array is required and must not be empty');
+        return;
+      }
+
+      if (!quantity || quantity <= 0) {
+        req.error(400, 'Valid quantity is required');
+        return;
+      }
+
+      const RFQProcessor = require('./rfq-processor');
+      const rfqProcessor = new RFQProcessor();
+
+      // Process RFQ with backend
+      const rfqRequest = {
+        suppliers: suppliers,
+        material: material || 'Unknown Material',
+        product: product || material || 'Unknown Product',
+        quantity: parseInt(quantity)
+      };
+
+      const rfqResponse = await rfqProcessor.processRFQ(rfqRequest);
+
+      if (rfqResponse.success) {
+        console.log(`✅ RFQ generated successfully for ${rfqResponse.totalSuppliers} suppliers`);
+        return {
+          success: true,
+          rfqId: rfqResponse.requestId,
+          rfqResults: rfqResponse.rfqResults,
+          totalSuppliers: rfqResponse.totalSuppliers,
+          formattedMessage: rfqProcessor.formatRFQForChat(rfqResponse),
+          timestamp: rfqResponse.timestamp
+        };
+      } else {
+        console.error('❌ RFQ generation failed:', rfqResponse.error);
+        req.error(500, `RFQ generation failed: ${rfqResponse.error}`);
+      }
+
+    } catch (error) {
+      console.error('❌ RFQ generation error:', error);
+      req.error(500, `Failed to generate RFQ: ${error.message}`);
+    }
+  });
+
+  // Quick Action: Create Purchase Order from RFQ
+  this.on('createPOFromRFQ', async (req) => {
+    try {
+      const { rfqId, supplierName } = req.data;
+
+      console.log('🛒 Creating PO from RFQ:', { rfqId, supplierName });
+
+      if (!rfqId || !supplierName) {
+        req.error(400, 'RFQ ID and supplier name are required');
+        return;
+      }
+
+      // For now, create a mock order since we don't have RFQ storage
+      // In a real system, you'd fetch the RFQ details from database
+      const orderData = {
+        supplierName: supplierName,
+        material: 'USB Hub', // Default for demo
+        product: 'USB Hub',
+        quantity: 10,
+        estimatedTotal: 315.00 // Use the RFQ estimated total
+      };
+
+      const PurchaseOrderProcessor = require('./purchase-order-processor');
+      const poProcessor = new PurchaseOrderProcessor();
+
+      const orderResponse = await poProcessor.processPurchaseOrder(orderData);
+
+      if (orderResponse.success) {
+        console.log(`✅ Purchase order created from RFQ: ${orderResponse.purchaseOrder.orderNumber}`);
+        return {
+          success: true,
+          orderNumber: orderResponse.purchaseOrder.orderNumber,
+          purchaseOrder: orderResponse.purchaseOrder,
+          inventoryUpdate: orderResponse.inventoryUpdate,
+          formattedMessage: poProcessor.formatOrderConfirmationForChat(orderResponse),
+          timestamp: orderResponse.timestamp
+        };
+      } else {
+        console.error('❌ Purchase order creation failed:', orderResponse.error);
+        req.error(500, `Purchase order creation failed: ${orderResponse.error}`);
+      }
+
+    } catch (error) {
+      console.error('❌ Create PO from RFQ error:', error);
+      req.error(500, `Failed to create purchase order: ${error.message}`);
+    }
+  });
+
+  // Unified Purchase Order endpoint
+  this.on('createUnifiedPurchaseOrder', async (req) => {
+    try {
+      const { supplierName, material, product, quantity, estimatedTotal } = req.data;
+
+      console.log('🛒 Creating purchase order:', { supplierName, material, product, quantity, estimatedTotal });
+
+      if (!supplierName) {
+        req.error(400, 'Supplier name is required');
+        return;
+      }
+
+      if (!quantity || quantity <= 0) {
+        req.error(400, 'Valid quantity is required');
+        return;
+      }
+
+      const PurchaseOrderProcessor = require('./purchase-order-processor');
+      const poProcessor = new PurchaseOrderProcessor();
+
+      // Process purchase order with backend
+      const orderRequest = {
+        supplierName: supplierName,
+        material: material || 'Unknown Material',
+        product: product || material || 'Unknown Product',
+        quantity: parseInt(quantity),
+        estimatedTotal: estimatedTotal ? parseFloat(estimatedTotal) : null
+      };
+
+      const orderResponse = await poProcessor.processPurchaseOrder(orderRequest);
+
+      if (orderResponse.success) {
+        console.log(`✅ Purchase order created: ${orderResponse.purchaseOrder.orderNumber}`);
+        return {
+          success: true,
+          orderNumber: orderResponse.purchaseOrder.orderNumber,
+          purchaseOrder: orderResponse.purchaseOrder,
+          inventoryUpdate: orderResponse.inventoryUpdate,
+          formattedMessage: poProcessor.formatOrderConfirmationForChat(orderResponse),
+          timestamp: orderResponse.timestamp
+        };
+      } else {
+        console.error('❌ Purchase order creation failed:', orderResponse.error);
+        req.error(500, `Purchase order creation failed: ${orderResponse.error}`);
+      }
+
+    } catch (error) {
+      console.error('❌ Purchase order creation error:', error);
+      req.error(500, `Failed to create purchase order: ${error.message}`);
+    }
+  });
+
+  // Debug endpoint to test supplier filtering
+  this.on('debugSupplierSearch', async (req) => {
+    try {
+      const { searchTerm } = req.data;
+      console.log('🐛 Debug search for:', searchTerm);
+
+      // Get all suppliers
+      const allSuppliers = await SELECT.from('sap.procurement.Suppliers');
+      console.log('🐛 Total suppliers:', allSuppliers.length);
+
+      // Find suppliers with exact material match
+      const exactMatches = allSuppliers.filter(s => s.material === searchTerm);
+      console.log('🐛 Exact matches:', exactMatches.length);
+
+      // Find suppliers with partial material match
+      const partialMatches = allSuppliers.filter(s => s.material && s.material.includes(searchTerm));
+      console.log('🐛 Partial matches:', partialMatches.length);
+
+      return {
+        searchTerm,
+        totalSuppliers: allSuppliers.length,
+        exactMatches: exactMatches.length,
+        partialMatches: partialMatches.length,
+        sampleExactMatches: exactMatches.slice(0, 3),
+        samplePartialMatches: partialMatches.slice(0, 3)
+      };
+
+    } catch (error) {
+      console.error('🐛 Debug search error:', error);
+      return { error: error.message };
+    }
+  });
 
   // Delegate requests to the underlying generic service
   return super.init()

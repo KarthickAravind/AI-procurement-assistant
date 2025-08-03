@@ -1,0 +1,162 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table">
+    
+    <Dialog id="manualOrderDialog" 
+            title="Manual Order - Find Suppliers" 
+            contentWidth="90%" 
+            contentHeight="80%"
+            resizable="true"
+            draggable="true">
+        
+        <content>
+            <VBox class="sapUiMediumMargin">
+                
+                <!-- Search Section -->
+                <Panel headerText="Search for Suppliers" class="sapUiMediumMarginBottom">
+                    <content>
+                        <VBox class="sapUiSmallMargin">
+                            <Label text="Search by Product Name or Material:" class="sapUiTinyMarginBottom"/>
+                            <HBox>
+                                <SearchField id="productSearchField" 
+                                           placeholder="e.g., USB Hub, Plastic Mold Case, Connectors..." 
+                                           width="400px"
+                                           search="onSearchProducts"
+                                           class="sapUiTinyMarginEnd"/>
+                                <Button text="Search" 
+                                        type="Emphasized" 
+                                        press="onSearchProducts"
+                                        class="sapUiTinyMarginEnd"/>
+                                <Button text="Clear" 
+                                        press="onClearSearch"/>
+                            </HBox>
+                            
+                            <!-- Filters -->
+                            <HBox wrap="Wrap" class="sapUiSmallMarginTop">
+                                <ComboBox id="regionFilter" 
+                                         placeholder="Filter by Region" 
+                                         width="150px"
+                                         class="sapUiTinyMarginEnd sapUiTinyMarginBottom">
+                                    <core:Item key="" text="All Regions"/>
+                                    <core:Item key="Asia" text="Asia"/>
+                                    <core:Item key="Europe" text="Europe"/>
+                                    <core:Item key="Americas" text="Americas"/>
+                                    <core:Item key="Africa" text="Africa"/>
+                                    <core:Item key="Oceania" text="Oceania"/>
+                                </ComboBox>
+                                
+                                <ComboBox id="categoryFilter" 
+                                         placeholder="Filter by Category" 
+                                         width="150px"
+                                         class="sapUiTinyMarginEnd sapUiTinyMarginBottom">
+                                    <core:Item key="" text="All Categories"/>
+                                    <core:Item key="Electronics" text="Electronics"/>
+                                    <core:Item key="Manufacturing" text="Manufacturing"/>
+                                    <core:Item key="Construction" text="Construction"/>
+                                    <core:Item key="Logistics" text="Logistics"/>
+                                </ComboBox>
+                                
+                                <Input id="minRatingInput" 
+                                      placeholder="Min Rating (e.g., 4.0)" 
+                                      width="120px"
+                                      type="Number"
+                                      class="sapUiTinyMarginEnd sapUiTinyMarginBottom"/>
+                            </HBox>
+                        </VBox>
+                    </content>
+                </Panel>
+                
+                <!-- Results Section -->
+                <Panel headerText="Search Results" class="sapUiMediumMarginBottom">
+                    <content>
+                        <VBox>
+                            <!-- Search Status -->
+                            <HBox class="sapUiSmallMarginBottom">
+                                <Text id="searchStatusText" text="Enter a product name or material to search for suppliers"/>
+                            </HBox>
+                            
+                            <!-- Suppliers Table -->
+                            <table:Table id="suppliersTable"
+                                       rows="{/suppliers}"
+                                       selectionMode="MultiToggle"
+                                       visibleRowCount="8"
+                                       minAutoRowCount="3"
+                                       class="sapUiMediumMarginTop">
+                                
+                                <table:columns>
+                                    <table:Column width="200px" sortProperty="name">
+                                        <Label text="Supplier Name"/>
+                                        <table:template>
+                                            <Text text="{name}" wrapping="false"/>
+                                        </table:template>
+                                    </table:Column>
+                                    
+                                    <table:Column width="150px" sortProperty="material">
+                                        <Label text="Material"/>
+                                        <table:template>
+                                            <Text text="{material}" wrapping="false"/>
+                                        </table:template>
+                                    </table:Column>
+                                    
+                                    <table:Column width="200px">
+                                        <Label text="Matching Products"/>
+                                        <table:template>
+                                            <VBox>
+                                                <core:Fragment fragmentName="procurement.assistant.view.fragments.ProductList" type="XML"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    
+                                    <table:Column width="100px" sortProperty="region">
+                                        <Label text="Region"/>
+                                        <table:template>
+                                            <Text text="{region}" wrapping="false"/>
+                                        </table:template>
+                                    </table:Column>
+                                    
+                                    <table:Column width="100px" sortProperty="rating">
+                                        <Label text="Rating"/>
+                                        <table:template>
+                                            <ObjectStatus text="{rating}/5"
+                                                         state="{path: 'rating', formatter: '.formatRatingState'}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    
+                                    <table:Column width="120px" sortProperty="leadTime">
+                                        <Label text="Lead Time"/>
+                                        <table:template>
+                                            <Text text="{leadTime}" wrapping="false"/>
+                                        </table:template>
+                                    </table:Column>
+                                    
+                                    <table:Column width="150px">
+                                        <Label text="Actions"/>
+                                        <table:template>
+                                            <HBox>
+                                                <Button text="Details" 
+                                                       press="onViewSupplierDetails"
+                                                       class="sapUiTinyMarginEnd"/>
+                                                <Button text="RFQ" 
+                                                       type="Emphasized"
+                                                       press="onCreateRFQ"/>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                </table:columns>
+                            </table:Table>
+                        </VBox>
+                    </content>
+                </Panel>
+            </VBox>
+        </content>
+        
+        <buttons>
+            <Button text="Create RFQ for Selected" 
+                    type="Emphasized" 
+                    press="onCreateRFQForSelected"/>
+            <Button text="Close" 
+                    press="onCloseManualOrderDialog"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

@@ -32,9 +32,13 @@ cds serve --port 4004
 ```
 **Expected Output**: Server starts and listens on port 4004 ✅
 
+**if already in use** 
+netstat -tlnp | grep :4004
+kill 235436
+
 ### **Step 5: Load Sample Data (New Terminal)**
 ```bash
-curl -X POST "http://localhost:4004/odata/v4/procurement/loadSuppliersData" -H "Content-Type: application/json" -d "{}"
+
 ```
 **Expected Output**: 
 ```json

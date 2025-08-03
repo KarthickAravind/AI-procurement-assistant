@@ -103,6 +103,129 @@ service ProcurementService {
 
   action initializeMaterialsData () returns { success: Boolean; message: String };
 
+  // Enhanced supplier search for manual ordering
+  action enhancedSupplierSearch (
+    searchTerm: String @mandatory,
+    region: String,
+    category: String,
+    minRating: Decimal,
+    limit: Integer
+  ) returns {
+    success: Boolean;
+    suppliers: array of {
+      ID: String;
+      name: String;
+      contact: String;
+      region: String;
+      category: String;
+      material: String;
+      rating: Decimal;
+      leadTime: String;
+    };
+    totalFound: Integer;
+    message: String;
+  };
+
+  // Debug action for testing supplier search
+  action debugSupplierSearch (
+    searchTerm: String @mandatory
+  ) returns {
+    searchTerm: String;
+    totalSuppliers: Integer;
+    exactMatches: Integer;
+    partialMatches: Integer;
+    sampleExactMatches: array of {
+      name: String;
+      material: String;
+      region: String;
+      rating: Decimal;
+    };
+    samplePartialMatches: array of {
+      name: String;
+      material: String;
+      region: String;
+      rating: Decimal;
+    };
+  };
+
+  // API Key Management Actions
+  action getAPIKeyStatus () returns {
+    success: Boolean;
+    status: {
+      totalKeys: Integer;
+      currentKeyIndex: Integer;
+      currentKeyName: String;
+      availableKeys: Integer;
+      failedKeys: array of Integer;
+      lastRotationTime: Integer;
+      keyDetails: array of {
+        index: Integer;
+        name: String;
+        masked: String;
+        isActive: Boolean;
+        isFailed: Boolean;
+        status: String;
+      };
+    };
+    timestamp: String;
+  };
+
+  action switchAPIKey (
+    keyIndex: Integer @mandatory
+  ) returns {
+    success: Boolean;
+    message: String;
+    currentKey: String;
+    status: {
+      totalKeys: Integer;
+      currentKeyIndex: Integer;
+      currentKeyName: String;
+      availableKeys: Integer;
+      failedKeys: array of Integer;
+      lastRotationTime: Integer;
+    };
+    timestamp: String;
+  };
+
+  // Unified RFQ Generation
+  action generateRFQ (
+    suppliers: String @mandatory,
+    material: String,
+    product: String,
+    quantity: Integer @mandatory
+  ) returns {
+    success: Boolean;
+    rfqId: String;
+    totalSuppliers: Integer;
+    formattedMessage: String;
+    timestamp: String;
+  };
+
+  // Quick Action: Create Purchase Order from RFQ
+  action createPOFromRFQ (
+    rfqId: String @mandatory,
+    supplierName: String @mandatory
+  ) returns {
+    success: Boolean;
+    orderNumber: String;
+    formattedMessage: String;
+    timestamp: String;
+  };
+
+  // Unified Purchase Order Creation (for AI and Manual)
+  action createUnifiedPurchaseOrder (
+    supplierName: String @mandatory,
+    material: String,
+    product: String,
+    quantity: Integer @mandatory,
+    estimatedTotal: Decimal
+  ) returns {
+    success: Boolean;
+    orderNumber: String;
+    formattedMessage: String;
+    timestamp: String;
+  };
+
   // Events for procurement processes
   event PurchaseOrderCreated : { orderNumber: String; supplier: String; totalAmount: Decimal };
   event RFQSent : { rfqNumber: String; title: String; supplierCount: Integer };

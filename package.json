@@ -9,11 +9,14 @@
     "@cap-js/audit-logging": ">=0",
     "@cap-js/hana": "^2",
     "@google/generative-ai": "^0.24.1",
+    "@pinecone-database/pinecone": "^6.1.2",
     "@sap/cds": "^9",
     "@sap/xssec": "^4",
+    "axios": "^1.11.0",
     "csv-parser": "^3.2.0",
     "dotenv": "^17.2.1",
-    "express": "^4"
+    "express": "^4",
+    "node-fetch": "^2.7.0"
   },
   "engines": {
     "node": ">=20"
@@ -27,9 +30,17 @@
     "start": "cds-serve",
     "convert-datasets": "node scripts/convert-datasets.js",
     "load-data": "node scripts/load-data.js",
+    "upload-pinecone": "node scripts/upload-to-pinecone.js",
     "deploy": "cds deploy --to sqlite:db.sqlite",
+    "api-status": "node scripts/api-key-manager.js status",
+    "api-check": "node scripts/api-key-manager.js check",
+    "api-switch": "node scripts/api-key-manager.js switch",
+    "api-list": "node scripts/api-key-manager.js list",
+    "api-find": "node scripts/api-key-manager.js find",
+    "api-help": "node scripts/api-key-manager.js help",
     "build": "cds build",
-    "setup": "npm run deploy && npm run load-data"
+    "setup": "npm run deploy && npm run load-data",
+    "setup-ai": "npm run setup && npm run upload-pinecone upload"
   },
   "sapux": [
     "app/admin-books",

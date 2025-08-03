@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <VBox items="{products}">
+        <HBox class="sapUiTinyMarginBottom">
+            <Text text="{name}" class="sapUiTinyMarginEnd" wrapping="false"/>
+            <Text text="- ${price}" class="sapThemeTextColor"/>
+        </HBox>
+    </VBox>
+</core:FragmentDefinition>

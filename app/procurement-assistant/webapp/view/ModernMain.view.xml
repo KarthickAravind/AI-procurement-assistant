@@ -121,10 +121,13 @@
                                             <Button text="Send RFQ" icon="sap-icon://email" 
                                                    type="Emphasized" class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
                                                    press="onQuickActionSendRFQ"/>
-                                            <Button text="Find Suppliers" icon="sap-icon://supplier" 
+                                            <Button text="Find Suppliers" icon="sap-icon://supplier"
                                                    type="Default" class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
                                                    press="onQuickActionFindSuppliers"/>
-                                            <Button text="Check Inventory" icon="sap-icon://inventory" 
+                                            <Button text="Manual Order" icon="sap-icon://cart"
+                                                   type="Accept" class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                                                   press="onQuickActionManualOrder"/>
+                                            <Button text="Check Inventory" icon="sap-icon://inventory"
                                                    type="Default" class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
                                                    press="onQuickActionCheckInventory"/>
                                         </HBox>

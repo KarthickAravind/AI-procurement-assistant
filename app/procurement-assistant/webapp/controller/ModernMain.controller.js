@@ -147,6 +147,10 @@ sap.ui.define([
             this._addChatMessage("I'll help you find the best suppliers. What type of materials are you looking for?", "assistant");
         },
 
+        onQuickActionManualOrder: function () {
+            this._openManualOrderDialog();
+        },
+
         onQuickActionCheckInventory: function () {
             this._addChatMessage("Here's your current inventory status. Which materials would you like to check?", "assistant");
         },
@@ -251,13 +255,23 @@ sap.ui.define([
                 sMessageIcon = "🤖 Assistant: ";
             }
 
+            // Parse action buttons from message
+            var aActionButtons = this._parseActionButtons(sMessage);
+            var sCleanMessage = this._removeActionButtons(sMessage);
+
             var oMessage = new MessageStrip({
-                text: sMessageIcon + sMessage,
+                text: sMessageIcon + sCleanMessage,
                 type: sMessageType,
                 class: "sapUiMediumMarginBottom"
             });
 
             oContainer.addItem(oMessage);
+
+            // Add action buttons if any
+            if (aActionButtons.length > 0) {
+                var oButtonContainer = this._createActionButtonContainer(aActionButtons);
+                oContainer.addItem(oButtonContainer);
+            }
 
             // Scroll to bottom
             setTimeout(() => {
@@ -268,6 +282,121 @@ sap.ui.define([
             }, 100);
 
             return oMessage;
+        },
+
+        _parseActionButtons: function (sMessage) {
+            var aButtons = [];
+            var regex = /\[ACTION:([^:]+):([^\]]+)\]\s*([^[\n]*)/g;
+            var match;
+
+            while ((match = regex.exec(sMessage)) !== null) {
+                aButtons.push({
+                    action: match[1],
+                    parameter: match[2],
+                    text: match[3].trim()
+                });
+            }
+
+            return aButtons;
+        },
+
+        _removeActionButtons: function (sMessage) {
+            return sMessage.replace(/\[ACTION:[^\]]+\][^[\n]*/g, '').trim();
+        },
+
+        _createActionButtonContainer: function (aActionButtons) {
+            var oHBox = new sap.m.HBox({
+                class: "sapUiMediumMarginTop sapUiMediumMarginBottom",
+                items: aActionButtons.map(oButtonData => {
+                    return new sap.m.Button({
+                        text: oButtonData.text,
+                        type: "Emphasized",
+                        class: "sapUiTinyMarginEnd",
+                        press: () => {
+                            this._handleActionButton(oButtonData.action, oButtonData.parameter);
+                        }
+                    });
+                })
+            });
+
+            return oHBox;
+        },
+
+        _handleActionButton: function (sAction, sParameter) {
+            console.log('🔘 Action button clicked:', sAction, sParameter);
+
+            switch (sAction) {
+                case 'create_po':
+                    this._createPOFromRFQ(sParameter);
+                    break;
+                case 'modify_rfq':
+                    this._modifyRFQ(sParameter);
+                    break;
+                case 'export_rfq':
+                    this._exportRFQ(sParameter);
+                    break;
+                default:
+                    MessageToast.show(`Action ${sAction} not implemented yet`);
+            }
+        },
+
+        _createPOFromRFQ: function (sRfqId) {
+            // Extract supplier name from the last RFQ message
+            var sSupplierName = this._extractSupplierFromLastRFQ();
+
+            if (!sSupplierName) {
+                MessageToast.show("Could not determine supplier for order");
+                return;
+            }
+
+            jQuery.ajax({
+                url: "/odata/v4/procurement/createPOFromRFQ",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    rfqId: sRfqId,
+                    supplierName: sSupplierName
+                }),
+                success: (data) => {
+                    if (data.success) {
+                        this._addChatMessage(`✅ Order ${data.orderNumber} created successfully! The order has been added to your inventory.`, "assistant");
+                        this._refreshInventoryTile();
+                    } else {
+                        this._addChatMessage("❌ Failed to create purchase order. Please try again.", "assistant");
+                    }
+                },
+                error: (xhr, status, error) => {
+                    console.error("PO creation failed:", error);
+                    this._addChatMessage("❌ Order creation failed. Please try again.", "assistant");
+                }
+            });
+        },
+
+        _extractSupplierFromLastRFQ: function () {
+            // Look for supplier name in recent chat messages
+            var oContainer = this.byId("chatMessagesContainer");
+            var aItems = oContainer.getItems();
+
+            for (var i = aItems.length - 1; i >= 0; i--) {
+                var oItem = aItems[i];
+                if (oItem.getText && oItem.getText().includes("Company Name:")) {
+                    var sText = oItem.getText();
+                    var match = sText.match(/Company Name:\s*([^\n]+)/);
+                    if (match) {
+                        return match[1].trim();
+                    }
+                }
+            }
+
+            return null;
+        },
+
+        _modifyRFQ: function (sRfqId) {
+            this._addChatMessage("RFQ modification feature will be available soon.", "assistant");
+        },
+
+        _exportRFQ: function (sRfqId) {
+            this._addChatMessage("RFQ export feature will be available soon.", "assistant");
         },
 
         _generateSmartResponse: function (sUserMessage) {
@@ -583,6 +712,390 @@ sap.ui.define([
                     return "Success";
                 default:
                     return "None";
+            }
+        },
+
+        // Manual Order Dialog Methods
+        _openManualOrderDialog: function () {
+            if (!this._manualOrderDialog) {
+                this._manualOrderDialog = sap.ui.xmlfragment(
+                    "procurement.assistant.view.fragments.ManualOrderDialog",
+                    this
+                );
+                this.getView().addDependent(this._manualOrderDialog);
+            }
+
+            // Initialize empty model
+            this._manualOrderDialog.setModel(new sap.ui.model.json.JSONModel({
+                suppliers: [],
+                searchTerm: "",
+                totalFound: 0
+            }));
+
+            this._manualOrderDialog.open();
+        },
+
+        onSearchProducts: function () {
+            const oDialog = this._manualOrderDialog;
+            const sSearchTerm = sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "productSearchField"
+            ).getValue();
+
+            if (!sSearchTerm.trim()) {
+                MessageToast.show("Please enter a product name or material to search");
+                return;
+            }
+
+            // Get filter values
+            const sRegion = sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "regionFilter"
+            ).getSelectedKey();
+
+            const sCategory = sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "categoryFilter"
+            ).getSelectedKey();
+
+            const sMinRating = sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "minRatingInput"
+            ).getValue();
+
+            // Update status
+            sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "searchStatusText"
+            ).setText(`Searching for "${sSearchTerm}"...`);
+
+            // Call enhanced search API
+            const oData = {
+                searchTerm: sSearchTerm,
+                region: sRegion || undefined,
+                category: sCategory || undefined,
+                minRating: sMinRating ? parseFloat(sMinRating) : undefined,
+                limit: 50
+            };
+
+            jQuery.ajax({
+                url: "/odata/v4/procurement/enhancedSupplierSearch",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(oData),
+                success: (data) => {
+                    const oModel = oDialog.getModel();
+                    oModel.setData({
+                        suppliers: data.suppliers || [],
+                        searchTerm: sSearchTerm,
+                        totalFound: data.totalFound || 0
+                    });
+
+                    const sStatusText = data.totalFound > 0
+                        ? `Found ${data.totalFound} suppliers for "${sSearchTerm}"`
+                        : `No suppliers found for "${sSearchTerm}"`;
+
+                    sap.ui.core.Fragment.byId(
+                        "procurement.assistant.view.fragments.ManualOrderDialog",
+                        "searchStatusText"
+                    ).setText(sStatusText);
+                },
+                error: (xhr, status, error) => {
+                    MessageToast.show("Search failed: " + error);
+                    sap.ui.core.Fragment.byId(
+                        "procurement.assistant.view.fragments.ManualOrderDialog",
+                        "searchStatusText"
+                    ).setText("Search failed");
+                }
+            });
+        },
+
+        onClearSearch: function () {
+            sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "productSearchField"
+            ).setValue("");
+
+            sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "regionFilter"
+            ).setSelectedKey("");
+
+            sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "categoryFilter"
+            ).setSelectedKey("");
+
+            sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "minRatingInput"
+            ).setValue("");
+
+            this._manualOrderDialog.getModel().setData({
+                suppliers: [],
+                searchTerm: "",
+                totalFound: 0
+            });
+
+            sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "searchStatusText"
+            ).setText("Enter a product name or material to search for suppliers");
+        },
+
+        onCloseManualOrderDialog: function () {
+            this._manualOrderDialog.close();
+        },
+
+        onViewSupplierDetails: function (oEvent) {
+            const oContext = oEvent.getSource().getBindingContext();
+            const oSupplier = oContext.getObject();
+
+            MessageBox.information(
+                `Supplier: ${oSupplier.name}\n` +
+                `Material: ${oSupplier.material}\n` +
+                `Region: ${oSupplier.region}\n` +
+                `Rating: ${oSupplier.rating}/5\n` +
+                `Lead Time: ${oSupplier.leadTime}\n` +
+                `Contact: ${oSupplier.contact}\n` +
+                `Location: ${oSupplier.location}`,
+                { title: "Supplier Details" }
+            );
+        },
+
+        onCreateRFQ: function (oEvent) {
+            const oContext = oEvent.getSource().getBindingContext();
+            const oSupplier = oContext.getObject();
+
+            // Get search term and quantity from dialog
+            const sSearchTerm = sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "productSearchField"
+            ).getValue();
+
+            if (!sSearchTerm) {
+                MessageToast.show("Please enter a product name first");
+                return;
+            }
+
+            // Prompt for quantity
+            const sQuantity = prompt("Enter quantity needed:", "1");
+            if (!sQuantity || isNaN(sQuantity) || parseInt(sQuantity) <= 0) {
+                MessageToast.show("Please enter a valid quantity");
+                return;
+            }
+
+            this._createRFQForSupplier(oSupplier, sSearchTerm, parseInt(sQuantity));
+        },
+
+        onCreateRFQForSelected: function () {
+            const oTable = sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "suppliersTable"
+            );
+
+            const aSelectedIndices = oTable.getSelectedIndices();
+            if (aSelectedIndices.length === 0) {
+                MessageToast.show("Please select at least one supplier");
+                return;
+            }
+
+            // Get selected suppliers
+            const aSelectedSuppliers = [];
+            const oModel = oTable.getModel();
+
+            aSelectedIndices.forEach(iIndex => {
+                const oContext = oTable.getContextByIndex(iIndex);
+                if (oContext) {
+                    aSelectedSuppliers.push(oContext.getObject());
+                }
+            });
+
+            if (aSelectedSuppliers.length === 0) {
+                MessageToast.show("No suppliers selected");
+                return;
+            }
+
+            // Get search term
+            const sSearchTerm = sap.ui.core.Fragment.byId(
+                "procurement.assistant.view.fragments.ManualOrderDialog",
+                "productSearchField"
+            ).getValue();
+
+            if (!sSearchTerm) {
+                MessageToast.show("Please enter a product name first");
+                return;
+            }
+
+            // Prompt for quantity
+            const sQuantity = prompt("Enter quantity needed:", "1");
+            if (!sQuantity || isNaN(sQuantity) || parseInt(sQuantity) <= 0) {
+                MessageToast.show("Please enter a valid quantity");
+                return;
+            }
+
+            this._createBulkRFQ(aSelectedSuppliers, sSearchTerm, parseInt(sQuantity));
+        },
+
+        _createBulkRFQ: function (aSuppliers, sProduct, iQuantity) {
+            const oData = {
+                suppliers: JSON.stringify(aSuppliers),
+                material: aSuppliers[0].material, // Use first supplier's material
+                product: sProduct,
+                quantity: iQuantity
+            };
+
+            jQuery.ajax({
+                url: "/odata/v4/procurement/generateRFQ",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(oData),
+                success: (data) => {
+                    if (data.success) {
+                        this._showRFQDialog(data);
+                    } else {
+                        MessageBox.error("Failed to generate RFQ");
+                    }
+                },
+                error: (xhr, status, error) => {
+                    MessageBox.error("RFQ generation failed: " + error);
+                }
+            });
+        },
+
+        formatRatingState: function (fRating) {
+            if (fRating >= 4.5) return "Success";
+            if (fRating >= 4.0) return "Success";
+            if (fRating >= 3.5) return "Warning";
+            if (fRating >= 3.0) return "Warning";
+            return "Error";
+        },
+
+        // RFQ Creation Methods
+        _createRFQForSupplier: function (oSupplier, sProduct, iQuantity) {
+            const oData = {
+                suppliers: JSON.stringify([oSupplier]),
+                material: oSupplier.material,
+                product: sProduct,
+                quantity: iQuantity
+            };
+
+            jQuery.ajax({
+                url: "/odata/v4/procurement/generateRFQ",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(oData),
+                success: (data) => {
+                    if (data.success) {
+                        this._showRFQDialog(data);
+                    } else {
+                        MessageBox.error("Failed to generate RFQ");
+                    }
+                },
+                error: (xhr, status, error) => {
+                    MessageBox.error("RFQ generation failed: " + error);
+                }
+            });
+        },
+
+        _showRFQDialog: function (rfqData) {
+            if (!this._rfqDialog) {
+                this._rfqDialog = new sap.m.Dialog({
+                    title: "Request for Quotation",
+                    contentWidth: "600px",
+                    contentHeight: "500px",
+                    resizable: true,
+                    draggable: true,
+                    content: [
+                        new sap.m.FormattedText({
+                            htmlText: ""
+                        })
+                    ],
+                    buttons: [
+                        new sap.m.Button({
+                            text: "Place Order",
+                            type: "Emphasized",
+                            press: () => {
+                                this._placeOrderFromRFQ(rfqData);
+                            }
+                        }),
+                        new sap.m.Button({
+                            text: "Close",
+                            press: () => {
+                                this._rfqDialog.close();
+                            }
+                        })
+                    ]
+                });
+                this.getView().addDependent(this._rfqDialog);
+            }
+
+            // Format the RFQ message for display
+            const sFormattedMessage = rfqData.formattedMessage.replace(/\n/g, "<br/>");
+            this._rfqDialog.getContent()[0].setHtmlText(sFormattedMessage);
+
+            // Store RFQ data for order placement
+            this._currentRFQ = rfqData;
+
+            this._rfqDialog.open();
+        },
+
+        _placeOrderFromRFQ: function (rfqData) {
+            // Prompt user to select supplier
+            const aSuppliers = rfqData.rfqResults || [];
+            if (aSuppliers.length === 0) {
+                MessageBox.error("No suppliers available for order");
+                return;
+            }
+
+            let sSupplierName;
+            if (aSuppliers.length === 1) {
+                sSupplierName = aSuppliers[0].supplierInfo.companyName;
+            } else {
+                // For multiple suppliers, use the first one for now
+                // TODO: Add supplier selection dialog
+                sSupplierName = aSuppliers[0].supplierInfo.companyName;
+            }
+
+            const oOrderData = {
+                supplierName: sSupplierName,
+                material: aSuppliers[0].supplierInfo.material,
+                product: aSuppliers[0].supplierInfo.product,
+                quantity: aSuppliers[0].supplierInfo.units,
+                estimatedTotal: parseFloat(aSuppliers[0].estimatedPricing.breakdown.totalEstimate)
+            };
+
+            jQuery.ajax({
+                url: "/odata/v4/procurement/createUnifiedPurchaseOrder",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(oOrderData),
+                success: (data) => {
+                    if (data.success) {
+                        MessageBox.success(`Order ${data.orderNumber} created successfully!\n\nInventory has been updated.`);
+                        this._rfqDialog.close();
+                        this._refreshInventoryTile();
+                    } else {
+                        MessageBox.error("Failed to create purchase order");
+                    }
+                },
+                error: (xhr, status, error) => {
+                    MessageBox.error("Order creation failed: " + error);
+                }
+            });
+        },
+
+        _refreshInventoryTile: function () {
+            // Refresh the inventory overview tile
+            const oInventoryTile = this.byId("inventoryTile");
+            if (oInventoryTile && oInventoryTile.getModel()) {
+                oInventoryTile.getModel().refresh();
+            }
+
+            // Also refresh the materials model if it exists
+            const oModel = this.getView().getModel();
+            if (oModel) {
+                oModel.refresh();
             }
         }
 
