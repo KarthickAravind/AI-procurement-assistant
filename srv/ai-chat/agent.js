@@ -241,28 +241,41 @@ Now analyze the user message and respond with JSON only:`;
       };
     }
 
-    // RFQ generation patterns
+    // High priority RFQ patterns (check first)
     if (this.matchesPatterns(lowerMessage, [
-      'create rfq', 'generate rfq', 'send rfq', 'rfq for',
-      'quote for', 'quotation', 'price quote', 'send quote',
-      'get quote', 'request quote', 'needed', 'need', 'units'
-    ])) {
+      'send rfq', 'create rfq', 'generate rfq', 'rfq for',
+      'send quote', 'get quote', 'request quote'
+    ]) || lowerMessage.includes('rfq')) {
       return {
         type: 'RFQ_GENERATION',
-        confidence: 0.8,
+        confidence: 0.95,
         parameters: this.extractRFQParams(message),
-        reasoning: 'Rule-based detection: RFQ keywords found'
+        reasoning: 'Rule-based detection: Explicit RFQ request found'
       };
     }
 
-    // Enhanced RFQ patterns for quantity + action
-    if (this.matchesPatterns(lowerMessage, ['units', 'needed']) ||
-        /\d+\s*(units?|pcs?|pieces?)/.test(lowerMessage)) {
+    // Quantity + RFQ patterns (high priority)
+    if ((this.matchesPatterns(lowerMessage, ['needed', 'need']) &&
+         /\d+\s*(units?|pcs?|pieces?)/.test(lowerMessage)) ||
+        (lowerMessage.includes('units') &&
+         this.matchesPatterns(lowerMessage, ['send', 'create', 'generate', 'rfq', 'quote']))) {
       return {
         type: 'RFQ_GENERATION',
         confidence: 0.9,
         parameters: this.extractRFQParams(message),
-        reasoning: 'Rule-based detection: Quantity specification indicates RFQ intent'
+        reasoning: 'Rule-based detection: Quantity + RFQ action detected'
+      };
+    }
+
+    // General RFQ patterns
+    if (this.matchesPatterns(lowerMessage, [
+      'quote for', 'quotation', 'price quote', 'needed', 'need', 'units'
+    ])) {
+      return {
+        type: 'RFQ_GENERATION',
+        confidence: 0.7,
+        parameters: this.extractRFQParams(message),
+        reasoning: 'Rule-based detection: RFQ keywords found'
       };
     }
 
@@ -408,12 +421,23 @@ Now analyze the user message and respond with JSON only:`;
     if (!supplierMatch) {
       supplierMatch = message.match(/quote from (.+?)(?:\s|$)/i);
     }
+    if (!supplierMatch) {
+      // Handle "to SupplierA and SupplierB" pattern
+      supplierMatch = message.match(/to (.+?)(?:\s|$)/i);
+    }
+
     if (supplierMatch) {
-      params.suppliers = [supplierMatch[1].trim()];
+      const supplierText = supplierMatch[1].trim();
+      // Handle multiple suppliers separated by "and"
+      if (supplierText.includes(' and ')) {
+        params.suppliers = supplierText.split(' and ').map(s => s.trim());
+      } else {
+        params.suppliers = [supplierText];
+      }
     }
 
     // Extract quantities (multiple patterns)
-    let quantityMatch = message.match(/(\d+)\s*(units?|pieces?|pcs?)/i);
+    let quantityMatch = message.match(/(\d+)\s*(units?|pieces?|pcs?|uint)/i); // Added 'uint' for typos
     if (!quantityMatch) {
       quantityMatch = message.match(/needed?\s+(\d+)/i);
     }
@@ -421,17 +445,21 @@ Now analyze the user message and respond with JSON only:`;
       quantityMatch = message.match(/(\d+)\s+needed?/i);
     }
     if (!quantityMatch) {
+      quantityMatch = message.match(/(\d+)\s+(units?|uint)/i); // Handle "5 uint"
+    }
+    if (!quantityMatch) {
       // Handle standalone numbers like "5 units"
       quantityMatch = message.match(/^(\d+)(?:\s+units?)?$/i);
     }
     if (quantityMatch) {
-      params.quantities = [parseInt(quantityMatch[1])];
+      params.quantity = parseInt(quantityMatch[1]); // Use singular 'quantity'
+      params.quantities = [parseInt(quantityMatch[1])]; // Keep for backward compatibility
     }
 
     // Extract materials from common patterns
     const materials = [
       'aluminum', 'steel', 'plastic', 'casting', 'fastener', 'fasteners',
-      'usb', 'cable', 'laptop', 'electronics', 'molding', 'sheets', 'beam'
+      'usb hub', 'usb', 'cable', 'laptop', 'electronics', 'molding', 'sheets', 'beam'
     ];
     for (const material of materials) {
       if (message.toLowerCase().includes(material)) {
@@ -440,6 +468,7 @@ Now analyze the user message and respond with JSON only:`;
         else if (material === 'plastic') params.material = 'Plastic Molding';
         else if (material === 'casting') params.material = 'Casting Materials';
         else if (material === 'fastener' || material === 'fasteners') params.material = 'Industrial Fasteners';
+        else if (material === 'usb hub') params.material = 'Electronic Components';
         else if (material === 'usb') params.material = 'Cables';
         else params.material = material.charAt(0).toUpperCase() + material.slice(1);
         break;

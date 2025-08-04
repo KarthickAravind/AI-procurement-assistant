@@ -7,6 +7,7 @@ const { Agent } = require('./agent');
 const { PineconeRetriever } = require('./retriever');
 const { GeminiClient } = require('./geminiClient');
 const { ProcurementActions } = require('./actions');
+const { SimpleRFQGenerator } = require('./simpleRFQGenerator');
 const RFQProcessor = require('../rfq-processor');
 const PurchaseOrderProcessor = require('../purchase-order-processor');
 
@@ -16,6 +17,7 @@ class AIChatRouter {
     this.retriever = new PineconeRetriever();
     this.geminiClient = new GeminiClient();
     this.actions = new ProcurementActions();
+    this.simpleRFQGenerator = new SimpleRFQGenerator();
     this.rfqProcessor = new RFQProcessor();
     this.purchaseOrderProcessor = new PurchaseOrderProcessor();
     this.sessions = new Map(); // Store chat sessions with message history
@@ -101,7 +103,9 @@ class AIChatRouter {
           break;
 
         case 'RFQ_GENERATION':
+          console.log('🔄 Routing to RFQ generation handler...');
           const rfqContext = await this.handleRFQGeneration(message, intent, session);
+          console.log('📋 RFQ Context returned:', rfqContext);
           context = { ...context, ...rfqContext };
           break;
 
@@ -122,21 +126,42 @@ class AIChatRouter {
           context = await this.handleGeneralChat(message, intent);
       }
       
-      // Step 3: Generate final response using Gemini or fallback
+      // Step 3: Generate final response - check for simplified responses first
       let response;
-      try {
-        response = await this.geminiClient.generateResponse(
-          message,
-          context,
-          intent,
-          sessionId
-        );
-      } catch (error) {
-        console.log('⚠️ Gemini API error, using fallback response generator');
+
+      console.log('🔍 Checking context type:', context.type);
+      console.log('📋 Full context:', context);
+
+      // Check if we have a simplified RFQ response
+      if (context.type === 'simple_rfq_success') {
+        console.log('✅ Using simplified RFQ response directly');
         response = {
-          text: this.generateFallbackResponse(intent.type, context),
+          text: context.message,
           actions: []
         };
+      } else if (context.type === 'simple_order_success') {
+        console.log('✅ Using simplified order response directly');
+        response = {
+          text: context.message,
+          actions: []
+        };
+      } else {
+        console.log('⚠️ No simplified response found, using Gemini/fallback');
+        // Use Gemini for other responses
+        try {
+          response = await this.geminiClient.generateResponse(
+            message,
+            context,
+            intent,
+            sessionId
+          );
+        } catch (error) {
+          console.log('⚠️ Gemini API error, using fallback response generator');
+          response = {
+            text: this.generateFallbackResponse(intent.type, context),
+            actions: []
+          };
+        }
       }
 
       // Add AI response to conversation history
@@ -233,182 +258,110 @@ class AIChatRouter {
   }
 
   /**
-   * Handle RFQ generation requests with conversation context
+   * Handle RFQ generation requests - SIMPLIFIED VERSION
    */
   async handleRFQGeneration(message, intent, session) {
-    console.log('📋 Handling RFQ generation with conversation history...');
+    console.log('📋 Handling RFQ generation (simplified)...');
 
-    const rfqParams = intent.parameters;
+    try {
+      // Extract context from conversation history
+      const conversationContext = this.extractContextFromHistory(session.messages);
+      console.log('📝 Extracted context:', conversationContext);
 
-    // Extract context from conversation history
-    const conversationContext = this.extractContextFromHistory(session.messages);
-    console.log('📝 Extracted context from conversation:', conversationContext);
+      // Get parameters from intent and conversation
+      let material = intent.parameters.material;
+      let quantity = intent.parameters.quantity || (intent.parameters.quantities ? intent.parameters.quantities[0] : null);
+      let suppliers = intent.parameters.suppliers || [];
+      let supplierCount = 2; // Default to 2 suppliers
 
-    // Use conversation context to fill in missing information
-    let suppliers = [];
-    let material = rfqParams.material;
-    let quantity = rfqParams.quantities ? rfqParams.quantities[0] : null;
-
-    // Get suppliers from conversation context if not specified
-    if (rfqParams.suppliers && rfqParams.suppliers.length > 0) {
-      const supplierName = rfqParams.suppliers[0];
-      suppliers = await this.actions.searchSuppliers({
-        searchText: supplierName,
-        limit: 1
+      console.log('📝 Intent parameters:', {
+        material: intent.parameters.material,
+        quantity: intent.parameters.quantity,
+        suppliers: intent.parameters.suppliers
       });
-    } else if (conversationContext.recentSuppliers.length > 0) {
-      // Use most recent suppliers from conversation (prioritize order)
-      console.log('📝 Using recent suppliers from conversation context:', conversationContext.recentSuppliers);
-      for (const supplierName of conversationContext.recentSuppliers.slice(0, 3)) {
-        const foundSuppliers = await this.actions.searchSuppliers({
-          searchText: supplierName,
-          limit: 1
-        });
-        if (foundSuppliers.length > 0) {
-          suppliers.push(foundSuppliers[0]);
-          console.log(`✅ Found supplier: ${supplierName}`);
-        } else {
-          console.log(`❌ Supplier not found: ${supplierName}`);
-        }
-      }
-    } else if (conversationContext.mentionedSuppliers.length > 0) {
-      // Fallback to any mentioned suppliers
-      console.log('📝 Using any mentioned suppliers:', conversationContext.mentionedSuppliers);
-      for (const supplierName of conversationContext.mentionedSuppliers.slice(0, 3)) {
-        const foundSuppliers = await this.actions.searchSuppliers({
-          searchText: supplierName,
-          limit: 1
-        });
-        if (foundSuppliers.length > 0) {
-          suppliers.push(foundSuppliers[0]);
-        }
-      }
-    }
 
-    // Get material from conversation context if not specified (prioritize most recent)
-    if (!material && conversationContext.mentionedMaterials.length > 0) {
-      // Use the most recently mentioned material
-      material = conversationContext.mentionedMaterials[conversationContext.mentionedMaterials.length - 1];
-      console.log('📝 Using material from conversation context:', material);
-    }
-
-    // Get quantity from conversation context if not specified (prioritize most recent)
-    if (!quantity && conversationContext.quantities.length > 0) {
-      // Use the most recently mentioned quantity
-      quantity = parseInt(conversationContext.quantities[conversationContext.quantities.length - 1]);
-      console.log('📝 Using quantity from conversation context:', quantity);
-    }
-
-    console.log('📋 RFQ Context Summary:');
-    console.log('  - Suppliers found:', suppliers.length);
-    console.log('  - Material:', material);
-    console.log('  - Quantity:', quantity);
-    console.log('  - From conversation:', {
-      suppliers: conversationContext.mentionedSuppliers,
-      materials: conversationContext.mentionedMaterials,
-      quantities: conversationContext.quantities
-    });
-
-    // Always try to use backend RFQ service if we have material and quantity
-    if (material && quantity) {
-      // If no suppliers found, search for them based on material
-      if (suppliers.length === 0) {
-        console.log('🔍 No suppliers found in context, searching for suppliers...');
-        const searchResults = await this.actions.searchSuppliers({
-          material: material,
-          limit: 5
-        });
-        if (searchResults && searchResults.length > 0) {
-          suppliers = searchResults;
-          console.log(`✅ Found ${suppliers.length} suppliers for material: ${material}`);
-        }
+      // Get material from conversation if not in intent
+      if (!material && conversationContext.mentionedMaterials.length > 0) {
+        material = conversationContext.mentionedMaterials[0]; // Most recent
+        console.log('📝 Using material from conversation:', material);
       }
 
-      if (suppliers.length > 0) {
-        // Use unified RFQ service
-        try {
-          console.log('🔄 Calling unified RFQ service...');
+      // Get quantity from conversation if not in intent
+      if (!quantity && conversationContext.quantities.length > 0) {
+        quantity = parseInt(conversationContext.quantities[conversationContext.quantities.length - 1]);
+        console.log('📝 Using quantity from conversation:', quantity);
+      }
 
-          // Call the unified RFQ service
-          const response = await fetch('http://localhost:4005/odata/v4/procurement/generateRFQ', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              suppliers: JSON.stringify(suppliers), // Convert suppliers array to string
-              material: material,
-              product: material, // Use material as product for now
-              quantity: quantity
-            })
-          });
+      // Determine supplier count based on user request
+      if (suppliers && suppliers.length > 0) {
+        supplierCount = Math.max(1, suppliers.length); // Use specified suppliers count
+        console.log(`📝 User specified ${supplierCount} suppliers:`, suppliers);
+      }
 
-          if (response.ok) {
-            const rfqData = await response.json();
-
-            if (rfqData.success) {
-              // Store RFQ context in session for order processing
-              session.context.lastRFQ = rfqData;
-
-              return {
-                type: 'backend_rfq_success',
-                message: rfqData.formattedMessage,
-                rfqResponse: rfqData,
-                parameters: rfqParams
-              };
-            } else {
-              return {
-                type: 'backend_rfq_error',
-                message: `❌ RFQ generation failed`,
-                error: 'RFQ service returned failure',
-                parameters: rfqParams
-              };
-            }
-          } else {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      // Determine product name from material or conversation
+      let productName = material;
+      if (!productName) {
+        // Try to extract product from current message first
+        const productKeywords = ['usb hub', 'steel beam', 'plastic mold case', 'cement bag', 'shipping container', 'power supply', 'cables', 'connectors'];
+        for (const keyword of productKeywords) {
+          if (message.toLowerCase().includes(keyword)) {
+            productName = keyword.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            console.log(`📝 Found product in current message: ${productName}`);
+            break;
           }
+        }
 
-        } catch (error) {
-          console.error('❌ Error calling unified RFQ service:', error);
-          return {
-            type: 'backend_rfq_error',
-            message: `❌ RFQ processing failed: ${error.message}`,
-            error: error.message,
-            parameters: rfqParams
-          };
+        // If not found in current message, check conversation history
+        if (!productName) {
+          for (const msg of session.messages.slice(-5)) {
+            for (const keyword of productKeywords) {
+              if (msg.message.toLowerCase().includes(keyword)) {
+                productName = keyword.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                console.log(`📝 Found product in conversation: ${productName}`);
+                break;
+              }
+            }
+            if (productName) break;
+          }
         }
       }
 
-    } else if (suppliers.length > 0) {
+      // Default values if still missing
+      if (!productName) productName = 'USB Hub'; // Changed default to USB Hub
+      if (!quantity) quantity = 1;
+
+      console.log(`🎯 RFQ Parameters: Product=${productName}, Quantity=${quantity}, Suppliers=${supplierCount}`);
+
+      // Generate RFQ using simple generator
+      const rfqData = await this.simpleRFQGenerator.generateRFQ(productName, quantity, supplierCount);
+
+      // Store RFQ in session for order processing
+      session.context.lastRFQ = rfqData;
+      session.context.lastRFQMessage = this.simpleRFQGenerator.formatRFQResponse(rfqData);
+
       return {
-        type: 'rfq_need_quantity',
-        suppliers: suppliers,
-        material: material,
-        parameters: rfqParams
+        type: 'simple_rfq_success',
+        message: this.simpleRFQGenerator.formatRFQResponse(rfqData),
+        rfqData: rfqData,
+        parameters: intent.parameters
+      };
+
+    } catch (error) {
+      console.error('❌ Error in simple RFQ generation:', error);
+      return {
+        type: 'rfq_error',
+        message: `❌ RFQ generation failed: ${error.message}`,
+        error: error.message,
+        parameters: intent.parameters
       };
     }
-
-    // If no specific suppliers, suggest based on materials
-    if (rfqParams.materials && rfqParams.materials.length > 0) {
-      const suggestedSuppliers = await this.actions.findSuppliersForMaterials(rfqParams.materials);
-      return {
-        type: 'rfq_suggestion',
-        suggestedSuppliers: suggestedSuppliers,
-        materials: rfqParams.materials
-      };
-    }
-
-    return {
-      type: 'rfq_help',
-      message: 'I need more information to generate an RFQ. Please specify suppliers or materials.'
-    };
   }
 
   /**
-   * Handle order placement requests
+   * Handle order placement requests - SIMPLIFIED VERSION
    */
   async handleOrderPlacement(message, intent, session) {
-    console.log('🛒 Handling order placement...');
+    console.log('🛒 Handling order placement (simplified)...');
 
     try {
       // Check if we have RFQ context from previous conversation
@@ -422,64 +375,39 @@ class AIChatRouter {
         };
       }
 
-      // Parse order request from message
-      const orderRequest = this.purchaseOrderProcessor.parseOrderRequest(message, lastRFQ);
+      // Extract company number from message
+      let companyNumber = 1; // Default to first company
+      const companyMatch = message.match(/company\s+(\d+)/i);
+      if (companyMatch) {
+        companyNumber = parseInt(companyMatch[1]);
+      }
 
-      try {
-        console.log('🔄 Calling unified purchase order service...');
+      console.log(`🎯 Placing order with Company ${companyNumber}`);
 
-        // Call the unified purchase order service
-        const response = await fetch('http://localhost:4005/odata/v4/procurement/createUnifiedPurchaseOrder', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            supplierName: orderRequest.supplierName,
-            material: orderRequest.material,
-            product: orderRequest.product,
-            quantity: orderRequest.quantity,
-            estimatedTotal: orderRequest.estimatedTotal
-          })
-        });
+      // Use simple RFQ generator to place order
+      const orderResult = await this.simpleRFQGenerator.placeOrder(lastRFQ, companyNumber, message);
 
-        if (response.ok) {
-          const orderData = await response.json();
+      if (orderResult.success) {
+        // Clear RFQ context after successful order
+        session.context.lastRFQ = null;
 
-          if (orderData.success) {
-            // Clear RFQ context after successful order
-            session.context.lastRFQ = null;
-
-            return {
-              type: 'backend_order_success',
-              message: orderData.formattedMessage,
-              orderResponse: orderData,
-              parameters: intent.parameters
-            };
-          } else {
-            return {
-              type: 'backend_order_error',
-              message: `❌ Order processing failed`,
-              error: 'Order service returned failure',
-              parameters: intent.parameters
-            };
-          }
-        } else {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-      } catch (error) {
-        console.error('❌ Error calling unified purchase order service:', error);
         return {
-          type: 'backend_order_error',
-          message: `❌ Order processing failed: ${error.message}`,
-          error: error.message,
+          type: 'simple_order_success',
+          message: orderResult.message,
+          orderData: orderResult.orderData,
+          parameters: intent.parameters
+        };
+      } else {
+        return {
+          type: 'order_error',
+          message: orderResult.message || '❌ Order placement failed',
+          error: orderResult.error,
           parameters: intent.parameters
         };
       }
 
     } catch (error) {
-      console.error('❌ Error in order placement:', error);
+      console.error('❌ Error in simple order placement:', error);
       return {
         type: 'order_error',
         message: `❌ Order processing failed: ${error.message}`,
