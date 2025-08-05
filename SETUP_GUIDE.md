@@ -37,6 +37,7 @@ netstat -tlnp | grep :4004
 kill 235436
 
 ### **Step 5: Load Sample Data (New Terminal)**
+ curl -X POST "http://localhost:4005/odata/v4/procurement/loadSuppliersData"      -H "Content-Type: application/json" -d "{}"
 ```bash
 
 ```
